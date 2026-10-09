@@ -18,7 +18,7 @@ from pathlib import Path
 SHARED = ('20-claims/', '25-kits/', '30-topics/', '40-sessions/', '50-maps/', '60-outputs/', '_system/', '.github/workflows/')
 ROOT_FILES = {'.gitattributes', '.gitignore', 'CHANGELOG.md', 'PRIVACY.md', 'README.md', 'requirements.txt',
               'install-tools.bat', 'setup-git.bat', 'rebuild.bat', 'save-version.bat', 'ingest.bat', 'ask.bat',
-              'LICENSE', 'LICENSE-CONTENT.md', 'NOTICE.md', 'METHOD.md',
+              'LICENSE', 'LICENSE-CONTENT.md', 'NOTICE.md', 'METHOD.md', 'CONTRIBUTING.md',
               '00-raw/README.md', '10-sources/README.md', '70-private/README.md'}
 # the web edition's 1-minute tour (made for it, never a recording of the event): its source pair and the site's copies, exactly these
 PUBLISHED_MEDIA = {'_system/brand/video/tour.mp4', '_system/brand/video/tour-poster.jpg',

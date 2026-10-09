@@ -3688,7 +3688,7 @@ def dead_links(root):
 
 
 AVOIDED = re.compile('propri' 'etary|commercial ' 'licen', re.I)  # words the community edition never uses, kept split so that git grep finds them nowhere in the branch, this file included
-AVOIDED_DOCS = ('README.md', 'LICENSE', 'LICENSE-CONTENT.md', 'NOTICE.md', 'PRIVACY.md', 'METHOD.md', 'CHANGELOG.md', '_system/README.md', '_system/templates/AGENTS.md')
+AVOIDED_DOCS = ('README.md', 'LICENSE', 'LICENSE-CONTENT.md', 'NOTICE.md', 'PRIVACY.md', 'METHOD.md', 'CONTRIBUTING.md', 'CHANGELOG.md', '_system/README.md', '_system/templates/AGENTS.md')
 
 
 def community_publishing(root, ed, pages):
