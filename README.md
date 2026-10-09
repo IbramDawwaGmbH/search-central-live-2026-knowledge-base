@@ -32,11 +32,11 @@
 2. **Good SEO is good GEO, and llms.txt is not needed**: Google's Day 1 slides said so, and its guide to generative AI features agrees that optimising for AI search is still SEO and that AI text files neither help nor harm, because Google Search ignores them [[D1-C050](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/seo-vs-geo.html#D1-C050), [D1-C054](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/llms-txt.html#D1-C054), [D1-C052](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/seo-vs-geo.html#D1-C052), [D1-C061](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/llms-txt.html#D1-C061)].
 3. **A Search Console setting lets a site leave AI Overviews and AI Mode without touching its rankings**: the "Search generative AI" property setting controls both features, and Google's help page says the control is not used as a ranking or inclusion signal for regular results [[D1-C029](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/genai-optout.html#D1-C029), [D1-C031](https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/topics/genai-optout.html#D1-C031)].
 
-<p align="center">
-  <a href="https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/#tour"><img src="_system/brand/video/tour-poster.jpg" width="720" alt="Watch the 1-minute tour: the title card of the knowledge base, The Knowledge Base, Search Central Live Deep Dive Europe 2026, notes, analysis and verification by Ibrahim Anjro, with the Diver bot waving in deep-blue water."></a>
-  <br>
-  <a href="https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/#tour"><b>Watch the 1-minute tour</b></a>
-</p>
+<p align="center"><b>Watch the 1-minute tour</b></p>
+
+https://github.com/user-attachments/assets/32385670-c6fe-43aa-901a-9cd46c06edac
+
+<p align="center"><sub>Also on the <a href="https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/#tour">live web edition</a>.</sub></p>
 
 ## <img src="_system/brand/icons/coral.svg" width="24" height="24" alt=""> Work with us
 
