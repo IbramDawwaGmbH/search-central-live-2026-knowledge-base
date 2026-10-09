@@ -12,8 +12,10 @@
 | --- | --- |
 | **Report a wrong claim, grade or link** | Open an [issue](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/issues) with the claim ID (such as `D1-C054`), what is wrong and, if you have it, a link to the Google documentation that shows it. |
 | **Fix the code, the developer kit or the docs** | Send a pull request. *Making a change* below shows how. |
-| **Build a tool on top** | Open an issue first and describe the tool. *Building tools on top* below shows where to start. |
-| **Share an idea** | Open an issue. Rough ideas are fine. |
+| **Ask a question** | Ask in [Q&A](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/q-a). |
+| **Build a tool on top** | Describe it in [Ideas](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/ideas) first. *Building tools on top* below shows where to start. |
+| **Share an idea** | Post it in [Ideas](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/ideas). Rough ideas are fine. |
+| **Show what you built** | Share it in [Show and tell](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/show-and-tell). |
 
 Claims are checked against the slides and recordings, which stay private. That is why a correction to a claim works best as an issue: I check it against the evidence and change the claim myself.
 
@@ -23,11 +25,11 @@ This is a knowledge base, not an MCP server (yet). It is ready to build on, and 
 
 - an **MCP server**, so AI assistants can search the claims directly;
 - **integrations and plugins** for editors, content systems and SEO tools;
-- your own idea: open an issue and describe it.
+- your own idea: post it in [Ideas](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/ideas).
 
 Start from the agent pack: [`60-outputs/agent-pack/`](60-outputs/agent-pack/AGENTS.md) holds every claim, topic, session, source and link as JSON, and its `AGENTS.md` tells an agent how to use them. [`_system/kb_query.py`](_system/kb_query.py) already searches it and cites a source for every answer, offline and with Python's standard library only.
 
-Open an issue before you start, so we can agree on where the tool lives: in this repository, or in your own with a link from here.
+Describe the tool in [Ideas](https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base/discussions/categories/ideas) before you start, so we can agree on where it lives: in this repository, or in your own with a link from here.
 
 ## <img src="_system/brand/icons/code.svg" width="24" height="24" alt=""> Making a change
 
