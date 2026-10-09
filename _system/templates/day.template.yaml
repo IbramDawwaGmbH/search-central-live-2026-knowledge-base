@@ -1,0 +1,32 @@
+# Copy to 20-claims/dayN.yaml and replace N. Field reference: _system/schema/claim.md (schema v2).
+# label: slide | stage | docs | press | analysis      ver: confirmed | consistent | undocumented | source | n/a
+# ev: photo stem, notes, agenda, T:<clean-transcript-stem>:<paragraph>, "T hh:mm:ss-hh:mm:ss", video:<stem>
+# Check with: python _system/build_kb.py --check
+#
+# Matching sessions in 20-claims/sessions.yaml (times always in quotes):
+#   - {id: DN-S01, time: "09:30", title: "Session title", speaker: [First Speaker, Second Speaker], role: "Search Advocates", coverage: [transcript, slides], kind: talk}
+#   - {id: DN-S02, time: "16:30", title: "Q&A", speaker: "Google panel", coverage: transcript, kind: qa}
+#   - {id: DN-S00, time: "", title: "Day N, session not recorded", speaker: "", coverage: notes}
+
+# ---------- DN-S01 Session title ----------
+- {id: DN-C001, s: DN-S01, label: slide, ev: IMG_0000, ver: undocumented, topics: [topic-id],
+   text: "One-sentence paraphrase of what the slide showed."}
+- {id: DN-C002, s: DN-S01, label: stage, who: First Speaker, ev: "T:t01:12", ver: consistent, src: [source-key], topics: [topic-id],
+   text: "What the speaker said, in plain English, with the scope of any number.",
+   quote: "Exact words, at most 25, only where the wording matters.", quote_checked: true}
+- {id: DN-C003, s: DN-S01, label: stage, who: Second Speaker, ev: "T:t01:15", ver: undocumented, topics: [topic-id],
+   text: "A point that repeats one made on an earlier day.",
+   rel: [{type: repeats, to: D1-C001}]}
+- {id: DN-C004, s: DN-S01, label: docs, ev: "", ver: source, src: [source-key], topics: [topic-id],
+   text: "What Google's documentation says (Google sources only)."}
+- {id: DN-C005, s: DN-S01, label: press, ev: "", ver: source, src: [press-source-key], topics: [topic-id],
+   text: "What a third-party publication reports Google said (needs a source with kind: press)."}
+- {id: DN-C006, s: DN-S01, label: analysis, ev: "", ver: n/a, topics: [topic-id],
+   text: "What it means and what to do (the author's view)."}
+
+# ---------- DN-S02 Q&A ----------
+- {id: DN-C007, s: DN-S02, label: stage, who: audience, ev: "T:t02:3", ver: n/a, topics: [topic-id],
+   text: "An audience member asked whether ..."}
+- {id: DN-C008, s: DN-S02, label: stage, who: unknown, ev: "T:t02:4", ver: undocumented, topics: [topic-id],
+   text: "The panel answered that ...",
+   rel: [{type: answers, to: DN-C007}]}

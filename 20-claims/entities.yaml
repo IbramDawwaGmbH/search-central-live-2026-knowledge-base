@@ -1,0 +1,856 @@
+# Things the event talked about (the knowledge graph's entities). Schema v2 of the claims is untouched: entities are matched to
+# public claims by alias, and every mention the build finds is listed with the alias it matched in 50-maps/entity-index.md.
+#
+# One entry per thing:
+#   id        kebab-case, unique across entities, topics and areas; never reused
+#   kind      product | feature | crawler | report | directive | status-code | standard | metric | concept | update | tool
+#   name      the display name; it is matched like an alias (when an alias below has the same spelling, that alias's mode wins)
+#   aliases   other spellings. Three forms:
+#               - plain string        matched without regard to case or accents, as a whole word or phrase
+#               - {s: x, in: [ids]}   matched only in claims that carry one of these topics (for words that are common elsewhere)
+#               - {s: x, exact: true} matched with exactly this capitalisation (short acronyms, words that are common in lower case)
+#             A plain alias that is one of the 200 most frequent words of the claims is refused: scope it or make it exact.
+#             An alias does not match inside a longer word or hyphenated name ("noindex" never matches "noindexing", "Googlebot"
+#             never matches "Googlebot-Image"), and a plural is its own alias.
+#   summary   one plain sentence: what the thing is
+#   glossary  the 25-kits/content.yaml glossary term that defines it (optional)
+#   docs      sources.yaml keys of the Google pages that document it (optional)
+#   topics    home topics: the card links to them for the narrative (optional)
+#   rel       relations to other entities (optional). is-a and part-of are structural and need no claims; uses, affects,
+#             measured-by and applies-to are factual and must list the public claims that state them (each must mention both)
+#   pin       public claims that are about the thing but never write an alias (optional)
+#   unpin     alias matches that are wrong (optional)
+# Entries are in id order. The build never adds an entity: this list is the whole vocabulary.
+entities:
+  - id: ai-mode
+    kind: feature
+    name: AI Mode
+    summary: "Google Search's conversational AI mode for longer questions and follow-ups, answered with query fan-out and grounding on the Search index."
+    glossary: AI Mode
+    docs: [ai-mode-launch-blog, ai-features-guide]
+    topics: [ai-mode-usage, search-agents]
+    rel:
+      - {type: uses, to: query-fan-out, claims: [D1-C038, D2-C727, D2-C729]}
+      - {type: uses, to: grounding, claims: [D1-C038]}
+      - {type: measured-by, to: performance-report, claims: [D3-C498]}
+      - {type: measured-by, to: generative-ai-performance-report, claims: [D3-C441]}
+      - {type: uses, to: snippets, claims: [D2-C073, D2-C726, D2-C727]}
+
+  - id: ai-overviews
+    kind: feature
+    name: AI Overviews
+    aliases: [AI Overview, {s: AIO, exact: true}]
+    summary: "AI-generated summaries at the top of Google results, with links to the pages that support them."
+    glossary: AI Overviews
+    docs: [ai-features-guide, ai-optimization-guide]
+    topics: [ai-overviews-usage]
+    rel:
+      - {type: uses, to: query-fan-out, claims: [D1-C038, D2-C727, D2-C729]}
+      - {type: uses, to: grounding, claims: [D1-C038]}
+      - {type: measured-by, to: performance-report, claims: [D3-C498]}
+      - {type: measured-by, to: generative-ai-performance-report, claims: [D3-C441]}
+      - {type: uses, to: snippets, claims: [D2-C073, D2-C726, D2-C727]}
+
+  - id: allow
+    kind: directive
+    name: Allow
+    aliases: [{s: Allow, exact: true}, {s: allow, in: [robots-txt, robots-group-parsing]}]
+    summary: "The robots.txt rule that lets a crawler fetch a path inside a disallowed one; the most specific matching rule wins."
+    docs: [robots-spec]
+    topics: [robots-txt, robots-group-parsing]
+    rel:
+      - {type: part-of, to: robots-txt-file}
+
+  - id: canonicalization
+    kind: concept
+    name: Canonicalization
+    aliases: [canonicalisation, canonical URL, canonical URLs, {s: canonical, in: [canonical-selection, canonical-graphs, duplicate-content, url-normalization]}]
+    summary: "How Google picks one representative URL (the canonical) from a cluster of duplicate pages and indexes that one."
+    glossary: Canonical
+    docs: [canonicalization, canonicalization-troubleshooting]
+    topics: [canonical-selection, canonical-graphs]
+
+  - id: cdn
+    kind: concept
+    name: CDN
+    aliases: [{s: CDN, exact: true}, {s: CDNs, exact: true}, content delivery network, content delivery networks]
+    summary: "A content delivery network: servers in front of a site that cache and deliver its pages and files, whose bot protection, firewall rules or throttling can block or slow Google's crawlers."
+    docs: [crawling-december-cdns]
+    topics: [crawl-errors]
+
+  - id: chrome
+    kind: product
+    name: Chrome
+    aliases: [{s: Chrome, exact: true}, Google Chrome]
+    summary: "Google's web browser; Googlebot renders pages with an up-to-date version of the same Chromium engine, and Chrome's developer tools help debug rendering."
+    docs: [chrome-lens-help]
+
+  - id: core-updates
+    kind: update
+    name: Core updates
+    aliases: [core update]
+    summary: "Broad changes to Google's ranking systems, announced several times a year, that reassess content quality across the web."
+    glossary: Core update
+    docs: [core-updates, search-status-ranking]
+    topics: [search-updates]
+
+  - id: crawl-budget-metric
+    kind: metric
+    name: Crawl budget
+    summary: "The number of URLs Google can and wants to crawl on a site, set by its crawl capacity limit and crawl demand."
+    glossary: Crawl budget
+    docs: [crawl-budget-guide, crawl-budget-blog]
+    topics: [crawl-budget]
+    rel:
+      - {type: measured-by, to: crawl-stats, claims: [D1-C393]}
+
+  - id: crawl-capacity-limit
+    kind: metric
+    name: Crawl capacity limit
+    aliases: [crawl capacity, crawl rate limit, hostload]
+    summary: "How much Google can crawl a site without overloading its servers (once called crawl rate limit, internally hostload)."
+    glossary: Crawl rate limit (hostload)
+    docs: [crawl-budget-guide, reduce-crawl-rate]
+    topics: [crawl-rate-limit]
+    rel:
+      - {type: part-of, to: crawl-budget-metric}
+
+  - id: crawl-demand-metric
+    kind: metric
+    name: Crawl demand
+    summary: "How much Google wants to crawl a site's URLs, driven by their popularity and how often they change."
+    glossary: Crawl demand
+    docs: [crawl-budget-guide]
+    topics: [crawl-demand, crawl-demand-inheritance]
+    rel:
+      - {type: part-of, to: crawl-budget-metric}
+
+  - id: crawl-stats
+    kind: report
+    name: Crawl stats
+    aliases: [Crawl stats report]
+    summary: "The Search Console report on Google's crawling of a site: requests, response codes, file types, purpose and host status."
+    glossary: Crawl Stats report
+    docs: [crawl-stats-help]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: data-nosnippet
+    kind: directive
+    name: data-nosnippet
+    summary: "An HTML attribute that keeps a marked part of a page out of Google's snippets."
+    glossary: nosnippet and data-nosnippet
+    docs: [snippets-guide, robots-meta-tag-spec]
+    topics: [snippet-controls]
+    rel:
+      - {type: affects, to: snippets, claims: [D2-C076, D2-C078]}
+
+  - id: disallow
+    kind: directive
+    name: Disallow
+    summary: "The robots.txt rule that tells a crawler not to fetch the URLs under a path."
+    docs: [robots-spec, create-robots-txt]
+    topics: [robots-txt]
+    rel:
+      - {type: part-of, to: robots-txt-file}
+
+  - id: duplicate-content-concept
+    kind: concept
+    name: Duplicate content
+    aliases: [duplicate cluster, duplicate clusters, deduplication, deduplicates, deduping]
+    summary: "The same or nearly the same content at several URLs, which Google deduplicates: it clusters the URLs and serves one canonical; not a penalty."
+    glossary: Duplicate cluster
+    docs: [duplicate-content-penalty-blog, canonicalization]
+    topics: [duplicate-content]
+    unpin: [D2-C460]  # 'duplicate content across several fields' of LLM-written markup, not duplicate pages
+
+  - id: e-e-a-t
+    kind: concept
+    name: E-E-A-T
+    aliases: [{s: EEAT, exact: true}]
+    summary: "Experience, expertise, authoritativeness and trustworthiness: the qualities Google's rater guidelines ask raters to judge content by."
+    glossary: E-E-A-T
+    docs: [helpful-content, rater-guidelines]
+
+  - id: faceted-navigation-concept
+    kind: concept
+    name: Faceted navigation
+    aliases: [faceted URLs]
+    summary: "Filters such as size, colour or price that create URL variants, which can waste crawl budget when they multiply."
+    glossary: Faceted navigation
+    docs: [faceted-nav-guide]
+    topics: [faceted-navigation]
+    rel:
+      - {type: affects, to: crawl-budget-metric, claims: [D1-C103]}
+
+  - id: gemini
+    kind: product
+    name: Gemini
+    aliases: [{s: Gemini, exact: true}, Gemini app, Gemini apps, Gemini models]
+    summary: "Google's family of AI models and the assistant app built on them; Gemini models also power AI features in Search and Google Trends."
+    docs: [gemini-3-blog, gemini-grounding-search]
+    topics: [gemini-and-search]
+
+  - id: generative-ai-performance-report
+    kind: report
+    name: Generative AI performance report
+    aliases: [Generative AI performance reports, Search generative AI performance report, Search generative AI performance reports,
+              generative AI report, generative AI reports, generative AI reporting, generative AI view]
+    summary: "Search Console reports that show impressions, pages, countries and dates for a site in Google's generative AI features, without clicks or queries."
+    glossary: Generative AI performance report
+    docs: [genai-perf-help, genai-perf-reports-blog]
+    topics: [measuring-ai-visibility]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: geo
+    kind: concept
+    name: GEO
+    aliases: [{s: GEO, exact: true}, {s: AEO, exact: true}, generative engine optimisation, generative engine optimization]
+    summary: "Generative engine optimisation (and its twin AEO): labels for optimising for AI answers, which Google says good SEO already covers."
+    glossary: GEO and AEO
+    topics: [seo-vs-geo]
+
+  - id: google-discover
+    kind: product
+    name: Discover
+    aliases: [{s: Google Discover, exact: true}, {s: Discover, exact: true}]
+    summary: "Google's personalised feed of articles and videos, shown without a query, with its own report in Search Console."
+    glossary: Google Discover
+    docs: [google-discover, discover-policies]
+    topics: [discover]
+
+  - id: google-extended-token
+    kind: crawler
+    name: Google-Extended
+    summary: "A robots.txt control token, not a separate crawler, that decides whether crawled content may be used for Gemini models and grounding outside Search."
+    glossary: Google-Extended
+    docs: [google-extended-announcement, common-crawlers]
+    topics: [google-extended]
+    rel:
+      - {type: affects, to: gemini, claims: [D1-C086, D1-C522, D2-C121]}
+
+  - id: google-images
+    kind: product
+    name: Google Images
+    summary: "Google's image search, which shows images from the web with a link to the page that hosts them."
+    docs: [image-seo, image-metadata]
+    topics: [images]
+
+  - id: google-lens
+    kind: product
+    name: Google Lens
+    aliases: [{s: Lens, exact: true}]
+    summary: "Google's visual search: search with a photo or a part of the screen instead of typed words."
+    glossary: Google Lens
+    docs: [chrome-lens-help, image-search-help]
+
+  - id: google-search-console
+    kind: product
+    name: Search Console
+    aliases: [Google Search Console, {s: GSC, exact: true}]
+    summary: "Google's free tool that reports how a site does in Search: indexing, crawling, performance and enhancements."
+    docs: [perf-report-help, sc-api-reference, verify-site-ownership]
+    topics: [search-console-features, search-console-data]
+
+  - id: google-shopping
+    kind: product
+    name: Google Shopping
+    aliases: [Shopping tab]
+    summary: "Google's shopping results and the Shopping tab, built from Merchant Center feeds and product markup."
+    docs: [mc-free-listings]
+    topics: [shopping-data]
+    rel:
+      - {type: uses, to: storebot-google, claims: [D3-C385, D3-C389]}
+      - {type: uses, to: merchant-center, claims: [D3-C346]}
+
+  - id: google-trends
+    kind: product
+    name: Google Trends
+    aliases: [{s: Trends, exact: true}]
+    summary: "Google's free tool that shows how search interest in a term or topic changes over time and across places, as a share of all searches."
+    docs: [trends-home, trends-faq, trends-get-started-sc]
+    topics: [trends-data, trends-features, trends-for-seo]
+
+  - id: googlebot
+    kind: crawler
+    name: Googlebot
+    # lower-case "googlebot" is the user-agent token in robots.txt groups and in <meta name="googlebot">
+    aliases: [{s: Googlebot, exact: true}, {s: googlebot, in: [robots-txt, robots-group-parsing, robots-meta-tag, snippet-controls]}]
+    summary: "Google Search's main crawler, which fetches pages for the index as a smartphone or desktop user agent."
+    docs: [crawlers-overview, common-crawlers, verify-google-requests, inside-googlebot-blog]
+    topics: [crawl-pipeline]
+
+  - id: grounding
+    kind: concept
+    name: Grounding
+    summary: "Giving an AI model content from the Search index at answer time, so that its answer rests on that content."
+    glossary: Grounding
+    docs: [gemini-grounding-search]
+
+  - id: hreflang-annotation
+    kind: directive
+    name: hreflang
+    aliases: [{s: hreflang, exact: true}]
+    summary: "Annotations that tell Google which language or regional versions of a page exist, so it can show the right one to each user."
+    glossary: hreflang
+    docs: [localized-versions, multi-regional-sites]
+    topics: [hreflang]
+
+  - id: http-200
+    kind: status-code
+    name: "200"
+    aliases: [{s: "200", exact: true, in: [crawl-errors, soft-404, site-moves, rendering, javascript-seo, http-caching, indexing-pipeline]}, 200 OK, HTTP 200]
+    summary: "The HTTP status code for success: the server returns the page, and its content can be considered for indexing."
+    docs: [http-network-errors]
+    unpin: [D1-C236]  # '200,000 lines of search traffic data', not the status code
+
+  - id: http-403
+    kind: status-code
+    name: "403"
+    aliases: [{s: "403", exact: true}, 403 Forbidden]
+    summary: "The HTTP status code for a forbidden request; to Googlebot it is a client error and does not slow crawling the way 429 does."
+    docs: [http-network-errors]
+    rel:
+      - {type: is-a, to: http-4xx}
+
+  - id: http-404
+    kind: status-code
+    name: "404"
+    aliases: [{s: "404", exact: true}, 404 Not Found]
+    summary: "The HTTP status code for a page that does not exist; Google drops such URLs from the index and crawls them less often."
+    docs: [http-network-errors]
+    rel:
+      - {type: is-a, to: http-4xx}
+
+  - id: http-410
+    kind: status-code
+    name: "410"
+    aliases: [{s: "410", exact: true}, 410 Gone]
+    summary: "The HTTP status code for a page that is gone for good; Google treats it much like a 404."
+    docs: [http-network-errors]
+    rel:
+      - {type: is-a, to: http-4xx}
+
+  - id: http-429
+    kind: status-code
+    name: "429"
+    aliases: [{s: "429", exact: true}, 429 Too Many Requests]
+    summary: "The HTTP status code for too many requests; Google treats it like a server error and slows crawling."
+    docs: [http-network-errors]
+    rel:
+      - {type: is-a, to: http-4xx}
+      - {type: affects, to: crawl-capacity-limit, claims: [D1-C092]}
+
+  - id: http-4xx
+    kind: status-code
+    name: 4xx
+    aliases: [4xx errors, client errors]
+    summary: "The class of HTTP status codes for client errors; apart from 429 they do not slow Google's crawling."
+    glossary: HTTP status code classes
+    docs: [http-network-errors]
+
+  - id: http-503
+    kind: status-code
+    name: "503"
+    aliases: [{s: "503", exact: true}, 503 Service Unavailable]
+    summary: "The HTTP status code for a temporarily unavailable server, the right answer for planned maintenance and short outages."
+    docs: [http-network-errors, pause-online-business]
+    rel:
+      - {type: is-a, to: http-5xx}
+
+  - id: http-5xx
+    kind: status-code
+    name: 5xx
+    aliases: [5xx errors, server errors, server error]
+    summary: "The class of HTTP status codes for server errors; Google slows crawling when it sees them and drops URLs that keep returning them."
+    glossary: HTTP status code classes
+    docs: [http-network-errors, troubleshoot-crawling-errors]
+    topics: [crawl-errors]
+    rel:
+      - {type: affects, to: crawl-capacity-limit, claims: [D1-C092]}
+
+  - id: index-selection-concept
+    kind: concept
+    name: Index selection
+    summary: "Google's decision whether a crawled and processed page is worth keeping in the index."
+    glossary: Index selection
+    topics: [index-selection]
+
+  - id: javascript
+    kind: standard
+    name: JavaScript
+    aliases: [{s: JavaScript, exact: true}, {s: JS, exact: true}]
+    summary: "The web's scripting language; Google renders JavaScript before indexing, but content and links that need it are at risk."
+    docs: [javascript-seo-basics, fix-search-javascript]
+    topics: [javascript-seo]
+
+  - id: json-ld
+    kind: standard
+    name: JSON-LD
+    summary: "The JSON-based format for structured data that Google recommends."
+    glossary: JSON-LD
+    docs: [intro-structured-data]
+    topics: [structured-data-implementation]
+
+  - id: lazy-loading-concept
+    kind: concept
+    name: Lazy loading
+    aliases: [lazy-loading, lazy-loaded]
+    summary: "Loading images or content only when they come into view; Google sees it only if it works without scrolling or clicks."
+    glossary: Lazy loading
+    docs: [lazy-loading-guide]
+    topics: [lazy-loading]
+
+  - id: llms-txt-file
+    kind: standard
+    name: llms.txt
+    summary: "A proposed text file that lists a site's content for AI systems; Google Search does not use it."
+    glossary: llms.txt
+    docs: [ai-features-guide, lighthouse-llms-txt]
+    topics: [llms-txt]
+
+  - id: main-content-concept
+    kind: concept
+    name: Main content
+    aliases: [centerpiece]
+    summary: "The part of a page that serves its purpose, which Google identifies and weighs more than boilerplate such as navigation."
+    glossary: Main content (centerpiece)
+    topics: [main-content]
+
+  - id: max-image-preview
+    kind: directive
+    name: max-image-preview
+    summary: "A robots rule that sets the largest image preview Google may show for a page: none, standard or large."
+    glossary: max-image-preview
+    docs: [robots-meta-tag-spec]
+    topics: [snippet-controls]
+    rel:
+      - {type: part-of, to: meta-robots-tag}
+
+  - id: max-snippet
+    kind: directive
+    name: max-snippet
+    summary: "A robots rule that caps the length of a page's text snippet in Google results, in characters."
+    glossary: max-snippet
+    docs: [robots-meta-tag-spec]
+    topics: [snippet-controls]
+    rel:
+      - {type: part-of, to: meta-robots-tag}
+      - {type: affects, to: snippets, claims: [D2-C082, D2-C084, D2-C086]}
+
+  - id: merchant-center
+    kind: product
+    name: Merchant Center
+    aliases: [Google Merchant Center, {s: GMC, exact: true}]
+    summary: "Google's tool where retailers submit product data (feeds) that Google Shopping, free listings and AI shopping experiences use."
+    glossary: Merchant Center
+    docs: [mc-product-data-spec, mc-free-listings, mc-automatic-updates]
+    topics: [shopping-data]
+
+  - id: meta-robots-tag
+    kind: directive
+    name: Robots meta tag
+    aliases: [robots meta tags]
+    summary: "A meta tag in a page's HTML that gives search engines page-level rules such as noindex, nofollow or nosnippet."
+    glossary: Robots meta tag
+    docs: [robots-meta-tag-spec, meta-tags-supported]
+    topics: [robots-meta-tag]
+
+  - id: nofollow
+    kind: directive
+    name: nofollow
+    aliases: [rel=nofollow]
+    summary: "A rule, on a whole page or on one link (rel=nofollow), that asks Google not to follow links; Google treats it as a hint."
+    glossary: nofollow
+    docs: [qualify-outbound-links, nofollow-hints-blog, robots-meta-tag-spec]
+
+  - id: noindex
+    kind: directive
+    name: noindex
+    summary: "A robots meta tag or X-Robots-Tag rule that tells Google not to show a page in search results."
+    glossary: noindex
+    docs: [block-indexing-noindex, robots-meta-tag-spec]
+    topics: [robots-meta-tag]
+    rel:
+      - {type: part-of, to: meta-robots-tag}
+      - {type: affects, to: index-selection-concept, claims: [D2-C696, D2-C697]}
+
+  - id: nosnippet
+    kind: directive
+    name: nosnippet
+    summary: "A robots rule that stops Google from showing a text snippet or video preview for a page, also as input to AI Overviews and AI Mode."
+    glossary: nosnippet and data-nosnippet
+    docs: [snippets-guide, robots-meta-tag-spec]
+    topics: [snippet-controls]
+    rel:
+      - {type: part-of, to: meta-robots-tag}
+      - {type: affects, to: snippets, claims: [D2-C070]}
+
+  - id: notranslate
+    kind: directive
+    name: notranslate
+    summary: "A meta tag value and HTML class that stops Google from offering a translation of a page or of part of it."
+    docs: [meta-tags-supported, notranslate-blog-2008]
+    topics: [snippet-controls]
+
+  - id: page-indexing
+    kind: report
+    name: Page indexing report
+    aliases: [Page indexing]
+    summary: "The Search Console report that lists which URLs are indexed and why the others are not."
+    docs: [page-indexing-help]
+    topics: [page-indexing-report]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: pagerank
+    kind: metric
+    name: PageRank
+    aliases: [BackRub]
+    summary: "Google's original link-based ranking algorithm, from the BackRub research project at Stanford."
+    glossary: PageRank and BackRub
+    docs: [ranking-systems-guide, google-our-story]
+
+  - id: performance-report
+    kind: report
+    name: Performance report
+    aliases: [{s: Performance report, exact: true}, Search Console Performance report]
+    summary: "The Search Console report of clicks, impressions, click-through rate and position for a site's queries and pages."
+    docs: [perf-report-help, perf-filtering-help, sc-impressions-help]
+    topics: [search-console-data]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: platform-properties
+    kind: feature
+    name: Platform properties
+    aliases: [platform property]
+    summary: "Search Console properties for a site's social and video platform channels, showing how that content performs in Google Search."
+    glossary: Platform properties
+    docs: [platform-props-help, platform-props-blog, social-video-guide]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: query-fan-out
+    kind: concept
+    name: Query fan-out
+    aliases: [fan-out, fan-out queries]
+    summary: "Running several related searches at once to gather material for an AI answer, as AI Mode and AI Overviews do."
+    glossary: Query fan-out
+    docs: [ai-features-guide]
+    topics: [query-fanout]
+
+  - id: query-groups
+    kind: feature
+    name: Query groups
+    aliases: [query group]
+    summary: "A Search Console Insights feature that groups similar queries together so their clicks can be read as one topic."
+    glossary: Query groups
+    docs: [query-groups-blog]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: query-understanding-concept
+    kind: concept
+    name: Query understanding
+    summary: "How Google interprets a query (spelling, synonyms, language, intent) before it retrieves results."
+    glossary: Query understanding
+    topics: [query-understanding]
+
+  - id: redirects
+    kind: concept
+    name: Redirects
+    aliases: [redirect, redirected, redirecting, permanent redirect, permanent redirects, temporary redirect, temporary redirects,
+              3xx, {s: "301", exact: true}, {s: "302", exact: true}, {s: "307", exact: true}, {s: "308", exact: true}]
+    summary: "Answers that send crawlers and users from one URL to another, server-side (permanent 301 and 308, temporary 302 and 307) or with JavaScript; a strong canonical signal and the core of a site move."
+    docs: [redirects-guide, http-network-errors, site-move-with-url-changes]
+    topics: [site-moves]
+    rel:
+      - {type: affects, to: canonicalization, claims: [D2-C362, D2-C391]}
+    pin: [D2-C009]  # writes only "302-redirected", which no spelling can match whole
+
+  - id: rel-canonical
+    kind: directive
+    name: rel=canonical
+    aliases: [canonical tag, canonical tags, 'rel="canonical"', canonical link, canonical links, canonical link element]
+    summary: "A link element that names the preferred URL among duplicates; one of several signals Google weighs when it picks the canonical."
+    glossary: rel=canonical
+    docs: [consolidate-duplicate-urls, rel-canonical-mistakes-blog, specify-canonical-blog]
+    topics: [canonical-selection]
+    rel:
+      - {type: affects, to: canonicalization, claims: [D2-C031, D2-C391]}
+
+  - id: rendering-concept
+    kind: concept
+    name: Rendering
+    aliases: [Web Rendering Service, {s: rendering, in: [rendering, javascript-seo, lazy-loading, rendering-debugging, pipeline-overview, indexing-pipeline]}]
+    summary: "Running a page's JavaScript in a headless Chrome so Google sees the content as a browser shows it."
+    glossary: Rendering
+    docs: [javascript-seo-basics]
+    topics: [rendering, rendering-debugging]
+
+  - id: rich-results-feature
+    kind: feature
+    name: Rich results
+    aliases: [rich result]
+    summary: "Search results with extra visual features, such as ratings, prices or images, that structured data can make a page eligible for."
+    glossary: Rich results
+    docs: [search-gallery, visual-elements-gallery]
+    topics: [rich-results]
+
+  - id: rich-results-test
+    kind: tool
+    name: Rich Results Test
+    summary: "Google's tool that tests a page or code snippet for structured data that can produce rich results."
+    glossary: Rich Results Test
+    docs: [rich-results-test-help]
+    topics: [structured-data-implementation]
+
+  - id: robots-txt-file
+    kind: standard
+    name: robots.txt
+    aliases: [Robots Exclusion Protocol, RFC 9309, {s: REP, exact: true}]
+    summary: "The text file at the root of a host that tells crawlers which paths they may fetch, standardised by the IETF in 2022 as the Robots Exclusion Protocol (RFC 9309)."
+    glossary: robots.txt
+    docs: [robots-intro, robots-spec, create-robots-txt, rep-formalizing-blog, robots-refresher-future-blog, robotstxt-parser]
+    topics: [robots-txt, robots-group-parsing]
+
+  - id: robots-txt-report
+    kind: report
+    name: robots.txt report
+    summary: "The Search Console report that shows the robots.txt files Google found for a site, when it fetched them and any parsing errors."
+    glossary: robots.txt report
+    docs: [robots-txt-report]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: scaled-content-abuse
+    kind: concept
+    name: Scaled content abuse
+    summary: "The spam policy against producing many pages mainly to manipulate rankings, whether by AI, people or both."
+    glossary: Scaled content abuse
+    docs: [spam-policies]
+    topics: [spam-policies]
+
+  - id: schema-org-vocabulary
+    kind: standard
+    name: Schema.org
+    summary: "The shared vocabulary of types and properties that structured data uses, launched by the major search engines in 2011."
+    glossary: Schema.org
+    docs: [schema-org-launch-blog]
+    topics: [schema-org]
+
+  - id: search-console-api
+    kind: tool
+    name: Search Console API
+    summary: "The programming interface for reading Search Console data, such as performance and URL inspection, outside the web interface."
+    docs: [sc-api-reference, sc-api-prereqs]
+    topics: [search-console-data]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: search-generative-ai-control
+    kind: feature
+    name: Search generative AI control
+    aliases: [generative AI control]
+    summary: "A Search Console property setting (inherit, include or exclude) that controls whether a site appears in Google's generative AI features without changing its web rankings."
+    glossary: Search generative AI control
+    docs: [gsc-genai-control]
+    topics: [genai-optout]
+    rel:
+      - {type: part-of, to: google-search-console}
+      - {type: affects, to: ai-overviews, claims: [D1-C030, D2-C103]}
+      - {type: affects, to: ai-mode, claims: [D1-C030, D2-C103]}
+      - {type: affects, to: google-discover, claims: [D1-C030]}
+
+  - id: search-interest
+    kind: metric
+    name: Search interest
+    summary: "Google Trends' measure: searches for a term as a share of all searches at a time and place, scaled 0 to 100."
+    glossary: Search interest
+    docs: [trends-faq]
+    topics: [trends-data]
+    rel:
+      - {type: measured-by, to: google-trends, claims: [D2-C761, D2-C784]}
+
+  - id: search-profile
+    kind: feature
+    name: Search profiles
+    aliases: [Search profile]
+    summary: "A profile in Google Search where publishers and creators show their work and channels in one place."
+    glossary: Search profile
+    docs: [search-profiles-blog, search-profiles-update, search-profile-help]
+    topics: [search-profiles]
+
+  - id: search-quality-raters
+    kind: concept
+    name: Search quality raters
+    aliases: [quality raters, quality rater, rater guidelines, Search Quality Rater Guidelines]
+    summary: "People who rate the quality of Google's results against published guidelines; their ratings test changes and do not rank pages."
+    glossary: Search quality raters
+    docs: [rater-guidelines, hsw-rigorous-testing]
+    topics: [search-quality-evaluation]
+
+  - id: single-page-app
+    kind: concept
+    name: Single-page app
+    aliases: [single-page apps, single-page application, single-page applications, {s: SPA, exact: true}, {s: SPAs, exact: true}]
+    summary: "A website that loads one page and swaps content with JavaScript, which needs real URLs and status codes to be indexed well."
+    glossary: Single-page app (SPA)
+    docs: [javascript-seo-basics]
+    topics: [javascript-seo]
+
+  - id: site-move
+    kind: concept
+    name: Site move
+    aliases: [site moves]
+    summary: "Moving a site to new URLs or a new domain, with redirects and Search Console's Change of Address tool."
+    docs: [site-move-with-url-changes, redirects-guide]
+    topics: [site-moves]
+    rel:
+      - {type: uses, to: redirects, claims: [D3-C671]}
+
+  - id: sitemap-file
+    kind: standard
+    name: Sitemaps
+    aliases: [sitemap, XML sitemap, XML sitemaps]
+    summary: "Files that list a site's URLs (with optional last-modified dates) so search engines can discover them."
+    docs: [build-sitemap, sitemaps-overview]
+    topics: [sitemaps]
+    # these claims are only about HTML sitemaps (a page of links for users), not sitemap files
+    unpin: [D2-C001, D2-C002, D2-C003, D2-C004, D2-C007, D2-C820, D2-C838]
+
+  - id: snippets
+    kind: feature
+    name: Snippets
+    # scoped: elsewhere "snippet" is a code snippet, a review or product snippet (rich results) or a featured snippet
+    aliases: [text snippet, text snippets,
+              {s: snippets, in: [snippet-controls, index-structure, serp-anatomy, query-fanout, seo-vs-geo, ai-links-to-web, genai-optout, processing-times, javascript-seo]},
+              {s: snippet, in: [snippet-controls, index-structure, serp-anatomy, query-fanout, seo-vs-geo, ai-links-to-web, genai-optout, processing-times, javascript-seo]}]
+    summary: "The text under a result's title link, which Google creates automatically from the page's content and which robots rules such as nosnippet and max-snippet can limit."
+    docs: [snippets-guide, robots-meta-tag-spec]
+    topics: [snippet-controls]
+
+  - id: soft-404-error
+    kind: concept
+    name: Soft 404
+    aliases: [soft 404s]
+    summary: "A page that tells users it does not exist (or is empty) but answers with 200; Google treats it as an error and drops it."
+    glossary: Soft 404
+    docs: [http-network-errors]
+    topics: [soft-404]
+    rel:
+      - {type: affects, to: index-selection-concept, claims: [D2-C696, D2-C700]}
+
+  - id: spam-updates
+    kind: update
+    name: Spam updates
+    aliases: [spam update]
+    summary: "Updates to Google's spam-detection systems, announced on the Search Status Dashboard."
+    glossary: Spam update
+    docs: [spam-updates, september-2026-spam-update]
+    topics: [search-updates]
+
+  - id: spambrain
+    kind: product
+    name: SpamBrain
+    summary: "Google's AI-based spam-prevention system."
+    glossary: SpamBrain
+    docs: [ranking-systems-guide, webspam-report-2022]
+    topics: [spam-detection]
+
+  - id: special-case-crawlers
+    kind: crawler
+    name: Special-case crawlers
+    aliases: [special-case crawler, contractual crawlers, contractual crawler]
+    summary: "Google crawlers for specific products under an agreement with the site (such as AdsBot), which may ignore the global robots.txt user agent."
+    glossary: Contractual crawlers (special-case crawlers)
+    docs: [special-case-crawlers]
+
+  - id: storebot-google
+    kind: crawler
+    name: Storebot-Google
+    aliases: [Storebot]
+    summary: "Google's crawler for shopping pages, which checks product pages, prices and checkout for Google Shopping."
+    glossary: Storebot-Google
+    docs: [mc-storebot]
+    topics: [shopping-data]
+
+  - id: structured-data-concept
+    kind: concept
+    name: Structured data
+    summary: "Machine-readable markup, usually Schema.org in JSON-LD, that describes a page's content and can make it eligible for rich results."
+    glossary: Structured data
+    docs: [intro-structured-data, structured-data-guidelines, search-gallery]
+    topics: [structured-data, structured-data-implementation]
+    rel:
+      - {type: affects, to: rich-results-feature, claims: [D2-C521, D3-C324]}
+
+  - id: tokenization-concept
+    kind: concept
+    name: Tokenization
+    aliases: [tokenisation]
+    summary: "Splitting text into tokens (words or word parts) for the index or for an AI model."
+    glossary: Tokenization
+    docs: [gemini-tokens]
+    topics: [tokenization]
+
+  - id: trending-now
+    kind: feature
+    name: Trending now
+    summary: "The Google Trends page that lists searches rising fast right now, by country and category."
+    glossary: Trending now
+    docs: [trends-trending-now-help, trending-now-blog-2024]
+    topics: [trends-features]
+    rel:
+      - {type: part-of, to: google-trends}
+
+  - id: trends-explore
+    kind: tool
+    name: Trends Explore
+    aliases: [Google Trends Explore, Explore page]
+    summary: "The Google Trends page for comparing search terms and topics over time, by region and with related queries."
+    docs: [trends-compare-terms, trends-explore-gemini-help]
+    topics: [trends-features]
+    rel:
+      - {type: part-of, to: google-trends}
+
+  - id: url-inspection
+    kind: report
+    name: URL Inspection
+    aliases: [URL Inspection tool, URL Inspection API]
+    summary: "The Search Console tool that shows how Google sees one URL: index status, the chosen canonical, and a live test with the rendered HTML."
+    glossary: URL Inspection tool
+    docs: [url-inspection-help]
+    rel:
+      - {type: part-of, to: google-search-console}
+
+  - id: user-triggered-fetchers
+    kind: crawler
+    name: User-triggered fetchers
+    aliases: [user-triggered fetcher]
+    summary: "Google fetchers that request a page because a user asked for it (for example a site verification), and that generally ignore robots.txt."
+    glossary: User-triggered fetchers
+    docs: [user-triggered-fetchers]
+
+  - id: webmcp
+    kind: standard
+    name: WebMCP
+    summary: "A proposed web standard that lets a page expose its actions as tools that AI agents in the browser can call."
+    glossary: WebMCP
+    docs: [webmcp]
+    topics: [ai-crawlers-and-agents]
+
+  - id: x-robots-tag
+    kind: directive
+    name: X-Robots-Tag
+    summary: "An HTTP response header that carries robots rules such as noindex, so they also work for PDFs, images and other non-HTML files."
+    glossary: X-Robots-Tag
+    docs: [robots-meta-tag-spec]
+    topics: [robots-meta-tag]
+
+  - id: youtube
+    kind: product
+    name: YouTube
+    summary: "Google's video platform; its videos appear in Search, and channels can be added to Search Console as platform properties."

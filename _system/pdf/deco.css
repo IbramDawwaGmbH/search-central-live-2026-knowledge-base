@@ -1,0 +1,199 @@
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; src: url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Josefin'; font-weight: 400; src: url('fonts/josefin-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Josefin'; font-weight: 600; src: url('fonts/josefin-sans-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Josefin'; font-weight: 700; src: url('fonts/josefin-sans-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Poiret One'; src: url('fonts/poiret-one-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Limelight'; src: url('fonts/limelight-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Italiana'; src: url('fonts/italiana-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-weight: 400; src: url('fonts/jost-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-weight: 500; src: url('fonts/jost-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-weight: 600; src: url('fonts/jost-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-weight: 700; src: url('fonts/jost-latin-700-normal.woff2') format('woff2'); }
+/* Latin Extended subsets of the same families (accented names such as Ł, Š, ő), used only for those characters. */
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; src: url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Josefin'; font-weight: 400; src: url('fonts/josefin-sans-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Josefin'; font-weight: 600; src: url('fonts/josefin-sans-latin-ext-600-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Josefin'; font-weight: 700; src: url('fonts/josefin-sans-latin-ext-700-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Poiret One'; src: url('fonts/poiret-one-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Limelight'; src: url('fonts/limelight-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Jost'; font-weight: 400; src: url('fonts/jost-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Jost'; font-weight: 500; src: url('fonts/jost-latin-ext-500-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Jost'; font-weight: 600; src: url('fonts/jost-latin-ext-600-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Jost'; font-weight: 700; src: url('fonts/jost-latin-ext-700-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* One bundled fallback family for arrows, check marks, crosses and math signs, appended to every font stack:
+   Noto Sans Math covers arrows and math, Noto Sans Symbols 2 covers check marks, crosses and other dingbats. */
+@font-face { font-family: 'Noto Symbols'; src: url('fonts/noto-sans-math-latin-400-normal.woff2') format('woff2'); unicode-range: U+2190-21FF, U+2200-22FF, U+27C0-27FF, U+2900-2AFF; }
+@font-face { font-family: 'Noto Symbols'; src: url('fonts/noto-sans-symbols-2-symbols-400-normal.woff2') format('woff2'); unicode-range: U+2300-23FF, U+2460-24FF, U+25A0-27BF, U+2B00-2BFF; }
+
+@page { size: A4; margin: 25mm 20mm 23mm 20mm; }
+@page cover { margin: 0; }
+
+:root {
+  --onyx: #1a1712; --ink: #1d1a16; --body: #3a342b; --muted: #7a6f5d; --faint: #a89a7e;
+  --gold: #b08d3a; --gold-d: #8a6d25; --gold-l: #d9c08a; --gold-xl: #efe2bf;
+  --cream: #f7f1e3; --cream-2: #efe5cf; --rule: #d9cdb3;
+  --emerald: #1e5b4b; --emerald-s: #dde8e1; --wine: #7d2c38; --wine-s: #f1dfdf; --navy: #2f4a6b; --navy-s: #e1e5ec; --plum: #5b3a63; --plum-s: #ece3ee;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: 'Jost', 'Noto Symbols', sans-serif; font-size: 9.2pt; line-height: 1.5; color: var(--body); background: transparent; }
+p { margin: 0 0 8pt; orphans: 2; widows: 2; }
+p.small { break-inside: avoid; }
+strong { color: var(--ink); font-weight: 600; }
+code, pre { font-family: 'JetBrains Mono', 'Noto Symbols', monospace; }
+code { display: inline-block; line-height: 1.25; font-size: 8.2pt; background: var(--cream-2); border: 0.5pt solid var(--gold-l); padding: 0.4pt 3pt; color: var(--ink); }
+a { color: var(--gold-d); text-decoration: none; }
+
+/* ---------- cover ---------- */
+.cover { page: cover; width: 210mm; height: 297mm; position: relative; overflow: hidden; background: var(--onyx); color: var(--cream); break-after: page; }
+.cover svg.art { position: absolute; inset: 0; width: 210mm; height: 297mm; }
+.cover .inner { position: absolute; left: 24mm; right: 24mm; top: 30mm; text-align: center; }
+.cover .eyebrow { font-family: 'Josefin', 'Noto Symbols'; font-weight: 600; font-size: 8.4pt; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-l); }
+.cover .ed { font-family: 'Josefin', 'Noto Symbols'; font-weight: 600; font-size: 8pt; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-top: 3mm; }
+.cover .orn { margin: 7mm auto 7mm; width: 70mm; height: 6mm; }
+.cover .t1 { font-family: 'Poiret One', 'Noto Symbols'; font-size: 34pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); line-height: 1.1; }
+.cover .t2 { font-family: 'Italiana', 'Poiret One', 'Noto Symbols'; font-size: 22pt; color: var(--gold-l); margin: 2mm 0 1mm; letter-spacing: 0.04em; }
+.cover .t3 { font-family: 'Limelight', 'Noto Symbols'; font-size: 50pt; color: var(--gold); letter-spacing: 0.06em; line-height: 1; }
+.cover .sub { margin: 9mm auto 0; font-size: 10.6pt; line-height: 1.6; color: #d8cfbd; max-width: 128mm; font-weight: 400; }
+.cover .meta { position: absolute; left: 0; right: 0; bottom: 30mm; text-align: center; }
+.cover .meta .k { font-family: 'Josefin', 'Noto Symbols'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.36em; text-transform: uppercase; color: var(--gold); }
+.cover .meta .name { font-family: 'Poiret One', 'Noto Symbols'; font-size: 24pt; color: var(--cream); letter-spacing: 0.08em; margin: 2.5mm 0 3mm; }
+.cover .meta .v { font-family: 'Josefin', 'Noto Symbols'; font-weight: 400; font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: #d8cfbd; }
+
+/* ---------- headings ---------- */
+.front h2.title { font-family: 'Poiret One', 'Noto Symbols'; font-weight: 400; font-size: 28pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-align: center; margin: 0 0 2mm; }
+.orn-line { display: block; width: 60mm; height: 5mm; margin: 0 auto 4mm; }
+
+.section-head { text-align: center; margin-bottom: 5mm; }
+.section-head .num { font-family: 'Limelight', 'Noto Symbols'; font-size: 24pt; line-height: 1; color: var(--gold); }
+.section-head .kicker { font-family: 'Josefin', 'Noto Symbols'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-top: 1.5mm; }
+.section-head h2 { font-family: 'Poiret One', 'Noto Symbols'; font-weight: 400; font-size: 22pt; line-height: 1.12; letter-spacing: 0.05em; color: var(--ink); margin: 1.5mm auto 3.5mm; max-width: 150mm; }
+.section-head .lead { font-size: 10pt; line-height: 1.55; color: var(--ink); max-width: 150mm; margin: 0 auto; padding: 3.2mm 0; border-top: 0.6pt solid var(--gold); border-bottom: 0.6pt solid var(--gold); position: relative; }
+.section-head .lead::before, .section-head .lead::after { content: ''; position: absolute; left: 50%; width: 2.4mm; height: 2.4mm; background: var(--gold); transform: translateX(-50%) rotate(45deg); }
+.section-head .lead::before { top: -1.3mm; }
+.section-head .lead::after { bottom: -1.3mm; }
+
+h3 { font-family: 'Josefin', 'Noto Symbols'; font-weight: 700; font-size: 9.4pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin: 6mm 0 2.4mm; break-after: avoid; padding-left: 5mm; position: relative; }
+h3::before { content: ''; position: absolute; left: 0.3mm; top: 1.1mm; width: 2.2mm; height: 2.2mm; background: var(--gold); transform: rotate(45deg); }
+h4 { font-family: 'Josefin', 'Noto Symbols'; font-weight: 700; font-size: 8.6pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin: 4mm 0 1.8mm; break-after: avoid; }
+ul, ol { margin: 0 0 8pt; padding-left: 5mm; }
+li { margin-bottom: 3pt; }
+li::marker { color: var(--gold); }
+ol li::marker { color: var(--gold-d); font-weight: 600; }
+
+/* ---------- tags ---------- */
+.tag { display: inline-block; font-family: 'Josefin', 'Noto Symbols'; font-size: 6.4pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.1pt 4pt 0.2pt; vertical-align: 1pt; margin-right: 3pt; white-space: nowrap; border: 0.5pt solid currentColor; }
+.tag.slide { color: var(--gold-d); background: var(--gold-xl); }
+.tag.stage { color: var(--wine); background: var(--wine-s); }
+.tag.docs { color: var(--emerald); background: var(--emerald-s); }
+.tag.analysis { color: var(--navy); background: var(--navy-s); }
+.tag.press { color: var(--plum); background: var(--plum-s); }
+
+/* ---------- TOC ---------- */
+.toc { margin: 0 0 4mm; }
+.toc .row { display: grid; grid-template-columns: 13mm 1fr 12mm; align-items: baseline; padding: 1.5mm 0; border-bottom: 0.5pt dotted var(--gold); }
+.toc .n { font-family: 'Limelight', 'Noto Symbols'; font-size: 12pt; color: var(--gold); }
+.toc .t { font-family: 'Josefin', 'Noto Symbols'; font-size: 9.8pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+.toc .d { display: block; font-family: 'Jost', 'Noto Symbols'; text-transform: none; letter-spacing: 0; font-size: 8.4pt; font-weight: 400; color: var(--muted); margin-top: 0.4mm; }
+.toc .p { text-align: right; font-family: 'Limelight', 'Noto Symbols'; font-size: 10pt; color: var(--gold-d); }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm 6mm; border: 0.8pt solid var(--gold); box-shadow: inset 0 0 0 1.6mm var(--cream), inset 0 0 0 calc(1.6mm + 0.5pt) var(--gold-l); padding: 3.4mm 6mm; break-inside: avoid; }
+.legend h4 { grid-column: 1 / -1; margin: 0 0 1mm; text-align: center; color: var(--gold-d); }
+.legend div { font-size: 8.8pt; }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 8.6pt; line-height: 1.45; }
+thead th { text-align: left; font-family: 'Josefin', 'Noto Symbols'; font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-l); background: var(--onyx); font-weight: 600; padding: 2.4mm 2.5mm 1.8mm; }
+thead th .tag { border-color: currentColor; }
+tbody td { padding: 1.9mm 2.5mm; border-bottom: 0.5pt solid var(--rule); vertical-align: top; }
+tbody tr:nth-child(even) td { background: rgba(239, 229, 207, 0.45); }
+tbody tr { break-inside: avoid; }
+td.k { font-weight: 600; color: var(--ink); }
+td.fig { font-family: 'Limelight', 'Noto Symbols'; font-size: 11pt; color: var(--gold); white-space: nowrap; }
+.ok { color: var(--emerald); font-weight: 700; }
+.no { color: var(--wine); font-weight: 700; }
+
+/* ---------- blocks ---------- */
+figure { margin: 3mm 0 6mm; break-inside: avoid; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: 7.8pt; color: var(--muted); margin-top: 2.2mm; text-align: center; }
+figcaption b { font-family: 'Josefin', 'Noto Symbols'; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: 7pt; color: var(--gold-d); }
+.callout { background: var(--onyx); color: #e7dcc4; padding: 4.4mm 5.5mm; margin: 4mm 0 5mm; break-inside: avoid; border: 0.6pt solid var(--gold); box-shadow: inset 0 0 0 1.4mm var(--onyx), inset 0 0 0 calc(1.4mm + 0.5pt) var(--gold-d); }
+.callout strong { color: var(--gold-l); }
+.callout code { background: #2a251d; color: var(--gold-l); border-color: #4a4030; }
+.callout .h { font-family: 'Josefin', 'Noto Symbols'; font-size: 7.4pt; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 2mm; }
+.callout.blue { background: #1f2c3f; box-shadow: inset 0 0 0 1.4mm #1f2c3f, inset 0 0 0 calc(1.4mm + 0.5pt) var(--gold-d); }
+.callout .tag.slide { background: #3a3122; color: var(--gold-l); }
+.callout .tag.analysis { background: #2c3c55; color: #c9d6ea; }
+.callout p:last-child { margin-bottom: 0; }
+.quote { font-family: 'Poiret One', 'Noto Symbols'; font-size: 16pt; line-height: 1.38; color: var(--ink); text-align: center; margin: 5mm 8mm 6mm; padding: 5mm 0; border-top: 0.6pt solid var(--gold); border-bottom: 0.6pt solid var(--gold); break-inside: avoid; }
+.quote .by { display: block; font-family: 'Josefin', 'Noto Symbols'; font-size: 7.4pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-d); margin-top: 3mm; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 5mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 3mm 0 5mm; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3mm 0 5mm; }
+.card { border: 0.8pt solid var(--gold); box-shadow: inset 0 0 0 1.2mm var(--cream), inset 0 0 0 calc(1.2mm + 0.5pt) var(--gold-l); padding: 4mm 4.4mm; break-inside: avoid; background: var(--cream); }
+.card .ct { font-family: 'Josefin', 'Noto Symbols'; font-weight: 700; letter-spacing: 0.06em; color: var(--ink); font-size: 9.4pt; margin-bottom: 1.4mm; }
+.card .cs { font-size: 8.4pt; color: var(--body); line-height: 1.5; }
+.card .badge { font-family: 'Josefin', 'Noto Symbols'; font-size: 6.8pt; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; margin-bottom: 1.6mm; }
+.stat { border-top: 0.6pt solid var(--gold); border-bottom: 0.6pt solid var(--gold); padding: 3mm 0 2.6mm; text-align: center; break-inside: avoid; background: linear-gradient(var(--gold), var(--gold)) top / 100% 0.6pt no-repeat; }
+.stat .v { font-family: 'Limelight', 'Noto Symbols'; font-size: 19pt; line-height: 1.05; color: var(--gold-d); }
+.stat .l { font-size: 8pt; color: var(--body); margin-top: 1.6mm; line-height: 1.38; }
+.stat .s { font-family: 'Josefin', 'Noto Symbols'; font-size: 6.6pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-top: 1mm; }
+
+pre.code { font-size: 8.4pt; line-height: 1.55; background: var(--onyx); color: #e7dcc4; padding: 5mm 5.5mm; margin: 2mm 0 5mm; break-inside: avoid; white-space: pre; border: 0.6pt solid var(--gold); box-shadow: inset 0 0 0 1.2mm var(--onyx), inset 0 0 0 calc(1.2mm + 0.5pt) var(--gold-d); }
+pre.code .c { color: #8f8470; }
+pre.code .k { color: var(--gold-l); }
+pre.code .v { color: #9fd1bb; }
+pre.code .x { color: #e8a9a9; }
+
+.takeaways { counter-reset: tk; margin: 0; padding: 0; list-style: none; }
+.takeaways li { counter-increment: tk; display: grid; grid-template-columns: 13mm 1fr; padding: 2mm 0; border-bottom: 0.5pt dotted var(--gold); margin: 0; break-inside: avoid; }
+.takeaways li::before { content: counter(tk, decimal-leading-zero); font-family: 'Limelight', 'Noto Symbols'; font-size: 13pt; color: var(--gold); line-height: 1.15; }
+.takeaways li b { display: block; font-family: 'Josefin', 'Noto Symbols'; font-weight: 700; letter-spacing: 0.04em; color: var(--ink); font-size: 9.8pt; margin-bottom: 0.6mm; }
+.takeaways li span { font-size: 8.8pt; }
+
+.agenda { margin: 2mm 0 4mm; }
+.agenda .r { display: grid; grid-template-columns: 16mm 5mm 1fr 44mm; align-items: center; padding: 1mm 0; border-bottom: 0.5pt dotted var(--gold); break-inside: avoid; }
+.agenda .time { font-family: 'Limelight', 'Noto Symbols'; color: var(--gold-d); font-size: 9.6pt; }
+.agenda .dot { width: 2.2mm; height: 2.2mm; background: var(--gold); transform: rotate(45deg); }
+.agenda .dot.l { background: var(--wine); }
+.agenda .dot.n { background: var(--rule); }
+.agenda .title { font-size: 9.4pt; color: var(--ink); font-weight: 500; }
+.agenda .who { display: block; font-size: 7.8pt; color: var(--muted); font-weight: 400; }
+.agenda .cov { font-family: 'Josefin', 'Noto Symbols'; font-size: 6.8pt; letter-spacing: 0.14em; text-transform: uppercase; text-align: right; color: var(--muted); }
+.agenda .cov b { font-weight: 700; color: var(--gold-d); }
+
+.check { list-style: none; padding: 0; margin: 0 0 4mm; }
+.check li { position: relative; padding: 2.4mm 0 2.4mm 8mm; border-bottom: 0.5pt dotted var(--gold); margin: 0; break-inside: avoid; font-size: 9pt; }
+.check li::before { content: ''; position: absolute; left: 0.4mm; top: 3mm; width: 3.2mm; height: 3.2mm; border: 0.9pt solid var(--gold-d); box-shadow: inset 0 0 0 0.7mm var(--cream), inset 0 0 0 1.5mm var(--gold-xl); }
+.check-group { font-family: 'Josefin', 'Noto Symbols'; font-size: 7.6pt; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-d); font-weight: 700; margin: 6mm 0 1mm; }
+
+.sources li { font-size: 8.6pt; margin-bottom: 2.2mm; }
+.sources li span { color: var(--muted); }
+.avoid { break-inside: avoid; }
+.mt0 { margin-top: 0; }
+.small { font-size: 8.4pt; }
+.muted { color: var(--muted); }
+section.s { break-before: page; }
+.contact { display: grid; grid-template-columns: 1fr 40mm; gap: 8mm; align-items: center; background: var(--onyx); color: var(--cream); padding: 8mm 9mm; margin-top: 2mm; break-inside: avoid; border: 0.8pt solid var(--gold); box-shadow: inset 0 0 0 1.6mm var(--onyx), inset 0 0 0 calc(1.6mm + 0.5pt) var(--gold-d); }
+.contact .ck { font-family: 'Josefin', 'Noto Symbols'; font-size: 7.4pt; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+.contact .cname { font-family: 'Poiret One', 'Noto Symbols'; font-size: 22pt; letter-spacing: 0.06em; margin: 2mm 0 3mm; }
+.contact .cline { font-family: 'Josefin', 'Noto Symbols'; font-size: 8.6pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-l); }
+.contact .cnum { font-family: 'Jost', 'Noto Symbols'; font-size: 13pt; font-weight: 500; letter-spacing: 0.04em; color: var(--cream); text-transform: none; }
+.contact .csub { font-size: 8.6pt; color: #cfc4ad; margin-top: 3mm; }
+.contact .cqr { background: var(--cream); padding: 3mm; text-align: center; border: 0.6pt solid var(--gold); }
+.contact .cqr svg { width: 100%; height: auto; display: block; }
+.contact .cqrl { font-family: 'Josefin', 'Noto Symbols'; font-size: 5.8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 1.4mm; }
+.card .cs ul { margin: 0 0 6pt; padding-left: 4.5mm; }
+.card .cs p { margin: 0 0 6pt; }
+.contact { grid-template-columns: 1fr 66mm; }
+.contact .cqrs { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.contact .ctitle { font-family: 'Josefin', 'Noto Symbols'; font-size: 7.6pt; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold); margin: -1mm 0 4mm; }
+.contact .cline { margin-bottom: 1.6mm; }
+.contact .clink { font-family: 'Jost', 'Noto Symbols'; font-size: 10.5pt; font-weight: 500; letter-spacing: 0.02em; color: var(--cream); text-transform: none; }
+.contact .cname { margin-bottom: 2mm; }
+
+.contact { grid-template-columns: 1fr 54mm; gap: 6mm; padding: 8mm 8mm; }
+.contact .cline { letter-spacing: 0.14em; }
+.contact .clink { font-size: 10pt; white-space: nowrap; }
+.contact .cqrs { gap: 3mm; }

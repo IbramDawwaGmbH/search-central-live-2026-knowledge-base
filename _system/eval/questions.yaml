@@ -1,0 +1,323 @@
+# Answer key for testing an AI agent on 60-outputs/agent-pack/. It is never copied into the pack.
+# Pass rule: a correct answer contains the points in `expect`, cites a claim ID for every point in `claims`, and follows any `must_not`.
+# Each `claims` item is one point. Equivalent claims (a repeat or an extending claim with the same information) are joined by |:
+# D1-C006|D2-C752 counts as cited when the answer cites either ID. An ID stands in one point only.
+# Citations are scored by script:  python _system/eval/eval_check.py answers.yaml  (see _system/eval/README.md).
+# `expect` and `must_not` are checked by a reviewer, or an LLM judge, from the list the script prints.
+# build_kb.py fails when a claim ID here (alternatives included) does not exist or is private. Keep IDs stable; add new questions with the next free id.
+- id: q01
+  q: Does Googlebot support HTTP/3?
+  expect: ["No. Google's crawlers use HTTP/1.1 and HTTP/2.", "HTTP/3 for browsers is fine if the older versions still work."]
+  claims: [D1-C075, D1-C076, D1-C077]
+- id: q02
+  q: Is there a duplicate content penalty?
+  expect: ["No penalty; Google picks one URL to keep.", "The cost is losing control of the canonical and crawling every copy."]
+  claims: [D1-C111, D1-C112, D1-C128, D1-C113]
+- id: q03
+  q: Should I add an llms.txt file to rank in Google's AI features?
+  expect: ["Not necessary; Google Search ignores it.", "It neither harms nor helps."]
+  claims: [D1-C054, D1-C061]
+- id: q04
+  q: How can a site opt out of AI Overviews without losing its normal rankings?
+  expect: ["The Search generative AI setting in Search Console.", "Google says it is not a ranking signal.", "It does not stop AI training; that is Google-Extended."]
+  claims: [D1-C029, D1-C031, D1-C032]
+- id: q05
+  q: What is crawl budget made of?
+  expect: ["Crawl rate limit (hostload) and crawl demand."]
+  claims: [D1-C090, D1-C092, D1-C093]
+- id: q06
+  q: Does a new folder inherit crawl demand from its parent folder?
+  expect: ["Yes, when quality or popularity is unknown the parent path's aggregate is used."]
+  must_not: ["Present this as documented Google policy. It was shown on a slide and is not in the public documentation."]
+  claims: [D1-C094]
+- id: q07
+  q: Does noindex save crawl budget?
+  expect: ["No. Google must fetch the page to see noindex.", "robots.txt disallow prevents the fetch."]
+  claims: [D1-C105, D1-C106, D1-C109]
+- id: q08
+  q: Does Googlebot obey crawl-delay?
+  expect: ["No. It is not supported and is ignored."]
+  claims: [D1-C084, D1-C108]
+- id: q09
+  q: In robots.txt, if a googlebot group exists, does Googlebot also follow the rules in the * group?
+  expect: ["No. A crawler follows only the most specific group that names it."]
+  claims: [D1-C080]
+- id: q10
+  q: What happens if I put a Content-Signal line between two user-agent lines in robots.txt?
+  expect: ["Googlebot ignores it and merges the groups; Bing closes the group early.", "Results differ per crawler, so avoid it."]
+  claims: [D1-C087, D1-C123, D1-C088]
+- id: q11
+  q: Is GEO a separate discipline from SEO according to Google?
+  expect: ["No. AI features are built on the core ranking systems and the Search index.", "Good SEO is good GEO."]
+  claims: [D1-C050, D1-C051, D1-C052]
+- id: q12
+  q: Can Google detect AI-written content?
+  expect: ["Google did not claim detection.", "It said ranking systems are trained on content by humans for humans and promote natural content."]
+  must_not: ["State that Google detects or penalises AI text as such."]
+  claims: [D1-C047, D1-C048]
+- id: q13
+  q: What does Google-Extended control?
+  expect: ["Use of content for Gemini training and grounding in Gemini apps and Vertex AI.", "It does not affect Search inclusion or ranking."]
+  claims: [D1-C086]
+- id: q14
+  q: How fast are AI Mode queries growing?
+  expect: ["Doubling every quarter since launch, per Google."]
+  must_not: ["Present the figure as independently verified."]
+  claims: [D1-C016]
+- id: q15
+  q: What ranking factors did Google give for apps in the Google Play Store?
+  expect: ["The knowledge base does not cover Google Play Store ranking; say so plainly.", "Anything added from general knowledge is marked as outside the knowledge base."]
+  must_not: ["Present Play Store ranking factors as said at Search Central Live or as documented in this knowledge base."]
+  claims: []
+- id: q16
+  q: Can robots meta tags make a page more visible in Google Search than having no robots meta tag at all?
+  expect: ["Yes, according to John Mueller: max-image-preview:large (large images, mainly in Discover) and max-snippet:-1 (no snippet length limit).", "The all rule is the default and does nothing.", "Google's robots meta tag specification does not say that max-snippet:-1 gives a longer snippet; it says Google then chooses the length it thinks most effective."]
+  must_not: ["Present 'max-snippet:-1 can give a longer snippet than no rule' as documented. It was shown on a slide and is not in Google's documentation."]
+  claims: [D2-C053, D2-C104, D2-C089, D2-C085, D2-C086]
+- id: q17
+  q: Should I split my content into short chunks of 100 to 200 words so Google's AI systems can use it?
+  expect: ["No. Day 1's myth slide said there is no need to chop content for AI.", "On Day 2 Gary Illyes said chunking matters at the level of a model's context window, and Gemini's holds millions of tokens, so small chunks are not needed."]
+  must_not: ["Say that Google recommends chunking content for AI features."]
+  claims: [D1-C054, D2-C330, D2-C331, D2-C332]
+- id: q18
+  q: Does Gemini tokenize text the same way as Google Search does when it builds its index?
+  expect: ["Day 1's slide said Gemini shares technologies such as tokenization with Search.", "On Day 2 Gary Illyes said tokenization for Gemini differs from Search tokenization ('or mostly'): Search keeps words such as robots.txt whole, while the AI tokenizer splits them into sub-word pieces.", "The two days are in tension; read it as a shared step with different outputs."]
+  must_not: ["Say the two use identical tokens without mentioning the Day 2 statement."]
+  claims: [D1-C039, D2-C325, D2-C328, D2-C329]
+- id: q19
+  q: How does Google detect soft 404 pages?
+  expect: ["A soft 404 returns 200 while its content looks like an error or is empty; it is kept out of the index.", "Keyword matching cannot work because error pages are worded in endless ways.", "Google said it uses a language model, something like BERT, trained to understand page layout as well as language: an error alone in the main content makes a soft 404, an error in the navigation need not."]
+  must_not: ["Present the layout-aware model or the position rule as documented. They were said on stage and are not in Google's documentation."]
+  claims: [D1-C073, D2-C335, D2-C338, D2-C339]
+- id: q20
+  q: Why might Google choose a different canonical URL than the one in my rel=canonical?
+  expect: ["Duplicates are not penalised; Google clusters them and picks one representative URL.", "rel=canonical is often wrong, so Google makes its own judgement.", "It weighs hijacking, user experience (whether the page loads, security) and site-owner signals (redirects, rel=canonical, sitemaps); when signals point in different directions Google cannot tell what the owner wants.", "Similar-looking URL patterns can be folded into one canonical."]
+  must_not: ["Name a duplicate content penalty as the cause.", "Present the URL-pattern deduplication as documented. It was shown on a slide and is not in Google's documentation."]
+  claims: [D1-C128, D2-C380, D2-C387, D2-C389, D2-C399, D2-C368]
+- id: q21
+  q: Does Google put my schema.org markup directly into the context of its AI models, and do I need special markup for AI features?
+  expect: ["The same processed structured data feeds classic results and AI Overviews and AI Mode.", "As far as the speaker knew, in most of Google's main AI uses raw schema.org markup is not turned into text and put directly into the model's context; the data is first sorted out, checked for quality and indexed, partly because raw markup would be an abuse vector.", "Google's documentation says no special markup or AI files are needed."]
+  must_not: ["Present 'raw markup is not fed to the model' as documented Google policy. It was said on stage, with a hedge."]
+  claims: [D2-C476, D2-C477, D2-C478, D1-C061|D2-C480|D3-C326]
+- id: q22
+  q: Which of these hreflang values are valid - se-SE, en-UK, de-EU, en-GB, GB?
+  expect: ["Only en-GB is valid.", "The language part must be an ISO 639-1 language code (Swedish is sv, not se); the region part must be an ISO 3166-1 Alpha-2 country code (GB, not UK).", "EU is not a valid region, and a region code cannot be used on its own."]
+  claims: [D2-C575, D2-C579, D2-C580, D2-C582]
+- id: q23
+  q: Is it easier to get pages indexed in a smaller language such as Basque?
+  expect: ["Google said index selection weights language and country so that the index is not dominated by English.", "Where Google lacks content in a language, index selection is more likely to select lower-quality documents, which Google presented as an opportunity to replace spam.", "Spam signals still apply, and automated translation of content at scale can be scaled content abuse."]
+  must_not: ["Present the language weighting of index selection as documented. It was said on stage and is not in Google's documentation.", "Recommend machine-translating content in bulk into small languages."]
+  claims: [D2-C651, D2-C652, D2-C690, D2-C691, D2-C611]
+- id: q24
+  q: How long does a page wait in Google's render queue before it is rendered?
+  expect: ["Google's JavaScript SEO guide says a page may wait a few seconds but it can take longer, and gives no upper limit.", "The estimate 'seconds to a couple of minutes' came from a community speaker's slide (Rebecca Yu) in a lightning talk, not from Google."]
+  must_not: ["Attribute the 'seconds to a couple of minutes' estimate to Google."]
+  claims: [D2-C172, D2-C171]
+- id: q25
+  q: According to Google, what share of multilingual websites have hreflang errors?
+  expect: ["Google gave no such figure at the event.", "The 75% figure came from a community speaker citing a Semrush study reported in February 2017 (20,000 sites)."]
+  must_not: ["Attribute the 75% figure to Google.", "Present the figure as current data without its 2017 date."]
+  claims: [D2-C633]
+- id: q26
+  q: Should a shop 302-redirect a product page that will be out of stock for two or three months?
+  expect: ["Google's Q&A slide said it depends on how important the product page is to users; users might wait months or pre-order.", "Google's documentation for pausing a business suggests keeping pages live and showing availability in Product structured data.", "With a 302, Google keeps showing the source page and does not treat the target as canonical."]
+  must_not: ["Present the options in the audience question (a 302 to a similar product or to the listing page) as Google's recommendation."]
+  claims: [D2-C010, D2-C011, D2-C012, D2-C013]
+- id: q27
+  q: Google Trends shows interest in a term falling steadily since 2004. Does that mean fewer people search for it?
+  expect: ["Not necessarily. Google Trends shows search interest, the term's share of all searches, not search volume.", "Total Google searches have grown to more than five trillion a year, so a falling share can hide rising volume; Google said ski searches are rising although ski's share fell.", "The difference matters most over long time ranges."]
+  must_not: ["Treat the 0 to 100 scale as absolute search volume."]
+  claims: [D2-C784, D2-C785, D2-C786, D2-C787, D1-C006|D2-C752]
+- id: q28
+  q: What is the difference between 'Discovered – currently not indexed' and 'Crawled – currently not indexed' in Search Console?
+  expect: ["Discovered: Google knows the URL but has not crawled it; a crawl-scheduling state (the help page says Google expected the crawl to overload the site; on stage, that Google does not want to crawl it yet).", "Crawled: an index selection decision; Google crawled the page and chose not to keep it, most of the time for quality reasons.", "Resubmitting does not fix either; raise the quality of the site and of those pages.", "Google's crawl budget guide (Day 1) counts many 'Discovered' URLs as one sign that a site may need it."]
+  must_not: ["Advise repeatedly resubmitting the URLs as the fix."]
+  claims: [D2-C706, D2-C707, D2-C711, D2-C714, D1-C097]
+- id: q29
+  q: Does Googlebot scroll when it renders a page, and how tall is the viewport it renders with?
+  expect: ["Google does not scroll, so content loaded by scroll listeners never loads for it.", "It renders in a very tall viewport, around 10,000 pixels according to the stage; Google's documentation describes viewport expansion ('a very long phone') without a figure.", "Content loaded when it enters the viewport, for example with an Intersection Observer, does load."]
+  must_not: ["Present the 10,000-pixel figure as documented."]
+  claims: [D2-C271, D2-C272, D2-C273, D2-C274]
+- id: q30
+  q: When did Google launch SpamBrain, and what is it built on today?
+  expect: ["Google's documentation dates the launch to 2018.", "On stage SpamBrain was said to be built on Gemini nowadays and fine-tuned for spam, which is undocumented.", "Google's 2022 webspam report says SpamBrain found 5 times more spam sites in 2022 than in 2021."]
+  must_not: ["Give 2022 as the launch year.", "Present 'built on Gemini' as documented."]
+  claims: [D2-C671, D2-C672, D2-C669, D2-C674]
+- id: q31
+  q: Should a page list the synonyms and spelling variants of its key terms (for example 'jamón ibérico' and 'Iberico ham', or a German word with and without its umlaut) so that Google finds it?
+  expect: ["No. Google expands queries with synonyms automatically, so a page does not need to list them, and Google does not prefer English terms on pages in other languages.", "Check by searching each variant: [Iberico ham] and [jamón ibérico] brought up the same entity, while [Spanish cured ham] did not, so a page that wants that phrase should use it in its text.", "Google generally treats spellings with and without diacritics as synonyms but sometimes gets them wrong; write the form users actually search for."]
+  must_not: ["Recommend adding lists of synonyms or keyword variants to pages.", "Say Google prefers English words on pages in other languages."]
+  claims: [D3-C023, D3-C041, D3-C043, D3-C046, D3-C048, D3-C050]
+- id: q32
+  q: Can a relevant but low-quality page still reach Google's ranking step, and which signals does Google apply before ranking?
+  expect: ["Serving runs query understanding and retrieval against the index, then ranking and search features.", "The index uses posting lists, and Google already orders the candidates at retrieval: language first, then country.", "Google called quality the most important signal for ordering candidates at retrieval, so a low-quality page is less likely to be retrieved at all; the same quality signal is used again in ranking.", "Google's documentation lists quality among ranking signals but does not describe it as deciding retrieval."]
+  must_not: ["Present quality as a retrieval filter as documented Google policy. It was said on stage and is not in Google's documentation."]
+  claims: [D3-C001, D3-C074, D3-C078, D3-C079, D3-C083, D3-C084, D3-C096]
+- id: q33
+  q: Should our editors write to a keyword density or a word count target that our CMS plugin scores?
+  expect: ["No. Google's spam policies treat filling a page with keywords to manipulate rankings as keyword stuffing, and Google says it has no preferred word count.", "A community speaker recalled that hitting a keyword-density ratio worked around 2009; that is history, not current advice.", "Google's quality talk said trying to maximise one ranking signal does not work, because Google uses hundreds of signals."]
+  must_not: ["Recommend a target keyword density or word count.", "Attribute the 2009 keyword-density recollection to Google."]
+  claims: [D3-C098, D3-C100, D3-C101, D3-C143]
+- id: q34
+  q: Does Google demote content because it was written with AI, and what does Google mean by content quality?
+  expect: ["Quality is judged by effort, originality, talent or skill, and accuracy, the rater-guideline attributes that Google's quality talk and its helpful-content guidance describe.", "Google treats it as a quality issue, not AI versus human: the tool is not the problem but how it is used; commodity content that anyone could write offers little value.", "Mass-produced AI slop counts as scaled content abuse, generating large amounts of text without oversight is little to no effort, and fake author personas with AI-generated headshots are deception that raters rate Lowest."]
+  must_not: ["Say Google demotes or penalises content because it is AI-generated.", "Say Google detects AI-written text as such."]
+  claims: [D3-C132, D3-C176, D3-C178, D3-C190, D3-C695, D3-C697, D3-C692, D3-C710]
+- id: q35
+  q: Can a Google search quality rater lower my site's rankings, and are the Search Quality Rater Guidelines a list of ranking factors?
+  expect: ["No. Raters are external reviewers who evaluate proposed changes to Search; they cannot affect the rankings of individual sites or give a manual action.", "Their ratings become labels that Google uses to improve its algorithms and to measure how well Search works; no single rating changes how a page appears.", "Nothing in the guidelines is itself a ranking factor; they describe how Google thinks about quality."]
+  must_not: ["Say a rater can lower, penalise or take manual action against a specific site.", "Present the rater guidelines as a checklist of ranking factors."]
+  claims: [D3-C159, D3-C160, D3-C163, D3-C168, D3-C690, D3-C711, D3-C266]
+- id: q36
+  q: My traffic dropped after a Google core update. Was my site penalised, and how long does recovery take?
+  expect: ["No. Core updates are not punitive and do not target specific sites; they change how Google assesses content, so under-rewarded pages can go up while others go down, usually without any spam violation.", "Look at the site as a whole and objectively, ideally with someone outside the team; compare a full week after the rollout has finished with a week before it started.", "Improvements can show within days but may take months, sometimes only at the next core update; Google's processing-time chart put typical recovery at 3 to 6 months."]
+  must_not: ["Describe a core update drop as a penalty.", "Promise a recovery within days or on a fixed timeline."]
+  claims: [D3-C258, D3-C262, D3-C263, D3-C264, D3-C268, D3-C272, D3-C293, D3-C295, D3-C662]
+- id: q37
+  q: How many spam pages does Google find every day, and how much of Google Search is spam-free?
+  expect: ["Google's published figure is 40 billion spammy pages a day, from its webspam report for 2020 and its How Search Works page; the quality talk said 'tens of billions'.", "A slide showed the 40 billion under an 'In 2023' heading, but that does not make it a 2023 measurement.", "Google aims to keep more than 99% spam-free; its webspam reports measure this as visits from Search, not as search results."]
+  must_not: ["Say Google finds 400 million spam pages a day.", "Present the 40 billion figure as measured in 2023."]
+  claims: [D3-C197, D3-C200, D3-C239, D3-C240, D3-C241, D3-C275, D3-C276]
+- id: q38
+  q: Do I need structured data to appear in AI Overviews and AI Mode, in Top Stories or in Google Discover?
+  expect: ["No for AI Overviews and AI Mode: they are standard search features, not rich results, and Google's AI features guide lists no extra requirements or special schema.org markup.", "Article markup is not required for Top Stories, but Google highly recommends it for articles.", "Discover needs no special tags or structured data: indexed content that meets Discover's policies is eligible; Google recommends large images at least 1,200 px wide, enabled by max-image-preview:large."]
+  must_not: ["Say structured data is required to appear in AI Overviews, AI Mode, Top Stories or Discover."]
+  claims: [D3-C325, D3-C326, D3-C331, D3-C332, D3-C219, D3-C224]
+- id: q39
+  q: Is Product structured data enough for an online shop, or does it also need Google Merchant Center, and what data helps AI Mode shopping?
+  expect: ["Product structured data is enough for product rich results and Google Images product annotations; Merchant Center is not required for them.", "Google said the Shopping tab needs a Merchant Center feed; its free-listings help does not settle this, so treat the feed as required for the Shopping tab.", "Google added six Merchant Center attributes for AI shopping (question and answer, documents, related products, item group title, variant option, popularity rank); reading them from schema.org markup was said on stage, but the feed is the documented route.", "Storebot-Google verifies prices and availability, and robots.txt rules for it affect all Google Shopping surfaces."]
+  must_not: ["Say Product structured data alone gets products into the Shopping tab.", "Present schema.org markup for the new conversational attributes as documented by Google."]
+  claims: [D3-C343, D3-C345, D3-C346, D3-C348, D3-C365, D3-C381, D3-C389]
+- id: q40
+  q: Can I see in Search Console how my site performs in AI Overviews and AI Mode, including the fan-out queries behind them?
+  expect: ["Traffic from AI Overviews and AI Mode is included in the normal Performance report under the Web search type.", "The generative AI report shows impressions from AI surfaces by page, country and device, with no clicks and no query dimension.", "Google said fan-out queries are not added to Search Console because it treats them as infrastructure; no documentation states this, but the docs fit it.", "A community speaker noted that GA4 setups that separate out LLM traffic do not capture visits from AI Overviews and AI Mode."]
+  must_not: ["Say Search Console reports clicks or queries for AI Overviews and AI Mode separately.", "Present 'fan-out queries are not in Search Console' as documented."]
+  claims: [D3-C498, D3-C438, D3-C439, D3-C441|D1-C124, D3-C063, D3-C095, D3-C492]
+- id: q41
+  q: How long does Google take to pick up a robots.txt change, and how fast can I get a URL out of Google Search urgently?
+  expect: ["Google caches robots.txt for about 24 hours (its service level objective, as RFC 9309 calls for); a refresh can be requested in Search Console's robots.txt report.", "A removal requested in Search Console's Removals tool takes effect in about 2 hours on average, but it is temporary (about six months), so also return a 404 or 410 or add noindex.", "After Google processes a 404 or noindex, the page usually leaves the serving index within one to three weeks.", "Google presented its processing times as estimates from internal logs, not as guarantees."]
+  must_not: ["Present the processing-time chart figures as guaranteed service levels.", "Say a Removals tool request removes a URL permanently."]
+  claims: [D3-C598, D3-C614, D3-C615, D3-C667, D3-C651, D3-C673, D3-C639]
+- id: q42
+  q: According to Google's consumer research, how does AI change the way people make purchase decisions, and what should a brand's website do about it?
+  expect: ["In the messy middle people loop between exploring and evaluating; Google's research says AI users delegate the mental effort to AI without giving up the choice ('boosted'), through ease, assistance and suggestion.", "For high-involvement purchases people add a reassurance step: they go back to Google Search and the brand's own website to double-check, and a familiar brand works as a shortcut.", "Keep the studies apart: the 2019 messy-middle study had 31,000 UK online shoppers; the 2026 AI findings rest on 23,000 consumer conversations and panels of 40,000 participants.", "These are marketing research findings about how people decide, not ranking signals."]
+  must_not: ["Present the messy-middle findings as Google ranking signals.", "Merge the 2019 study and the 2026 AI research into one figure."]
+  claims: [D3-C547, D3-C559, D3-C561, D3-C563, D3-C568, D3-C575, D3-C578, D3-C556, D3-C595]
+- id: q43
+  q: Do AI agents and other fetchers that act for a user respect my robots.txt?
+  expect: ["Mainstream crawlers from Google, other search engines and AI companies try to follow robots.txt, so a correct robots.txt is the way to stop them doing something specific.", "User-initiated fetchers, such as a translation service fetching a page a user asked for, generally do not check robots.txt, and Google's documentation says user-triggered fetchers generally ignore it.", "On the Day 1 Q&A Google put AI agents acting on a user's request in the same category: an agent told to look at a site reads it without checking robots.txt; a panelist argued an agent obeying a block could not complete a purchase.", "Crawlers that ignore robots.txt and cause a nuisance are better treated as a scraping problem."]
+  must_not: ["Say robots.txt reliably blocks AI agents that act on a user's request.", "Present the panel's business argument for agents skipping robots.txt as Google documentation."]
+  claims: [D1-C428, D1-C434, D1-C435, D1-C436, D1-C273, D1-C429]
+- id: q44
+  q: How can a news site check that Google crawls its new articles fast enough, and will blocking a section such as /ads in robots.txt move crawl budget to the articles?
+  expect: ["Gary Illyes said news sites rarely need to worry about crawl budget, because Google crawls them aggressively.", "Measure the time from publishing a URL to Googlebot's first crawl of it: flat or falling is fine, only a rising trend needs investigation; the Crawl Stats report's discovery versus refresh split gives a rougher view.", "If pickup slows, look in the logs for URLs Google crawls and recrawls a lot and judge whether they are useful.", "On stage, disallowing a section such as /ads was said to shift crawl budget to the rest of the site; Google's crawl budget guide says freed budget is not shifted unless the site already hits its crawl capacity limit, and advises against robots.txt for temporary reallocation."]
+  must_not: ["Promise that a robots.txt block shifts crawling to other pages on every site.", "Present the publish-to-first-crawl measurement as a metric documented by Google."]
+  claims: [D1-C466, D1-C467, D1-C468, D1-C492, D1-C469, D1-C470]
+- id: q45
+  q: Can my server log files tell me whether Google wastes crawl budget on my site, and how do I know whether a crawl drop came from lower demand or a lower capacity limit?
+  expect: ["Log files alone cannot show crawl inefficiency, because they do not reveal where Google's crawl limit for the site lies; many similar URLs being crawled may not matter far from that limit.", "Check Search Console's Crawl Stats report: whether total crawling has plateaued and whether the average response time shows the server is limiting Googlebot.", "Logs are still worth checking on sites with filter parameters or complicated URLs, where crawlers easily wander into large URL spaces.", "There is no easy way to tell demand from capacity, but a capacity-limit drop is most of the time an abrupt step down, and a fall in the number of connections Googlebot opens to the site shows that the capacity limit changed."]
+  must_not: ["Say log files alone show whether crawl budget is wasted."]
+  claims: [D1-C442, D1-C443, D1-C444, D1-C493, D1-C494]
+- id: q46
+  q: My server logs show crawlers fetching llms.txt, even more often a cats.txt file, and Lighthouse audits llms.txt. Does llms.txt matter for Google Search?
+  expect: ["Gary Illyes said llms.txt does not matter for Google Search now and he does not expect it to; Google knew of no plan to use it, and a possible future change is no reason to add it now.", "cats.txt was made by an SEO as satire of llms.txt to show that crawlers fetch whatever files they are given, so requests in server logs do not make a file important; Googlebot crawls a linked file, with no other effect.", "Lighthouse's llms.txt audit marks the audit not applicable when the file is missing, because providing it is optional; it matters to some people, which is why tools check it."]
+  must_not: ["Say Google Search uses llms.txt.", "Treat crawler requests for a file in the logs as evidence that it matters for ranking."]
+  claims: [D1-C454, D1-C456, D1-C472, D1-C473, D1-C455, D1-C460, D1-C054]
+- id: q47
+  q: Studies say sites with JSON-LD appear more often in AI answers. Should I add schema markup everywhere to be picked up by AI search and AI agents?
+  expect: ["A community speaker cited an early-2026 third-party study finding sites with JSON-LD were shown more often, and a later controlled study that added markup and found only a negative correlation: the markup was a sign of teams doing everything else right, not a cause.", "Another community speaker said schema markup helps AI agents interpret a page, for example which number is the price.", "Google's AI optimisation guide says no special schema.org markup is needed for its generative AI features, and on Day 2 Google said raw schema.org is generally not put into model context; use markup for rich-result eligibility and clear data."]
+  must_not: ["Present schema markup as a proven lever for AI visibility.", "Attribute either study to Google."]
+  claims: [D1-C289, D1-C290, D1-C276, D1-C315, D2-C477]
+- id: q48
+  q: My site answers the same page at URL variants (upper and lower case, double slashes, parameters in another order). What should it do with them?
+  expect: ["A community speaker treated such similar URLs as an indicator of duplicate content and other technical issues; anyone can link to them, so harden the site.", "Have the application compute the expected URL for each request (for example by reverse routing) and redirect, or return an error page, when the request differs; for parameters, keep only used ones in the expected order and redirect to that URL.", "Google's canonicalization guide favours the redirect: it is a strong signal that its target should be canonical, while an error page throws away links pointing at the variant.", "On the Day 1 Q&A Google also named redirecting parameter variants to the normalised URL as a fix."]
+  must_not: ["Say Google's documentation prefers an error page over a redirect for URL variants."]
+  claims: [D1-C397, D1-C399, D1-C403, D1-C404, D1-C421, D1-C445]
+- id: q49
+  q: We are merging two sites into one domain and removing many pages. Should removed URLs redirect to the new homepage, and how long will recovery take?
+  expect: ["No homepage redirects: Google's site move guide warns many old URLs redirected to one irrelevant page may be treated as a soft 404, and says to return 404 or 410 for content not moved; a community case study redirected only to same-intent pages and never to the homepage.", "Submit a Change of Address in Search Console, submit the new sitemap and update internal links to the new URLs.", "Timing: Google's guide says a few weeks or more for a medium-sized site until Google shows the new URLs; a community speaker cited a 304-day median traffic recovery from an unnamed study; they measure different things, and broken routes need fixing at once.", "Community results such as traffic rising from the first day after a cut from about 2,000 URLs to 100 are one case study, not a general rule."]
+  must_not: ["Recommend redirecting removed URLs to the homepage.", "Present the 304-day median as a Google figure."]
+  claims: [D2-C911, D2-C913, D2-C882, D2-C883, D2-C912, D2-C884, D2-C906, D2-C915, D2-C907, D2-C889]
+- id: q50
+  q: What does a video need to be indexed by Google, and can the noimageindex robots meta tag affect videos?
+  expect: ["A dedicated watch page and a video container in the HTML; without one Google treats the page as having no video.", "Gary Illyes said a video below the fold is not indexed; Google's documentation only requires the player to be present at load at a position and size Google can determine, so to be safe put the main video in the first viewport without a click-to-play placeholder.", "Video sitemaps are not critical but good to have, because Google ingests them more often than it processes HTML pages.", "noimageindex blocks indexing of the page's images; Gary Illyes said it also affects videos through their thumbnail, which the specification does not say, so do not set it on watch pages."]
+  must_not: ["Present 'a video below the fold is never indexed' as documented.", "Say noimageindex is documented to block videos."]
+  claims: [D2-C916, D2-C918, D2-C924, D2-C942, D2-C944, D2-C925, D2-C934, D2-C935, D2-C945]
+- id: q51
+  q: Can I use robots.txt to hide a private folder, and does a disallow rule control how Google uses my content, for example for AI training?
+  expect: ["No. robots.txt is not a security measure: the file sits at a predictable public address, so anyone can read the paths it disallows; protect a secret folder with authentication or keep it off the internet.", "The Robots Exclusion Protocol, now the IETF standard RFC 9309, was designed in 1994 only to control which automated clients may access what on a site, not how the content is used.", "Use for Gemini training and grounding is controlled with the Google-Extended token in robots.txt; it is a usage token, not a crawler with its own user agent, so disallowing it does not stop Googlebot fetching pages.", "Google's speaker believed Google was the first to offer an opt-out from model training, but OpenAI documented blocking GPTBot in robots.txt in August 2023, before Google announced Google-Extended in September 2023."]
+  must_not: ["Recommend robots.txt as a way to keep URLs or folders secret.", "Say Google was the first to offer an AI-training opt-out without noting that OpenAI's GPTBot opt-out came earlier."]
+  claims: [D1-C514, D1-C513, D1-C512|D2-C050, D1-C522|D1-C485, D1-C086, D1-C523]
+- id: q52
+  q: How do I let Googlebot crawl /staging/preview/ while keeping the rest of /staging/ closed to it, and let all other crawlers fetch only my homepage?
+  expect: ["Give Googlebot its own group with both rules: user-agent: googlebot, disallow: /staging/, allow: /staging/preview/. In Google's robots.txt quiz an allow in the * group, or a Googlebot group with only the allow, was the wrong answer.", "Groups are not additive: a crawler follows only the most specific group that names it, so a Googlebot group must repeat any rules from the * group that should still apply to Googlebot.", "Everything is allowed by default, so allow is only needed to re-open a path inside a disallowed one; when rules conflict, Google uses the most specific (longest) one.", "For the homepage only: user-agent: *, disallow: /, allow: /$; the $ ends the match, so /$ means only the root path, and the homepage with tracking parameters stays blocked."]
+  must_not: ["Say Googlebot combines the rules of its own group with those of the * group."]
+  claims: [D1-C531, D1-C080|D1-C533, D1-C517, D1-C081, D1-C521, D1-C083]
+- id: q53
+  q: My robots.txt has a typo in a rule name and a Content-Signal line that Google does not support. Will Google ignore the whole file?
+  expect: ["No. Google called robots.txt extremely forgiving: a typo in a path blocks only the wrong path, a line a parser cannot read is skipped as the standard requires, and the rest of the file is still used.", "A misspelled rule name is not always ignored: Google's open-source robots.txt parser accepts common misspellings of disallow and user-agent, but not of allow; other crawlers may be stricter, so spell rule names correctly.", "The real risk is an unknown line between two user-agent lines: Googlebot ignores it and joins both user agents into one group, while Bing closes the group at that line, so the same file blocks different crawlers differently; even the RFC 9309 authors found opinions split on how to treat it.", "Search Console's robots.txt report shows the file as Google last fetched it, with a version history, and Google said it helps catch CDNs or hosts that change or cloak robots.txt without the owner knowing."]
+  must_not: ["Say a single typo invalidates the whole robots.txt file.", "Say every crawler treats an unknown line between user-agent lines the same way."]
+  claims: [D1-C525, D1-C518, D1-C532, D1-C087, D1-C123, D1-C526, D1-C528, D1-C529]
+- id: q54
+  q: Search Console reports a URL as blocked by robots.txt, but my robots.txt does not disallow that URL. What could cause this?
+  expect: ["A redirect: in a lightning talk, Dave Smart said robots.txt is checked for every URL in a redirect chain and crawling stops at the first blocked one, while Search Console reports the block on the first URL of the chain.", "His example was a JavaScript redirect through a disallowed /cart/ path to set the local currency and back; he said it applies to all redirects, such as a hop through an external authorisation service blocked by its own robots.txt, content moved through several URLs with one later blocked, or a redirect served only to Googlebot.", "Check whether the URL redirects and test every URL in the chain against the robots.txt file of its host."]
+  must_not: ["Attribute the redirect-chain observation to Google; it came from a community speaker.", "Present the check of every URL in the chain as documented in Google's robots.txt documentation."]
+  claims: [D1-C534, D1-C535, D1-C536, D1-C537]
+- id: q55
+  q: A WordPress plugin adds calendar parameters to every URL on my site and Googlebot keeps crawling them. Why does Google crawl them, and what can I do?
+  expect: ["Google said many crawling complaints that reach its crawling team turn out to be caused by a plugin, such as a calendar plugin adding parameters to every post, page, category and tag URL; calendars are a classic infinite URL space, because Google treats every different URL as a different URL.", "Google crawls new URLs because it wants to see what they are; its systems learn that such URLs are useless only from large samples, which takes time.", "Fixes named on the Q&A: block the space in robots.txt, which Google follows partly in its own interest because crawling a blocked calendar would waste its time too; handle the parameters at the web server, for example with a rule or custom module in Apache (the exact mechanism is unclear in the recording); or redirect parameter variants to the normalised URL, which costs crawl budget at first but leaves a clean slate."]
+  must_not: ["Say Google ignores plugin-generated parameter URLs from the start.", "Present a specific Apache rule or module as documented Google advice."]
+  claims: [D1-C446, D1-C378, D1-C447, D1-C430, D1-C539, D1-C445|D1-C403]
+- id: q56
+  q: Can Google products other than Search raise how much Googlebot crawls my site, and is Google's crawl capacity limit a fixed number of requests per second?
+  expect: ["Yes. Google said crawl demand is not only Search's: when enough of a site's URLs are wanted by Search, Google Ads or another Google product, Google raises the crawl demand and crawls up to it as far as the site's crawl capacity allows; Ads, for example, schedules every publisher page that wants to appear in Google Ads.", "If the server cannot cope with the extra crawling, Google reduces its crawling of the site again.", "On stage hostload was called a proxy for requests per second, and a capacity drop was illustrated as a step down from 10 to 5; Google's crawl budget guide gives no requests-per-second figure and describes the limit in terms of Googlebot's parallel connections to the site.", "To see whether the capacity limit dropped, look at the number of connections Googlebot opens; a capacity-limit drop is most of the time an abrupt step down, but there is no easy way to tell it from lower demand."]
+  must_not: ["Present a requests-per-second crawl limit as documented by Google.", "Say only Google Search decides how much Googlebot crawls a site."]
+  claims: [D1-C538, D1-C334, D1-C440, D1-C374, D1-C546, D1-C547, D1-C494, D1-C493]
+# Entity-centred questions (knowledge graph phase 3): each asks about one thing of 20-claims/entities.yaml, the way
+# "python _system/kb_query.py entity <thing>" or a card in 60-outputs/agent-pack/entities/ answers it.
+- id: q57
+  q: What does Google say about the 429 status code?
+  expect: ["429 Too Many Requests is the exception among 4xx codes: it tells Google's crawlers to slow down, while other 4xx codes have no effect on crawl rate.", "Google's documentation says 5xx and 429 responses slow crawling temporarily; already indexed URLs are kept for a while but eventually dropped if the errors persist.", "Google's crawl rate guide warns against returning 429 (or 500 and 503) to slow crawling for longer than 1-2 days; crawling recovers automatically once the errors drop.", "Hostload reacts to 429 and 5xx codes as well as connect time and time to first byte; a rise in errors in crawl reports can come from a CDN injecting 429 or 503 responses."]
+  must_not: ["Say a 429 has no effect on crawling like the other 4xx codes.", "Recommend 429 as a long-term way to limit Google's crawling."]
+  claims: [D1-C353, D1-C072, D1-C071, D3-C668, D1-C092, D1-C364]
+- id: q58
+  q: What is Storebot-Google, and what happens if a shop blocks it in robots.txt?
+  expect: ["Google Shopping's own crawler, separate from Googlebot, because Shopping needs fresh prices, availability and shipping details and crawls more often.", "It validates merchant feeds by double-checking prices on the merchant's site, and it crawls product, cart and checkout pages, which do not belong in the search index.", "Google's crawler list says robots.txt rules addressed to Storebot-Google affect all surfaces of Google Shopping, such as the Shopping tab."]
+  must_not: ["Say blocking Storebot-Google has no effect as long as Googlebot is allowed."]
+  claims: [D3-C385, D3-C386, D3-C387|D3-C388, D3-C389]
+- id: q59
+  q: What does the data-nosnippet attribute do, and what can go wrong with it?
+  expect: ["It keeps a specific piece of text, such as a phone number, out of the snippet while the page can still be found for it; John Mueller said it is rarely needed.", "It works on only a handful of HTML elements.", "Broken HTML can widen it: an unclosed element marked data-nosnippet can hide the rest of the page from the snippet; valid HTML is not a ranking factor but matters for this control.", "Google's specification says it may be read before and after rendering, so it should not be added or removed with JavaScript."]
+  claims: [D2-C076, D2-C077, D2-C078, D2-C080, D2-C079]
+- id: q60
+  q: How should a shop handle faceted navigation (filter URLs) so that Google does not waste crawling on them?
+  expect: ["Google's faceted navigation guide prefers prevention: disallow filter URLs in robots.txt and keep only item pages and one unfiltered listing crawlable, or put filters in URL fragments, which Google generally does not crawl; rel=canonical and nofollow are weaker, slower options.", "If filter URLs must be crawled, use the standard & separator, keep filters in a consistent order and return a 404 when a combination has no results.", "Restricting crawler access to faceted navigation and action URLs is one of the four ways Google named to manage crawl budget, because Google crawls every different URL even when the content is the same."]
+  claims: [D1-C101, D1-C102, D1-C103, D1-C378]
+- id: q61
+  q: What does Search Console's URL Inspection tool show, and does a passing live test mean the page will be indexed?
+  expect: ["Its rendered HTML shows whether JavaScript content reaches Google (the Rich Results Test shows it too).", "The live test examines the URL in real time, so it can differ from Google's indexed version.", "No: a valid live test only confirms that Google can access the page; it must still meet other conditions, such as no manual action, not being a duplicate and high enough quality.", "To test whether a URL is blocked by robots.txt, Google's help points to URL Inspection and Google's open-source robots.txt library."]
+  must_not: ["Say a passing live test guarantees indexing."]
+  claims: [D2-C176, D2-C178, D2-C308, D1-C140]
+- id: q62
+  q: How many people use Google Lens, and how do Lens searches show up in Search Console?
+  expect: ["Google said over 1.5 billion people use Lens; its May 2025 announcement says more than 1.5 billion people a month.", "Google said Lens was its answer to young users uploading pictures and expecting results that answer something about them.", "Search Console's multimodal search data includes Lens, Circle to Search, images uploaded to Google Search and Chrome's right-click image search.", "The queries dimension is not available for the multimodal search type, so image-led traffic is judged by page, country and device."]
+  claims: [D1-C190|D1-C191, D1-C188, D3-C458, D3-C462]
+- id: q63
+  q: What is WebMCP, and can a site use it today?
+  expect: ["A way for a site to declare the actions it offers AI agents, such as booking an appointment, so an agent does not have to scrape the interface; a community speaker presented it.", "It has declarative tools, mostly HTML annotations such as form fields, and imperative tools for other actions such as booking or adding to a cart.", "At the event it was not supported by all browsers and could be enabled through browser flags; Chrome's documentation calls it a proposed web standard, testable through an origin trial from Chrome 149 or a flag."]
+  must_not: ["Present WebMCP as a Google Search requirement or ranking factor."]
+  claims: [D1-C281, D1-C283, D1-C282, D1-C316]
+- id: q64
+  q: What does E-E-A-T mean, and how does Google use it for Google Discover?
+  expect: ["Experience (first-hand experience with the topic), expertise, authoritativeness and trust, as Google's Discover slide defined them.", "Trust comes first: untrustworthy pages have low E-E-A-T however expert they seem.", "Google's Discover slide showed an eligibility gate where low-quality content goes to an E-E-A-T quality check that can filter it out.", "E-E-A-T is one of the sections of the Search Quality Rater Guidelines."]
+  must_not: ["Present a community speaker's view that LLMs pick up E-E-A-T by proxy as Google's position."]
+  claims: [D3-C222, D3-C223, D3-C218, D3-C162]
+- id: q65
+  q: What are query groups in Search Console?
+  expect: ["They group queries with very similar intent that are written differently, for example with more words or a spelling error.", "Google computes them with AI, not by text matching alone; they may change over time, for example when a query's meaning changes, do not affect ranking and are available only to properties with a large volume of queries.", "They appear in the Search Console Insights report with the total clicks of each group, and drilling into a group opens the Performance report with a regex filter of its queries."]
+  claims: [D3-C413, D3-C417, D3-C463, D3-C419, D3-C421, D3-C423]
+- id: q66
+  q: Which of Google's crawlers and fetchers can ignore robots.txt?
+  expect: ["Special-case crawlers, such as AdsBot, which serve products where the site has an agreement with Google, may ignore robots.txt; on stage Google said all its other automated crawlers obey it.", "User-triggered fetchers, which fetch a URL because a user asked for it, generally ignore robots.txt, and AI agents acting for a user fall into the same category.", "The groups can be told apart by host name: common crawlers resolve to googlebot.com host names, special-case crawlers to rate-limited-proxy-*.google.com and user-triggered fetchers to their own host names."]
+  must_not: ["Say Googlebot itself ignores robots.txt."]
+  claims: [D1-C343|D1-C330|D1-C329, D2-C122|D1-C273|D1-C434, D1-C435, D1-C138]

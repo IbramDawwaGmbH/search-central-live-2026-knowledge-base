@@ -1,0 +1,376 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claims.schema.json",
+  "title": "One line of claims.jsonl",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "day",
+    "session_id",
+    "session",
+    "speaker",
+    "who",
+    "author",
+    "label",
+    "label_meaning",
+    "text",
+    "quote",
+    "quote_checked",
+    "verification",
+    "topics",
+    "sources",
+    "evidence",
+    "relations",
+    "related_from",
+    "used_by",
+    "mentions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^D\\d+-C\\d{3}$",
+      "description": "Stable claim id; cite it."
+    },
+    "day": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Event day. For docs, press and analysis claims: the day this claim annotates."
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^D\\d+-S\\d{2}$",
+      "description": "D<day>-S00 means the session was not recorded."
+    },
+    "session": {
+      "type": "string",
+      "minLength": 1
+    },
+    "speaker": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Slide and stage claims only: who, or the session speaker(s)."
+    },
+    "who": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Per-claim speaker: a name, \"audience\" or \"unknown\"."
+    },
+    "author": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Analysis: the author. Docs and press: the publisher(s) of the sources. Slide and stage: null."
+    },
+    "label": {
+      "enum": [
+        "slide",
+        "stage",
+        "docs",
+        "press",
+        "analysis"
+      ]
+    },
+    "label_meaning": {
+      "enum": [
+        "shown on screen",
+        "said on stage",
+        "Google's documentation",
+        "reported by third-party press",
+        "the author's interpretation"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "quote": {
+      "type": "string",
+      "description": "Exact words, at most 25; \"\" when there is none."
+    },
+    "quote_checked": {
+      "type": "boolean"
+    },
+    "verification": {
+      "enum": [
+        "confirmed",
+        "consistent",
+        "undocumented",
+        "source",
+        "n/a"
+      ]
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "title",
+          "url",
+          "publisher",
+          "kind",
+          "checked"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "google",
+              "press"
+            ]
+          },
+          "checked": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "to"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "repeats",
+              "extends",
+              "contradicts",
+              "updates",
+              "answers"
+            ]
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^D\\d+-C\\d{3}$"
+          }
+        }
+      }
+    },
+    "related_from": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "from"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "repeats",
+              "extends",
+              "contradicts",
+              "updates",
+              "answers"
+            ]
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^D\\d+-C\\d{3}$"
+          }
+        }
+      }
+    },
+    "used_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(req|fact|myth|quote|angle|term):[A-Za-z0-9-]+$"
+      },
+      "description": "Derived: the kit items that rest on this claim (req:DEV-SRV-01, fact:F-012, myth:, quote:, angle:, term:<glossary term id>), as graph.json node ids. Never written by hand."
+    },
+    "mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity",
+          "via",
+          "field"
+        ],
+        "properties": {
+          "entity": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "via": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "field": {
+            "enum": [
+              "text",
+              "quote",
+              "pin"
+            ]
+          }
+        },
+        "if": {
+          "properties": {
+            "field": {
+              "const": "pin"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "via": {
+              "type": "null"
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "via": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "description": "Derived: the things (entities.json ids) this claim names, by entity id. via: the words as written in text or quote (field); field pin, via null: pinned to the thing by hand in 20-claims/entities.yaml. Never written by hand."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "label": {
+            "enum": [
+              "docs",
+              "press",
+              "analysis"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "speaker": {
+            "const": null
+          },
+          "who": {
+            "const": null
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "label": {
+            "const": "analysis"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "author": {
+            "const": "Ibrahim Anjro"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "label": {
+            "enum": [
+              "docs",
+              "press"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "author": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "label": {
+            "enum": [
+              "slide",
+              "stage"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "author": {
+            "const": null
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "label": {
+            "enum": [
+              "docs",
+              "press"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "const": "source"
+          }
+        }
+      }
+    }
+  ]
+}

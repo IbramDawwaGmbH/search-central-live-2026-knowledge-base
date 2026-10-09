@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How Google Crawls in the Age of AI Search — Day 1 Field Guide</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Day 1 refinements (v2.5.0, as Day 2 and Day 3), all styles */
+.nw, .no { white-space: nowrap; }
+figure svg { overflow: visible; }
+p, li, td, figcaption, .lead, .card, .stat, .legend div { text-wrap: pretty; }
+.toc .t, .toc .d { line-height: 1.25; }
+.toc .d { margin-top: 0; }
+li { break-inside: avoid; }
+#s12 .check li { padding-top: 1.7mm; padding-bottom: 1.7mm; }
+#s12 .check li::before { top: 2.15mm; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  {{COVER_ART}}
+  <div style="position:absolute;left:0;right:0;bottom:0;height:70mm;background:linear-gradient(180deg, rgba(11,26,51,0) 0%, rgba(11,26,51,0.92) 55%, #0b1a33 100%);"></div>
+  <div class="inner">
+    <div class="eyebrow">Search Central Live Deep Dive Europe 2026 &nbsp;·&nbsp; Day 1 Field Guide</div>
+    <div class="rule"></div>
+    <h1>How Google Crawls in the Age of <em>AI Search</em></h1>
+    <div class="sub">{{SUBTITLE}}</div>
+    <div class="spacer"></div>
+    <div class="meta">
+      <div><div class="k">Notes &amp; guide by</div><div class="v name">{{AUTHOR}}</div></div>
+      <div><div class="k">Event</div><div class="v">{{COVER_DATE}}</div></div>
+      <div><div class="k">Edition</div><div class="v">3 October 2026</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTENTS ================= -->
+<div class="front">
+  <h2 class="title">Contents</h2>
+  <div class="toc">
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Key takeaways<span class="d">The twelve things to remember from Day 1</span></span><span class="p">{{PTK}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">01</span><span class="t">Day 1 at a glance<span class="d">The agenda, what this guide covers, and the three-day arc</span></span><span class="p">{{P01}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">02</span><span class="t">The state of Search<span class="d">The keynote's numbers, Google's ground rules, five ecosystem principles</span></span><span class="p">{{P02}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">03</span><span class="t">New publisher controls<span class="d">The generative AI opt-out, Search profiles, preferred sources</span></span><span class="p">{{P03}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">04</span><span class="t">How Search works, and where AI sits<span class="d">One pipeline for Search, AI Mode and Gemini; "Good SEO is good GEO"</span></span><span class="p">{{P04}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">05</span><span class="t">How crawling works<span class="d">One crawling platform, the scheduler, who obeys robots.txt</span></span><span class="p">{{P05}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">06</span><span class="t">Crawl errors<span class="d">Status codes by class, DNS and CDNs, login walls and 402, HTTP/3</span></span><span class="p">{{P06}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">07</span><span class="t">robots.txt, read the way Google reads it<span class="d">Google's talk and quiz, the group traps, redirect chains (Lightning B)</span></span><span class="p">{{P07}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">08</span><span class="t">Crawl budget<span class="d">Rate limit and demand, faceted URLs, directives, your questions</span></span><span class="p">{{P08}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">09</span><span class="t">Lightning talks from the community<span class="d">AI in SEO work, agent-ready sites, AI visibility, similar URLs</span></span><span class="p">{{P09}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">10</span><span class="t">The Q&amp;A<span class="d">AI crawlers, llms.txt, demand and capacity, migrations, load-more</span></span><span class="p">{{P10}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">11</span><span class="t">From the floor<span class="d">Duplicate content, images, accessibility, rich results</span></span><span class="p">{{P11}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">12</span><span class="t">Audit checklist<span class="d">Nineteen checks to run on your own sites this week</span></span><span class="p">{{P12}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">13</span><span class="t">Help complete this guide<span class="d">What is still missing; get the web edition</span></span><span class="p">{{P13}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Sources<span class="d">Google documentation and press reports used to check this guide</span></span><span class="p">{{PSRC}}</span></div>
+  </div>
+
+  <div class="legend">
+    <h4>How to read the labels</h4>
+    <div><span class="tag slide">Slide</span> Shown on screen during the session</div>
+    <div><span class="tag stage">Stage</span> Said on stage, from my notes or a recording</div>
+    <div><span class="tag docs">Docs</span> Google's published documentation</div>
+    <div><span class="tag press">Press</span> A third-party report of what Google said</div>
+    <div><span class="tag analysis">Analysis</span> My interpretation, not Google's words</div>
+    <div><span class="muted">(not&nbsp;in&nbsp;docs)</span> Said at the event; not in Google's docs</div>
+  </div>
+</div>
+
+<!-- ================= TAKEAWAYS ================= -->
+<section class="s" id="tk">
+  <div class="section-head plain">
+    <div class="kicker">Summary</div>
+    <h2>Key takeaways</h2>
+    <div class="lead" data-claims="D1-C038">AI features run on the same crawl and index as classic Search. Whether Google reaches and fetches your pages still decides everything downstream, including AI answers.</div>
+  </div>
+  <ol class="takeaways">
+    <li data-claims="D1-C050 D1-C051 D1-C038"><div><b>Good SEO is good "GEO".</b><span>AI Overviews and AI Mode are built on the core ranking systems and grounded in the Search index. No separate discipline to buy.</span></div></li>
+    <li data-claims="D1-C014 D1-C020"><div><b>Expect traffic to move.</b><span>Google said outright that long-held traffic patterns are likely to fluctuate. Growth is in brainstorming, "which" and planning queries.</span></div></li>
+    <li data-claims="D1-C029 D1-C030 D1-C031"><div><b>There is now a real AI opt-out.</b><span>A Search Console setting removes a property from AI Overviews, AI Mode and AI in Discover without, Google says, affecting regular rankings.</span></div></li>
+    <li data-claims="D1-C054 D1-C061 D1-C454"><div><b>llms.txt does nothing for Google Search.</b><span>Google's guide says such files "neither harm nor help"; Gary Illyes doesn't expect that to change.</span></div></li>
+    <li data-claims="D1-C066 D1-C091 D1-C342"><div><b>One crawling platform serves Google's products.</b><span>Googlebot is one client of it. Search, Ads, Shopping and Images share it, and one hostload limit per host.</span></div></li>
+    <li data-claims="D1-C092 D1-C069"><div><b>Your server's health sets the crawl rate.</b><span>Connect time, time to first byte and 429 or 5xx responses decide how hard Google crawls. Firewalls that silently block Googlebot look like a failing server.</span></div></li>
+    <li data-claims="D1-C365 D1-C366 D1-C367 D1-C509"><div><b>Login walls and paywalls read as 404.</b><span>Pages that answer Google's crawlers with a 403 or a 402, both on the rise, are dropped. A CDN captcha served with 200 becomes a soft 404.</span></div></li>
+    <li data-claims="D1-C080 D1-C081 D1-C533 D1-C526 D1-C087 D1-C123"><div><b>A crawler obeys exactly one robots.txt group.</b><span>Groups don't add up: Googlebot ignores the <code>*</code> group when a Googlebot group exists, the longest matching rule wins, and one stray line can merge or split groups.</span></div></li>
+    <li data-claims="D1-C094"><div><b>Crawl demand is inherited by path.</b><span>With little data on a URL, Google uses the quality and popularity of its parent folder, then that folder's parent.</span></div></li>
+    <li data-claims="D1-C105 D1-C106 D1-C108 D1-C099"><div><b>noindex costs crawl; disallow doesn't.</b><span>Google must fetch a page to read noindex. crawl-delay is ignored. Faceted URLs are the classic budget leak.</span></div></li>
+    <li data-claims="D1-C388 D1-C391 D1-C392"><div><b>AI Mode doesn't mean more Googlebot.</b><span>AI Mode sits on the existing crawl infrastructure, and crawling more often doesn't make a page rank better.</span></div></li>
+    <li data-claims="D1-C111 D1-C112 D1-C113"><div><b>There is no duplicate content penalty.</b><span>Google picks one URL to keep. The real cost is losing control of which one, and crawling every copy.</span></div></li>
+  </ol>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="s" id="s01">
+  <div class="section-head">
+    <div class="num">01</div>
+    <div class="kicker">Section 01</div>
+    <h2>Day 1 at a glance</h2>
+    <div class="lead">The day followed one arc: the state of Search, then the crawl pipeline, then the three ways sites waste or block crawling — errors, robots.txt and crawl budget. Community lightning talks and a Q&amp;A ran in between.</div>
+  </div>
+
+  <div class="agenda">
+{{AGENDA}}
+  </div>
+  <p class="small muted" style="margin-top:3mm">This edition adds a second attendee's recording of most of the day and six audio recordings to my slide photos and notes; where they disagree, the audio wins. Still not covered: "What would you do?" and the rest of Lightning session B.</p>
+
+  <figure style="margin-top:4mm" data-claims="D1-C036 D1-C037">
+    <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker>
+      </defs>
+      <rect x="0" y="1" width="210" height="118" rx="12" fill="#2457e6"/>
+      <text x="20" y="31" font-size="10" font-weight="700" fill="#bcd0ff" letter-spacing="1.4">DAY 1 · TODAY'S GUIDE</text>
+      <text x="20" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Crawling</text>
+      <text x="20" y="83" font-size="10.5" fill="#dbe5ff">Discovery, fetching, robots.txt,</text>
+      <text x="20" y="97" font-size="10.5" fill="#dbe5ff">crawl budget</text>
+      <path d="M216 60H236" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="235" y="1" width="210" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="255" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 2</text>
+      <text x="255" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Indexing</text>
+      <text x="255" y="83" font-size="10.5" fill="#667085">One big index, signals,</text>
+      <text x="255" y="97" font-size="10.5" fill="#667085">more than words, BERT</text>
+      <path d="M451 60H471" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="470" y="1" width="209.5" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="490" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 3</text>
+      <text x="490" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Serving</text>
+      <text x="490" y="83" font-size="10.5" fill="#667085">Ranking, AI features, grounding,</text>
+      <text x="490" y="97" font-size="10.5" fill="#667085">query fan-out</text>
+    </svg>
+    <figcaption><b>The three-day arc.</b> The event followed a page through Google Search, one stage per day, as shown in "How Search works".</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="s" id="s02">
+  <div class="section-head">
+    <div class="num">02</div>
+    <div class="kicker">Section 02 · Keynote and "What's new"</div>
+    <h2>The state of Search</h2>
+    <div class="lead" data-claims="D1-C007 D1-C014">Google's message: AI is growing total search use rather than replacing it, and traffic will shift as a result.</div>
+  </div>
+
+  <div class="quote" data-claims="D1-C001">"Search is never a solved problem. Old challenges evolve and new challenges are constantly popping up — because the internet and the world are always changing."<span class="by">Elizabeth Reid, VP, Search — quoted on a keynote slide</span></div>
+
+  <p data-claims="D1-C003 D1-C002"><span class="tag slide">Slide</span> The theme guiding the future of Search: <strong>"Making it effortless to find helpful information."</strong> Three forces were named as drivers: new platforms (closed-garden apps taking information needs away from the open web), new user preferences (authentic, visual, easy-to-scan content) and new technologies (AI).</p>
+  <p data-claims="D1-C149 D1-C150 D1-C151 D1-C152 D1-C189"><span class="tag stage">Stage</span> Lino Cattaruzzi, opening keynote: "Google Search now is AI search." The new intelligent search box is the biggest change to it in 25 years; it takes text, speech or images, and AI Overviews and AI Mode now work as one experience. <span data-claims="D1-C497 D1-C498">He added that YouTube has passed Netflix as the number one streaming service, in the US and around the world. <span class="tag analysis">Analysis</span> Cite Nielsen's US watch time: nothing published backs "around the world".</span></p>
+
+  <h3>The ground rules: Google doesn't sell rankings</h3>
+  <p data-claims="D1-C143 D1-C144 D1-C178 D1-C179 D1-C180"><span class="tag stage">Stage</span> The host opened with Google's <strong>Honest Results Policy</strong>: no payment buys an organic ranking, ads are marked as sponsored, and no client, partner or personal contact gets an advantage. So everything shared at the event is information available to everyone.</p>
+
+  <h3>The numbers Google showed</h3>
+  <p class="small muted" data-claims="D1-C169 D1-C165 D1-C156 D1-C190">Google-reported figures: two rows from the slides (footnotes cite Google internal data and Google-commissioned Ipsos surveys; only the follow-up and brainstorming figures were marked US), and a last row said on stage and checked against Google's posts. Google's framing, not independent research.</p>
+  <div class="grid4">
+    <div class="stat" data-claims="D1-C006"><div class="v">5T+</div><div class="l">searches on Google per year</div></div>
+    <div class="stat" data-claims="D1-C016"><div class="v">2× / qtr</div><div class="l">AI Mode query volume, doubling every quarter since launch</div></div>
+    <div class="stat" data-claims="D1-C017"><div class="v">~3×</div><div class="l">length of an AI Mode query vs. a traditional one</div></div>
+    <div class="stat" data-claims="D1-C018"><div class="v">1 in 6</div><div class="l">AI Mode searches are multimodal (voice or image)</div></div>
+    <div class="stat" data-claims="D1-C019"><div class="v">+40%</div><div class="l">follow-up queries in AI Mode, per month on average</div><div class="s">US, since launch</div></div>
+    <div class="stat" data-claims="D1-C021"><div class="v">1.5×</div><div class="l">faster volume growth for queries of 5+ words</div><div class="s">Global English queries</div></div>
+    <div class="stat" data-claims="D1-C007"><div class="v">94%</div><div class="l">of frequent LLM users are also frequent Google users</div></div>
+    <div class="stat" data-claims="D1-C008"><div class="v">71%</div><div class="l">of shoppers on Google are open to new brands</div><div class="s">Ipsos survey</div></div>
+    <div class="stat" data-claims="D1-C169"><div class="v">1B+</div><div class="l">monthly active users of AI Mode alone</div></div>
+    <div class="stat" data-claims="D1-C165 D1-C181"><div class="v">2.5B</div><div class="l">people using Google's AI search</div><div class="s">I/O 2026: AI Overviews, monthly</div></div>
+    <div class="stat" data-claims="D1-C156"><div class="v">1B+ / wk</div><div class="l">clicks to the web from AI Overviews and AI Mode</div><div class="s">AI responses alone</div></div>
+    <div class="stat" data-claims="D1-C190 D1-C191"><div class="v">1.5B</div><div class="l">people use Google Lens to search what they see</div><div class="s">Monthly, May 2025 post</div></div>
+  </div>
+  <p data-claims="D1-C154 D1-C174 D1-C166"><span class="tag stage">Stage</span> Google also said it sends billions of clicks to the open web every day, and that 77% of AI Overviews and AI Mode users decide faster, with 18 to 24 year olds asking more, and more complex, questions <span class="muted">(the last two not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>Four new ways people search in AI Mode</h3>
+  <div class="grid4">
+    <div class="card" data-claims="D1-C020"><div class="badge" style="color:#2457e6">Explore</div><div class="cs">Brainstorming queries growing <strong>30% faster</strong> than AI Mode overall in the US since launch. "Where to", "ideas for", "where should I".</div></div>
+    <div class="card" data-claims="D1-C020"><div class="badge" style="color:#0b8a5f">Learn</div><div class="cs">Study guides and quizzes, topic deep dives, professional development.</div></div>
+    <div class="card" data-claims="D1-C020"><div class="badge" style="color:#6d3fd6">Decide</div><div class="cs">Queries starting with "which" growing <strong>40% faster</strong> than AI Mode queries overall over the last six months.</div></div>
+    <div class="card" data-claims="D1-C020"><div class="badge" style="color:#b86e00">Do</div><div class="cs">Planning queries — restaurants, itineraries, finances, fitness — growing <strong>80% faster</strong> than AI Mode queries overall over the last six months.</div></div>
+  </div>
+  <p data-claims="D1-C022 D1-C194 D1-C192 D1-C193"><span class="tag slide">Slide</span> Google also showed <strong>Search Agents</strong> in AI Mode: standing requests such as "tell me if Samsung Frame 2000 goes on sale". <span class="tag stage">Stage</span> AI Mode turns a plain-language request into an alert; Gary Illyes said they had launched globally a day or two before <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag press">Press</span> A search agency reported the rollout, announced on 28 September.</p>
+
+  <h3>Google's five principles for the ecosystem</h3>
+  <table>
+    <thead><tr><th style="width:8mm">#</th><th style="width:48mm">Principle</th><th>What Google said <span class="tag slide">Slide</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C010"><td class="fig">1</td><td class="k">Consistent testing</td><td>Features are tested, then woven into core Search when ready.</td></tr>
+      <tr data-claims="D1-C011"><td class="fig">2</td><td class="k">The SERP will evolve</td><td>Beyond organic links and ads: videos, cards and more.</td></tr>
+      <tr data-claims="D1-C012"><td class="fig">3</td><td class="k">Multiple user needs</td><td>Some want links, some quick answers, some depth. Google says it will keep prioritising traffic to the ecosystem.</td></tr>
+      <tr data-claims="D1-C013"><td class="fig">4</td><td class="k">Incentivise quality</td><td>"Made for Search" content will not be successful.</td></tr>
+      <tr data-claims="D1-C014"><td class="fig">5</td><td class="k">Traffic patterns may fluctuate</td><td>Long-held patterns are likely to change, "creating new opportunities for all sites".</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C175 D1-C059"><span class="tag stage">Stage</span> On principle 4, Lino Cattaruzzi: "incentivise high-quality content, created by humans or by AI. But the key is that it's high quality". His close: "UEO", user engine optimisation.</p>
+
+  <div class="callout" data-claims="D1-C015">
+    <div class="h">Analysis</div>
+    <p>Principle 5 is the line to plan around: Google told a room of SEOs to expect traffic to move. Growth is in brainstorming, "which" and planning queries, which a one-keyword page fits poorly. Build pages that help someone decide.</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="s" id="s03">
+  <div class="section-head">
+    <div class="num">03</div>
+    <div class="kicker">Section 03 · What's new</div>
+    <h2>New publisher controls</h2>
+    <div class="lead" data-claims="D1-C023 D1-C029">Google listed eight ways AI Search sends people to websites, and separately showed a new opt-out control for generative AI. The opt-out is the one most site owners can act on today.</div>
+  </div>
+
+  <p data-claims="D1-C023"><span class="tag slide">Slide</span> The full list on screen: preferred sources expansion, fresh perspectives and prominent links, subscription content, in-line quotes in AI Mode and AI Overviews, rich linking and embedded web, context on content sources, "Highly Cited" labels, and Search profiles.</p>
+
+  <h3>The generative AI opt-out in Search Console</h3>
+  <p data-claims="D1-C029"><span class="tag slide">Slide</span> "Opt-out control for generative AI: direct control over AI Overviews and AI Mode without impacting web rankings." The setting is called <strong>Search generative AI</strong> and has three states.</p>
+
+  <figure data-claims="D1-C029 D1-C030 D1-C032 D1-C033">
+    <svg viewBox="0 0 680 236" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0.5" width="372" height="235" rx="12" fill="#fff" stroke="#e4e7ec"/>
+      <text x="22" y="34" font-size="13" font-weight="700" fill="#0f1d33">Search generative AI</text>
+      <text x="22" y="52" font-size="10" fill="#667085">Property setting · Search Console</text>
+      <line x1="22" y1="66" x2="350" y2="66" stroke="#e4e7ec"/>
+      <circle cx="34" cy="92" r="7" fill="none" stroke="#98a2b3" stroke-width="1.5"/>
+      <text x="52" y="96" font-size="11" font-weight="600" fill="#0f1d33">Inherit from parent property</text>
+      <text x="52" y="111" font-size="9.5" fill="#667085">Default. Follows the closest parent that changed it</text>
+      <circle cx="34" cy="140" r="7" fill="none" stroke="#2457e6" stroke-width="1.5"/><circle cx="34" cy="140" r="3.6" fill="#2457e6"/>
+      <text x="52" y="144" font-size="11" font-weight="600" fill="#0f1d33">Include</text>
+      <text x="52" y="159" font-size="9.5" fill="#667085">Links and content can appear and ground AI answers</text>
+      <circle cx="34" cy="188" r="7" fill="none" stroke="#98a2b3" stroke-width="1.5"/>
+      <text x="52" y="192" font-size="11" font-weight="600" fill="#0f1d33">Exclude</text>
+      <text x="52" y="207" font-size="9.5" fill="#667085">No links, no grounding, no AI impressions or traffic</text>
+      <rect x="392" y="0.5" width="287.5" height="112" rx="12" fill="#e3f4ec"/>
+      <text x="410" y="28" font-size="9" font-weight="700" fill="#0b8a5f" letter-spacing="1.3">IT CONTROLS</text>
+      <text x="410" y="52" font-size="11" fill="#0f1d33">✓  AI Overviews</text>
+      <text x="410" y="72" font-size="11" fill="#0f1d33">✓  AI Mode</text>
+      <text x="410" y="92" font-size="11" fill="#0f1d33">✓  Generative AI features in Discover</text>
+      <rect x="392" y="124" width="287.5" height="111.5" rx="12" fill="#fbe7e5"/>
+      <text x="410" y="152" font-size="9" font-weight="700" fill="#c8372d" letter-spacing="1.3">IT DOES NOT TOUCH</text>
+      <text x="410" y="176" font-size="11" fill="#0f1d33">✕  Regular rankings or inclusion</text>
+      <text x="410" y="196" font-size="11" fill="#0f1d33">✕  Gemini training (use Google-Extended)</text>
+      <text x="410" y="216" font-size="11" fill="#0f1d33">✕  Individual pages (property level only)</text>
+    </svg>
+    <figcaption><b>What the switch does.</b> Illustration based on the slide and Google's Search Console help page; not a screenshot of the product.</figcaption>
+  </figure>
+
+  <p data-claims="D1-C031 D1-C033"><span class="tag docs">Docs</span> Google's help page adds the operational details. The control "isn't used as a ranking or inclusion signal" for regular results. Changes generally apply within 1–2 days, though some content takes longer. A child property inherits from its closest parent that changed the setting, unless you override it.</p>
+
+  <h4>How to decide <span class="tag analysis">Analysis</span></h4>
+  <table data-claims="D1-C034">
+    <thead><tr><th style="width:52mm">Your situation</th><th style="width:36mm">Likely choice</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Lead generation, local services, e-commerce</td><td><span class="ok">Include</span></td><td>AI answers cite and link sources; excluding removes you from a growing surface.</td></tr>
+      <tr><td class="k">Paywalled or licensed content you sell</td><td>Test <span class="no">exclude</span> on a child property</td><td>Protects the asset, but you lose AI citations. Measure before rolling out.</td></tr>
+      <tr><td class="k">You only want to stop Gemini training</td><td>Include + <code>Google-Extended</code></td><td>The opt-out does not control training.</td></tr>
+      <tr><td class="k">You want out of AI and regular snippets</td><td><code>nosnippet</code></td><td>Wider effect: it also removes normal snippets.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C062 D1-C124">Before changing anything, read the <strong>Generative AI performance report</strong> in Search Console. <span class="tag docs">Docs</span> Google's launch post (3 June 2026) lists impressions, pages, countries, devices (Search only) and dates, and no click or query metrics — it measures exposure, not value. <span data-claims="D1-C196"><span class="tag stage">Stage</span> Gary Illyes said the reporting starts with impressions only and may expand later; the Q&amp;A covered why query data is hard.</span></p>
+
+  <h3>Search profiles, preferred sources and subscriptions</h3>
+  <div class="grid3">
+    <div class="card" data-claims="D1-C025 D1-C026 D1-C125"><div class="badge" style="color:#2457e6">Search profiles</div><div class="cs"><span class="tag slide">Slide</span> A claimable profile: photo, bio, social accounts, pinned posts, links. <span class="tag docs">Docs</span> Launched 4 June 2026, US first. Since 16 September 2026, US publishers and creators qualify with 10,000 followers across YouTube, Instagram, X or TikTok.</div></div>
+    <div class="card" data-claims="D1-C027"><div class="badge" style="color:#6d3fd6">Preferred sources</div><div class="cs"><span class="tag slide">Slide</span> Sites users mark as preferred get more visibility in Top Stories and a label in AI Mode and AI Overviews.</div></div>
+    <div class="card" data-claims="D1-C024"><div class="badge" style="color:#0b8a5f">Linked subscriptions</div><div class="cs"><span class="tag slide">Slide</span> Users link subscriptions so answers highlight paywalled content they already pay for. One publisher saw 34% more engagement.</div></div>
+  </div>
+  <div class="callout" data-claims="D1-C028">
+    <div class="h">Analysis</div>
+    <p>All three depend on users acting on your behalf. That rewards brands with a loyal audience and does little for anonymous lead-generation sites. Brand building is now ranking-adjacent work, not only marketing.</p>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="s" id="s04">
+  <div class="section-head">
+    <div class="num">04</div>
+    <div class="kicker">Section 04 · How Search works and where's AI?</div>
+    <h2>How Search works, and where AI sits</h2>
+    <div class="lead" data-claims="D1-C035 D1-C038">"If you know how Search works, you largely also know how AI features work." AI Mode and AI Overviews use the same crawl and index as classic Search. They differ only at serving.</div>
+  </div>
+
+  <figure data-claims="D1-C037 D1-C038 D1-C039">
+    <svg viewBox="0 0 680 316" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <!-- column heads -->
+      <g font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">
+        <text x="150" y="16">CRAWLING · DAY 1</text>
+        <text x="330" y="16">INDEXING · DAY 2</text>
+        <text x="510" y="16">SERVING · DAY 3</text>
+      </g>
+      <!-- row labels -->
+      <g font-size="12" font-weight="700" fill="#0f1d33">
+        <text x="0" y="66">Search</text>
+        <text x="0" y="168">AI Mode,</text><text x="0" y="184">AI Overviews</text>
+        <text x="0" y="266">Gemini</text>
+      </g>
+      <text x="0" y="282" font-size="9.5" fill="#667085">Not part of Search</text>
+      <!-- Search row -->
+      <rect x="140" y="28" width="168" height="84" rx="10" fill="#e8eefd"/>
+      <text x="154" y="52" font-size="10.5" fill="#0f1d33"><tspan x="154">Googlebot</tspan><tspan x="154" dy="15">Scheduling</tspan><tspan x="154" dy="15">robots.txt</tspan></text>
+      <text x="154" y="102" font-size="9.5" font-style="italic" fill="#2457e6">AI in: scheduling</text>
+      <rect x="320" y="28" width="168" height="84" rx="10" fill="#e8eefd"/>
+      <text x="334" y="52" font-size="10.5" fill="#0f1d33"><tspan x="334">One big index, not limitless</tspan><tspan x="334" dy="15">Calculating signals</tspan><tspan x="334" dy="15">More than just words</tspan></text>
+      <text x="334" y="102" font-size="9.5" font-style="italic" fill="#2457e6">AI in: BERT</text>
+      <rect x="500" y="28" width="180" height="84" rx="10" fill="#e8eefd"/>
+      <text x="514" y="52" font-size="10.5" fill="#0f1d33"><tspan x="514">Hundreds of signals</tspan><tspan x="514" dy="15">"Tailor to the moment"</tspan><tspan x="514" dy="15">Useful responses</tspan></text>
+      <text x="514" y="102" font-size="9.5" font-style="italic" fill="#2457e6">AI in: RankBrain</text>
+      <!-- AI row: shared span -->
+      <rect x="140" y="130" width="348" height="84" rx="10" fill="#fff" stroke="#2457e6" stroke-width="1.2" stroke-dasharray="0"/>
+      <text x="314" y="166" text-anchor="middle" font-size="12" font-weight="600" fill="#0f1d33">Same crawl, same index as Search</text>
+      <text x="314" y="184" text-anchor="middle" font-size="10" fill="#667085">No separate AI crawler or AI index for these features</text>
+      <rect x="500" y="130" width="180" height="84" rx="10" fill="#2457e6"/>
+      <text x="514" y="154" font-size="10.5" font-weight="600" fill="#fff">Same as Search, plus:</text>
+      <text x="514" y="174" font-size="10.5" fill="#fff"><tspan x="514">+ Grounding on the</tspan><tspan x="514" dy="15">   Search index</tspan><tspan x="514" dy="15">+ Query fan-out</tspan></text>
+      <!-- Gemini row -->
+      <rect x="140" y="232" width="168" height="76" rx="10" fill="#fff" stroke="#c7cdd8" stroke-dasharray="4 3"/>
+      <text x="154" y="266" font-size="10.5" fill="#2a3446">Uses crawlers for data</text>
+      <rect x="320" y="232" width="168" height="76" rx="10" fill="#fff" stroke="#c7cdd8" stroke-dasharray="4 3"/>
+      <text x="334" y="258" font-size="10.5" fill="#2a3446"><tspan x="334">Shares some technology:</tspan><tspan x="334" dy="15">tokenization, deduping</tspan></text>
+      <rect x="500" y="232" width="179.5" height="76" rx="10" fill="#fff" stroke="#c7cdd8" stroke-dasharray="4 3"/>
+      <text x="514" y="266" font-size="10.5" fill="#2a3446">Grounds on the Search index</text>
+    </svg>
+    <figcaption><b>One pipeline, three products.</b> Redrawn from the session's matrix slide, which also served as the roadmap for the three days.</figcaption>
+  </figure>
+  <p data-claims="D1-C208"><span class="tag stage">Stage</span> Gary Illyes: AI Overviews and AI Mode may have extra processes of their own, like any search feature, but the bulk of their processing is the same as for normal Search.</p>
+
+  <h3>The pipeline, step by step</h3>
+  <table>
+    <thead><tr><th style="width:26mm">Step</th><th>What Cherry Prommawin explained <span class="tag stage">Stage</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C201 D1-C202"><td class="k">Discovery</td><td>There are trillions of URLs, so many that even Google can't count them, and some will never be found <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Hub pages such as the homepage and categories may be visited more often, because they link to new pages.</td></tr>
+      <tr data-claims="D1-C203"><td class="k">Crawling</td><td>A crawler downloads a page, extracts its links and repeats; Googlebot is Search's main crawler.</td></tr>
+      <tr data-claims="D1-C204 D1-C206 D1-C207 D1-C205"><td class="k">Indexing</td><td>The HTML is parsed, JavaScript-heavy pages are rendered with the latest Chromium, duplicates are clustered under one canonical URL, and signals are stored for index selection and later for ranking.</td></tr>
+      <tr data-claims="D1-C211 D1-C212 D1-C213"><td class="k">Index selection</td><td>Decides what goes into an index that is big but not limitless; a selected page takes its whole duplicate cluster with it. Printed, the index would reach the Moon and back twelve times <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+      <tr data-claims="D1-C214 D1-C215 D1-C216 D1-C222 D1-C223"><td class="k">Serving</td><td>Happens in real time: the query is cleaned up, its language detected and expanded; quality is one of the most important ranking factors; then the results page is built from the features that fit the intent. A majority of search features now use AI <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The AI already inside Search is not new</h3>
+  <div class="grid4">
+    <div class="card" data-claims="D1-C041"><div class="badge" style="color:#667085">Indexing</div><div class="ct">Statistical models</div><div class="cs"><span class="tag slide">Slide</span> Used for 20+ years: spam detection, and originally "Did you mean".</div></div>
+    <div class="card" data-claims="D1-C042 D1-C133"><div class="badge" style="color:#667085">Indexing</div><div class="ct">BERT</div><div class="cs"><span class="tag slide">Slide</span> Reads each word in the context of the whole sentence. <span class="tag docs">Docs</span> Google's ranking systems guide lists it as a ranking system.</div></div>
+    <div class="card" data-claims="D1-C043"><div class="badge" style="color:#667085">Serving</div><div class="ct">RankBrain</div><div class="cs"><span class="tag slide">Slide</span> Interprets the intent behind new or unusual queries.</div></div>
+    <div class="card" data-claims="D1-C044 D1-C134 D1-C130"><div class="badge" style="color:#667085">Serving</div><div class="ct">MUM</div><div class="cs"><span class="tag slide">Slide</span> Works across text, images, audio and video in 75+ languages. <span class="tag docs">Docs</span> The 2021 launch post named text and images, with video and audio to come; the ranking systems guide says MUM is not used for general ranking.</div></div>
+  </div>
+  <p data-claims="D1-C209 D1-C217 D1-C218 D1-C219"><span class="tag stage">Stage</span> Gary Illyes dated "Did you mean" to around 2001–2002, a statistical model he counts as AI, and RankBrain to around 2015–2016, the first AI system Google talked about widely. MUM reads context: hiking shoes for Mount Everest, not Kilimanjaro. <span class="tag analysis">Analysis</span> MUM was announced in May 2021, more than five years after RankBrain; date these systems by Google's posts.</p>
+  <p data-claims="D1-C045"><span class="tag slide">Slide</span> Ranking signals differ by result type: <strong>web pages</strong> (text, links, passages), <strong>images</strong> (resolution, colour, associated text), <strong>news</strong> (freshness, originality, diversity), <strong>local</strong> (location, type, rating, reviews, hours) and <strong>video</strong> (language, text from speech).</p>
+
+  <h3>"Good SEO is good GEO"</h3>
+  <p data-claims="D1-C049 D1-C197 D1-C198"><span class="tag stage">Stage</span> Gary Illyes argued that "GEO" is a new label invented to create a new field. The work doesn't need it: understand how SEO works and you are covered. He traced "SEO is dead" posts back to a forum thread called "Search engine R.I.P." from 10 November 1997; they still appear every month. SEO is not dead, he said: the AI features create more opportunities.</p>
+  <p data-claims="D1-C050 D1-C051"><span class="tag slide">Slide</span> "Don't worry about what to call it. Good SEO is good GEO, AEO." Three reasons: generative AI features are built on the core ranking systems; query fan-out expands the original query to find related information; and generative AI features highlight content indexed by Google Search.</p>
+  <p data-claims="D1-C052 D1-C053"><span class="tag docs">Docs</span> Google's optimisation guide for generative AI (updated 10 July 2026) agrees: optimising for generative AI search "is optimizing for the search experience, and thus still SEO". It describes query fan-out as running several related searches at once — a question about lawn weeds also searches herbicides and prevention. <span data-claims="D1-C225"><span class="tag stage">Stage</span> Gary Illyes called fan-out nothing new: "just ten different searches that fire in the background", each a normal search on the same systems.</span></p>
+
+  <h3>Four myths Google addressed</h3>
+  <table class="avoid">
+    <thead><tr><th style="width:62mm">Myth</th><th>Google's answer <span class="tag slide">Slide</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C054"><td class="k">Optimise for AI over readers</td><td><strong>Optimise for people.</strong> No need to obsess over keywords or AI phrasing, no need to chop content, "LLMS.txt isn't necessary".</td></tr>
+      <tr data-claims="D1-C055"><td class="k">Build content for every possible need</td><td><strong>Prioritise unique perspectives</strong> and expertise beyond common knowledge.</td></tr>
+      <tr data-claims="D1-C056"><td class="k">Your website is no longer relevant</td><td><strong>Keep content accessible:</strong> crawlable, well structured, fast and easy to read, for readers and AI tools.</td></tr>
+      <tr data-claims="D1-C057"><td class="k">Old metrics don't work in the AI era</td><td><strong>Focus on real business goals</strong> and measure what matters to your business.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue avoid">
+    <div class="h" data-claims="D1-C046">Google's "Your question" slide · "Can google distinguish between ai and human written content?"</div>
+    <p data-claims="D1-C047 D1-C046"><span class="tag slide">Slide</span> "ML based ranking algorithms and signals are trained on content by humans for humans. They 'understand' and promote natural content better." Gary Illyes presented it as the question this topic usually prompts, not one asked in the room.</p>
+    <p data-claims="D1-C210 D1-C221"><span class="tag stage">Stage</span> Google is not really trying to tell the two apart: "We care more about the quality of the content than how it was created." The natural content its systems favour includes content created by humans "or at least edited and reviewed" by them <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>.</p>
+    <p data-claims="D1-C048"><span class="tag analysis">Analysis</span> This is not a claim that Google detects AI text. It says ranking models favour text that reads as natural to people. Google's policy is consistent: AI-assisted content is allowed, while mass-produced pages made mainly to rank fall under its scaled content abuse policy. The risk is in scale without value, not in the tool.</p>
+  </div>
+
+  <h3>Searching with images</h3>
+  <ul>
+    <li data-claims="D1-C188 D1-C190"><span class="tag stage">Stage</span> Google noticed young users uploading pictures to reverse image search and expecting answers about the picture; Google Lens was its answer, now used by over 1.5 billion people <span class="muted">(the first part not&nbsp;in&nbsp;docs)</span>.</li>
+    <li data-claims="D1-C224"><span class="tag stage">Stage</span> For visual search, Google breaks an image down into vectors, sends them to the index and returns results based on them <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+    <li data-claims="D1-C199 D1-C200"><span class="tag stage">Stage</span> Gary Illyes: searching by image or video, as Search offers it today, wasn't possible before transformers <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Google dates Google Images to 2001 and Lens to 2017, so read this as being about today's multimodal AI search. For image work, see "Images matter" in the From the floor section.</li>
+  </ul>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="s" id="s05">
+  <div class="section-head">
+    <div class="num">05</div>
+    <div class="kicker">Section 05 · Cherry Prommawin and Gary Illyes</div>
+    <h2>How crawling works</h2>
+    <div class="lead">Google runs one crawling system for all its products, and its first job is not to harm your server. That is why speed and errors on your side decide how much Google crawls.</div>
+  </div>
+
+  <figure data-claims="D1-C063 D1-C064 D1-C065 D1-C066 D1-C092">
+    <svg viewBox="0 0 680 352" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="a2b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2457e6"/></marker>
+      </defs>
+      <!-- products band -->
+      <rect x="174" y="0.5" width="332" height="57.5" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="340" y="24" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">REQUESTING PRODUCTS</text>
+      <text x="340" y="44" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0f1d33">Google Search · Ads · Shopping · Images</text>
+      <path d="M254 58V102" stroke="#667085" stroke-width="1.3" marker-end="url(#a2)"/>
+      <text x="262" y="84" font-size="9.5" fill="#667085">scheduling parameters per user agent</text>
+      <!-- row boxes -->
+      <g>
+        <rect x="0.5" y="104" width="149.5" height="112" rx="12" fill="#fff" stroke="#c7cdd8"/>
+        <text x="75" y="132" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f1d33">Crawl queue</text>
+        <text x="75" y="154" text-anchor="middle" font-size="10" fill="#667085"><tspan x="75">URLs waiting</tspan><tspan x="75" dy="14">to be fetched</tspan></text>
+      </g>
+      <path d="M150 160H172" stroke="#667085" stroke-width="1.3" marker-end="url(#a2)"/>
+      <g>
+        <rect x="174" y="104" width="150" height="112" rx="12" fill="#fff" stroke="#c7cdd8"/>
+        <text x="249" y="132" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f1d33">Scheduler</text>
+        <text x="249" y="154" text-anchor="middle" font-size="10" fill="#667085"><tspan x="249">Shared infrastructure.</tspan><tspan x="249" dy="14">Decides what to fetch</tspan><tspan x="249" dy="14">and when</tspan></text>
+      </g>
+      <path d="M324 160H346" stroke="#667085" stroke-width="1.3" marker-end="url(#a2)"/>
+      <g>
+        <rect x="348" y="104" width="158" height="112" rx="12" fill="#2457e6"/>
+        <text x="427" y="132" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">Crawler</text>
+        <text x="427" y="154" text-anchor="middle" font-size="10" fill="#e3eaff"><tspan x="427">Fetches the URLs</tspan><tspan x="427" dy="14">Enforces robots.txt</tspan><tspan x="427" dy="14">"Doesn't break</tspan><tspan x="427" dy="14">the internet"</tspan></text>
+      </g>
+      <path d="M506 150H528" stroke="#2457e6" stroke-width="1.3" marker-end="url(#a2b)"/>
+      <path d="M528 172H508" stroke="#667085" stroke-width="1.3" marker-end="url(#a2)"/>
+      <g>
+        <rect x="530" y="104" width="149.5" height="112" rx="12" fill="#fff" stroke="#c7cdd8"/>
+        <text x="605" y="132" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f1d33">Your server</text>
+        <text x="605" y="154" text-anchor="middle" font-size="10" fill="#667085"><tspan x="605">Its health sets the</tspan><tspan x="605" dy="14">hostload: connect time,</tspan><tspan x="605" dy="14">TTFB, 429, 5xx</tspan></text>
+      </g>
+      <!-- indexing -->
+      <path d="M427 216V262" stroke="#667085" stroke-width="1.3" marker-end="url(#a2)"/>
+      <text x="436" y="244" font-size="9.5" fill="#667085">fetch reply</text>
+      <rect x="348" y="264" width="158" height="78" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="427" y="292" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f1d33">Indexing</text>
+      <text x="427" y="312" text-anchor="middle" font-size="10" fill="#667085">Processes fetched content</text>
+      <text x="427" y="328" text-anchor="middle" font-size="9" fill="#98a2b3">Day 2</text>
+      <path d="M348 303H75V218" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#a2b)"/>
+      <text x="212" y="295" text-anchor="middle" font-size="9.5" fill="#2457e6">new URLs discovered in links</text>
+    </svg>
+    <figcaption><b>Google's crawl pipeline.</b> Redrawn from the "How crawling works" and crawl budget slides.</figcaption>
+  </figure>
+
+  <ul>
+    <li data-claims="D1-C064"><span class="tag slide">Slide</span> The crawler has "multiple tasks": fetch from the internet, "ensure we don't break the internet", and enforce robots.txt policies. Fetched data goes on to indexing.</li>
+    <li data-claims="D1-C065"><span class="tag slide">Slide</span> The scheduler is "shared scheduler infrastructure". It decides what to fetch and when; each team sets the scheduling parameters for its own user agent.</li>
+    <li data-claims="D1-C066"><span class="tag slide">Slide</span> Search, Ads, Shopping and Images all request through one "centralized crawling infrastructure". Its primary mandate: fetch "while strictly preventing the overloading of external servers".</li>
+    <li data-claims="D1-C040"><span class="tag slide">Slide</span> Discovery runs through links: a news homepage links to <code>/sport</code> and <code>/tech</code>, which link to their articles.</li>
+  </ul>
+
+  <h3>Googlebot is just an HTTP client</h3>
+  <p data-claims="D1-C322 D1-C338 D1-C323"><span class="tag stage">Stage</span> Gary Illyes: "Googlebot is just a client. It is an HTTP client. There's nothing all that much special about it." Like a browser, it fetches the URL it was given and returns the bytes. Google's crawling is "a large-scale distributed swarm of simple HTTP clients", and AI agents are technically the same thing: HTTP clients acting for a user or a service <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D1-C324 D1-C326 D1-C325 D1-C342 D1-C344 D1-C138"><span class="tag stage">Stage</span> Google runs probably hundreds, if not thousands, of crawlers <span class="muted">(not&nbsp;in&nbsp;docs)</span>, some named and some not, all on one infrastructure that enforces the same crawling policies. Googlebot is the crawler for web search, AI features included. <span class="tag docs">Docs</span> Google's Inside Googlebot post speaks of dozens of other clients, with only the larger ones documented. <span class="tag analysis">Analysis</span> A Google user agent missing from the public lists is not proof of a fake: verify by reverse DNS or Google's published IP ranges.</p>
+  <p data-claims="D1-C136"><span class="tag docs">Docs</span> Googlebot fetches only the first 2MB of each URL, HTTP headers included (64MB for PDFs). Anything past the cutoff is not fetched, rendered or indexed, so keep the title, canonical and key structured data high in the HTML.</p>
+
+  <h3>How the scheduler decides</h3>
+  <ul>
+    <li data-claims="D1-C336 D1-C337"><span class="tag stage">Stage</span> Google finds URLs mainly in pages it has crawled, and also in sitemaps: a format from around 2005, "nothing fancy", that Google still uses.</li>
+    <li data-claims="D1-C332"><span class="tag stage">Stage</span> The scheduler logs how often each page changes and crawls fast-changing pages first: a news homepage before a terms of service page that changes once a year.</li>
+    <li data-claims="D1-C331"><span class="tag stage">Stage</span> URLs or sites known to be historically spammy are very likely deprioritised.</li>
+    <li data-claims="D1-C334 D1-C335"><span class="tag stage">Stage</span> Each team sets its own priorities. Search cares a lot about quality; Ads checks every publisher page that wants to show ads, as the URLs come in. Crawling for Gemini may care more about amount, because for language models "the number of tokens is actually more important" than the quality <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+  </ul>
+  <p data-claims="D1-C339 D1-C340 D1-C341"><span class="tag stage">Stage</span> To debug crawling, Gary Illyes called Search Console's <strong>Crawl Stats</strong> report (Settings → Crawl stats) the most valuable tool: how much Google crawls, the errors it got and the content types each crawler fetched. Server logs are "the real thing", for those who can read them.</p>
+
+  <div class="callout">
+    <div class="h">Analysis · two consequences</div>
+    <p data-claims="D1-C067"><strong>Orphan pages are slow pages.</strong> A URL with no internal links depends on sitemaps alone to be found, so discovery is slow and demand stays low.</p>
+    <p data-claims="D1-C068 D1-C091 D1-C132"><strong>Every Google fetch counts against the same host.</strong> Ads and Shopping fetches share host capacity with Googlebot. A merchant feed or ad landing pages hitting a slow server can reduce how much is crawled for Search.</p>
+  </div>
+
+  <h3>Who reads robots.txt, and who doesn't</h3>
+  <table>
+    <thead><tr><th style="width:44mm">Who fetches</th><th style="width:24mm">robots.txt</th><th>What was said on Day 1 <span class="tag stage">Stage</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C329"><td class="k">Googlebot and Google's other automated crawlers</td><td class="ok">Obeyed</td><td>robots.txt is how site owners opt out of Google's crawling.</td></tr>
+      <tr data-claims="D1-C330 D1-C343"><td class="k">Contractual crawlers</td><td class="no">May ignore</td><td>They crawl sites whose owners agreed to it. <span class="tag docs">Docs</span> AdsBot ignores the <code>*</code> group, with the publisher's permission.</td></tr>
+      <tr data-claims="D1-C434 D1-C273"><td class="k">User-triggered fetchers</td><td class="no">Not checked</td><td>A user asked for the fetch, as with a translation service.</td></tr>
+      <tr data-claims="D1-C435 D1-C436"><td class="k">AI agents acting for a user</td><td class="no">Not checked</td><td>Same category: an agent that obeyed a block couldn't finish a purchase.</td></tr>
+      <tr data-claims="D1-C428 D1-C429"><td class="k">Other search and AI crawlers</td><td class="ok">Try to obey</td><td>Those that ignore it and cause a nuisance are a scraping problem.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C437"><span class="tag stage">Stage</span> A Google panelist: much of robots.txt is written for search engines. A search engine should never add items to a cart; an agent acting for a user probably should.</p>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="s" id="s06">
+  <div class="section-head">
+    <div class="num">06</div>
+    <div class="kicker">Section 06 · How crawling errors affect Search</div>
+    <h2>Crawl errors: what Google sees when it can't reach you</h2>
+    <div class="lead">The most damaging crawl errors are the ones site owners never see. A firewall that blocks Googlebot shows up on Google's side only as failed connections — and Google reacts by crawling less.</div>
+  </div>
+
+  <p data-claims="D1-C069 D1-C070"><span class="tag stage">Stage</span> Gary Illyes: DNS problems and firewalls are blind spots. Google doesn't know a firewall is the cause, it only sees requests fail. He called soft 404s one of the biggest problems on the internet right now for crawling and for showing up in Search.</p>
+
+  <figure data-claims="D1-C069">
+    <svg viewBox="0 0 680 178" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker></defs>
+      <g font-size="12" font-weight="700" fill="#0f1d33" text-anchor="middle">
+        <rect x="0" y="20" width="130" height="58" rx="12" fill="#2457e6"/><text x="65" y="54" fill="#fff">Googlebot</text>
+        <rect x="183" y="20" width="130" height="58" rx="12" fill="#fff" stroke="#c7cdd8"/><text x="248" y="54">DNS</text>
+        <rect x="366" y="20" width="130" height="58" rx="12" fill="#fff" stroke="#c7cdd8"/><text x="431" y="54">CDN / WAF</text>
+        <rect x="550" y="20" width="129.5" height="58" rx="12" fill="#fff" stroke="#c7cdd8"/><text x="615" y="54">Origin server</text>
+      </g>
+      <g stroke="#667085" stroke-width="1.3">
+        <path d="M130 49H181" marker-end="url(#a3)"/><path d="M313 49H364" marker-end="url(#a3)"/><path d="M496 49H548" marker-end="url(#a3)"/>
+      </g>
+      <g font-size="9" font-weight="700" letter-spacing="1.1" fill="#c8372d" text-anchor="middle">
+        <text x="248" y="106">CAN FAIL AS</text><text x="431" y="106">CAN FAIL AS</text><text x="615" y="106">CAN FAIL AS</text>
+      </g>
+      <g font-size="10.5" fill="#0f1d33" text-anchor="middle">
+        <rect x="183" y="114" width="130" height="58" rx="10" fill="#fbe7e5"/><text x="248" y="138">DNS error</text><text x="248" y="155" font-size="9.5" fill="#667085">name doesn't resolve</text>
+        <rect x="366" y="114" width="130" height="58" rx="10" fill="#fbe7e5"/><text x="431" y="138">Timeout · reset</text><text x="431" y="155" font-size="9.5" fill="#667085">bot rule blocks Google</text>
+        <rect x="550" y="114" width="130" height="58" rx="10" fill="#fbe7e5"/><text x="615" y="138">5xx · 429 · soft 404</text><text x="615" y="155" font-size="9.5" fill="#667085">overload or empty page</text>
+      </g>
+      <text x="0" y="112" font-size="9.5" fill="#667085"><tspan x="0">Google sees only</tspan><tspan x="0" dy="13">the symptom,</tspan><tspan x="0" dy="13">never the cause</tspan></text>
+    </svg>
+    <figcaption><b>Where a fetch can fail.</b> Each layer between Googlebot and your page can fail in a way that looks like a sick server.</figcaption>
+  </figure>
+
+  <h3>Status codes, class by class</h3>
+  <table>
+    <thead><tr><th style="width:36mm">Class</th><th>What Cherry Prommawin explained <span class="tag stage">Stage</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C345 D1-C346"><td class="k"><code>1xx</code> Informational</td><td>Only says the request arrived and more is coming; no meaning of its own for crawling <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+      <tr data-claims="D1-C347 D1-C320 D1-C348"><td class="k"><code>2xx</code> Success</td><td><code>200</code>: what comes back is eligible for indexing — though, as Gary Illyes put it, 200 only means the server <em>believes</em> it did what was asked. <code>204</code> No Content: nothing to index.</td></tr>
+      <tr data-claims="D1-C349 D1-C350"><td class="k"><code>3xx</code> Redirection</td><td>Followed to the new location, permanent (<code>301</code>, <code>308</code>) or temporary (<code>302</code>, <code>307</code>); indexing depends on what the target returns. <code>304</code>: unchanged since the last visit.</td></tr>
+      <tr data-claims="D1-C351 D1-C352 D1-C353"><td class="k"><code>4xx</code> Client error</td><td><code>404</code> and <code>410</code>: nothing here, not indexable. <code>403</code>: no permission, so nothing to index. <code>429</code> is the exception: it means "slow down", and Google does.</td></tr>
+      <tr data-claims="D1-C354"><td class="k"><code>5xx</code> Server error</td><td>Crawling slows, because the server, and often the whole site, can't serve requests, and Google doesn't want to break it.</td></tr>
+    </tbody>
+  </table>
+  <p class="small" data-claims="D1-C370"><span class="tag docs">Docs</span> Google's crawlers follow up to 10 redirect hops by default; content served by the redirecting URL is ignored and only the final target is processed.</p>
+
+  <h3>How Google reacts to each response <span class="tag docs">Docs</span></h3>
+  <table>
+    <thead><tr><th style="width:44mm">What Google gets</th><th style="width:38mm">Treated as</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C071"><td class="k"><code>5xx</code> server error</td><td>Overload signal</td><td>Crawling slows; indexed URLs are kept for a while, "but eventually dropped".</td></tr>
+      <tr data-claims="D1-C071"><td class="k"><code>429</code> Too Many Requests</td><td>Overload signal</td><td>Crawling slows, like <code>5xx</code>.</td></tr>
+      <tr data-claims="D1-C072"><td class="k"><code>4xx</code> other than 429</td><td>Normal "not found"</td><td>"No effect on crawl rate"; the URL leaves the index.</td></tr>
+      <tr data-claims="D1-C073"><td class="k"><code>200</code> with empty or error page</td><td>Soft 404</td><td>Excluded from the index — and still crawled, wasting budget.</td></tr>
+      <tr data-claims="D1-C126"><td class="k">Timeout, reset, DNS failure</td><td>Network / DNS error</td><td>Treated like 5xx: crawling slows at once, and indexed URLs that stay unreachable drop out of the index within days.</td></tr>
+      <tr data-claims="D1-C074"><td class="k">robots.txt returns <code>5xx</code></td><td>Rules unreadable</td><td>Crawling stops for 12 hours, then the cached copy is used for up to 30 days.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Login walls, paywalls and pay-per-crawl</h3>
+  <p data-claims="D1-C365 D1-C366 D1-C509"><span class="tag stage">Stage</span> Gary Illyes: Google has recently seen more <code>403</code> responses to its crawlers, which he described as "authentication required". It treats them as client errors, technically like <code>404</code> or <code>410</code>, and drops the pages from Search and its AI features. <code>402</code> Payment Required is no different, because Googlebot can't pay: "402 will just mean 404 to us". The uptick in <code>402</code>s is even more recent than the one in <code>403</code>s <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <div class="callout avoid">
+    <div class="h">Analysis</div>
+    <p data-claims="D1-C372">Never answer verified Googlebot with <code>401</code>, <code>402</code> or <code>403</code> from a login wall, a paywall or a pay-per-crawl setup: the pages leave the index. Google's status code page also says not to use <code>401</code> or <code>403</code> to limit crawling. To slow Google down for a while, return <code>429</code> or <code>503</code>.</p>
+  </div>
+
+  <h3>DNS, networks and CDNs</h3>
+  <ul>
+    <li data-claims="D1-C357 D1-C358 D1-C362"><span class="tag stage">Stage</span> Gary Illyes called DNS and network errors very common, and DNS problems very pesky to debug. Both can get a site removed from Search and, with it, from every feature that depends on Search; DNS errors do so very aggressively. Search Console alerts you.</li>
+    <li data-claims="D1-C359 D1-C361"><span class="tag stage">Stage</span> Most network errors happen between your origin and Google's data centres, invisible to both sides <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Timeouts usually start close to the site: a firewall, the CDN, the host or the DNS provider.</li>
+    <li data-claims="D1-C364 D1-C367 D1-C371"><span class="tag stage">Stage</span> A rise in HTTP errors can be a CDN throttling crawlers by injecting <code>429</code> or <code>503</code> responses on the way between Google and your site. CDN captcha challenges often return <code>200</code>; Googlebot doesn't solve them, so indexing classes the page as a soft 404. <span class="tag analysis">Analysis</span> Day 2 added that such pages can also be clustered as duplicates. Either way, the real pages drop out.</li>
+    <li data-claims="D1-C360 D1-C363"><span class="tag stage">Stage</span> What to do first: ask the host or CDN whether they changed anything, check for new firewall rules, then ask in the CDN's forum. Google can't see these errors, so it can't help with them.</li>
+  </ul>
+
+  <h3>HTTP/3</h3>
+  <p data-claims="D1-C075 D1-C076"><span class="tag stage">Stage</span> From my notes, session not recorded: Googlebot does not support HTTP/3 today. <span class="tag docs">Docs</span> Consistent: Google's crawlers use HTTP/1.1 and HTTP/2, pick whichever crawls best, and may switch between sessions. HTTP/2 can save server resources but gives no ranking benefit.</p>
+  <div class="callout avoid">
+    <div class="h">Analysis</div>
+    <p data-claims="D1-C077">This doesn't mean "don't use HTTP/3" — browsers benefit from it, and servers offer it alongside HTTP/2 and HTTP/1.1. The rule is: never run a host that only works over HTTP/3, and make sure CDN or firewall rules written for HTTP/3 traffic don't break the protocols Googlebot uses.</p>
+  </div>
+
+  <h3>How to find these errors</h3>
+  <ol>
+    <li>Search Console → <strong>Settings → Crawl stats → Host status</strong>: robots.txt fetch, DNS resolution and server connectivity. Any red in the last 90 days deserves a ticket.</li>
+    <li>In the same report, break requests down <strong>by response</strong>. A rising share of <code>5xx</code> or <code>429</code> means Google is being told to slow down.</li>
+    <li data-claims="D1-C069 D1-C078">Ask whoever runs the CDN or WAF for blocks on <strong>Google's published crawler IP ranges</strong>. Verify Googlebot by reverse DNS, never by user agent alone.</li>
+    <li data-claims="D1-C078">For temporary blocks, return <code>503</code> or <code>429</code> — never a <code>200</code> page with a captcha or error message, which becomes a soft 404 and can replace your real content in the index.</li>
+    <li data-claims="D1-C508 D1-C368">Review <strong>Soft 404</strong> in the page indexing report, where Gary Illyes said to look them up; Crawl Stats is for the other crawl issues. On local and service sites, thin location pages with little unique content are the usual cause.</li>
+  </ol>
+</section>
+
+<!-- ================= 07 ================= -->
+<section class="s" id="s07">
+  <div class="section-head">
+    <div class="num">07</div>
+    <div class="kicker">Section 07 · How Google interprets robots.txt · Lightning session B</div>
+    <h2>robots.txt, read the way Google reads it</h2>
+    <div class="lead" data-claims="D1-C516 D1-C080 D1-C081 D1-C082">robots.txt has only three rules, yet most mistakes come from three things people get wrong: a crawler obeys only one group, the longest matching path wins, and <code>$</code> anchors the whole URL — parameters included.</div>
+  </div>
+
+  <h3>What robots.txt is, and what it isn't</h3>
+  <p data-claims="D1-C510 D1-C511 D1-C512 D1-C513"><span class="tag stage">Stage</span> Google's talk started in 1994, when bots were crashing servers and Martijn Koster proposed a text file at the root of a site with rules for automated clients. Google supported it from its first crawl in 1996, as a Stanford PhD project. Today it is an IETF standard, RFC 9309, officially the Robots Exclusion Protocol, and basically all major crawlers follow it; Google does because anyone who wants to opt out of crawling should be able to. It controls which clients may access what. It has nothing to do with how the content is used.</p>
+  <div class="grid3">
+    <div class="card" data-claims="D1-C514"><div class="ct">Not a security measure</div><div class="cs"><span class="tag stage">Stage</span> The file sits at a predictable public address, so anyone can read the paths it disallows. Protect a secret folder with authentication, or keep it off the internet.</div></div>
+    <div class="card" data-claims="D1-C515 D1-C516 D1-C517"><div class="ct">Three rules, one place</div><div class="cs"><span class="tag stage">Stage</span> Always at the root of the host. Only <code>user-agent</code> (a named crawler, or <code>*</code> for all), <code>disallow</code> and <code>allow</code>. Everything is allowed by default, so <code>allow</code> only re-opens a path inside a disallowed one.</div></div>
+    <div class="card" data-claims="D1-C518 D1-C089"><div class="ct">Comments</div><div class="cs"><span class="tag stage">Stage</span> <code>#</code> starts a comment, and a line a parser can't read is skipped anyway, as the standard requires. To show why comments help, the talk pointed to the file of thebestfriedchickenever.com: mostly an ASCII-art drawing in comment lines <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</div></div>
+  </div>
+  <p data-claims="D1-C525 D1-C532"><span class="tag stage">Stage</span> Google called the format extremely forgiving: a typo in a path only blocks the wrong path, a typo in a rule name makes Google ignore that line, and the rest of the file still counts <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Google's open-source parser even accepts common misspellings of <code>disallow</code> and <code>user-agent</code>, though not of <code>allow</code>. Other crawlers may be stricter: spell rule names correctly.</p>
+
+  <h3>The puzzle from the slide</h3>
+  <div class="grid2" style="grid-template-columns: 62mm 1fr; align-items: start;">
+<pre class="code mt0" data-claims="D1-C079"><span class="c"># Let's craft a robots.txt!</span>
+
+<span class="k">user-agent:</span> *
+<span class="x">disallow:</span> /
+<span class="v">allow:</span> /$
+
+<span class="k">user-agent:</span> bingbot
+<span class="k">user-agent:</span> googlebot
+<span class="x">disallow:</span> /
+<span class="v">allow:</span> /$
+<span class="v">allow:</span> /politics/
+<span class="v">allow:</span> /*/live/
+
+<span class="k">user-agent:</span> google-extended
+<span class="x">disallow:</span> /subscriptions/
+<span class="v">allow:</span> /</pre>
+    <div>
+      <p class="mt0" data-claims="D1-C080 D1-C081 D1-C082"><span class="tag docs">Docs</span> The rules that decide it:</p>
+      <ol>
+        <li data-claims="D1-C080"><strong>One group per crawler.</strong> Several <code>user-agent</code> lines can share a group. A crawler follows only the most specific group naming it — so Googlebot ignores the <code>*</code> group here entirely.</li>
+        <li data-claims="D1-C081"><strong>Longest path wins.</strong> Within the group, the rule with the longest matching path applies.</li>
+        <li data-claims="D1-C081"><strong>Ties go to allow.</strong> If an allow and a disallow match equally, the less restrictive wins.</li>
+        <li data-claims="D1-C082"><strong><code>*</code> and <code>$</code>.</strong> <code>*</code> matches any characters; <code>$</code> marks the end of the URL.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h4>What Googlebot may crawl under this file <span class="tag analysis">Analysis</span></h4>
+  <table class="avoid" data-claims="D1-C083">
+    <thead><tr><th style="width:52mm">URL</th><th>Deciding rule</th><th style="width:22mm">Googlebot</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td><code>allow: /$</code></td><td class="ok">Allowed</td></tr>
+      <tr><td><code>/?utm_source=newsletter</code></td><td><code>disallow: /</code> — <code>/$</code> needs the URL to end right after <code>/</code></td><td class="no">Blocked</td></tr>
+      <tr><td><code>/index.html</code></td><td><code>disallow: /</code></td><td class="no">Blocked</td></tr>
+      <tr><td><code>/politics/eu-vote</code></td><td><code>allow: /politics/</code> (longer than <code>/</code>)</td><td class="ok">Allowed</td></tr>
+      <tr><td><code>/politics</code></td><td><code>disallow: /</code> — no trailing slash, no match</td><td class="no">Blocked</td></tr>
+      <tr><td><code>/sports/live/</code></td><td><code>allow: /*/live/</code></td><td class="ok">Allowed</td></tr>
+      <tr><td><code>/live/</code></td><td><code>disallow: /</code> — pattern needs a segment before <code>/live/</code></td><td class="no">Blocked</td></tr>
+      <tr><td><code>/sports/live-score</code></td><td><code>disallow: /</code> — no <code>/live/</code> with a slash</td><td class="no">Blocked</td></tr>
+    </tbody>
+  </table>
+  <p class="small" data-claims="D1-C079 D1-C086">Every other crawler falls into the <code>*</code> group and may fetch only the bare homepage. <code>google-extended</code> is not a crawler — see below.</p>
+  <p data-claims="D1-C520 D1-C521"><span class="tag stage">Stage</span> The talk's own walk-through used the same tools the other way round: <code>disallow: /*/live/</code> blocks <code>/science/live/</code> and <code>/sports/live/</code>, and <code>allow: /science/live/</code> re-opens that one path. <code>user-agent: *</code>, <code>disallow: /</code> and <code>allow: /$</code> let unnamed crawlers fetch only the homepage: <code>/$</code> means only the root, <code>/cats$</code> exactly <code>/cats</code>.</p>
+
+  <h3>Groups: one per crawler, never added together</h3>
+  <p data-claims="D1-C519 D1-C527"><span class="tag stage">Stage</span> A <code>user-agent</code> line with its rules forms a group, and one group can name several crawlers, such as Googlebot and Bingbot. Give a crawler its own group only when it needs rules the <code>*</code> group shouldn't grant everyone. To give one crawler an extra rule on top of another group's rules, add one more group for it: Google's spec merges all groups that name the same user agent.</p>
+  <div class="grid2" style="grid-template-columns: 70mm 1fr; align-items: start;">
+<pre class="code mt0" data-claims="D1-C531"><span class="c"># The quiz answer</span>
+<span class="k">user-agent:</span> googlebot
+<span class="x">disallow:</span> /staging/
+<span class="v">allow:</span> /staging/preview/</pre>
+    <div>
+      <p class="mt0" data-claims="D1-C531"><span class="tag stage">Stage</span> The talk ended with a quiz. Its answer here: one Googlebot group holding both rules, not an allow in the <code>*</code> group and not a Googlebot group with only the allow.</p>
+      <p data-claims="D1-C080"><span class="tag docs">Docs</span> Why: a crawler follows only the most specific group naming it. An allow in the <code>*</code> group opens the path to every crawler; a Googlebot group with only the allow frees Googlebot from the <code>*</code> group's <code>disallow: /staging/</code>, so all of <code>/staging/</code> opens to it.</p>
+    </div>
+  </div>
+
+  <h3>The unknown-line trap</h3>
+  <p data-claims="D1-C526"><span class="tag stage">Stage</span> The real trouble, Google's talk said, is an unknown line between two <code>user-agent</code> lines. Should the first crawler inherit the rules that follow? While writing RFC 9309, Google asked people, and opinions split roughly 50-50 <span class="muted">(not&nbsp;in&nbsp;docs)</span>. How the question was settled is unclear in the recording.</p>
+  <p data-claims="D1-C087 D1-C123"><span class="tag slide">Slide</span> A later slide of Google's talk showed how two crawlers read such a file: "Different crawlers behave differently! … Unpredictability is never a good time."</p>
+  <figure data-claims="D1-C087 D1-C123">
+    <svg viewBox="0 0 680 214" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <!-- left panel -->
+      <rect x="0" y="0" width="330" height="214" rx="12" fill="#f5f7fb"/>
+      <text x="20" y="28" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">HOW GOOGLEBOT READS IT</text>
+      <g font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">
+        <text x="44" y="64">User-agent: bingbot</text>
+        <text x="44" y="86" fill="#98a2b3" text-decoration="line-through">Content-signal: all-access=yes</text>
+        <text x="44" y="108">User-agent: googlebot</text>
+        <text x="44" y="130">Disallow: /</text>
+      </g>
+      <path d="M32 52V136" stroke="#2457e6" stroke-width="3" stroke-linecap="round"/>
+      <rect x="20" y="152" width="290" height="46" rx="8" fill="#fbe7e5"/>
+      <text x="34" y="171" font-size="10.5" font-weight="700" fill="#c8372d">Both bingbot and googlebot blocked</text>
+      <text x="34" y="187" font-size="9.5" fill="#2a3446">Unknown line ignored; one group, one rule</text>
+      <!-- right panel -->
+      <rect x="350" y="0" width="330" height="214" rx="12" fill="#f5f7fb"/>
+      <text x="370" y="28" font-size="9" font-weight="700" letter-spacing="1.3" fill="#6d3fd6">HOW BINGBOT READS IT</text>
+      <g font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">
+        <text x="394" y="64">User-agent: bingbot</text>
+        <text x="394" y="86">Content-signal: all-access=yes</text>
+        <text x="394" y="108">User-agent: googlebot</text>
+        <text x="394" y="130">Disallow: /</text>
+      </g>
+      <path d="M382 52V91" stroke="#6d3fd6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M382 98V136" stroke="#2457e6" stroke-width="3" stroke-linecap="round"/>
+      <rect x="370" y="152" width="290" height="46" rx="8" fill="#e3f4ec"/>
+      <text x="384" y="171" font-size="10.5" font-weight="700" fill="#0b8a5f">bingbot not blocked</text>
+      <text x="384" y="187" font-size="9.5" fill="#2a3446">Group closed early; bingbot ends up with no rules</text>
+    </svg>
+    <figcaption><b>Same file, two readings.</b> Bars show how each crawler groups the lines, per the talk's slide.</figcaption>
+  </figure>
+  <div class="callout avoid">
+    <div class="h">Analysis</div>
+    <p data-claims="D1-C088 D1-C084"><code>Content-Signal</code> lines are now common because a large CDN provider adds them to its managed robots.txt files. Google supports only <code>user-agent</code>, <code>allow</code>, <code>disallow</code> and <code>sitemap</code> and ignores the rest. Never place any other directive between <code>user-agent</code> lines: put it after a group's rules, and test the file with each search engine's tools (Bing's robots.txt tester, Google's open-source robots.txt parser).</p>
+  </div>
+
+  <h3>Google-Extended, crawl-delay and llms.txt</h3>
+  <p data-claims="D1-C086"><span class="tag docs">Docs</span> Google-Extended is a control token, not a crawler. It decides whether content may train future Gemini models and ground Gemini apps and Vertex AI, and it "does not impact a site's inclusion in Google Search nor is it used as a ranking signal".</p>
+  <p data-claims="D1-C522 D1-C524 D1-C523"><span class="tag stage">Stage</span> The talk: disallow a directory or the whole site for Google-Extended and Google keeps it out of Gemini model training, and respects that. Other companies have similar tokens, such as Apple's Applebot-Extended <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>. The speaker believed Google was the first to offer such an opt-out. <span class="tag analysis">Analysis</span> Not quite: OpenAI documented how to block GPTBot in August 2023, before Google-Extended arrived on 28 September 2023. What was new was a token that separates AI-training use from Search for pages Google's existing crawlers already fetch.</p>
+  <div class="grid2">
+    <div class="card" data-claims="D1-C084 D1-C085"><div class="ct">crawl-delay</div><div class="cs"><span class="tag docs">Docs</span> Not supported by Googlebot; silently ignored. robots.txt is cached for up to 24 hours, and only the first 500 KiB is read.</div></div>
+    <div class="card" data-claims="D1-C054 D1-C060 D1-C061"><div class="ct">llms.txt</div><div class="cs"><span class="tag slide">Slide</span> "LLMS.txt isn't necessary." <span class="tag stage">Stage</span> Speakers at the event were openly dismissive. <span class="tag docs">Docs</span> Such files "neither harm nor help" — Google Search ignores them.</div></div>
+  </div>
+
+  <h3>The robots.txt report</h3>
+  <p data-claims="D1-C528 D1-C529 D1-C530"><span class="tag stage">Stage</span> Search Console's robots.txt report shows the file as Google last fetched it, with a version history and the errors and successes of each fetch. It uses the parser Google open-sourced at github.com/google/robotstxt. Use it to catch CDNs that change your robots.txt without telling you, and hosts that cloak the file, which happens more often than people think <span class="muted">(the last two points not&nbsp;in&nbsp;docs)</span>.</p>
+  <p class="small" data-claims="D1-C140"><span class="tag docs">Docs</span> The report covers the top 20 hosts of a Domain property, with fetch status, warnings and errors. To test one URL, Google points to the URL Inspection tool and its open-source robots.txt library.</p>
+
+  <h3>Lightning session B: when a redirect meets a blocked URL</h3>
+  <p data-claims="D1-C533"><span class="tag stage">Stage</span> Dave Smart opened Lightning session B with the pitfalls he sees most. First: groups are not additive. If the <code>*</code> group blocks <code>/goats/</code> and <code>/cows/</code> and you add a Googlebot group that blocks <code>/dogs/</code>, only that group applies to Googlebot, so it is free to crawl the goats and the cows.</p>
+  <figure data-claims="D1-C534 D1-C535">
+    <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="a10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="a11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c8372d"/></marker>
+      </defs>
+      <rect x="0.5" y="40" width="190" height="64" rx="12" fill="#fff" stroke="#c7cdd8"/>
+      <text x="18" y="66" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#0f1d33">/shoes/red</text>
+      <text x="18" y="86" font-size="9.5" fill="#667085">Not disallowed itself</text>
+      <path d="M191 72H243" stroke="#667085" stroke-width="1.3" marker-end="url(#a10)"/>
+      <text x="217" y="64" text-anchor="middle" font-size="9" fill="#667085">redirect</text>
+      <rect x="245" y="40" width="190" height="64" rx="12" fill="#fbe7e5" stroke="#c8372d"/>
+      <text x="263" y="66" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#0f1d33">/cart/?currency=eur</text>
+      <text x="263" y="86" font-size="9.5" fill="#c8372d">disallow: /cart/ · crawling stops</text>
+      <path d="M436 72H488" stroke="#c7cdd8" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#a10)"/>
+      <rect x="490" y="40" width="189.5" height="64" rx="12" fill="#f5f7fb" stroke="#c7cdd8" stroke-dasharray="4 3"/>
+      <text x="508" y="66" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#98a2b3">/shoes/red</text>
+      <text x="508" y="86" font-size="9.5" fill="#98a2b3">Back with the currency set</text>
+      <text x="0" y="18" font-size="9" font-weight="700" letter-spacing="1.3" fill="#c8372d">SEARCH CONSOLE: BLOCKED BY ROBOTS.TXT</text>
+      <path d="M60 24V38" stroke="#c8372d" stroke-width="1.3" marker-end="url(#a11)"/>
+      <text x="0" y="128" font-size="10" fill="#2a3446">Every URL in the chain is checked against robots.txt; the report names only the first one.</text>
+    </svg>
+    <figcaption><b>Blocked by a URL you never see.</b> Dave Smart's example, redrawn with illustrative paths: a JavaScript redirect through the cart to set the local currency.</figcaption>
+  </figure>
+  <ul>
+    <li data-claims="D1-C534 D1-C535"><span class="tag stage">Stage</span> robots.txt is checked for every URL in a redirect chain, and crawling stops at the first blocked one <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Search Console reports the block only on the first URL, which is confusing: the URL shown as blocked isn't disallowed itself.</li>
+    <li data-claims="D1-C536"><span class="tag stage">Stage</span> It applies to every kind of redirect, not only JavaScript: a hop through an external authorisation service blocked by its own robots.txt, content that moved through several URLs over the years until one of them got blocked, or a redirect served only to Googlebot's user agent <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+    <li data-claims="D1-C537"><span class="tag stage">Stage</span> So when Search Console says a URL is blocked by robots.txt and the file doesn't block it, check whether the URL redirects, and test every URL in the chain.</li>
+  </ul>
+</section>
+
+<!-- ================= 08 ================= -->
+<section class="s" id="s08">
+  <div class="section-head">
+    <div class="num">08</div>
+    <div class="kicker">Section 08 · Cherry Prommawin, Search Relations</div>
+    <h2>Crawl budget</h2>
+    <div class="lead" data-claims="D1-C090 D1-C092 D1-C093 D1-C098">Crawl budget is two separate limits: how much your server can take, and how much Google wants. Speed raises the first; quality and popularity raise the second. Most sites only ever hit the second.</div>
+  </div>
+  <p data-claims="D1-C096 D1-C373"><span class="tag stage">Stage</span> In one line: crawl budget is the attention span Google gives a website — and better performance increases it. More formally, it is the finite amount of crawling resources Google gives a site, which decides how many of its pages are found and how often they are revisited.</p>
+
+  <figure data-claims="D1-C090 D1-C091 D1-C092 D1-C093 D1-C094">
+    <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0" y="0" width="250" height="210" rx="12" fill="#e8eefd"/>
+      <text x="20" y="30" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">CRAWL RATE LIMIT · HOSTLOAD</text>
+      <text x="20" y="58" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">How much your</text>
+      <text x="20" y="80" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">server can take</text>
+      <text x="20" y="108" font-size="9.5" fill="#667085">Host-wide, shared by all Google crawlers</text>
+      <text x="20" y="136" font-size="10.5" fill="#0f1d33"><tspan x="20">↓ Connect time rising</tspan><tspan x="20" dy="17">↓ Time to first byte rising</tspan><tspan x="20" dy="17">↓ HTTP 429 or 5xx responses</tspan></text>
+      <text x="265" y="116" font-size="26" font-family="Fraunces, 'Noto Symbols'" fill="#98a2b3">+</text>
+      <rect x="290" y="0" width="250" height="210" rx="12" fill="#e3f4ec"/>
+      <text x="310" y="30" font-size="9" font-weight="700" letter-spacing="1.3" fill="#0b8a5f">CRAWL DEMAND</text>
+      <text x="310" y="58" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">How much Google</text>
+      <text x="310" y="80" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">wants your URLs</text>
+      <text x="310" y="108" font-size="9.5" fill="#667085">Unknown URLs inherit from their parent path</text>
+      <text x="310" y="136" font-size="10.5" fill="#0f1d33"><tspan x="310">↑ Quality of the site</tspan><tspan x="310" dy="17">↑ How often URLs change</tspan><tspan x="310" dy="17">↑ Popularity on the web</tspan></text>
+      <text x="553" y="116" font-size="26" font-family="Fraunces, 'Noto Symbols'" fill="#98a2b3">=</text>
+      <rect x="578" y="0" width="102" height="210" rx="12" fill="#0b1a33"/>
+      <text x="629" y="96" text-anchor="middle" font-size="16" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Crawl</text>
+      <text x="629" y="118" text-anchor="middle" font-size="16" font-family="Fraunces, 'Noto Symbols'" fill="#fff">budget</text>
+    </svg>
+    <figcaption><b>The formula.</b> From the session slides: "Crawl Budget = Crawl Rate Limit &amp; Crawl Demand".</figcaption>
+  </figure>
+  <ul>
+    <li data-claims="D1-C374 D1-C376"><span class="tag stage">Stage</span> Hostload is a proxy for how many requests per second the connection can take. It applies <strong>per host</strong>, not per site: your CDN, app, subdomains and <code>www</code> host may each be a different host.</li>
+    <li data-claims="D1-C377 D1-C420"><span class="tag stage">Stage</span> The quality behind crawl demand is the quality of the site as a whole, not of one page <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Read it as site quality setting the baseline; Google's guide still lists page-level quality among the demand factors.</li>
+  </ul>
+
+  <h3>Quality is inherited by path</h3>
+  <p data-claims="D1-C094"><span class="tag slide">Slide</span> If quality or popularity is unknown, the parent root's aggregate quality or popularity is used, then that path's parent's, and so on <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <figure style="width:86%" data-claims="D1-C095">
+    <svg viewBox="0 0 680 168" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker></defs>
+      <rect x="0" y="62" width="150" height="44" rx="10" fill="#0b1a33"/><text x="75" y="89" text-anchor="middle" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#fff">example.com/</text>
+      <path d="M150 84C190 84 190 30 226 30" stroke="#98a2b3" stroke-width="1.3" fill="none" marker-end="url(#a4)"/>
+      <path d="M150 84C190 84 190 138 226 138" stroke="#98a2b3" stroke-width="1.3" fill="none" marker-end="url(#a4)"/>
+      <rect x="228" y="8" width="160" height="44" rx="10" fill="#e3f4ec" stroke="#0b8a5f"/><text x="308" y="35" text-anchor="middle" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#0f1d33">/guides/</text>
+      <rect x="228" y="116" width="160" height="44" rx="10" fill="#fbe7e5" stroke="#c8372d"/><text x="308" y="143" text-anchor="middle" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11.5" fill="#0f1d33">/tags/</text>
+      <path d="M388 30H436" stroke="#98a2b3" stroke-width="1.3" marker-end="url(#a4)"/>
+      <path d="M388 138H436" stroke="#98a2b3" stroke-width="1.3" marker-end="url(#a4)"/>
+      <rect x="438" y="8" width="241.5" height="44" rx="10" fill="#fff" stroke="#0b8a5f" stroke-dasharray="4 3"/><text x="452" y="27" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">/guides/new-series/</text><text x="452" y="43" font-size="9.5" fill="#0b8a5f">New: starts with /guides/'s strong demand</text>
+      <rect x="438" y="116" width="241.5" height="44" rx="10" fill="#fff" stroke="#c8372d" stroke-dasharray="4 3"/><text x="452" y="135" font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">/tags/new-series/</text><text x="452" y="151" font-size="9.5" fill="#c8372d">New: starts with /tags/'s weak demand</text>
+      <text x="228" y="88" font-size="9.5" fill="#667085">Same content, different starting demand</text>
+    </svg>
+    <figcaption><b>Illustrative example.</b> How path inheritance could play out for new content, based on the slide's rule. Paths are hypothetical.</figcaption>
+  </figure>
+  <div class="callout avoid">
+    <div class="h">Analysis</div>
+    <p data-claims="D1-C095">Put new high-value content where Google already trusts you. A new folder under a section Google rates poorly starts with that section's low demand.</p>
+  </div>
+
+  <h3>Who needs to care</h3>
+  <p data-claims="D1-C097"><span class="tag docs">Docs</span> Google's crawl budget guide is written for sites with <strong>1 million+</strong> unique pages changing weekly, <strong>10,000+</strong> pages changing daily, or many URLs stuck in "Discovered – currently not indexed". <span data-claims="D1-C098"><span class="tag analysis">Analysis</span> On a smaller site, slow indexing is almost always a demand problem (quality), not a capacity problem.</span></p>
+  <p data-claims="D1-C380 D1-C381 D1-C382"><span class="tag stage">Stage</span> Asked whether crawl budget is still a priority in 2026: not every site needs to worry, and that has always been so. A site with fewer than a few thousand URLs likely has no problem, and a larger one doesn't necessarily have one either. <span class="tag analysis">Analysis</span> Between that and the guide's million-page threshold, check Crawl Stats before blaming crawl budget for slow indexing.</p>
+
+  <h3>What burns it: the six faceted-URL traps</h3>
+  <p data-claims="D1-C099 D1-C378"><span class="tag slide">Slide</span> Server errors unrelated to load, useless pages and resources, and infinite URL spaces. Faceted navigation was the worked example. <span class="tag stage">Stage</span> URLs that differ are different URLs to Google, crawled even when they lead to the same content: calendars and endless page versions burn budget.</p>
+  <table data-claims="D1-C100 D1-C102">
+    <thead><tr><th style="width:50mm">Trap</th><th>Example from the slide</th><th style="width:48mm">Fix</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 · Same facets, different order</td><td><code>/shoes/color-red/size-10</code><br><code>/shoes/size-10/color-red</code></td><td>Always build facet URLs in one fixed order</td></tr>
+      <tr><td class="k">2 · Impossible combinations</td><td><code>/laptops/brand-apple/os-windows</code></td><td>Return <code>404</code> when a combination has no results</td></tr>
+      <tr><td class="k">3 · Too many facets</td><td><code>/cameras/type-dslr/brand-canon/…</code></td><td>Make one or two facet levels crawlable; block deeper ones</td></tr>
+      <tr><td class="k">4 · Facets on pagination</td><td><code>/phones/…/page-2/sort-price-asc</code></td><td>Fixed parameter order; block sort parameters</td></tr>
+      <tr><td class="k">5 · Facets + internal search</td><td><code>/search?q=blender&amp;brand-ninja&amp;…</code></td><td>Disallow internal search URLs in robots.txt</td></tr>
+      <tr><td class="k">6 · Default-value facets</td><td><code>/televisions/size-55inch/resolution-4k</code></td><td>Drop default values; link only to the normal form</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C101"><span class="tag docs">Docs</span> Google's faceted navigation guide prefers prevention: block filter URLs in robots.txt and keep crawlable only item pages plus one unfiltered listing page — or use URL fragments, which Google generally doesn't crawl. <code>rel="canonical"</code> and <code>nofollow</code> are weaker, slower options.</p>
+
+  <h3>How to manage it</h3>
+  <div class="grid4">
+    <div class="card" data-claims="D1-C103 D1-C104"><div class="badge" style="color:#2457e6">01</div><div class="cs"><strong>Use HTTP caching.</strong> Serve <code>304</code> for unchanged pages; ETag preferred.</div></div>
+    <div class="card" data-claims="D1-C103"><div class="badge" style="color:#2457e6">02</div><div class="cs"><strong>Have good navigation.</strong> Clear internal links for discovery and priority.</div></div>
+    <div class="card" data-claims="D1-C103"><div class="badge" style="color:#2457e6">03</div><div class="cs"><strong>Restrict faceted and action URLs</strong> — add to cart, wishlist, print, sort.</div></div>
+    <div class="card" data-claims="D1-C103 D1-C109 D1-C379"><div class="badge" style="color:#2457e6">04</div><div class="cs"><strong>Improve or remove useless content:</strong> low-quality, spam, duplicate and soft-error pages. Return <code>404</code>/<code>410</code> for removed pages.</div></div>
+  </div>
+
+  <h3>What each directive costs</h3>
+  <table>
+    <thead><tr><th style="width:30mm">Directive</th><th style="width:42mm">Crawl budget <span class="tag slide">Slide</span></th><th>The catch <span class="tag docs">Docs</span> <span class="tag analysis">Analysis</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C105 D1-C109 D1-C110"><td class="k"><code>disallow</code></td><td><span class="ok">Not consumed</span> — never fetched</td><td>Can still be indexed without content if linked, and Google can't see its <code>noindex</code>. Not for temporarily shifting budget.</td></tr>
+      <tr data-claims="D1-C106 D1-C109"><td class="k"><code>noindex</code></td><td><span class="no">Consumed</span> — page must be fetched</td><td>The right tool to keep a page out of the index; the wrong tool to save crawl.</td></tr>
+      <tr data-claims="D1-C107 D1-C127"><td class="k"><code>nofollow</code></td><td><span class="no">Can be consumed</span></td><td>A hint, not a block. Google doesn't crawl through the nofollow link itself, but crawls the target when it finds it through other links or sitemaps.</td></tr>
+      <tr data-claims="D1-C108"><td class="k"><code>crawl-delay</code></td><td><span class="no">Consumed</span> — ignored</td><td>No throttling effect. To slow Google temporarily, return <code>503</code> or <code>429</code>.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C383 D1-C384 D1-C385 D1-C419 D1-C386"><span class="tag stage">Stage</span> Status codes don't all cost the same. Every <code>2xx</code> fetch consumes crawl budget; <code>4xx</code> responses don't affect it, because pages come and go on the web. <span class="tag analysis">Analysis</span> A 404 is still a fetch, so read the point this way: a 4xx doesn't slow crawling, and Google crawls a 404 URL less often over time. <code>429</code> is the exception and slows crawling like a <code>5xx</code>.</p>
+
+  <div class="callout blue avoid">
+    <div class="h">Questions sent in before the event</div>
+    <p data-claims="D1-C387 D1-C388 D1-C389"><strong>Does AI Mode mean more crawling?</strong> <span class="tag stage">Stage</span> No: AI Mode sits on top of Google's existing crawling infrastructure, so Google doesn't crawl a site more because of it. Expect more crawling overall, though, from the many other services, AI included, that now crawl the web.</p>
+    <p data-claims="D1-C390 D1-C391 D1-C392"><strong>Does crawl frequency affect rankings?</strong> <span class="tag stage">Stage</span> "If your crawl rate is increased, that doesn't mean that you would rank better." Frequent crawling is a consequence, not a cause: it tends to signal interest in the site and good content.</p>
+    <p data-claims="D1-C393 D1-C394 D1-C396 D1-C395"><strong>How do I check?</strong> <span class="tag stage">Stage</span> In Crawl Stats, by response and by file type: most crawling going to images on a site with no images worth crawling is an anomaly. It also separates discovery (new URLs) from refresh (known URLs) and drills down to the problem URLs. Look now and then; don't obsess.</p>
+  </div>
+</section>
+
+<!-- ================= 09 ================= -->
+<section class="s" id="s09">
+  <div class="section-head">
+    <div class="num">09</div>
+    <div class="kicker">Section 09 · Lightning sessions A and C</div>
+    <h2>Lightning talks from the community</h2>
+    <div class="lead" data-claims="D1-C227 D1-C228">Google picked these seven-minute talks from close to 200 submissions, because the SEO community holds knowledge worth sharing. They are community views, not Google's: the labels show what Google's documentation backs.</div>
+  </div>
+
+  <h3>Session A: automation and AI</h3>
+  <div class="grid2">
+    <div class="card" data-claims="D1-C229 D1-C232 D1-C233 D1-C234 D1-C235"><div class="badge" style="color:#2457e6">AI that applies your rules</div><div class="ct">James Powley</div><div class="cs"><span class="tag stage">Stage</span> Break a deliverable into steps and use AI only where it adds scale; people set the strategy and the scoring. A competitor keyword analysis (26 competitors, 79 data points per keyword) fell from three days to a few hours, and a 3,000-post blog audit came back grouped, flagged for cannibalisation and prioritised. On the AI: "it didn't decide what good looked like. We did that."</div></div>
+    <div class="card" data-claims="D1-C239 D1-C243 D1-C244 D1-C247 D1-C242 D1-C500 D1-C264"><div class="badge" style="color:#c8372d">LLM errors on search data</div><div class="ct">Rafael Kovashikawa</div><div class="cs"><span class="tag stage">Stage</span> A chatbot called an average position moving from 8 to 9 an improvement. His rules: do "not let the model grade its own homework"; every figure needs a receipt, traceable to the data request ("If there is no receipt, there is no reimbursement."); give the model your metric definitions as fixed context. Polished prose is no proof of correct analysis: borrowing Pascal's line on makers of false windows, he said LLMs sometimes don't aim for the most accurate figures. <span class="tag docs">Docs</span> In Search Console, position 1 is the top.</div></div>
+    <div class="card" data-claims="D1-C250 D1-C252 D1-C503 D1-C251 D1-C501 D1-C502 D1-C265 D1-C506 D1-C507 D1-C269"><div class="badge" style="color:#6d3fd6">An LLM fix loop for structured data</div><div class="ct">A community demo</div><div class="cs"><span class="tag stage">Stage</span> A script runs Google's Rich Results Test, by URL for public pages and by pasted code for pages Google can't fetch, gives a large model the markup, the errors and Google's documentation, and re-tests the new JSON-LD, with at most three attempts. A small, cheap model picked at most two keywords per page, never brand or navigation terms. Errors on the test page included an empty name and a price of zero; warnings were treated as not critical (a largely unintelligible recording). <span class="tag docs">Docs</span> Only critical issues stop a rich result. Code mode still needs the page's resources reachable without a login, and merchant listings need a name and a price above zero. <span class="tag analysis">Analysis</span> A passing test proves the JSON-LD is valid, not that its values are true.</div></div>
+    <div class="card" data-claims="D1-C253 D1-C255 D1-C256 D1-C259 D1-C260 D1-C263 D1-C266 D1-C267"><div class="badge" style="color:#0b8a5f">Automating monthly reports</div><div class="ct">Kira Breuer</div><div class="cs"><span class="tag stage">Stage</span> Monthly reports took each SEO manager a full workday, and nobody read them. A non-developer automated them with Python and AI coding help: data in, a script, an AI summary, a dashboard. Start tiny, read the code the AI writes: "you don't need to be an expert; you just need to try." <span class="tag docs">Docs</span> The Search Console API is free, with usage limits, and needs OAuth2 credentials.</div></div>
+  </div>
+
+  <h4>Preparing sites for humans and AI agents · Carlos Ortega</h4>
+  <p data-claims="D1-C270 D1-C274 D1-C131"><span class="tag stage">Stage</span> The web is now visited by people and AI agents, and agents understand a page through a screenshot, the DOM and the accessibility tree. <span class="tag docs">Docs</span> Google's guide for generative AI features describes browser agents the same way and recommends semantic HTML.</p>
+  <figure data-claims="D1-C284 D1-C275 D1-C277 D1-C278 D1-C279 D1-C276 D1-C281 D1-C283">
+    <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs><marker id="a9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker></defs>
+      <rect x="0" y="0" width="210" height="150" rx="12" fill="#e8eefd"/>
+      <text x="18" y="28" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">1 · SEE</text>
+      <text x="18" y="56" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Visual stability</text>
+      <text x="18" y="84" font-size="10.5" fill="#2a3446"><tspan x="18">Low Cumulative Layout Shift:</tspan><tspan x="18" dy="16">no buttons or images</tspan><tspan x="18" dy="16">popping in after the load</tspan></text>
+      <path d="M214 75H231" stroke="#98a2b3" stroke-width="1.3" marker-end="url(#a9)"/>
+      <rect x="235" y="0" width="210" height="150" rx="12" fill="#e3f4ec"/>
+      <text x="253" y="28" font-size="9" font-weight="700" letter-spacing="1.3" fill="#0b8a5f">2 · UNDERSTAND</text>
+      <text x="253" y="56" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Structure, meaning</text>
+      <text x="253" y="84" font-size="10.5" fill="#2a3446"><tspan x="253">Landmarks, headings in order,</tspan><tspan x="253" dy="16">ARIA used correctly,</tspan><tspan x="253" dy="16">schema markup for the facts</tspan></text>
+      <path d="M449 75H466" stroke="#98a2b3" stroke-width="1.3" marker-end="url(#a9)"/>
+      <rect x="470" y="0" width="210" height="150" rx="12" fill="#0b1a33"/>
+      <text x="488" y="28" font-size="9" font-weight="700" letter-spacing="1.3" fill="#bcd0ff">3 · INTERACT</text>
+      <text x="488" y="56" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Declared actions</text>
+      <text x="488" y="84" font-size="10.5" fill="#dbe5ff"><tspan x="488">WebMCP tools: declarative</tspan><tspan x="488" dy="16">(form fields) and imperative</tspan><tspan x="488" dy="16">(booking, cart, filters)</tspan></text>
+    </svg>
+    <figcaption><b>Agent readiness in three layers.</b> Carlos Ortega's model. Google's docs back the accessibility-tree part; WebMCP is a proposed standard.</figcaption>
+  </figure>
+  <ul>
+    <li data-claims="D1-C279 D1-C280"><span class="tag stage">Stage</span> ARIA is a set of attributes, not a language: a <code>div</code> used as an "add to favourites" button gets <code>role="button"</code>, an <code>aria-label</code> and <code>aria-pressed</code>. No ARIA is better than bad ARIA.</li>
+    <li data-claims="D1-C283 D1-C282 D1-C316"><span class="tag stage">Stage</span> WebMCP lets a site declare actions for agents instead of being scraped; not yet in all browsers, but testable through browser flags. <span class="tag docs">Docs</span> Chrome describes it as a proposed web standard, testable in an origin trial from Chrome 149 or behind a flag.</li>
+    <li data-claims="D1-C272 D1-C271 D1-C505"><span class="tag stage">Stage</span> Don't publish markdown copies of pages for agents: they are duplicates (he also called them a possible source of cloaking, an uncertain word in the recordings), and models read HTML, CSS and JavaScript anyway. llms.txt is not necessary: in a summer 2026 study, heard as Ahrefs', 97% of almost 40,000 sites had no AI agent hits on the file. <span class="tag analysis">Analysis</span> Ahrefs' published study fits: about 38,000 of 137,210 domains had the file, and 97% of those files got no requests in May 2026; the rest got about 20 each, not "two hits a month".</li>
+    <li data-claims="D1-C276 D1-C315"><span class="tag stage">Stage</span> Schema markup tells an agent which number is the price <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Google says structured data is not required for generative AI search; use it for rich results and clear data, not as an AI lever.</li>
+    <li data-claims="D1-C313 D1-C314"><span class="tag docs">Docs</span> Headings out of order don't matter to Google Search. <span class="tag analysis">Analysis</span> Keep a logical hierarchy anyway, for screen readers and agents that read the accessibility tree.</li>
+  </ul>
+
+  <h4>GEO: its numbers and its myths · Thiago Pojda</h4>
+  <ul>
+    <li data-claims="D1-C286 D1-C287"><span class="tag stage">Stage</span> SEO turned everything into a metric because "an idea doesn't get you budget approval; a number does". Not all of it was wrong: a site still has to be crawlable and visible, and much of that work is plumbing, not gaming.</li>
+    <li data-claims="D1-C289 D1-C290"><span class="tag stage">Stage</span> A study found sites with JSON-LD shown much more often, and the industry added schema everywhere; a later controlled study that only added markup found a negative correlation. The markup marked teams doing everything else right <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+    <li data-claims="D1-C291 D1-C293"><span class="tag stage">Stage</span> Listicles earn more AI mentions because LLMs mostly check that a thing exists, not that the content is honest; the industry is overusing them as it once overused links.</li>
+    <li data-claims="D1-C294 D1-C295 D1-C504"><span class="tag stage">Stage</span> A third-party study, heard as Peec AI's: 43% of prompts produced fan-out queries in another language than the user's <span class="muted">(not&nbsp;in&nbsp;docs)</span>. A Spanish prompt about places to eat in Barcelona fanned out entirely in English. <span class="tag analysis">Analysis</span> Peec AI's published analysis (February 2026, over 10 million ChatGPT prompts) puts it differently: 43% of the fan-out searches for non-English prompts ran in English, and nearly 78% of non-English prompt runs had at least one English fan-out. The 43% is a share of fan-outs, not of prompts.</li>
+    <li data-claims="D1-C296"><span class="tag stage">Stage</span> The speaker argued for adopting the GEO label as a fresh start for the industry — the opposite of Google's view that morning.</li>
+  </ul>
+
+  <h4 data-claims="D1-C299">AI search as a funnel <span class="tag stage">Stage</span></h4>
+  <table class="avoid" data-claims="D1-C299 D1-C300 D1-C302 D1-C303 D1-C304 D1-C305 D1-C306 D1-C307 D1-C309 D1-C310">
+    <thead><tr><th style="width:24mm">Stage</th><th style="width:62mm">The question</th><th>Measure proposed by a community speaker</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Know</td><td>Can AI training bots reach the site?</td><td>"AI bot allow rate": share of AI training bots allowed (3 of 4 = 75%); aim for 100%</td></tr>
+      <tr><td class="k">Association</td><td>Does the model link the brand to its topics before it searches?</td><td>"Brand association rate": ask, with browsing off, for ten topics; repeat over time</td></tr>
+      <tr><td class="k">Search</td><td>Does the brand appear in the AI's fan-out queries?</td><td>"Brand co-occurrence rate": share of fan-out queries naming the brand</td></tr>
+      <tr><td class="k">Retrieval</td><td>Does the AI fetch your pages to ground its answer?</td><td>If not, look for a crawling or indexing issue</td></tr>
+      <tr><td class="k">Selection</td><td>Is the brand chosen in the answer?</td><td>Mentions; most tools measure only this last stage</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D1-C311 D1-C312"><span class="tag stage">Stage</span> Closing the session, a Google host called AI a tool that can be used well or badly. It can even generate content, which none of the talks featured, and it is fantastic for coding and analysis. The host advised always checking what AI tools do and focusing on what the business and its users need.</p>
+
+  <h3>Session C: crawling</h3>
+  <div class="grid2">
+    <div class="card" data-claims="D1-C397 D1-C398 D1-C399 D1-C400 D1-C401 D1-C403 D1-C404 D1-C405 D1-C421"><div class="badge" style="color:#2457e6">Similar URLs</div><div class="ct">Tobias Schwarz</div><div class="cs"><span class="tag stage">Stage</span> URLs that differ in a few characters point to duplicates, broken links and needless redirects; he found five kinds on well-known brand sites (table below). To find them, normalise the URL list, build a "uniform" URL (one scheme, lowercase, no <code>www</code> or <code>index.html</code>, sorted parameters) and sort by it. To prevent them, compute the expected URL for every request and redirect when it differs; test IDs with leading zeros too. <span class="tag analysis">Analysis</span> Prefer the redirect to an error page: it passes signals to the canonical.</div></div>
+    <div class="card" data-claims="D1-C406 D1-C408 D1-C409 D1-C412 D1-C413 D1-C414 D1-C415 D1-C417 D1-C418"><div class="badge" style="color:#0b8a5f">Technical SEO in AI search</div><div class="ct">Jovana Avramovic</div><div class="cs"><span class="tag stage">Stage</span> More than half of internet traffic in 2025 was non-human, with no source named <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Search now happens everywhere and in conversation, and AI turns one query into many, in other languages too; technical SEO stays the foundation. Models, like people, remember the start and end of a list best: "It's relevant to put your most important information at the beginning or at the end." <span class="tag analysis">Analysis</span> A community heuristic, not something Google said; Google advises writing for people without chopping content. Her summary: "The target is not shifting; it is expanding."</div></div>
+  </div>
+
+  <h4 data-claims="D1-C399">Five kinds of similar URLs <span class="tag stage">Stage</span></h4>
+  <table class="avoid" data-claims="D1-C399 D1-C402">
+    <thead><tr><th style="width:52mm">What differs</th><th>Two URLs, one page (illustrative examples)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Protocol or host</td><td><code>http://example.com/shoes</code> · <code>https://www.example.com/shoes</code></td></tr>
+      <tr><td class="k">Capitalisation</td><td><code>/Shoes/Red</code> · <code>/shoes/red</code></td></tr>
+      <tr><td class="k">Number of delimiters</td><td><code>/shoes/red</code> · <code>/shoes//red/</code></td></tr>
+      <tr><td class="k">Encoding of a space</td><td><code>/search?q=red%20shoes</code> · <code>/search?q=red+shoes</code></td></tr>
+      <tr><td class="k">Parameter order</td><td><code>?size=10&amp;color=red</code> · <code>?color=red&amp;size=10</code></td></tr>
+    </tbody>
+  </table>
+  <p class="small" data-claims="D1-C402"><span class="tag stage">Stage</span> They usually come from programming errors or hand-set links, but anyone can link to them from other sites, so harden the application against them <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="s" id="s10">
+  <div class="section-head">
+    <div class="num">10</div>
+    <div class="kicker">Section 10 · Q&amp;A · John Mueller and Gary Illyes</div>
+    <h2>The Q&amp;A: crawling questions, answered</h2>
+    <div class="lead">Questions from the room and from registration, paraphrased, now checked against two audio recordings of most of the panel. An answer names a speaker only where the recording shows who gave it; otherwise it says "a panelist" or "Google".</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" data-claims="D1-C422 D1-C423 D1-C424 D1-C425 D1-C426"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">How does crawling for AI differ from crawling for Search?</div><div class="cs"><span class="tag stage">Stage</span> A panelist: "my feeling is a lot of the AI crawlers are still a bit stupid." In logs, search crawlers follow what changes and what is valuable; many AI crawlers work through a site in order and take everything. Training mainly needs a very large number of tokens, wherever they come from <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Can optimising for AI hurt classic search? Yes, a panelist said, pointing to questionable GEO advice online.</div></div>
+    <div class="card" data-claims="D1-C453 D1-C454 D1-C455 D1-C456 D1-C457 D1-C458 D1-C460 D1-C471 D1-C472 D1-C473"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">Does llms.txt matter? PageSpeed Insights and Lighthouse check for it.</div><div class="cs"><span class="tag stage">Stage</span> Gary Illyes: not for Google Search, and he doesn't expect it to, though he has been wrong before; it matters to some people, hence the Lighthouse check. A panelist: "Just because maybe something will change in the future doesn't mean you should take action now." Most such files come from an SEO plugin checkbox, and "it's designed for allegedly intelligent systems" that should be able to parse a website. And cats.txt, a satire, gets more requests than llms.txt in some logs: crawlers fetch whatever they find. <span class="tag docs">Docs</span> Lighthouse marks its llms.txt audit not applicable when the file is missing.</div></div>
+    <div class="card" data-claims="D1-C438 D1-C439 D1-C440 D1-C538"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">How are huge real-time sites, such as sports sites, crawled?</div><div class="cs"><span class="tag stage">Stage</span> With no special handling. When URLs change often or are useful to users, Google raises crawl demand and tries to raise its crawl capacity for the site, the same logic as for small sites. If the server can't cope, Google backs off again. And demand isn't only Search's: when Search, Google Ads or another product wants enough of a site's URLs, Google raises demand and crawls up to it, as far as capacity allows.</div></div>
+    <div class="card" data-claims="D1-C441 D1-C442 D1-C443 D1-C444 D1-C445 D1-C446 D1-C447 D1-C539"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">How do I spot crawl waste in my logs?</div><div class="cs"><span class="tag stage">Stage</span> Logs alone can't show it, because they don't show where your crawl limit lies <span class="muted">(not&nbsp;in&nbsp;docs)</span>. In Crawl Stats, check whether total crawling has plateaued and whether response times hold Googlebot back. Logs do pay off on sites with filters or complicated URLs: redirect parameter variants to the normalised URL, which costs crawl budget at first but leaves a clean slate. Many complaints turn out to be a plugin, such as a WordPress calendar adding calendar parameters to every page's URLs <span class="muted">(not&nbsp;in&nbsp;docs)</span>; Google crawls them until large samples show they are useless. Such URLs can also be handled at the web server, with a rule or a module in Apache, for example.</div></div>
+    <div class="card" data-claims="D1-C465 D1-C466 D1-C467 D1-C543 D1-C468 D1-C469 D1-C470 D1-C492 D1-C544"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">Is crawl budget slowing how fast new articles are found?</div><div class="cs"><span class="tag stage">Stage</span> Gary Illyes: news sites rarely need to worry; Google crawls them aggressively. Measure the time from publishing to Googlebot's first crawl: flat or falling is fine, a rising trend needs work, and for fresh stories something like two hours is probably not great <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Then look in the logs for URLs crawled again and again, and disallow sections you never want crawled, such as <code>/ads</code>. John Mueller: Crawl Stats' discovery-versus-refresh split gives a rough view; if about half the crawling goes to discovery, finding new pages is not the problem. <span class="tag analysis">Analysis</span> Freed budget only moves on sites that hit their capacity limit.</div></div>
+    <div class="card" data-claims="D1-C545 D1-C493 D1-C494 D1-C546 D1-C547"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">On a site of 100 million pages, is a crawl drop about demand or capacity?</div><div class="cs"><span class="tag stage">Stage</span> There is no easy way to tell, but most of the time a capacity-limit drop is an abrupt step down: hostload going from 10 to 5, say. Look at how many connections Googlebot opens to the site: if that number fell, the capacity limit changed. <span class="tag analysis">Analysis</span> The panelist put the step as five requests per second; Google's guide counts the limit in parallel connections and how long they stay open, not in requests per second.</div></div>
+    <div class="card" data-claims="D1-C448 D1-C449 D1-C450 D1-C451 D1-C452"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">What will Search Console report on AI features?</div><div class="cs"><span class="tag stage">Stage</span> A panelist expected more AI reporting, without a timeline or a promise. Google said the reports shouldn't simply mirror classic results, because people learn more before they click, so it first has to find which data is useful. Query data is hard: AI questions don't map back to keywords, and the data would have to be grouped to protect privacy.</div></div>
+    <div class="card" data-claims="D1-C461 D1-C462 D1-C463 D1-C464 D1-C120"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">Will crawl stats come to the Search Console API?</div><div class="cs"><span class="tag stage">Stage</span> No plans known: it would be a new part of the API, while a variation of the Performance report would be easier. Search Relations now talks with the Search Console team about the API more than before: with so many vibe-coded tools, the easy answer is to use the API, and a gap in it is annoying. To get a feature built, ask for it publicly and in volume.</div></div>
+    <div class="card" data-claims="D1-C476 D1-C540 D1-C477 D1-C478 D1-C479 D1-C541 D1-C480 D1-C542 D1-C474 D1-C475"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">How do I migrate without losing indexing?</div><div class="cs"><span class="tag stage">Stage</span> Probably not with sitemaps: decide what matters to the business first. Listing the new URLs can't hurt, but it isn't the main tool. Google merged 12 or 14 language blogs, a Help Center and its developer site into one. First it protected the popular URLs <span class="muted">(not&nbsp;in&nbsp;docs)</span>; where two language versions duplicated each other, both old URLs got one target path. A fun fact: JavaScript was used, the only option the person doing it had (whether for the redirects themselves or for the mapping is not fully clear) <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> That was the move to Google Search Central in November 2020, about six years before the event. Don't copy the JavaScript: Google sees such redirects only after rendering, and asks for server-side 301 or 308 redirects where possible. <span class="tag stage">Stage</span> And a sitemap has no sweet spot: list every URL you want indexed.</div></div>
+    <div class="card" data-claims="D1-C481 D1-C482 D1-C483 D1-C484 D1-C485 D1-C486 D1-C488 D1-C489"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">Will Google offer separate AI user agents?</div><div class="cs"><span class="tag stage">Stage</span> Nearly all mainstream AI systems already use their own. A panelist doubted per-bot policies make sense yet, and called blocking all AI crawlers a personal choice. For Google's AI training, use Google-Extended. An unknown crawler in your logs: search its user agent for its token <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Default-deny is "a bad pattern, because you don't know what you're blocking." <span class="tag analysis">Analysis</span> Google-Extended is a usage token, not a crawler: it doesn't stop Googlebot.</div></div>
+    <div class="card" data-claims="D1-C490 D1-C114 D1-C491 D1-C115"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">What if paginated pages become one load-more page?</div><div class="cs"><span class="tag stage">Stage</span> Thousands of paginated category pages replaced by a JavaScript load-more button: should the old pages redirect to page 1? A panelist called pagination one of the trickiest things in web development, and the switch "kind of dangerous, depending on what you want to achieve": "Googlebot is not running around clicking on buttons". Without crawlable links to the further pages, Google won't see them at all. <span class="tag docs">Docs</span> Each page needs its own URL and a plain <code>&lt;a href&gt;</code> to the next; don't canonicalise to page 1; <code>rel=next/prev</code> is no longer used.</div></div>
+    <div class="card" data-claims="D1-C427 D1-C431 D1-C432 D1-C433"><div class="badge" style="color:#6d3fd6">Question</div><div class="ct">How do I make crawlers behave, beyond robots.txt?</div><div class="cs"><span class="tag stage">Stage</span> Research, malware-scanning and privacy crawlers are a separate, generally useful category. Google is working on crawler best practices and offering them an exemption, apparently because they sometimes need to ignore robots.txt or probe URLs other crawlers wouldn't touch (a best reading of the recording) <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> This matches a public IETF draft, "Crawler best practices": a draft, not Google documentation.</div></div>
+  </div>
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="s" id="s11">
+  <div class="section-head">
+    <div class="num">11</div>
+    <div class="kicker">Section 11 · From my notes</div>
+    <h2>From the floor</h2>
+    <div class="lead">Points said on stage that neither my notes nor the recordings tie to a session, checked against Google's documentation where possible.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" data-claims="D1-C111 D1-C112 D1-C113"><div class="ct">No duplicate content penalty</div><div class="cs"><span class="tag stage">Stage</span> Gary Illyes: there is no such thing as a duplicate content penalty. <span class="tag press">Press</span> John Mueller, quoted by Search Engine Journal in April 2026: "no penalty or ranking demotion if you have multiple URLs going to the same content". <span class="tag analysis">Analysis</span> The real costs: Google may choose a canonical you didn't want, and every copy is crawled. Scraped content is a separate spam issue.</div></div>
+    <div class="card" data-claims="D1-C116 D1-C018 D1-C045 D1-C117"><div class="ct">Images matter</div><div class="cs"><span class="tag stage">Stage</span> Images are important. <span class="tag slide">Slide</span> One in six AI Mode searches is multimodal, and a slide listed resolution, colour and associated text as image ranking signals. <span class="tag analysis">Analysis</span> Original photos, descriptive file names, alt text and captions now feed AI answers too.</div></div>
+    <div class="card" data-claims="D1-C118 D1-C119"><div class="ct">Accessibility</div><div class="cs"><span class="tag stage">Stage</span> Check ARIA and accessibility. <span class="tag analysis">Analysis</span> Google hasn't called ARIA a ranking signal. The case is that AI agents and assistive tools read pages through the same structure: real buttons, labelled forms, semantic headings.</div></div>
+    <div class="card" data-claims="D1-C122 D1-C265"><div class="ct">Rich results</div><div class="cs"><span class="tag stage">Stage</span> Check and focus on rich results for Google <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Search Console separates critical issues, which stop an item from showing as a rich result, from non-critical ones under "Improve item appearance".</div></div>
+    <div class="card" data-claims="D1-C121 D1-C058"><div class="ct">SEO is more than content</div><div class="cs"><span class="tag stage">Stage</span> SEO has many parts beyond content. <span class="tag slide">Slide</span> "Optimizing for people is optimizing for Generative AI Search."</div></div>
+  </div>
+
+  <div class="quote" style="border-left-color: var(--blue)" data-claims="D1-C050 D1-C038">Is SEO dead? Google's answer on stage was no: AI features run on the same crawl, index and ranking systems.</div>
+</section>
+
+<!-- ================= 12 ================= -->
+<section class="s" id="s12">
+  <div class="section-head">
+    <div class="num">12</div>
+    <div class="kicker">Section 12 · Take it back to the office</div>
+    <h2>Day 1 audit checklist</h2>
+    <div class="lead">Nineteen checks that turn Day 1 into work. Most take minutes in Search Console and one server log file.</div>
+  </div>
+
+  <div class="check-group">Access and errors</div>
+  <ul class="check">
+    <li>Crawl stats → Host status shows no DNS, robots.txt or connectivity failures in the last 90 days</li>
+    <li data-claims="D1-C071 D1-C092">Crawl stats by response: the share of <code>5xx</code> and <code>429</code> is flat or falling</li>
+    <li data-claims="D1-C069 D1-C078">CDN / WAF rules don't block Google's published crawler IP ranges; Googlebot verified by reverse DNS</li>
+    <li data-claims="D1-C078 D1-C367">Maintenance, rate limits and bot challenges return <code>503</code> or <code>429</code>, never a <code>200</code> error or captcha page</li>
+    <li data-claims="D1-C365 D1-C366 D1-C372">Verified Googlebot never gets <code>401</code>, <code>402</code> or <code>403</code> from a login wall, paywall or pay-per-crawl setup</li>
+    <li data-claims="D1-C073">Every "Soft 404" in the Pages report is improved, merged, or returned as <code>404</code>/<code>410</code></li>
+    <li data-claims="D1-C076 D1-C077">Every host answers over HTTP/1.1 and HTTP/2, whatever the HTTP/3 setup for browsers</li>
+  </ul>
+  <div class="check-group">robots.txt</div>
+  <ul class="check">
+    <li data-claims="D1-C080 D1-C533">Each crawler gets the rules you expect: only its most specific group counts, and groups don't add up</li>
+    <li data-claims="D1-C514">No secret or private path is listed in robots.txt; private areas sit behind authentication</li>
+    <li data-claims="D1-C087 D1-C088 D1-C123">No unknown lines (<code>Content-Signal</code>, <code>crawl-delay</code>) sit between <code>user-agent</code> lines</li>
+    <li data-claims="D1-C083">The homepage with tracking parameters isn't accidentally blocked by a <code>/$</code> rule</li>
+    <li data-claims="D1-C086"><code>Google-Extended</code> is set deliberately, knowing it governs Gemini, not Search</li>
+    <li data-claims="D1-C528 D1-C529">The robots.txt report's version history shows no change you didn't make, for example by a CDN</li>
+    <li data-claims="D1-C534 D1-C537">Every URL reported as blocked by robots.txt has its redirect chain tested, hop by hop</li>
+  </ul>
+  <div class="check-group">Crawl efficiency and AI exposure</div>
+  <ul class="check">
+    <li data-claims="D1-C101 D1-C103">Filter, sort, internal search and action URLs are blocked or normalised; logs show Googlebot spending most requests on pages you want indexed</li>
+    <li data-claims="D1-C445 D1-C403 D1-C404">URL variants (case, slashes, parameter order) redirect to one expected URL</li>
+    <li data-claims="D1-C491 D1-C115">Load-more and infinite-scroll lists keep a crawlable <code>&lt;a href&gt;</code> to every page of the series</li>
+    <li data-claims="D1-C467 D1-C492">The time from publishing a URL to Googlebot's first crawl is tracked, and flat or falling</li>
+    <li data-claims="D1-C062">The Generative AI performance report is reviewed before any change to the Search generative AI setting</li>
+  </ul>
+</section>
+
+<!-- ================= 13 ================= -->
+<section class="s" id="s13">
+  <div class="section-head">
+    <div class="num">13</div>
+    <div class="kicker">Section 13 · Stay in touch</div>
+    <h2>Help complete this guide</h2>
+    <div class="lead">This guide covers what I could capture in the room. If you heard something on Day 1 that isn't written here, tell me and I'll add it, so everyone who attended ends up with the full picture.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="badge" style="color:#2457e6">01 · Add what I missed</div>
+      <div class="ct">Heard something that isn't here?</div>
+      <div class="cs">
+        <p>A second attendee's recording and six audio recordings filled most of the first edition's gaps. These are still missing:</p>
+        <ul class="small">
+          <li>Lightning session B after Dave Smart's talk</li>
+          <li>What would you do?: Crawling Edition</li>
+          <li>The opening minutes of the crawl budget talk</li>
+        </ul>
+        <p>Send me the point, who said it, and a photo of the slide if you have one. Corrections are just as welcome.</p>
+        <p style="margin-bottom:0">Each addition is labelled and checked against Google's documentation before it goes in, and credited to you by name if you like.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="badge" style="color:#0b8a5f">02 · The full knowledge base</div>
+      <div class="ct">Every Day 1 point, in the web edition</div>
+      <div class="cs">
+        <p>This guide is a selection. The web edition holds all of Day 1's points, more than 540, with topic pages, session pages, a search and the verification status of every point. It is a folder that opens offline from <code>index.html</code>.</p>
+        <p>An agent-ready version of the same data lets AI tools answer questions about the event, with every answer traceable to its slide, session or document.</p>
+        <p style="margin-bottom:0">Message me and I'll share both.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="ctext">
+      <div class="ck">Let's keep in contact</div>
+      <div class="cname">{{AUTHOR}}</div>
+      <div class="ctitle">{{TITLE_LINE}}</div>
+      <div class="cline">WhatsApp &nbsp;<a class="cnum" href="{{WA_URL}}">{{PHONE}}</a></div>
+      <div class="cline">LinkedIn &nbsp;<a class="clink" href="{{LI_URL}}">{{LI_TEXT}}</a></div>
+      <div class="csub">Message me with additions, corrections, or to get the web edition.</div>
+    </div>
+    <div class="cqrs">
+      <div class="cqr">{{QR}}<div class="cqrl">WhatsApp</div></div>
+      <div class="cqr">{{QRLI}}<div class="cqrl">LinkedIn</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="s" id="src">
+  <style>#src .sources li { margin-bottom: 0.9mm; }</style>
+  <div class="section-head plain">
+    <div class="kicker">References</div>
+    <h2>Sources</h2>
+    <div class="lead">This guide is built from {{PHOTOS}} photos of the slides, the printed agenda, my notes from the room, a second attendee's recording of most of the day and six audio recordings. Every point labelled Docs was checked against these pages on {{CHECKED}}.</div>
+  </div>
+  <ol class="sources" style="padding-left:8mm; line-height:1.2">
+{{SOURCES}}
+  </ol>
+  <p class="small muted" style="margin-top:4mm">Search Central Live is a Google event. This is an independent attendee guide by {{AUTHOR}}, not an official Google publication. Statistics are as presented by Google on stage.</p>
+</section>
+
+</body>
+</html>

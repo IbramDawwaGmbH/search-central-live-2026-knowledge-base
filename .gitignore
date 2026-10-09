@@ -1,0 +1,57 @@
+# Private material: never commit (see PRIVACY.md)
+00-raw/**
+!00-raw/**/
+!00-raw/README.md
+10-sources/**
+!10-sources/**/
+!10-sources/README.md
+70-private/**
+!70-private/README.md
+
+# Safety net: raw media, recordings, subtitles and archives anywhere in the folder.
+# They belong in 00-raw/ (ingest.bat puts them there). [xX] means either case.
+*.[hH][eE][iI][cCfF]
+*.[mM]4[aAvV]
+*.[mM][pP]3
+*.[mM][pP]4
+*.[mM][oO][vV]
+*.[wW][aA][vV]
+*.[aA][aA][cC]
+*.[oO][gG][gG]
+*.[oO][pP][uU][sS]
+*.[fF][lL][aA][cC]
+*.[aA][mM][rR]
+*.[aA][vV][iI]
+*.[mM][kK][vV]
+*.3[gG][pP]
+*.[vV][tT][tT]
+*.[sS][rR][tT]
+*.[zZ][iI][pP]
+*.7[zZ]
+*.[rR][aA][rR]
+[wW]hats[aA]pp*
+# ... except the 1-minute tour of the web edition: its source pair and the site's copies (exactly these four files)
+!/_system/brand/video/tour.mp4
+!/_system/brand/video/tour-poster.jpg
+!/60-outputs/site/assets/video/tour.mp4
+!/60-outputs/site/assets/video/tour-poster.jpg
+
+# Loose photos, transcripts and notes at the top level: only the known files live there.
+/*.[jJ][pP][gG]
+/*.[jJ][pP][eE][gG]
+/*.[pP][nN][gG]
+/*.[tT][xX][tT]
+/*.[dD][oO][cC]
+/*.[dD][oO][cC][xX]
+/IMG_*
+!/requirements.txt
+
+# Build leftovers and editor or system files
+_system/**/_build/
+__pycache__/
+*.pyc
+*.part
+~$*
+.DS_Store
+Thumbs.db
+desktop.ini

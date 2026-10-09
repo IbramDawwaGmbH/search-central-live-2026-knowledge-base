@@ -1,0 +1,6 @@
+# Default visual style of every output that has two looks: the PDF field guides (make_pdf.py with no style argument),
+# the web edition, the mindmap and the README badges.
+#   art-deco   the gold-and-onyx Art Deco look (PDF style key "deco")
+#   deep-dive  the Deep Dive ocean look (PDF style key "ocean")
+# The web edition, the mindmap and the Reef map have no switch: they show this style (rebuild after changing it).
+default: deep-dive

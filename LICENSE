@@ -1,0 +1,46 @@
+MIT License
+
+Copyright (c) 2026 Ibrahim Anjro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+
+What this licence covers
+
+The MIT licence above covers the code of this repository: the build and the
+validator (_system/build_kb.py, _system/kits.py and their helpers), the query
+tool (_system/kb_query.py), the PDF and web edition builders, the test, eval and
+tool scripts, the templates, the web edition's JavaScript and CSS, the .bat
+scripts at the top level, and the documentation of the code under _system/.
+
+It does not cover:
+
+- _system/ocean_art.py and everything under _system/brand/ (the art code and
+  the artwork, including the Diver bot): CC BY-NC-ND 4.0.
+- The content (claims, topics, sessions, maps, the web edition's text, the
+  field guide PDFs, the agent pack, METHOD.md): CC BY-NC 4.0, except the
+  developer kit and the glossary, which are CC BY 4.0. Where a code file holds
+  content text, such as the field guides' text in _system/pdf/, that text is
+  content.
+
+See LICENSE-CONTENT.md for the full map and NOTICE.md for what no licence here
+covers (quotations, Google's documentation, press material, trademarks, fonts).
+
+Copyright © 2026 Ibrahim Anjro

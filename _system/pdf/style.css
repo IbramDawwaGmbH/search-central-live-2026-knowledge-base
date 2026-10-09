@@ -1,0 +1,210 @@
+@font-face { font-family: 'Inter'; font-weight: 400; src: url('fonts/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 500; src: url('fonts/inter-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 600; src: url('fonts/inter-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 700; src: url('fonts/inter-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 400; src: url('fonts/fraunces-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 500; src: url('fonts/fraunces-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 600; src: url('fonts/fraunces-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; src: url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 500; src: url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 400; font-style: italic; src: url('fonts/fraunces-latin-400-italic.woff2') format('woff2'); }
+/* Latin Extended subsets of the same families (accented names such as Ł, Š, ő), used only for those characters. */
+@font-face { font-family: 'Inter'; font-weight: 400; src: url('fonts/inter-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-weight: 500; src: url('fonts/inter-latin-ext-500-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-weight: 600; src: url('fonts/inter-latin-ext-600-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-weight: 700; src: url('fonts/inter-latin-ext-700-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Fraunces'; font-weight: 400; src: url('fonts/fraunces-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Fraunces'; font-weight: 500; src: url('fonts/fraunces-latin-ext-500-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Fraunces'; font-weight: 600; src: url('fonts/fraunces-latin-ext-600-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Fraunces'; font-weight: 400; font-style: italic; src: url('fonts/fraunces-latin-ext-400-italic.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; src: url('fonts/jetbrains-mono-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 500; src: url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* One bundled fallback family for arrows, check marks, crosses and math signs, appended to every font stack:
+   Noto Sans Math covers arrows and math, Noto Sans Symbols 2 covers check marks, crosses and other dingbats. */
+@font-face { font-family: 'Noto Symbols'; src: url('fonts/noto-sans-math-latin-400-normal.woff2') format('woff2'); unicode-range: U+2190-21FF, U+2200-22FF, U+27C0-27FF, U+2900-2AFF; }
+@font-face { font-family: 'Noto Symbols'; src: url('fonts/noto-sans-symbols-2-symbols-400-normal.woff2') format('woff2'); unicode-range: U+2300-23FF, U+2460-24FF, U+25A0-27BF, U+2B00-2BFF; }
+@page { size: A4; margin: 24mm 18mm 20mm 18mm; }
+@page cover { margin: 0; }
+
+:root {
+  --ink: #0f1d33;
+  --body: #2a3446;
+  --muted: #667085;
+  --faint: #98a2b3;
+  --rule: #e4e7ec;
+  --paper: #ffffff;
+  --wash: #f5f7fb;
+  --blue: #2457e6;
+  --blue-soft: #e8eefd;
+  --violet: #6d3fd6;
+  --violet-soft: #f0eafc;
+  --green: #0b8a5f;
+  --green-soft: #e3f4ec;
+  --amber: #b86e00;
+  --amber-soft: #fdf1dc;
+  --red: #c8372d;
+  --red-soft: #fbe7e5;
+  --navy: #0b1a33;
+  --slate: #475467;
+  --slate-soft: #eaecf0;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0; font-family: 'Inter', 'Noto Symbols', sans-serif; font-size: 9.3pt; line-height: 1.56;
+  color: var(--body); background: var(--paper);
+  font-feature-settings: 'cv11', 'ss01', 'tnum' 0;
+}
+p { margin: 0 0 8pt; orphans: 3; widows: 3; }
+strong { color: var(--ink); font-weight: 600; }
+code, pre { font-family: 'JetBrains Mono', 'Noto Symbols', monospace; }
+code { font-size: 8.4pt; background: var(--wash); border: 0.5pt solid var(--rule); border-radius: 3pt; padding: 0.5pt 3pt; color: var(--ink); }
+a { color: var(--blue); text-decoration: none; }
+
+/* ---------- cover ---------- */
+.cover { page: cover; width: 210mm; height: 297mm; position: relative; overflow: hidden; background: var(--navy); color: #fff; break-after: page; }
+.cover svg.art { position: absolute; inset: 0; width: 210mm; height: 297mm; }
+.cover .inner { position: absolute; left: 20mm; right: 20mm; top: 26mm; bottom: 22mm; display: flex; flex-direction: column; }
+.cover .eyebrow { font-size: 8.6pt; letter-spacing: 0.16em; text-transform: uppercase; color: #9fb4e8; font-weight: 600; }
+.cover .rule { width: 28mm; height: 2.4pt; background: linear-gradient(90deg, #4f7cff, #22c08a); border-radius: 2pt; margin: 9mm 0 9mm; }
+.cover h1 { font-family: 'Fraunces', 'Noto Symbols', serif; font-weight: 500; font-size: 42pt; line-height: 1.04; letter-spacing: -0.015em; margin: 0; color: #fff; max-width: 150mm; }
+.cover h1 em { font-style: italic; color: #a9c1ff; font-weight: 400; }
+.cover .sub { margin-top: 8mm; font-size: 11.6pt; line-height: 1.55; color: #c9d4ea; max-width: 128mm; }
+.cover .spacer { flex: 1; }
+.cover .meta { position: relative; display: flex; gap: 0; border-top: 0.6pt solid rgba(255,255,255,0.18); padding-top: 6mm; }
+.cover .meta > div { flex: 1; } .cover .meta > div:nth-child(2) { flex: 1.5; }
+.cover .meta .k { font-size: 7.4pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8193bb; font-weight: 600; }
+.cover .meta .v { font-size: 10.6pt; color: #fff; font-weight: 500; margin-top: 1.5mm; }
+.cover .meta .v.name { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 15pt; font-weight: 500; }
+
+/* ---------- front matter ---------- */
+.front h2.title, .section-head h2 { font-family: 'Fraunces', 'Noto Symbols', serif; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+.front h2.title { font-size: 22pt; margin: 0 0 4mm; }
+.toc { margin: 0 0 6mm; border-top: 0.8pt solid var(--ink); }
+.toc .row { display: grid; grid-template-columns: 11mm 1fr 12mm; align-items: baseline; padding: 1.5mm 0; border-bottom: 0.5pt solid var(--rule); }
+.toc .n { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 13pt; color: var(--blue); font-weight: 500; }
+.toc .t { font-size: 10.6pt; font-weight: 600; color: var(--ink); }
+.toc .d { display: block; font-size: 8.4pt; font-weight: 400; color: var(--muted); margin-top: 0.6mm; }
+.toc .p { text-align: right; font-size: 9.6pt; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 6mm; background: var(--wash); border-radius: 6pt; padding: 3.5mm 5mm; break-inside: avoid; }
+.legend h4 { grid-column: 1 / -1; margin: 0 0 1mm; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.legend div { font-size: 8.8pt; color: var(--body); }
+.about { margin-top: 4mm; font-size: 8.8pt; color: var(--muted); border-left: 2pt solid var(--blue); padding-left: 4mm; }
+.about strong { color: var(--ink); }
+
+/* ---------- tags ---------- */
+.tag { display: inline-block; font-size: 6.6pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6pt 4pt 0.4pt; border-radius: 3pt; vertical-align: 1pt; margin-right: 3pt; white-space: nowrap; }
+.tag.slide { color: var(--blue); background: var(--blue-soft); }
+.tag.stage { color: var(--violet); background: var(--violet-soft); }
+.tag.docs { color: var(--green); background: var(--green-soft); }
+.tag.analysis { color: var(--amber); background: var(--amber-soft); }
+.tag.press { color: var(--slate); background: var(--slate-soft); }
+
+/* ---------- sections ---------- */
+section.s { break-before: page; }
+.section-head { display: grid; grid-template-columns: 24mm 1fr; column-gap: 2mm; margin-bottom: 5mm; }
+.section-head > * { grid-column: 2; }
+.section-head .num { grid-column: 1; grid-row: 1 / span 3; font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 40pt; line-height: 0.95; color: var(--blue); font-weight: 400; }
+.section-head .kicker { font-size: 7.4pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 0.5mm; }
+.section-head h2 { font-size: 21pt; line-height: 1.12; margin: 1.2mm 0 3mm; }
+.section-head .lead { grid-column: 1 / -1; font-size: 10.6pt; line-height: 1.52; color: var(--ink); border-left: 2.2pt solid var(--blue); padding-left: 4mm; margin-top: 1mm; }
+.section-head.plain { display: block; }
+h3 { font-family: 'Inter', 'Noto Symbols', sans-serif; font-size: 11pt; font-weight: 700; color: var(--ink); margin: 6mm 0 2.2mm; letter-spacing: -0.005em; break-after: avoid; }
+h4 { font-size: 9.4pt; font-weight: 700; color: var(--ink); margin: 4mm 0 1.5mm; break-after: avoid; }
+ul, ol { margin: 0 0 8pt; padding-left: 5mm; }
+li { margin-bottom: 3pt; }
+li::marker { color: var(--faint); }
+ol li::marker { color: var(--blue); font-weight: 600; }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 8.6pt; line-height: 1.45; break-inside: auto; }
+thead th { text-align: left; font-size: 7.2pt; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 2.2mm 2.5mm; border-bottom: 1pt solid var(--ink); }
+tbody td { padding: 1.9mm 2.5mm; border-bottom: 0.5pt solid var(--rule); vertical-align: top; }
+tbody tr { break-inside: avoid; }
+td.k { font-weight: 600; color: var(--ink); }
+td.fig { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 10.5pt; color: var(--blue); white-space: nowrap; }
+.ok { color: var(--green); font-weight: 700; }
+.no { color: var(--red); font-weight: 700; }
+
+/* ---------- blocks ---------- */
+figure { margin: 3mm 0 6mm; break-inside: avoid; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: 7.8pt; color: var(--muted); margin-top: 2mm; }
+figcaption b { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
+.callout { background: var(--amber-soft); border-radius: 6pt; padding: 4mm 5mm; margin: 4mm 0 5mm; break-inside: avoid; }
+.callout.blue { background: var(--blue-soft); }
+.callout.green { background: var(--green-soft); }
+.callout .h { font-size: 7.4pt; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--amber); margin-bottom: 1.5mm; }
+.callout.blue .h { color: var(--blue); }
+.callout.green .h { color: var(--green); }
+.callout p:last-child { margin-bottom: 0; }
+.quote { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 15pt; line-height: 1.32; color: var(--ink); font-weight: 400; margin: 4mm 0 5mm; padding: 1mm 0 1mm 5mm; border-left: 2.4pt solid var(--violet); break-inside: avoid; }
+.quote .by { display: block; font-family: 'Inter', 'Noto Symbols', sans-serif; font-size: 8pt; color: var(--muted); margin-top: 2mm; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 5mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 3mm 0 5mm; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3mm 0 5mm; }
+.card { border: 0.6pt solid var(--rule); border-radius: 6pt; padding: 3.6mm 4mm; break-inside: avoid; background: #fff; }
+.card .ct { font-weight: 700; color: var(--ink); font-size: 9.6pt; margin-bottom: 1mm; }
+.card .cs { font-size: 8.4pt; color: var(--body); line-height: 1.5; }
+.card .badge { font-size: 6.8pt; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 1.5mm; }
+.stat { border-top: 2pt solid var(--blue); padding: 3mm 0 0; break-inside: avoid; }
+.stat .v { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 22pt; line-height: 1.05; color: var(--ink); font-weight: 500; }
+.stat .l { font-size: 8.2pt; color: var(--body); margin-top: 1.6mm; line-height: 1.42; }
+.stat .s { font-size: 7.2pt; color: var(--faint); margin-top: 1mm; }
+
+pre.code { font-size: 8.4pt; line-height: 1.55; background: var(--navy); color: #dbe4f7; border-radius: 6pt; padding: 4.5mm 5mm; margin: 2mm 0 5mm; break-inside: avoid; white-space: pre; }
+pre.code .c { color: #7f93bd; }
+pre.code .k { color: #8fb3ff; }
+pre.code .v { color: #9ee6c4; }
+pre.code .x { color: #ffb4a8; }
+
+.takeaways { counter-reset: tk; margin: 0; padding: 0; list-style: none; }
+.takeaways li { counter-increment: tk; display: grid; grid-template-columns: 11mm 1fr; padding: 2.5mm 0; border-bottom: 0.5pt solid var(--rule); margin: 0; break-inside: avoid; }
+.takeaways li::before { content: counter(tk, decimal-leading-zero); font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 13pt; color: var(--blue); line-height: 1.2; }
+.takeaways li b { display: block; color: var(--ink); font-size: 10pt; margin-bottom: 0.6mm; }
+.takeaways li span { font-size: 8.8pt; }
+
+.agenda { margin: 2mm 0 4mm; }
+.agenda .r { display: grid; grid-template-columns: 15mm 4mm 1fr 44mm; align-items: center; padding: 1.5mm 0; border-bottom: 0.5pt solid var(--rule); break-inside: avoid; }
+.agenda .time { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 9pt; }
+.agenda .dot { width: 2.4mm; height: 2.4mm; border-radius: 50%; background: var(--blue); }
+.agenda .dot.l { background: var(--violet); }
+.agenda .dot.n { background: #cfd5df; }
+.agenda .title { font-size: 9.4pt; color: var(--ink); font-weight: 500; }
+.agenda .who { display: block; font-size: 7.8pt; color: var(--muted); font-weight: 400; }
+.agenda .cov { font-size: 7.4pt; text-align: right; color: var(--muted); }
+.agenda .cov b { font-weight: 600; }
+
+.check { list-style: none; padding: 0; margin: 0 0 4mm; }
+.check li { position: relative; padding: 2.4mm 0 2.4mm 8mm; border-bottom: 0.5pt solid var(--rule); margin: 0; break-inside: avoid; font-size: 9pt; }
+.check li::before { content: ''; position: absolute; left: 0; top: 2.9mm; width: 3.4mm; height: 3.4mm; border: 1pt solid var(--ink); border-radius: 1.2pt; }
+.check-group { font-size: 7.4pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); font-weight: 700; margin: 6mm 0 1mm; }
+
+.sources li { font-size: 8.6pt; margin-bottom: 2.2mm; }
+.sources li span { color: var(--muted); }
+.avoid { break-inside: avoid; }
+.mt0 { margin-top: 0; }
+.small { font-size: 8.4pt; }
+.muted { color: var(--muted); }
+.contact { display: grid; grid-template-columns: 1fr 40mm; gap: 8mm; align-items: center; background: var(--navy); color: #fff; border-radius: 8pt; padding: 7mm 8mm; margin-top: 2mm; break-inside: avoid; }
+.contact .ck { font-size: 7.6pt; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: #9fb4e8; }
+.contact .cname { font-family: 'Fraunces', 'Noto Symbols', serif; font-size: 20pt; font-weight: 500; margin: 2mm 0 3mm; }
+.contact .cline { font-size: 10pt; color: #c9d4ea; }
+.contact .cnum { font-size: 13pt; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+.contact .csub { font-size: 8.6pt; color: #9fb0d0; margin-top: 3mm; }
+.contact .cqr { background: #fff; border-radius: 6pt; padding: 3mm; text-align: center; }
+.contact .cqr svg { width: 100%; height: auto; display: block; }
+.contact .cqrl { font-size: 6.4pt; color: var(--muted); margin-top: 1.4mm; }
+.card .cs ul { margin: 0 0 6pt; padding-left: 4.5mm; }
+.card .cs p { margin: 0 0 6pt; }
+.contact { grid-template-columns: 1fr 66mm; }
+.contact .cqrs { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.contact .ctitle { display: inline-block; font-size: 7.4pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: #e62b1e; padding: 1.2pt 5pt 1pt; border-radius: 3pt; margin: -1mm 0 4mm; }
+.contact .cline { margin-bottom: 1.4mm; }
+.contact .clink { font-size: 10.5pt; font-weight: 600; color: #fff; }
+.contact .cname { margin-bottom: 2mm; }
+
+.toc .d { margin-top: 0.3mm; }

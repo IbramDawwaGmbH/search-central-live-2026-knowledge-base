@@ -1,0 +1,213 @@
+# Differences ledger: where the event and Google's documentation differ, and what to follow.
+# Hand-written; the build checks every row (python _system/build_kb.py --check) and renders it to 50-maps/differences.md,
+# 60-outputs/dev/differences.md and the agent pack's differences.json. The claims marked contradicts or updates in 20-claims/
+# and the claims that say they are uncertain are appended to those pages automatically: they need no row here.
+#
+# One row per difference, in the order the pages show them:
+#   id        DIF-NN, unique; never reuse a retired id
+#   title     the difference in a few words
+#   event     the slide or stage claims that say the event's version (public claims)
+#   docs      the Google documentation claims (label docs) that say the documented version; [] when none is in 20-claims/
+#   pages     optional: Google pages (sources.yaml keys) for the documented version; needed when docs is []
+#   analysis  the analysis claims that explain the difference (the author's view)
+#   follow    what to follow, in one to three sentences: the documented version first. No person's name: the claims carry the credit.
+#             When Google's documentation says nothing on the point, the follow line says so.
+differences:
+  - id: DIF-01
+    title: How many crawlers Google runs
+    event: [D1-C324]
+    docs: [D1-C342, D1-C138]
+    analysis: [D1-C344]
+    follow: >-
+      Follow Google's Inside Googlebot post: dozens of other clients share Googlebot's crawling infrastructure and only the larger
+      crawlers are documented. A Google user agent missing from the public lists is not proof of a fake request; verify with
+      reverse DNS or Google's published IP ranges.
+
+  - id: DIF-02
+    title: 4xx responses, 429 and crawl budget
+    event: [D1-C385]
+    docs: [D1-C072, D1-C071, D3-C668]
+    analysis: [D1-C386, D1-C419]
+    follow: >-
+      Follow Google's HTTP status code documentation: 4xx codes other than 429 do not slow crawling, while 429 slows it like a
+      5xx error. A 404 is still a fetch. Return 429 or 503 only for temporary overload; Google's crawl rate guide warns against
+      doing so for longer than 1-2 days.
+
+  - id: DIF-03
+    title: Whether a robots.txt block frees crawl budget for other pages
+    event: [D1-C469]
+    docs: [D1-C109]
+    analysis: [D1-C470]
+    follow: >-
+      Follow Google's crawl budget guide: use robots.txt only for sections you never want crawled, never to reallocate crawl
+      budget for a while. Freed budget goes to other pages only when Google is already at the site's crawl capacity limit, so
+      do not expect a block to speed up crawling elsewhere on a site that is not.
+
+  - id: DIF-04
+    title: A misspelt rule name in robots.txt
+    event: [D1-C525]
+    docs: []
+    pages: [robots-spec, robotstxt-parser]
+    analysis: [D1-C532]
+    follow: >-
+      Google's documentation is silent here: its robots.txt specification does not mention typos, so spell rule names
+      correctly. On stage a misspelt rule name was said to make Google ignore the line, but Google's open-source parser accepts
+      common misspellings of disallow and user-agent (not of allow) and other crawlers may be stricter: rely on neither.
+
+  - id: DIF-05
+    title: Why a URL is 'Discovered – currently not indexed'
+    event: [D2-C706]
+    docs: [D2-C707]
+    analysis: [D2-C708, D2-C710]
+    follow: >-
+      Follow the Page indexing report help first: rule out server overload (slow responses, 5xx errors, a falling crawl rate in
+      the Crawl Stats report). Then treat the status as a demand problem and raise the quality of the pages already indexed;
+      resubmitting the URLs does not change why they wait.
+
+  - id: DIF-06
+    title: Links Google cannot extract
+    event: [D2-C041, D2-C042]
+    docs: [D2-C043]
+    analysis: [D2-C044]
+    follow: >-
+      Follow Google's link best practices: only an a element with an href is a dependable link. The documentation says Google
+      may still try to parse routerLink, href on a span, onclick-only links and javascript: URLs, where the slide said it
+      cannot; either way, do not rely on them for discovery.
+
+  - id: DIF-07
+    title: A noindex page and its JavaScript
+    event: [D2-C852, D2-C108]
+    docs: [D2-C854]
+    analysis: [D2-C855]
+    follow: >-
+      Follow the JavaScript SEO basics guide, which says only that Google may skip rendering a page served with noindex. The
+      practical rule is the same either way: never serve a noindex that JavaScript is expected to remove.
+
+  - id: DIF-08
+    title: Whether every page gets rendered
+    event: [D2-C130, D3-C628]
+    docs: [D2-C131]
+    analysis: [D2-C132, D3-C676]
+    follow: >-
+      Follow the JavaScript SEO basics guide: every page with a 200 status is queued for rendering unless a robots rule blocks
+      indexing. Queued is not the same as rendered, so put the content, links and meta tags that indexing needs in the HTML the
+      server sends.
+
+  - id: DIF-09
+    title: How strong a signal rel=canonical is
+    event: [D2-C390]
+    docs: [D2-C391]
+    analysis: [D2-C392]
+    follow: >-
+      Follow Google's canonical guide: redirects and rel=canonical are strong signals, sitemap inclusion is a weak one. Use the
+      strong signals as the main levers, keep sitemaps as support, and point all of them at the same URL.
+
+  - id: DIF-10
+    title: Canonicals on paginated pages
+    event: [D2-C393]
+    docs: [D1-C115]
+    analysis: [D2-C394]
+    follow: >-
+      Follow Google's pagination guide: give every page of a series its own URL, a self-referencing canonical and a crawlable
+      link to the next page. Pointing the canonical of later pages at page 1 is a deliberate trade-off, not the default: it folds
+      them into page 1, so the items they list need links from elsewhere.
+
+  - id: DIF-11
+    title: Whether only canonicals are shown in results
+    event: [D2-C701]
+    docs: [D2-C702]
+    analysis: [D2-C703]
+    follow: >-
+      Follow Google's documentation: a result usually points to the canonical, but another page of the same duplicate cluster can
+      be shown in some contexts, such as a mobile page to a user on a mobile device.
+
+  - id: DIF-12
+    title: Videos placed below the fold
+    event: [D2-C924]
+    docs: [D2-C942]
+    analysis: [D2-C944]
+    follow: >-
+      Follow the Video indexing report help: the video needs a watch page and a player that is there when the page loads, at a
+      size and position Google can determine, with no click-to-play placeholder. The documentation does not say that a video
+      below the fold is never indexed; putting the main video in the first viewport is the safe choice.
+
+  - id: DIF-13
+    title: What max-snippet:-1 does
+    event: [D2-C085, D2-C104]
+    docs: [D2-C086]
+    analysis: [D2-C105]
+    follow: >-
+      Follow the robots meta tag specification: max-snippet:-1 removes the length limit and lets Google choose the snippet length
+      it finds most effective. Do not promise longer snippets from it; use it to lift a lower limit that a template, plug-in or
+      CDN sets.
+
+  - id: DIF-14
+    title: PageRank's and MUM's role in ranking
+    event: [D3-C136, D3-C133]
+    docs: [D3-C138, D1-C130]
+    analysis: [D3-C137, D3-C135]
+    follow: >-
+      Follow Google's ranking systems guide: PageRank has evolved a lot and is still part of the core ranking systems, and MUM is
+      not used for general ranking, only for specific applications. Quote the stage remark that PageRank is not used so much
+      anymore only as a remark, never as PageRank being switched off, and read the slide's list as systems Google runs, not as
+      systems that rank every query.
+
+  - id: DIF-15
+    title: SpamBrain's launch year and its '5 times more spam sites'
+    event: [D2-C670, D2-C673]
+    docs: [D2-C671, D2-C674]
+    analysis: [D2-C672, D2-C675]
+    follow: >-
+      Cite 2018 as SpamBrain's launch year, from Google's 2021 webspam report; the 2022 heard on stage is the year of the
+      improvements in the 2022 report. Quote '5 times more spam sites' as that report does, 2022 against 2021 (and 200 times
+      more than at launch), not as SpamBrain against Google's earlier spam algorithms.
+
+  - id: DIF-16
+    title: The year of the 40 billion spammy pages a day
+    event: [D3-C197, D3-C239]
+    docs: [D3-C240]
+    analysis: [D3-C241, D3-C200]
+    follow: >-
+      Cite 40 billion spammy pages a day as Google's published figure, from its webspam report for 2020 (published in April
+      2021) and its How Search Works page. The slide's 'In 2023' heading does not make it a 2023 measurement.
+
+  - id: DIF-17
+    title: Google's 2023 testing figures
+    event: [D3-C236, D3-C237, D3-C149]
+    docs: [D3-C238]
+    analysis: [D3-C150]
+    follow: >-
+      Cite the figures on Google's How Search Works page, with the year 2023: 719,326 search quality tests, 124,942
+      side-by-side experiments, 16,871 live traffic experiments and 4,781 launches. Do not use the rounded 800,000+ tests, which
+      match no figure on that page, or the spoken 'close to 5,000' launches.
+
+  - id: DIF-18
+    title: The size of Gemini's context window
+    event: [D2-C331, D2-C869]
+    docs: []
+    pages: [gemini-long-context]
+    analysis: [D2-C872]
+    follow: >-
+      Follow the Gemini API's long-context documentation: Gemini models have context windows of 1 million or more tokens, so plan
+      with about one million tokens as the documented floor, not the several million said on stage. Do not quote the 900,000
+      heard on stage, which had no unit.
+
+  - id: DIF-19
+    title: What the popularity rank attribute measures
+    event: [D3-C374]
+    docs: [D3-C375]
+    analysis: [D3-C376]
+    follow: >-
+      Follow Merchant Center's definition: popularity_rank is the merchant's own 0-100 rank of a product against the rest of its
+      inventory, based on its recent sales. It is not a sales figure across shops or marketplaces.
+
+  - id: DIF-20
+    title: New Merchant Center attributes in schema.org markup
+    event: [D3-C380]
+    docs: [D3-C344]
+    pages: [mc-product-data-spec, merchant-listing-sd]
+    analysis: [D3-C381]
+    follow: >-
+      Send the new attributes in the Merchant Center feed, the documented route, and keep the documented Product markup next to
+      the feed, which Google says maximises eligibility. As of 3 October 2026 Google documents no schema.org property for the new
+      attributes except item_group_title (ProductGroup.name); add markup for the others only once Google documents it.

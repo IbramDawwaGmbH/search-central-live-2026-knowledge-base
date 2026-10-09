@@ -1,0 +1,6 @@
+# Details printed in the PDFs (covers, running header, contact box, PDF author). Edit here, then re-run make_pdf.py.
+# Read as UTF-8, so accented letters are fine. LinkedIn is printed without https:// and the country subdomain.
+author: Ibrahim Anjro
+title_line: TEDx Speaker
+whatsapp: "+49 1575 1702770"
+linkedin_url: https://de.linkedin.com/in/ibrahem-angro

@@ -1,0 +1,30 @@
+# Which edition the build makes. Without this file, or with "edition: full", the build makes the full edition.
+#   full       everything, including the media kit (the main branch)
+#   community  the open community edition (the "community" branch): the media kit is replaced by a short preview and a
+#              "work with us" page; the developer kit, claims, topics, maps and agent pack stay open
+edition: community
+
+# Who to contact. Shown softly in the footer, the Content page, the Developers page, About and the README.
+author: Ibrahim Anjro
+linkedin: https://de.linkedin.com/in/ibrahem-angro
+company:
+  name: "Ibram & Dawwa GmbH"      # community edition only (the main branch has no edition.yaml)
+  url: "https://ibramdawwa.de"
+
+# Where this edition is published, and its legal pages (community edition only; the full edition builds without them).
+# The web edition uses them for canonical links, social previews, sitemap.xml and 404.html (site_url), and for the footer's
+# licence line (repo_url), Impressum and Privacy links. Leave one out and what it feeds is simply not written.
+site_url: "https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/"
+repo_url: "https://github.com/IbramDawwaGmbH/search-central-live-2026-knowledge-base"
+contact_url: "https://ibramdawwa.de/contact"
+impressum_url: "https://ibramdawwa.de/impressum"
+privacy_url: "https://ibramdawwa.de/datenschutz"
+
+# What the full media kit holds (v2.13.0), shown on the Content page of the community edition.
+full_kit:
+  facts: 158
+  myths: 64
+  angles: 80
+  quotes: 122
+  stat_facts: 62
+  audience_questions: 25

@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How Google Serves in the Age of AI Search — Day 3 Field Guide</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Day 3 refinements (as Day 2), all styles */
+.nw, .no { white-space: nowrap; }
+figure svg { overflow: visible; }
+p, li, td, figcaption, .lead, .card, .stat, .legend div { text-wrap: pretty; }
+.toc .t, .toc .d { line-height: 1.25; }
+.toc .d { margin-top: 0; }
+li { break-inside: avoid; }
+.stat .v .x { font-family: 'Jost', 'Fraunces', 'Noto Symbols'; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  {{COVER_ART}}
+  <div style="position:absolute;left:0;right:0;bottom:0;height:70mm;background:linear-gradient(180deg, rgba(11,26,51,0) 0%, rgba(11,26,51,0.92) 55%, #0b1a33 100%);"></div>
+  <div class="inner">
+    <div class="eyebrow">Search Central Live Deep Dive Europe 2026 &nbsp;·&nbsp; Day 3 Field Guide</div>
+    <div class="rule"></div>
+    <h1>How Google Serves in the Age of <em>AI Search</em></h1>
+    <div class="sub">{{SUBTITLE}}</div>
+    <div class="spacer"></div>
+    <div class="meta">
+      <div><div class="k">Notes &amp; guide by</div><div class="v name">{{AUTHOR}}</div></div>
+      <div><div class="k">Event</div><div class="v">{{COVER_DATE}}</div></div>
+      <div><div class="k">Edition</div><div class="v">3 October 2026</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTENTS ================= -->
+<div class="front">
+  <h2 class="title">Contents</h2>
+  <div class="toc">
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Key takeaways<span class="d">The twelve things to remember from Day 3</span></span><span class="p">{{PTK}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">01</span><span class="t">Day 3 at a glance<span class="d">The agenda, a map of the day and the three-day arc</span></span><span class="p">{{P01}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">02</span><span class="t">Query understanding<span class="d">Language, stop words, entities, synonyms, siblings and fan-out queries</span></span><span class="p">{{P02}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">03</span><span class="t">Retrieval: from query to candidates<span class="d">Posting lists; language, country and quality before ranking</span></span><span class="p">{{P03}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">04</span><span class="t">What quality means to Google<span class="d">Ranking systems, the four attributes, testing and raters, Discover</span></span><span class="p">{{P04}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">05</span><span class="t">Core updates and spam<span class="d">Why Search changes, what each update does, and recovery</span></span><span class="p">{{P05}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">06</span><span class="t">Search features and rich results<span class="d">The results page, text results, structured data, product surfaces</span></span><span class="p">{{P06}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">07</span><span class="t">Product data for AI shopping<span class="d">New Merchant Center attributes, product markup, Storebot-Google</span></span><span class="p">{{P07}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">08</span><span class="t">Five Search Console launches<span class="d">Query groups, AI configuration, AI reports, platforms, multimodal</span></span><span class="p">{{P08}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">09</span><span class="t">Search Console data and AI visibility<span class="d">BigQuery and LLMs; showing SEO's value when clicks fall</span></span><span class="p">{{P09}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">10</span><span class="t">How AI changes purchase decisions<span class="d">The messy middle, 'boosted' shoppers, the reassurance step</span></span><span class="p">{{P10}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">11</span><span class="t">How long Google's processes take<span class="d">From URL discovery to recovery after a core update</span></span><span class="p">{{P11}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">12</span><span class="t">AI in Search, used responsibly<span class="d">Hallucinations, deception, AI slop; the three days in one table</span></span><span class="p">{{P12}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">13</span><span class="t">Day 3 action checklist<span class="d">Checks for the content team and the development team</span></span><span class="p">{{P13}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">14</span><span class="t">Said on stage, not in Google's docs<span class="d">Points to treat as informed hints</span></span><span class="p">{{P14}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">15</span><span class="t">Help complete this guide<span class="d">Send what I missed; get the web edition</span></span><span class="p">{{P15}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Sources<span class="d">Google documentation and press reports used to check this guide</span></span><span class="p">{{PSRC}}</span></div>
+  </div>
+
+  <div class="legend">
+    <h4>How to read the labels</h4>
+    <div><span class="tag slide">Slide</span> Shown on screen during the session</div>
+    <div><span class="tag stage">Stage</span> Said on stage, from my recordings</div>
+    <div><span class="tag docs">Docs</span> Google's published documentation</div>
+    <div><span class="tag press">Press</span> A third-party report of what Google said</div>
+    <div><span class="tag analysis">Analysis</span> My interpretation, not Google's words</div>
+    <div><span class="muted">(not&nbsp;in&nbsp;docs)</span> Said at the event; not in Google's docs</div>
+  </div>
+</div>
+
+<!-- ================= TAKEAWAYS ================= -->
+<section class="s" id="tk">
+  <div class="section-head plain">
+    <div class="kicker">Summary</div>
+    <h2>Key takeaways</h2>
+    <div class="lead" data-claims="D3-C001 D3-C083 D3-C131 D3-C244">Day 3 followed a query from the search box to the results page, then to what site owners can measure. Quality came up at nearly every step: at retrieval, in ranking and in core updates.</div>
+  </div>
+  <ol class="takeaways">
+    <li data-claims="D3-C028 D3-C018 D3-C023"><div><b>Google rewrites pretty much every query.</b><span>Synonym expansion is traditional Search, not AI. Google knows the synonyms: don't list them on pages.</span></div></li>
+    <li data-claims="D3-C059 D3-C063 D3-C065"><div><b>Fan-out queries are ordinary queries.</b><span>Google treats them like typed ones. They are not in Search Console; don't chase individual ones.</span></div></li>
+    <li data-claims="D3-C083 D3-C084 D3-C085"><div><b>Quality decides retrieval, not just ranking.</b><span>The most important signal for ordering candidates, used again in ranking. Weak pages may never compete.</span></div></li>
+    <li data-claims="D3-C132 D3-C176 D3-C190"><div><b>Quality means human effort.</b><span>Effort, originality, talent or skill, and accuracy. Quality issues are quality issues, not AI versus human.</span></div></li>
+    <li data-claims="D3-C258 D3-C293 D3-C295"><div><b>Core updates are not penalties.</b><span>No recovery in the penalty sense: improve the site as a whole, and allow several months.</span></div></li>
+    <li data-claims="D3-C325 D3-C326"><div><b>AI Overviews and AI Mode are not rich results.</b><span>No special markup: a page must be indexed and eligible to be shown with a snippet.</span></div></li>
+    <li data-claims="D3-C357 D3-C365 D3-C343 D3-C346"><div><b>Product data feeds AI shopping.</b><span>For deeper AI Mode questions: six new Merchant Center attributes. Rich results need only markup; the Shopping tab needs Merchant Center.</span></div></li>
+    <li data-claims="D3-C438 D3-C441"><div><b>The generative AI report counts impressions only.</b><span>No clicks, no queries; the Performance report still includes AI traffic. Measure visits yourself.</span></div></li>
+    <li data-claims="D3-C518 D3-C536 D3-C542"><div><b>Clicks no longer tell the whole story.</b><span>Google advises judging the value of visits, such as sales and sign-ups. Report conversions too.</span></div></li>
+    <li data-claims="D3-C559 D3-C575 D3-C578"><div><b>AI "boosts" shoppers; it doesn't choose for them.</b><span>People hand AI the effort, then double-check on Search and brand sites; familiar brands reassure.</span></div></li>
+    <li data-claims="D3-C600 D3-C604 D3-C634 D3-C638"><div><b>Discovery is slow, indexing is fast.</b><span>Google's averages: about 20 hours to discover a URL, 30 days to recrawl it, 1.5 hours to index it.</span></div></li>
+    <li data-claims="D3-C701 D3-C702"><div><b>AI SEO is SEO.</b><span>AI features use exactly the same processes as traditional results, with very few of their own.</span></div></li>
+  </ol>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="s" id="s01">
+  <div class="section-head">
+    <div class="num">01</div>
+    <div class="kicker">Section 01</div>
+    <h2>Day 3 at a glance</h2>
+    <div class="lead" data-claims="D3-C001 D3-C666">Day 3 followed a query through serving, from query understanding to the results page, then turned to Search Console, measurement and AI. This guide selects from about 700 points; the web edition holds every one.</div>
+  </div>
+
+  <div class="agenda">
+{{AGENDA}}
+  </div>
+
+  <figure data-claims="D3-C001 D3-C321 D3-C012 D3-C016 D3-C018 D3-C059 D3-C062 D3-C073 D3-C074 D3-C079 D3-C083 D2-C722 D3-C131 D3-C322 D3-C325 D3-C057 D3-C701 D3-C412 D3-C438 D3-C469 D3-C518 D3-C559 D3-C665">
+    <svg viewBox="0 0 680 358" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="s1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2457e6"/></marker>
+      </defs>
+      <rect x="0.5" y="32" width="129.5" height="34" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="65" y="46" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Query</text>
+      <text x="65" y="60" text-anchor="middle" font-size="9" font-family="JetBrains Mono, 'Noto Symbols'" fill="#667085">[where to eat jamon]</text>
+      <path d="M130 49H164" stroke="#667085" stroke-width="1.3" marker-end="url(#s1a)"/>
+      <rect x="0.5" y="86" width="129.5" height="84" rx="10" fill="#fff" stroke="#2457e6" stroke-dasharray="4 3"/>
+      <text x="12" y="104" font-size="11" font-weight="700" fill="#2457e6">AI features</text>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="12" y="119">Results ground an LLM;</text><text x="12" y="131">its fan-out queries go</text><text x="12" y="143">back in as new queries</text>
+      </g>
+      <g font-size="9" font-weight="700" fill="#fff" text-anchor="middle">
+        <rect x="12" y="149" width="28" height="16" rx="7" fill="#0b1a33"/><text x="26" y="160.5">02</text>
+        <rect x="46" y="149" width="28" height="16" rx="7" fill="#0b1a33"/><text x="60" y="160.5">12</text>
+      </g>
+      <path d="M65 86V69" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#s1b)"/>
+      <path d="M65 188V173" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#s1b)"/>
+      <rect x="0.5" y="188" width="129.5" height="34" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="65" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Results page</text>
+      <text x="65" y="216" text-anchor="middle" font-size="9.5" fill="#667085">back to the user</text>
+      <path d="M166 205H133" stroke="#667085" stroke-width="1.3" marker-end="url(#s1a)"/>
+      <rect x="150" y="0.6" width="529.4" height="235.4" rx="12" fill="#fff" stroke="#2457e6" stroke-width="1.2"/>
+      <text x="168" y="20" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">SERVING · THE STEPS ON GOOGLE'S OPENING SLIDE</text>
+      <path d="M176 49V205" stroke="#bcd0ff" stroke-width="2"/>
+      <g font-size="11.5" font-weight="700" fill="#0f1d33">
+        <rect x="196" y="32" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="54">Query understanding</text>
+        <rect x="196" y="71" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="93">Retrieval</text>
+        <rect x="196" y="110" width="160" height="34" rx="8" fill="#0b1a33"/>
+        <rect x="196" y="149" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="171">Ranking</text>
+        <rect x="196" y="188" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="210">Search features</text>
+      </g>
+      <text x="208" y="133" font-size="16" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Index</text>
+      <g font-size="10.5" font-weight="700" text-anchor="middle" fill="#fff">
+        <circle cx="176" cy="49" r="10" fill="#2457e6"/><text x="176" y="53">1</text>
+        <circle cx="176" cy="88" r="10" fill="#2457e6"/><text x="176" y="92">2</text>
+        <circle cx="176" cy="127" r="10" fill="#2457e6"/><text x="176" y="131">3</text>
+        <circle cx="176" cy="166" r="10" fill="#2457e6"/><text x="176" y="170">4</text>
+        <circle cx="176" cy="205" r="10" fill="#2457e6"/><text x="176" y="209">5</text>
+      </g>
+      <g font-size="10" fill="#2a3446">
+        <text x="370" y="45">Language, stop words, entities, synonyms;</text><text x="370" y="58">fan-out queries take the same path</text>
+        <text x="370" y="84">Posting lists; candidates already ordered</text><text x="370" y="97">by language, country and quality</text>
+        <text x="370" y="123">Pages with the signals from indexing:</text><text x="370" y="136">language, country, quality and more</text>
+        <text x="370" y="162">Hundreds of signals; quality is one</text><text x="370" y="175">of the most important</text>
+        <text x="370" y="201">Built last: text results, rich results,</text><text x="370" y="214">AI Overviews and AI Mode</text>
+      </g>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <rect x="640" y="39" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="53">02</text>
+        <rect x="640" y="78" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="92">03</text>
+        <rect x="604" y="156" width="30" height="20" rx="8" fill="#0b1a33"/><text x="619" y="170">04</text>
+        <rect x="640" y="156" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="170">05</text>
+        <rect x="604" y="195" width="30" height="20" rx="8" fill="#0b1a33"/><text x="619" y="209">06</text>
+        <rect x="640" y="195" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="209">07</text>
+      </g>
+      <text x="0" y="258" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">AFTER SERVING</text>
+      <rect x="0.5" y="266" width="219.5" height="48" rx="10" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <rect x="230" y="266" width="220" height="48" rx="10" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <rect x="460" y="266" width="219.5" height="48" rx="10" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <g font-size="11.5" font-weight="700" fill="#0f1d33">
+        <text x="14" y="288">Search Console</text>
+        <text x="244" y="288">Data and AI visibility</text>
+        <text x="474" y="288">Purchase decisions</text>
+      </g>
+      <g font-size="9.5" fill="#667085">
+        <text x="14" y="304">Five launches, AI impressions</text>
+        <text x="244" y="304">BigQuery, LLMs, business outcomes</text>
+        <text x="474" y="304">The messy middle, 'boosted' shoppers</text>
+      </g>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <rect x="180" y="273" width="30" height="20" rx="8" fill="#0b1a33"/><text x="195" y="287">08</text>
+        <rect x="410" y="273" width="30" height="20" rx="8" fill="#0b1a33"/><text x="425" y="287">09</text>
+        <rect x="640" y="273" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="287">10</text>
+      </g>
+      <rect x="0.5" y="324" width="679" height="32" rx="10" fill="#e8eefd"/>
+      <text x="14" y="344" font-size="10.5" fill="#2a3446"><tspan font-weight="700" fill="#0f1d33">Processing times</tspan> · every step waits for the one before: crawling, then indexing, then serving</text>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <rect x="640" y="330" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="344">11</text>
+      </g>
+    </svg>
+    <figcaption><b>A map of Day 3.</b> The serving steps from Google's opening slide, with the part of this guide that covers each one.</figcaption>
+  </figure>
+
+  <figure data-claims="D1-C036 D3-C666 D3-C001">
+    <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker>
+      </defs>
+      <rect x="0.5" y="1" width="209.5" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="20" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 1</text>
+      <text x="20" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Crawling</text>
+      <text x="20" y="83" font-size="10.5" fill="#667085">Discovery, fetching, robots.txt,</text>
+      <text x="20" y="97" font-size="10.5" fill="#667085">crawl budget</text>
+      <path d="M216 60H236" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="235" y="1" width="210" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="255" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 2</text>
+      <text x="255" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Indexing</text>
+      <text x="255" y="83" font-size="10.5" fill="#667085">Parsing, rendering, duplicates,</text>
+      <text x="255" y="97" font-size="10.5" fill="#667085">signals, index selection</text>
+      <path d="M451 60H471" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="470" y="1" width="209.5" height="118" rx="12" fill="#2457e6"/>
+      <text x="490" y="31" font-size="10" font-weight="700" fill="#bcd0ff" letter-spacing="1.4">DAY 3 · THIS GUIDE</text>
+      <text x="490" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Serving</text>
+      <text x="490" y="83" font-size="10.5" fill="#dbe5ff">Query understanding, retrieval,</text>
+      <text x="490" y="97" font-size="10.5" fill="#dbe5ff">ranking, search features</text>
+    </svg>
+    <figcaption><b>The three-day arc.</b> One stage of Google Search per day. Google said it built the event this way because that is how Search works.</figcaption>
+  </figure>
+
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="s" id="s02">
+  <div class="section-head">
+    <div class="num">02</div>
+    <div class="kicker">Section 02 · Making sense of users' queries · John Mueller</div>
+    <h2>Query understanding</h2>
+    <div class="lead" data-claims="D3-C028 D3-C006 D3-C012 D3-C016 D3-C018 D3-C062">Google rewrites pretty much every query before it looks anything up: it detects the language, drops stop words, recognises entities and adds synonyms. Fan-out queries from the AI features go through the same steps.</div>
+  </div>
+
+  <h3>Language, words and entities</h3>
+  <p data-claims="D3-C006 D3-C007 D3-C008 D3-C009 D3-C090"><span class="tag stage">Stage</span> For almost any query, Google first detects the language, which tells it roughly what content the user wants. A brand name alone doesn't reveal it, so Google falls back on location and browser settings and sometimes shows the wrong language version. <span class="tag docs">Docs</span> Search Help adds the Google language setting and the device's languages.</p>
+  <p data-claims="D3-C010"><span class="tag analysis">Analysis</span> Don't leave brand searches to chance: connect language versions with hreflang and give every page a visible language switcher.</p>
+  <p data-claims="D3-C011 D3-C012 D3-C013 D3-C014 D3-C016 D3-C017"><span class="tag stage">Stage</span> Next, Google separates the words, harder in languages such as Thai that put no spaces between them, and drops stop words such as "a" and "of", mirroring indexing. Where small words matter, the whole phrase can be recognised as an entity, and a query naming an entity is read as a request for that thing. Ranking matches words or entities and "probably" mixes both. <span class="muted">(not&nbsp;in&nbsp;docs)</span></p>
+
+  <h3>Synonyms: pretty much every query is rewritten</h3>
+  <p data-claims="D3-C020 D3-C021 D3-C028 D3-C018 D3-C087"><span class="tag stage">Stage</span> Google's ranking teams "say that the synonym system is one of the most important parts", because users phrase things differently from the way content is indexed. In Mueller's words, "pretty much all queries are rewritten", in traditional Search, not only in the AI features. <span class="tag docs">Docs</span> How Search Works: the synonym system matches "change laptop brightness" with "adjust laptop brightness".</p>
+
+  <figure data-claims="D3-C029 D3-C030 D3-C031 D3-C032 D3-C033">
+    <svg viewBox="0 0 680 172" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <g font-size="12" font-family="JetBrains Mono, 'Noto Symbols'" fill="#0f1d33" text-anchor="middle">
+        <rect x="0.5" y="0.5" width="109.5" height="27.5" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="55" y="18">fried</text>
+        <rect x="120" y="0.5" width="120" height="27.5" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="180" y="18">chicken</text>
+        <rect x="250" y="0.5" width="130" height="27.5" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="315" y="18">place</text>
+        <rect x="390" y="0.5" width="60" height="27.5" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="420" y="18">in</text>
+        <rect x="460" y="0.5" width="219.5" height="27.5" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="570" y="18">Barcelona</text>
+      </g>
+      <g stroke="#667085" stroke-width="1.3">
+        <path d="M120 30V44" marker-end="url(#s2a)"/>
+        <path d="M315 30V44" marker-end="url(#s2a)"/>
+        <path d="M570 30V44" marker-end="url(#s2a)"/>
+      </g>
+      <rect x="0.5" y="46" width="239.5" height="58" rx="10" fill="#e8eefd"/>
+      <rect x="250" y="46" width="200" height="58" rx="10" fill="#e8eefd"/>
+      <rect x="460" y="46" width="219.5" height="58" rx="10" fill="#e8eefd"/>
+      <g font-size="11" font-weight="700" fill="#0f1d33">
+        <text x="14" y="64">Kept as two words</text>
+        <text x="264" y="64">Swapped for alternatives</text>
+        <text x="474" y="64">A word or an entity</text>
+      </g>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="14" y="79">Google may add an entity for</text><text x="14" y="92">fried chicken</text>
+        <text x="264" y="79">area · location · restaurant;</text><text x="264" y="92">nonsense ones match few pages</text>
+        <text x="474" y="79">The city, or perhaps a more</text><text x="474" y="92">specific location</text>
+      </g>
+      <g stroke="#667085" stroke-width="1.3" fill="none">
+        <path d="M120 106V114H340V126" marker-end="url(#s2a)"/>
+        <path d="M350 106V126" marker-end="url(#s2a)"/>
+        <path d="M570 106V114H360V126" marker-end="url(#s2a)"/>
+      </g>
+      <rect x="0.5" y="128" width="679" height="44" rx="10" fill="#0b1a33"/>
+      <text x="18" y="155" font-size="15" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Internal query</text>
+      <text x="140" y="154" font-size="10" fill="#dbe5ff">Much longer than what was typed: words, entities and alternatives, then looked up in the index</text>
+    </svg>
+    <figcaption><b>How [fried chicken place in Barcelona] is rewritten.</b> Google's stage example; the real rewrite is internal <span class="muted">(not&nbsp;in&nbsp;docs)</span>. "Near me" is rewritten the same way, to the user's location rather than the words.</figcaption>
+  </figure>
+
+  <p data-claims="D3-C035 D3-C036 D3-C037"><span class="tag stage">Stage</span> Synonyms are learned automatically from how people search, not catalogued by linguists: "we don't need to be technically accurate". Words people use interchangeably count as synonyms, which is why a highlighted word in the results can look wrong <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <table class="avoid">
+    <thead><tr><th style="width:29mm">Relation</th><th>Google's example <span class="tag stage">Stage</span></th><th style="width:36mm">Treated as</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C019"><td class="k">Synonym</td><td>"Photograph" may become "image", "picture" or "photo"; a German look-alike meaning "photographer" was dropped <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td>Interchangeable, per language</td></tr>
+      <tr data-claims="D3-C034"><td class="k">Contextual</td><td>"GM": General Motors in [GM car], general manager in [GM restaurants], genetically modified in [GM barley] <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td>Depends on the query</td></tr>
+      <tr data-claims="D3-C038 D3-C039 D3-C040"><td class="k">Sibling</td><td>[Canon camera] should not show Nikon; comparison queries mark such pairs <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td>Related, never swapped</td></tr>
+      <tr data-claims="D3-C048 D3-C049"><td class="k">Diacritics</td><td>"ü", "ue" or a plain "u"; Google sometimes gets a variant wrong <span class="muted">(that part not&nbsp;in&nbsp;docs)</span></td><td>Usually the same</td></tr>
+      <tr data-claims="D3-C043"><td class="k">Translation</td><td>[Iberico ham] and [jamón ibérico] brought up the same entity <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td>The same thing</td></tr>
+      <tr data-claims="D3-C045 D3-C046"><td class="k">Related phrase</td><td>[Spanish cured ham] brought up mainly a Wikipedia page at the time <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td>Different: write it out</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Don't write for the synonym system</h3>
+  <p data-claims="D3-C023 D3-C025 D3-C026 D3-C044"><span class="tag stage">Stage</span> Google adds synonyms itself, so "you don't have to do that SEO meme of, like, list all the synonyms on your page". It works much as if the user had joined them with OR, so an OR search of a term's synonyms probably returns much the same results <span class="muted">(not&nbsp;in&nbsp;docs)</span>. "I wouldn't artificially just stuff those variations in there."</p>
+  <p data-claims="D3-C089 D3-C024"><span class="tag docs">Docs</span> The SEO Starter Guide: anticipate readers' words ("charcuterie" or "cheese board") without worrying about every variation. <span class="tag analysis">Analysis</span> Drop synonym blocks; lists of variants read as keyword stuffing.</p>
+  <p data-claims="D3-C041 D3-C042 D3-C050 D3-C051"><span class="tag stage">Stage</span> Google does not prefer English, and a page needs no English term where Google knows its local equivalent. For diacritics, foreign words and spellings, focus on what users search: Hindi users search in Hindi script and in Latin letters <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <div class="callout avoid" data-claims="D3-C047 D3-C055">
+    <div class="h">Analysis · Test before you write</div>
+    <p>Search each variant of a key term. Same entity or near-identical results: use your audience's term. Unrelated results: write that variant on the page. Where users type two scripts or spellings, use the forms Search Console's queries show.</p>
+  </div>
+
+  <h3>Fan-out queries are queries too</h3>
+  <p data-claims="D3-C057 D3-C058 D3-C059 D3-C062 D3-C061"><span class="tag slide">Slide</span> "How LLM features with grounding generally work": results go to an LLM, which generates fan-out queries back to the search engine and answers with links. <span class="tag stage">Stage</span> Fan-out queries are treated like typed ones, synonyms included, and kept distinct from each other for coverage.</p>
+  <p data-claims="D3-C063 D3-C095 D3-C064 D3-C094"><span class="tag stage">Stage</span> "Fan-out queries are not added in Search Console, because they're basically a part of our infrastructure." <span class="muted">(not&nbsp;in&nbsp;docs)</span> They show up in Gemini and some search APIs. <span class="tag docs">Docs</span> Gemini's grounding responses list the queries run. <span class="tag analysis">Analysis</span> Search Console counts AI features under the user's own query.</p>
+  <p data-claims="D3-C065 D3-C066"><span class="tag stage">Stage</span> "I would not overfocus on which individual fan-out queries happen and how can I rank for those". <span class="tag analysis">Analysis</span> Cover a topic's real subquestions on solid pages instead.</p>
+
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="s" id="s03">
+  <div class="section-head">
+    <div class="num">03</div>
+    <div class="kicker">Section 03 · Making sense of users' queries, part 2 · Gary Illyes</div>
+    <h2>Retrieval: from query to candidates</h2>
+    <div class="lead" data-claims="D3-C074 D3-C078 D3-C079 D3-C083">Retrieval looks the expanded query up in posting lists and already orders the candidates, by language, country and quality, before ranking starts. Google called quality the most important of the three.</div>
+  </div>
+
+  <p data-claims="D3-C073 D3-C074 D2-C733 D3-C075 D3-C076 D3-C077"><span class="tag stage">Stage</span> The expanded query goes to the index, which keeps posting lists: for each word, the URLs associated with it (see Day 2). Retrieval matches the query's words and their expansions against those lists <span class="muted">(not&nbsp;in&nbsp;docs)</span>, using signals attached to each document. The first condition: the query's words, or its concepts in the case of embeddings, are in the document or related to it.</p>
+  <p data-claims="D3-C078"><span class="tag stage">Stage</span> A query like [best fried chicken ever] matches millions of pages, so Google already orders the candidates during retrieval, before ranking starts <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <figure data-claims="D3-C078 D3-C079 D3-C080 D3-C082 D3-C083 D3-C084">
+    <svg viewBox="0 0 680 152" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0.5" width="679" height="27.5" rx="9" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="340" y="18.5" text-anchor="middle" font-size="11" fill="#0f1d33"><tspan font-weight="700">Matching pages</tspan> · millions for [best fried chicken ever]</text>
+      <rect x="50" y="31" width="580" height="28" rx="9" fill="#e8eefd"/>
+      <text x="340" y="49.5" text-anchor="middle" font-size="11" fill="#0f1d33"><tspan font-weight="700">1 · Language</tspan> · the user's language wherever possible</text>
+      <rect x="100" y="62" width="480" height="28" rx="9" fill="#e8eefd"/>
+      <text x="340" y="80.5" text-anchor="middle" font-size="11" fill="#0f1d33"><tspan font-weight="700">2 · Country</tspan> · Swiss cheese for a searcher in Switzerland</text>
+      <rect x="150" y="93" width="380" height="28" rx="9" fill="#2457e6"/>
+      <text x="340" y="111.5" text-anchor="middle" font-size="11" fill="#fff"><tspan font-weight="700">3 · Quality</tspan> · the most important of the three</text>
+      <text x="542" y="104" font-size="9.5" fill="#2457e6">used again</text>
+      <text x="542" y="116" font-size="9.5" fill="#2457e6">in ranking</text>
+      <rect x="200" y="124" width="280" height="28" rx="9" fill="#0b1a33"/>
+      <text x="340" y="143" text-anchor="middle" font-size="13" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Ordered candidates → ranking</text>
+    </svg>
+    <figcaption><b>Retrieval as a funnel.</b> The three ordering signals in the order Gary Illyes gave them; the widths are illustrative, not measured.</figcaption>
+  </figure>
+
+  <table class="avoid">
+    <thead><tr><th style="width:24mm">Signal</th><th>What Google said <span class="tag stage">Stage</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C079 D3-C080 D3-C081"><td class="k">1 · Language</td><td>Indexing signals order the candidates, language and country first. A Spanish searcher doesn't necessarily want Italian results; no results in a language is an opportunity.</td></tr>
+      <tr data-claims="D3-C082 D3-C092"><td class="k">2 · Country</td><td>A searcher in Switzerland wants Swiss cheese, not German. <span class="tag docs">Docs</span> Geotargeting one country can lift rankings there at the expense of other locales.</td></tr>
+      <tr data-claims="D3-C083 D3-C084"><td class="k">3 · Quality</td><td>The most important: "if the quality of a URL is high, then it's more likely to be retrieved from the index for specific queries." <span class="muted">(not&nbsp;in&nbsp;docs)</span> The same signal is used again in ranking.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout avoid" data-claims="D3-C085 D3-C096 D3-C086">
+    <div class="h">Analysis · Quality acts twice</div>
+    <p>A low-quality page is less likely to be retrieved at all, so it may never reach ranking: quality is a precondition, not a final tweak. The docs list quality among ranking signals but never say it decides retrieval. Language and country act just as early, so make both unambiguous: one main language per page, hreflang between versions, local prices, addresses and shipping.</p>
+  </div>
+
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="s" id="s04">
+  <div class="section-head">
+    <div class="num">04</div>
+    <div class="kicker">Section 04 · How Google thinks about Quality · Lightning session K · Discover</div>
+    <h2>What quality means to Google</h2>
+    <div class="lead" data-claims="D3-C132 D3-C131 D3-C097 D3-C223">Google defined quality as the effort, originality, talent or skill and accuracy a person put into content, and called it one of the most important of hundreds of ranking signals. A community talk argued that SEO is for humans, and the Discover talk put trust first.</div>
+  </div>
+
+  <h3>Not one system, but hundreds of signals</h3>
+  <figure data-claims="D3-C133 D3-C135 D3-C137 D3-C138">
+    <svg viewBox="0 0 680 82" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <g font-size="10.5" fill="#0f1d33" text-anchor="middle">
+        <rect x="0.5" y="2" width="111" height="28" rx="8" fill="#e8eefd"/><text x="56" y="20">Spam detection</text>
+        <rect x="120" y="2" width="111" height="28" rx="8" fill="#e8eefd"/><text x="175.5" y="20">Reviews system</text>
+        <rect x="239" y="2" width="54" height="28" rx="8" fill="#e8eefd"/><text x="266" y="20">BERT</text>
+        <rect x="301" y="2" width="54" height="28" rx="8" fill="#fff" stroke="#b86e00" stroke-width="1.3"/><text x="328" y="20">MUM</text>
+        <rect x="363" y="2" width="84" height="28" rx="8" fill="#e8eefd"/><text x="405" y="20">RankBrain</text>
+        <rect x="455" y="2" width="96" height="28" rx="8" fill="#e8eefd"/><text x="503" y="20">Freshness</text>
+        <rect x="0.5" y="38" width="111" height="28" rx="8" fill="#e8eefd"/><text x="56" y="56">Deduplication</text>
+        <rect x="120" y="38" width="140" height="28" rx="8" fill="#e8eefd"/><text x="190" y="56">Crisis information</text>
+        <rect x="268" y="38" width="179" height="28" rx="8" fill="#fff" stroke="#b86e00" stroke-width="1.3"/><text x="357.5" y="56">Link analysis (PageRank)</text>
+      </g>
+      <text x="463" y="47" font-size="9.5" fill="#b86e00">Amber outline: Google's ranking</text>
+      <text x="463" y="60" font-size="9.5" fill="#b86e00">systems guide qualifies these two</text>
+      <text x="463" y="73" font-size="9.5" fill="#b86e00">(see the Analysis below)</text>
+    </svg>
+    <figcaption><b>"There's not one single ranking system."</b> The systems named on Google's slide: examples, not the full set.</figcaption>
+  </figure>
+  <p data-claims="D3-C134 D3-C131 D3-C130 D3-C143 D3-C142 D3-C144"><span class="tag stage">Stage</span> Quality sits in the core ranking systems as a signal of its own, a number calculated from many parts <span class="muted">(not&nbsp;in&nbsp;docs)</span>: one of the most important, but one among hundreds ("quality" is a repaired speech-to-text reading). "Big takeaway: always remember, there's hundreds of ranking signals." For news, freshness, diversity and originality probably weigh more. <span class="tag analysis">Analysis</span> Improve content, links, page experience and freshness together, not one metric.</p>
+  <p data-claims="D3-C136 D3-C138 D3-C137 D3-C135"><span class="tag stage">Stage</span> PageRank, the speaker's favourite, "even though we don't really use them so much anymore" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> It has evolved and is still a core system. <span class="tag analysis">Analysis</span> It weighs less, but links still matter. And per the guide MUM is not used for general ranking: the slide lists systems Google runs.</p>
+
+  <h3>Quality, defined: four attributes</h3>
+  <div class="quote" data-claims="D3-C132 D3-C170">"Quality is basically the extent to which a human being put effort, originality, talent, skill, and accuracy into creating content."<span class="by">Google's quality talk, citing page 21 of the rater guidelines</span></div>
+  <div class="grid4">
+    <div class="card" data-claims="D3-C171"><div class="badge" style="color:#2457e6">Effort</div><div class="cs"><span class="tag stage">Stage</span> How much a human actively worked to create satisfying content.</div></div>
+    <div class="card" data-claims="D3-C172"><div class="badge" style="color:#0b8a5f">Originality</div><div class="cs"><span class="tag stage">Stage</span> Found nowhere else or, if similar content exists, adding more value.</div></div>
+    <div class="card" data-claims="D3-C174"><div class="badge" style="color:#6d3fd6">Talent or skill</div><div class="cs"><span class="tag stage">Stage</span> Enough to give users a satisfying experience.</div></div>
+    <div class="card" data-claims="D3-C175"><div class="badge" style="color:#b86e00">Accuracy</div><div class="cs"><span class="tag stage">Stage</span> Above all on YMYL and health topics.</div></div>
+  </div>
+  <p data-claims="D3-C176 D3-C217 D3-C173"><span class="tag docs">Docs</span> Google's helpful-content guidance lists the same four attributes, and says generative AI used to mass-produce text without oversight represents little to no effort. <span class="tag analysis">Analysis</span> Google updated that page on 1 October 2026, during the event, to match the talk: cite it, not the talk. The rater guidelines ask whether a page is the original source: aim for that, and add substantial value where you build on others.</p>
+
+  <h3>How a change reaches Search</h3>
+  <figure data-claims="D3-C151 D3-C156 D3-C165 D3-C152 D3-C155 D3-C153 D3-C154">
+    <svg viewBox="0 0 680 96" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs><marker id="s4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker></defs>
+      <rect x="0.5" y="2" width="148.5" height="92" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="12" y="23" font-size="12" font-weight="700" fill="#0f1d33">1 · Idea</text>
+      <g font-size="9.5" fill="#2a3446"><text x="12" y="42">A proposed change, such</text><text x="12" y="55">as rewriting a page's</text><text x="12" y="68">title link with AI</text></g>
+      <path d="M149 48H175" stroke="#667085" stroke-width="1.3" marker-end="url(#s4a)"/>
+      <rect x="177" y="2" width="149" height="92" rx="10" fill="#e8eefd"/>
+      <text x="189" y="23" font-size="12" font-weight="700" fill="#0f1d33">2 · Side-by-side</text>
+      <g font-size="9.5" fill="#2a3446"><text x="189" y="42">Raters see results with</text><text x="189" y="55">and without the change,</text><text x="189" y="68">say which they prefer</text><text x="189" y="81">and explain why</text></g>
+      <path d="M326 48H352" stroke="#667085" stroke-width="1.3" marker-end="url(#s4a)"/>
+      <rect x="354" y="2" width="149" height="92" rx="10" fill="#e8eefd"/>
+      <text x="366" y="23" font-size="12" font-weight="700" fill="#0f1d33">3 · Live traffic</text>
+      <g font-size="9.5" fill="#2a3446"><text x="366" y="42">Usually starts with 0.1%</text><text x="366" y="55">of users against a</text><text x="366" y="68">control group, judged on</text><text x="366" y="81">hundreds of metrics</text></g>
+      <path d="M503 48H529" stroke="#667085" stroke-width="1.3" marker-end="url(#s4a)"/>
+      <rect x="531" y="2" width="149" height="92" rx="10" fill="#0b1a33"/>
+      <text x="543" y="23" font-size="12" font-weight="700" fill="#fff">4 · Launch</text>
+      <g font-size="9.5" fill="#e3eaff"><text x="543" y="42">Only changes shown to</text><text x="543" y="55">move the metrics in a</text><text x="543" y="68">way that benefits users</text></g>
+    </svg>
+    <figcaption><b>From idea to launch.</b> The steps described in the quality talk; the 0.1% start and the raters' "which and why" are from Google's How Search Works page.</figcaption>
+  </figure>
+  <div class="grid4">
+    <div class="stat" data-claims="D3-C149 D3-C238"><div class="v">719,326</div><div class="l">search quality tests</div><div class="s">2023, Google's slide and How Search Works</div></div>
+    <div class="stat" data-claims="D3-C149 D3-C238"><div class="v">124,942</div><div class="l">side-by-side experiments</div><div class="s">2023, same sources</div></div>
+    <div class="stat" data-claims="D3-C149 D3-C238"><div class="v">16,871</div><div class="l">live traffic experiments</div><div class="s">2023, same sources</div></div>
+    <div class="stat" data-claims="D3-C149 D3-C238"><div class="v">4,781</div><div class="l">launches to Search</div><div class="s">2023, same sources</div></div>
+  </div>
+  <p data-claims="D3-C147 D3-C150 D3-C157"><span class="tag stage">Stage</span> Thousands of experiments are probably running at any moment. <span class="tag analysis">Analysis</span> A later slide rounded the figures to 800,000+ tests and 4,700+ launches; cite the exact ones, with the year. Against nine named ranking updates on the status dashboard in 2023, almost every launch goes unannounced: monitor continuously, not only around announced updates.</p>
+
+  <h3>Search quality raters</h3>
+  <p data-claims="D3-C158 D3-C159 D3-C160 D3-C163 D3-C164 D3-C165"><span class="tag slide">Slide</span> Independent reviewers who help Google judge a change before launch, working from the Search Quality Rater Guidelines (goo.gle/raters-guidelines). "They can not affect individual site's rankings." <span class="tag stage">Stage</span> They are external, and may also work for other search engines <span class="muted">(that last point not&nbsp;in&nbsp;docs)</span>. They rate results for a change and explain their rating.</p>
+  <p data-claims="D3-C167 D3-C168 D3-C169"><span class="tag stage">Stage</span> Ratings measure how well search engines deliver helpful content; nothing in the guidelines is itself a ranking factor. <span class="tag analysis">Analysis</span> Read them as what Google's systems aim to reward, not as a checklist.</p>
+
+  <h3>Commodity and non-commodity content</h3>
+  <table class="avoid">
+    <thead><tr><th style="width:28mm"></th><th>Google's quality talk <span class="tag stage">Stage</span></th><th style="width:60mm">Google's AI features guide <span class="tag docs">Docs</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C177 D3-C178 D3-C180"><td class="k">Commodity</td><td>"Top 10 things to consider when buying running shoes": common knowledge anyone could write, little insight.</td><td>"7 Tips for First-Time Homebuyers".</td></tr>
+      <tr data-claims="D3-C177 D3-C179 D3-C180"><td class="k">Non-commodity</td><td>Why certain running shoes collapse after 400 miles, from wear-pattern analysis: a unique, experienced take.</td><td>A first-hand account of waiving a home inspection.</td></tr>
+      <tr data-claims="D3-C193 D3-C195"><td class="k">Strong example</td><td>A review site that cut shoes apart, studied the foam under a microscope, built a test rig and its own metrics (not named).</td><td>Reviews earn trust by showing how many products were tested, the results and the method.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C181 D3-C184 D3-C190 D3-C191 D3-C196"><span class="tag stage">Stage</span> Illustrations, not a recipe. On AI content, the speaker gave a personal opinion and one firm line: "it's very important to think about these quality issues as quality issues and not AI versus human content." <span class="tag analysis">Analysis</span> Ask whether an article adds more than an LLM would answer directly. For reviews: test the products, publish your own photos and measurements, explain the method.</p>
+
+  <h3>Lightning session K: SEO is for humans</h3>
+  <p data-claims="D3-C097 D3-C098 D3-C100 D3-C101 D3-C099"><span class="tag stage">Stage</span> A community speaker: "SEO is for humans". Around 2009 writers bent titles to hit their CMS's keyword-density score, and it worked at the time <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Today that is keyword stuffing, and Google has no preferred word count. <span class="tag analysis">Analysis</span> Plug-in scores are not editorial targets.</p>
+  <p data-claims="D3-C102 D3-C105 D3-C106"><span class="tag stage">Stage</span> Entering Poland late with a small team, a large Spanish software-download site went deep instead of broad, and its Polish edition reached the top three Polish technology sites and double the organic traffic of its English edition (period not stated).</p>
+  <div class="callout blue avoid">
+    <div class="h">A community case study: niche beats broad</div>
+    <p data-claims="D3-C119 D3-C120 D3-C121 D3-C122 D3-C126"><span class="tag stage">Stage</span> A complete, well-written article got 1,600,000 impressions; one for a very specific audience (friends looking for an alternative to a failing game server) got 46,000 in the same period, yet 28 times more clicks, and its visitors converted 10 times more. <span class="tag analysis">Analysis</span> No source or absolute numbers were given, so treat it as an illustration, not a benchmark.</p>
+  </div>
+  <p data-claims="D3-C128 D3-C129"><span class="tag stage">Stage</span> "walk out of your shop. Stand on the other side of the street, look at the shop the way your users are looking at it". If you can't say what problems your pages solve, you are optimising for the search engine.</p>
+
+  <h3>Discover: trust first</h3>
+  <figure data-claims="D3-C218 D3-C223 D3-C219 D3-C221">
+    <svg viewBox="0 0 680 122" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="s4c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c8372d"/></marker>
+        <marker id="s4d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0b8a5f"/></marker>
+      </defs>
+      <rect x="0.5" y="42" width="109.5" height="38" rx="10" fill="#e8eefd"/>
+      <text x="55" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Content</text>
+      <text x="55" y="72" text-anchor="middle" font-size="9.5" fill="#2a3446">in the index</text>
+      <path d="M110 61H128V19H238" stroke="#667085" stroke-width="1.3" fill="none" marker-end="url(#s4b)"/>
+      <path d="M128 61H238" stroke="#667085" stroke-width="1.3" fill="none" marker-end="url(#s4b)"/>
+      <path d="M128 61V103H238" stroke="#0b8a5f" stroke-width="1.3" fill="none" marker-end="url(#s4d)"/>
+      <g font-size="9" fill="#667085"><text x="136" y="14">policy violation</text><text x="136" y="56">low quality</text></g>
+      <text x="136" y="98" font-size="9" fill="#0b8a5f">safe and trusted</text>
+      <rect x="240" y="2" width="180" height="34" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="330" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="#0f1d33">Policy compliance check</text>
+      <rect x="240" y="44" width="180" height="34" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="330" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#0f1d33">E-E-A-T quality check</text>
+      <rect x="240" y="86" width="180" height="34" rx="10" fill="#e3f4ec" stroke="#0b8a5f"/>
+      <text x="330" y="107" text-anchor="middle" font-size="11" font-weight="700" fill="#0b8a5f">Eligible for Discover</text>
+      <path d="M420 19H438" stroke="#c8372d" stroke-width="1.3" marker-end="url(#s4c)"/>
+      <path d="M420 61H438" stroke="#c8372d" stroke-width="1.3" marker-end="url(#s4c)"/>
+      <rect x="440" y="2" width="110" height="76" rx="10" fill="#fbe7e5"/>
+      <text x="495" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#c8372d">Filtered out</text>
+      <text x="495" y="53" text-anchor="middle" font-size="9" fill="#c8372d">(can end here)</text>
+      <text x="566" y="14" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">TRUST FIRST</text>
+      <g font-size="9.5" fill="#2a3446"><text x="566" y="31">Untrustworthy pages</text><text x="566" y="44">have low E-E-A-T, no</text><text x="566" y="57">matter how expert</text><text x="566" y="70">they may seem</text></g>
+      <path d="M420 103H438" stroke="#0b8a5f" stroke-width="1.3" marker-end="url(#s4d)"/>
+      <rect x="440" y="86" width="239.5" height="34" rx="10" fill="#f5f7fb"/>
+      <text x="452" y="100" font-size="9.5" fill="#2a3446">Not guaranteed to appear. A large, sharp</text>
+      <text x="452" y="113" font-size="9.5" fill="#2a3446">image raises the click-through rate</text>
+    </svg>
+    <figcaption><b>The Discover gate.</b> Redrawn from Google's Discover slide. Google's docs add that indexed content meeting the content policies is eligible automatically, with no special tags or markup.</figcaption>
+  </figure>
+  <p data-claims="D3-C220 D3-C222 D3-C223"><span class="tag docs">Docs</span> Discover uses many of the same signals and systems as Search. <span class="tag slide">Slide</span> E-E-A-T: first-hand experience, the knowledge or skill, and being a go-to source; and "untrustworthy pages will have low E-E-A-T no matter how Experienced, Expert or Authoritative they may seem".</p>
+  <p data-claims="D3-C224 D3-C225 D3-C226 D3-C227 D3-C229"><span class="tag slide">Slide</span> Images at least 1,200&nbsp;px wide, over 300,000 pixels, 16x9, enabled by <code class="nw">max-image-preview:large</code>; no site logos, text-heavy or misleading images. <span class="tag docs">Docs</span> Name the image in schema.org markup or <code>og:image</code>; news sources need clear dates, bylines, author and publisher details and contact information.</p>
+  <p data-claims="D3-C230"><span class="tag analysis">Analysis</span> On article templates: <code class="nw">max-image-preview:large</code>, a relevant 1,200&nbsp;px image in <code>og:image</code>, bylines and dates.</p>
+
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="s" id="s05">
+  <div class="section-head">
+    <div class="num">05</div>
+    <div class="kicker">Section 05 · What are quality updates</div>
+    <h2>Core updates and spam</h2>
+    <div class="lead" data-claims="D3-C238 D3-C258 D3-C262 D3-C288 D3-C293">Google changes Search thousands of times a year. Core updates reassess quality across the web and punish no one; spam updates target spam only, and only they come with a recovery in the usual sense.</div>
+  </div>
+
+  <h3>Why Search changes</h3>
+  <p data-claims="D3-C242 D3-C243 D3-C244 D3-C245"><span class="tag slide">Slide</span> Three reasons: new content formats, which may get Search features once enough people look for them <span class="muted">(not&nbsp;in&nbsp;docs)</span>; a broader web, where the best content is harder to find (core updates); and spammers finding loopholes (targeted algorithms).</p>
+  <p data-claims="D3-C248 D3-C250 D3-C253 D3-C254 D3-C255 D3-C257"><span class="tag stage">Stage</span> The speaker's own label for feature launches is "feature updates": "It's not an official name." Every update has one goal: better results. <span class="tag docs">Docs</span> Google's first index held 26 million pages in 1998. <span class="tag analysis">Analysis</span> Quote that, not the rounded 25 million said on stage. <span class="tag stage">Stage</span> For [durian], each result of 2000 faces about 20,000 in 2025 <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <div class="grid3">
+    <div class="stat" data-claims="D3-C239 D3-C240 D3-C241 D3-C197 D3-C200"><div class="v">40 billion</div><div class="l">spammy pages Google discovers every day; on stage, "tens of billions"</div><div class="s">Google's published figure (webspam report for 2020); the slide put it under "In 2023"</div></div>
+    <div class="stat" data-claims="D3-C275 D3-C276"><div class="v">&gt;99%</div><div class="l">of visits from Search spam-free: Google's aim, which it says it meets</div><div class="s">Measured as visits or searches, not results</div></div>
+    <div class="stat" data-claims="D3-C261"><div class="v">2 + 4</div><div class="l">core updates (March, May) and spam updates (March, June, August, September) in 2026</div><div class="s">Search Status Dashboard, 3 October 2026</div></div>
+  </div>
+
+  <h3>Core update or spam update?</h3>
+  <table>
+    <thead><tr><th style="width:22mm"></th><th>Core update</th><th>Spam update</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C259 D3-C260 D3-C287 D3-C202"><td class="k">What it is</td><td><span class="tag stage">Stage</span> A broad change to Google's systems, several times a year, posted on the Search Status Dashboard.</td><td><span class="tag docs">Docs</span> A notable improvement to the always-running spam systems, such as SpamBrain. The September 2026 one began on 24 September.</td></tr>
+      <tr data-claims="D3-C262 D3-C264 D3-C288 D3-C286"><td class="k">Targets</td><td><span class="tag stage">Stage</span> No sites: it changes how Google assesses properties of content. Pages that drop usually break no spam policy.</td><td><span class="tag stage">Stage</span> Spam only: new loopholes, and sites churning out millions of low-quality pages for money.</td></tr>
+      <tr data-claims="D3-C258 D3-C293 D3-C289"><td class="k">"Recovery"?</td><td><span class="tag stage">Stage</span> "Core updates are not punitive." Technically none, "because you were not penalized".</td><td><span class="tag slide">Slide</span> Yes: remove the kind of spam the update's announcement describes.</td></tr>
+      <tr data-claims="D3-C295 D3-C296 D3-C291 D3-C292"><td class="k">How long</td><td><span class="tag docs">Docs</span> Days to months, sometimes the next core update; smaller, unannounced core updates can also help.</td><td><span class="tag docs">Docs</span> Months. After a link spam update, the benefit of the spammy links is gone for good.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C263 D3-C265 D3-C266"><span class="tag stage">Stage</span> When pages drop, others rise: a core update may reward under-rewarded pages. It sometimes comes with new rater guidelines <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Each is tested first, with rater feedback not used directly in ranking.</p>
+
+  <h3>After a core update drop</h3>
+  <p data-claims="D3-C268 D3-C271 D3-C269 D3-C270"><span class="tag stage">Stage</span> Look at the whole site: "you should check if your site overall, not just individual pages, is delivering content that's helpful, reliable, and people-first". Ask someone else to review it, and ask users, for example with CSAT surveys <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D3-C272 D3-C273 D3-C294 D3-C297 D3-C298"><span class="tag docs">Docs</span> Wait a full week after the rollout ends, then compare with a week before it. A drop from 2 to 4 needs no drastic action; 4 to 29 needs a deeper look. <span class="tag stage">Stage</span> Improving the whole site can win rankings back, but a competitor may simply be better now. <span class="tag slide">Slide</span> Learn from the sites doing better.</p>
+  <div class="callout avoid" data-claims="D3-C299">
+    <div class="h">Analysis · a review plan, not a "recovery"</div>
+    <p><span class="tag analysis">Analysis</span> Plan a site-wide quality review instead of page-by-page fixes: an outside reviewer, a comparison with the pages that gained, and a test of whether users can finish their task.</p>
+  </div>
+
+  <h3>Spam: the five types on the slide, and what replaced them</h3>
+  <p data-claims="D3-C274 D3-C277"><span class="tag stage">Stage</span> Spam is content designed to deceive users or manipulate search results. <span class="tag slide">Slide</span> "Spam, spam and spam!" listed five types (more at goo.gle/spam-policy).</p>
+  <table class="avoid">
+    <thead><tr><th style="width:25mm">Type</th><th>Google's slide <span class="tag slide">Slide</span></th><th style="width:60mm">Check for developers <span class="tag analysis">Analysis</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C278 D3-C301"><td class="k">Cloaking</td><td>Different content for users and search engines, to manipulate rankings.</td><td>Serve Googlebot what users get.</td></tr>
+      <tr data-claims="D3-C279 D3-C301"><td class="k">Doorways</td><td>Pages made to rank for similar queries, leading to less useful pages.</td><td>No near-identical location or keyword pages.</td></tr>
+      <tr data-claims="D3-C280 D3-C301"><td class="k">Scraped content</td><td>Content taken from other sites without adding value.</td><td>Add value to any reused content.</td></tr>
+      <tr data-claims="D3-C281 D3-C300"><td class="k">Link spam</td><td>Any links meant to manipulate rankings.</td><td>Today, audit mass-produced pages first.</td></tr>
+      <tr data-claims="D3-C282 D3-C301"><td class="k">Hacked content</td><td>Content placed through security holes; prevention is key.</td><td>Patch and monitor the CMS for injected pages.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C283 D3-C284 D3-C300 D3-C205 D3-C206 D3-C201"><span class="tag stage">Stage</span> "Some of these, I would say, are not that common anymore, or we don't care all that much about them." Scaled content abuse would replace link spam <span class="muted">(both points not&nbsp;in&nbsp;docs)</span>. AI lets Google test more candidates, launch spam updates faster and catch new spam; four had shipped in 2026 by 2 October. <span class="tag analysis">Analysis</span> Audit mass-produced pages, AI-made ones included, before old link patterns.</p>
+  <div class="grid2">
+    <div class="card" data-claims="D3-C207 D3-C208 D3-C209 D3-C210 D3-C211"><div class="badge" style="color:#c8372d">New policy</div><div class="ct">Back button hijacking</div><div class="cs"><span class="tag stage">Stage</span> Added after many user complaints. <span class="tag docs">Docs</span> Announced 13 April 2026, enforced from 15 June 2026; ad or library code can cause it. <span class="tag analysis">Analysis</span> Test that back returns users to the results; audit History API and vendor scripts.</div></div>
+    <div class="card" data-claims="D3-C212 D3-C213 D3-C214 D3-C215"><div class="badge" style="color:#6d3fd6">Clarified</div><div class="ct">Manipulating AI responses</div><div class="cs"><span class="tag stage">Stage</span> Spam aimed at AI answers breaks the policies too. <span class="tag analysis">Analysis</span> Hidden text for AI or pages for fan-out queries: same rules. <span class="tag stage">Stage</span> Spam reports steer Google's work. <span class="tag docs">Docs</span> Report text goes to the site owner.</div></div>
+  </div>
+
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="s" id="s06">
+  <div class="section-head">
+    <div class="num">06</div>
+    <div class="kicker">Section 06 · How Search results are born · Gary Illyes</div>
+    <h2>Search features and rich results</h2>
+    <div class="lead" data-claims="D3-C322 D3-C323 D3-C324 D3-C325">Search features are built as the last serving step, after ranking, and most need nothing from the site owner. Rich results are the exception, usually built from structured data; AI Overviews and AI Mode are not rich results.</div>
+  </div>
+
+  <p data-claims="D3-C302 D3-C303"><span class="tag stage">Stage</span> Gary Illyes called the results page an auction where result types bid for space (a metaphor, not ads). Text results are the most common type <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>Query understanding picks the result types</h3>
+  <p data-claims="D3-C304 D3-C305 D3-C309 D3-C310"><span class="tag stage">Stage</span> Query understanding predicts intent, and with it the result types. [orange pictures] names the type; for an ambiguous [orange], Google looks at how users reacted to result types for similar queries. <span class="tag docs">Docs</span> Aggregated, anonymized interaction data becomes signals for its machine-learned systems.</p>
+  <p data-claims="D3-C306 D3-C307 D3-C308 D3-C311 D3-C312"><span class="tag stage">Stage</span> From 2005–2006 people added "pictures" to queries, which led to universal search <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Launched 16 May 2007. <span class="tag analysis">Analysis</span> The launch post cites other reasons. <span class="tag stage">Stage</span> An image query is broken into embeddings searched for in the index, and its intent can still be detected <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>Anatomy of a text result</h3>
+  <figure data-claims="D3-C314 D3-C315 D3-C316 D3-C317 D3-C313">
+    <svg viewBox="0 0 680 128" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0.5" width="379.5" height="126" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <circle cx="26" cy="24" r="9" fill="#e8eefd" stroke="#2457e6"/>
+      <text x="42" y="21" font-size="11" font-weight="700" fill="#0f1d33">Example Site</text>
+      <text x="42" y="34" font-size="9" fill="#667085">https://example.com › guides › running</text>
+      <text x="16" y="60" font-size="13.5" fill="#2457e6">How running shoes wear out: a lab test</text>
+      <g stroke="#98a2b3" stroke-width="3" stroke-linecap="round"><path d="M16 76H330"/><path d="M16 88H300"/></g>
+      <rect x="16" y="99" width="78" height="18" rx="9" fill="#f5f7fb" stroke="#c7cdd8"/>
+      <text x="55" y="111.5" text-anchor="middle" font-size="9" fill="#667085">Highly cited</text>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <circle cx="300" cy="24" r="8" fill="#0b1a33"/><text x="300" y="27.5">1</text>
+        <circle cx="356" cy="56" r="8" fill="#2457e6"/><text x="356" y="59.5">2</text>
+        <circle cx="350" cy="82" r="8" fill="#0b1a33"/><text x="350" y="85.5">3</text>
+        <circle cx="112" cy="108" r="8" fill="#0b1a33"/><text x="112" y="111.5">4</text>
+        <circle cx="410" cy="12" r="8" fill="#0b1a33"/><text x="410" y="15.5">1</text>
+        <circle cx="410" cy="46" r="8" fill="#2457e6"/><text x="410" y="49.5">2</text>
+        <circle cx="410" cy="80" r="8" fill="#0b1a33"/><text x="410" y="83.5">3</text>
+        <circle cx="410" cy="112" r="8" fill="#0b1a33"/><text x="410" y="115.5">4</text>
+      </g>
+      <g font-size="11" font-weight="700" fill="#0f1d33">
+        <text x="426" y="16">Attribution</text><text x="426" y="50" fill="#2457e6">Title link</text><text x="426" y="84">Snippet</text><text x="426" y="116">Badge</text>
+      </g>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="426" y="29">Site name, favicon and visible URL</text>
+        <text x="426" y="63">Generated from the page's content</text>
+        <text x="426" y="97">Generated from Google's understanding</text>
+        <text x="470" y="116">e.g. highly cited, preferred source</text>
+      </g>
+    </svg>
+    <figcaption><b>A text result, drawn abstractly</b> as Google's Visual Elements gallery does, so it doesn't date like a screenshot. Illustrative page and site.</figcaption>
+  </figure>
+  <p data-claims="D3-C316 D3-C319 D3-C320"><span class="tag stage">Stage</span> Title links and snippets come from Google's understanding of the page, even when the owner adds nothing. Image results come from the image index <span class="muted">(not&nbsp;in&nbsp;docs)</span>; video thumbnails and attribution from the page or its markup.</p>
+
+  <h3>Search features come last; rich results need data</h3>
+  <p data-claims="D3-C321 D3-C322 D3-C323 D3-C324"><span class="tag slide">Slide</span> Search Features is the last step on Google's serving diagram. <span class="tag stage">Stage</span> Results come back from the index and are ranked; then the features are built, mostly from what Google extracted at indexing, with nothing needed from the owner. Rich results are the exception: "The magic behind rich results is usually structured data. Emphasis on 'usually'." Usually <span class="nw">JSON-LD</span>.</p>
+  <div class="callout avoid">
+    <div class="h">AI features are not rich results</div>
+    <p data-claims="D3-C325 D3-C327 D3-C326"><span class="tag stage">Stage</span> "AI Mode and AI Overviews are not rich results." They work from the normal text results; only future parts such as images or recipes would need structured data. <span class="tag docs">Docs</span> No special schema.org markup: a page must be indexed and eligible for a snippet.</p>
+    <p data-claims="D3-C328 D2-C476"><span class="tag analysis">Analysis</span> Day 2 said processed markup also feeds these features: markup is no condition for appearing, but its data can still reach them.</p>
+  </div>
+
+  <h3>Articles, site names and reviews</h3>
+  <div class="grid2" style="grid-template-columns: 1fr 92mm; align-items: start;">
+    <div>
+      <p class="mt0" data-claims="D3-C331 D3-C332 D3-C333 D3-C334"><span class="tag slide">Slide</span> Article markup: "Not required for ‘Top Stories,’ but highly recommended for all articles." It can also flag paywalled content. The slide showed the <code>NewsArticle</code> example from Google's docs (redrawn here). <span class="tag docs">Docs</span> It tells Google explicitly that the page is a news article, its author and its title.</p>
+      <p data-claims="D3-C335 D3-C336"><span class="tag stage">Stage</span> The site name is an attribution feature, not a rich result. <span class="tag docs">Docs</span> Google generates it; state a preferred name with <code>WebSite</code> markup on the home page.</p>
+    </div>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D3-C334"><span class="c">&lt;!-- in &lt;head&gt;, example values --&gt;</span>
+&lt;script type="application/ld+json"&gt;
+{ <span class="k">"@context"</span>: "https://schema.org",
+  <span class="k">"@type"</span>: <span class="v">"NewsArticle"</span>,
+  <span class="k">"headline"</span>: "Running shoes, tested",
+  <span class="k">"image"</span>: [ "https://example.com/1x1.jpg",
+    "https://example.com/4x3.jpg",
+    "https://example.com/16x9.jpg" ],
+  <span class="k">"datePublished"</span>: "2026-10-02T08:00+02:00",
+  <span class="k">"dateModified"</span>: "2026-10-03T09:20+02:00",
+  <span class="k">"author"</span>: [{ <span class="k">"@type"</span>: "Person",
+    <span class="k">"name"</span>: "Jane Doe",
+    <span class="k">"url"</span>: "https://example.com/jane" }] }
+&lt;/script&gt;</pre>
+  </div>
+  <p data-claims="D3-C337 D3-C338 D3-C339 D3-C340"><span class="tag stage">Stage</span> Review snippets show the average rating and often the review count, for products, businesses, films or books: "Those little yellow stars are a powerful signal of quality and trust for our users" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Self-serving reviews of your own business are not eligible.</p>
+
+  <h3>Which product surface needs what</h3>
+  <table class="avoid">
+    <thead><tr><th style="width:34mm">Surface</th><th style="width:26mm">Product markup</th><th style="width:28mm">Merchant Center</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C342 D3-C343 D3-C344"><td class="k">Product rich results</td><td class="ok">✓ Enough</td><td>Optional</td><td><span class="tag stage">Stage</span> "Essential" for e-commerce. <span class="tag docs">Docs</span> Both together maximise eligibility.</td></tr>
+      <tr data-claims="D3-C345"><td class="k">Google Images product annotations</td><td class="ok">✓ Enough</td><td>Not needed</td><td><span class="tag stage">Stage</span> Also built from product markup.</td></tr>
+      <tr data-claims="D3-C346 D3-C347 D3-C348"><td class="k">Shopping tab</td><td class="no">✕ Not enough</td><td class="ok">✓ Required</td><td><span class="tag stage">Stage</span> Submit products in Merchant Center. <span class="tag docs">Docs</span> Crawled products can appear on Google without either; the page doesn't say if that covers this tab. <span class="tag analysis">Analysis</span> Assume a feed.</td></tr>
+      <tr data-claims="D3-C349 D3-C350 D3-C351"><td class="k">Feed checks</td><td>Helps</td><td>Doesn't need markup</td><td><span class="tag stage">Stage</span> Markup can help validate. <span class="tag docs">Docs</span> Automatic item updates use it to fix price and availability. <span class="tag analysis">Analysis</span> Keep both identical.</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<!-- ================= 07 ================= -->
+<section class="s" id="s07">
+  <div class="section-head">
+    <div class="num">07</div>
+    <div class="kicker">Section 07 · Shopping on Search · Alex Jansen, Google Shopping</div>
+    <h2>Product data for AI shopping</h2>
+    <div class="lead" data-claims="D3-C357 D3-C363 D3-C365 D3-C358 D3-C404">AI Mode answers deeper product questions than classic shopping results, so Google added a few flexible Merchant Center attributes rather than hundreds of narrow ones. Product data quality matters more than ever, for AI and for agents that buy on a user's behalf.</div>
+  </div>
+
+  <p data-claims="D3-C352 D3-C353 D3-C354 D3-C355 D3-C356 D3-C402"><span class="tag stage">Stage</span> Google Shopping gets billions of product offers from Merchant Center feeds and from schema.org product markup on websites <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>; both power product snippets in Search. Classic results have little room, so a few attributes were enough: title, image, price, perhaps ratings, shipping and returns. Behind them, brand and barcode (UPC) drive query understanding, retrieval and ranking, and still matter as much.</p>
+  <p data-claims="D3-C357 D3-C358 D3-C404"><span class="tag stage">Stage</span> AI Mode must return far more detail, as shoppers keep asking deeper follow-up questions. Data quality matters most for agents that act for a consumer: "If the agent has bad data, it cannot do the right things." It might buy the wrong product <span class="muted">(the agent point not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>Six new attributes, not hundreds</h3>
+  <p data-claims="D3-C359 D3-C360 D3-C363 D3-C364 D3-C361 D3-C362"><span class="tag stage">Stage</span> After merchants asked whether AI experiences represented them correctly, Google added feed attributes in 2026, announced at Google Marketing Live. It rejected hundreds of thousands of narrow ones, such as heel height or lens details: hard work for merchants and no longer needed for LLMs <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google announced "dozens of new data attributes" on 11 January 2026 for a small group of retailers, and opened conversational attributes to retailers globally on 20 May 2026.</p>
+
+  <table>
+    <thead><tr><th style="width:33mm">Feed attribute</th><th>What it carries <span class="tag stage">Stage</span></th><th style="width:64mm">Documented limits <span class="tag docs">Docs</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C368 D3-C377 D3-C369"><td class="k"><code>question_and_answer</code></td><td>Q&amp;As from the maker or consumers, such as a kettle's temperature settings</td><td>Up to 30 pairs; 1,000 characters each, 10,000 in total; no prices, shipping, dates or company name</td></tr>
+      <tr data-claims="D3-C370 D3-C371"><td class="k"><code>document_link</code></td><td>A PDF manual, spec sheet or package contents</td><td>Up to five PDF URLs; the merchant must own the licensing rights</td></tr>
+      <tr data-claims="D3-C372 D3-C367"><td class="k"><code>related_product</code></td><td>Accessories, parts and replacements, such as what to buy with a printer</td><td>With the two above and <code>popularity_rank</code>: mainly for AI Mode</td></tr>
+      <tr data-claims="D3-C373 D3-C381"><td class="k"><code>item_group_title</code>, <code>variant_option</code></td><td>Variants described far more flexibly than colour and size</td><td><span class="tag analysis">Analysis</span> The only new attribute the help maps to schema.org: <code>item_group_title</code> to <code>ProductGroup.name</code></td></tr>
+      <tr data-claims="D3-C374 D3-C375 D3-C376"><td class="k"><code>popularity_rank</code></td><td>How well the product sells on a marketplace</td><td>0–100, set by the merchant from recent sales against its own inventory. <span class="tag analysis">Analysis</span> Relative and self-reported, not a sales figure</td></tr>
+      <tr data-claims="D3-C392 D3-C393"><td class="k"><code>product_highlight</code> <span class="muted">(existing)</span></td><td>A short bulleted list, now said to help AI systems</td><td>2 to 100 highlights of up to 150 characters; no promotional text or keywords</td></tr>
+      <tr data-claims="D3-C394 D3-C395"><td class="k"><code>product_detail</code> <span class="muted">(existing)</span></td><td>Specifications as key-value pairs, instead of one attribute per spec</td><td>Up to 100, each a section, attribute name and value</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C365 D3-C366 D3-C401 D3-C378 D3-C403"><span class="tag analysis">Analysis</span> All six new attributes (the first five rows) are in the Merchant Center specification on 3 October 2026; January's "dozens" was the wider count. <span class="tag stage">Stage</span> "rich, lightly structured information is critical to AI systems": some structure, no deep nesting, and rich data no standard prescribes, because the merchant knows best <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>Feeds first; schema.org follows</h3>
+  <p data-claims="D3-C380 D3-C396 D3-C397 D3-C399 D3-C398"><span class="tag stage">Stage</span> Most new attributes were said to exist in schema.org already, so Google can read them from markup too, and a recent schema.org release added <code>specification</code> and <code>valueGroup</code> for product details <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Google works to make what feeds and the Universal Commerce Protocol (UCP) express expressible in schema.org. <span class="tag docs">Docs</span> UCP, launched on 11 January 2026, is an open standard for agentic commerce, compatible with A2A, AP2 and MCP.</p>
+  <div class="callout avoid">
+    <div class="h">The feed is the documented route</div>
+    <p data-claims="D3-C381 D3-C400"><span class="tag analysis">Analysis</span> On 3 October 2026 neither the Merchant Center help nor Search Central documented schema.org markup for the other new attributes, and schema.org's release 30.1 (16 September 2026) is not Google documentation. Send them in the feed.</p>
+    <p data-claims="D3-C410 D3-C409"><span class="tag analysis">Analysis</span> <b>Developers:</b> keep price, availability, brand and GTIN accurate first; then add Q&amp;As, highlights, key-value product details and related products in the feed, and mirror them in markup only as Google documents support. <span class="tag stage">Stage</span> Google called this early days.</p>
+    <p data-claims="D3-C411"><span class="tag analysis">Analysis</span> <b>Content teams:</b> fill the Q&amp;A attribute from real customer questions (support tickets, reviews, sales chats), answered factually per product.</p>
+  </div>
+
+  <h3>Product markup: shared policies by <code>@id</code></h3>
+  <div class="grid2" style="grid-template-columns: 1fr 84mm; align-items: start;">
+    <p class="mt0" data-claims="D3-C382 D3-C383 D3-C384"><span class="tag stage">Stage</span> Product markup has product data that is the same for every merchant (name, description, brand, images) and offer data for one merchant (URL, condition, availability, price); an offer can point to shipping and return data defined elsewhere. <span class="tag docs">Docs</span> Define shipping and return policies once under Organization and reference them from each Offer, even on another page, with only the <code>@id</code> keyword: through <code>hasShippingService</code> (inside <code>shippingDetails</code>) for shipping, <code>hasMerchantReturnPolicy</code> for returns.</p>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D3-C384"><span class="c">// Once, under Organization</span>
+<span class="k">"hasMerchantReturnPolicy"</span>: {
+  "@type": "MerchantReturnPolicy",
+  "@id": <span class="v">"https://example.com/#return"</span>,
+  … },
+<span class="c">// In every Offer: only the @id</span>
+<span class="k">"hasMerchantReturnPolicy"</span>: {
+  "@id": <span class="v">"https://example.com/#return"</span>
+}</pre>
+  </div>
+
+  <div class="grid2" style="grid-template-columns: 1fr 50mm; align-items: start;">
+    <div class="card" data-claims="D3-C385 D3-C386 D3-C387 D3-C388 D3-C389 D3-C390"><div class="badge" style="color:#b86e00">Shopping's own crawler</div><div class="ct">Storebot-Google</div><div class="cs"><span class="tag stage">Stage</span> Separate from Googlebot: it needs fresh prices and availability, crawls far more often, checks feed prices on the site and deep-crawls checkout pages. <span class="tag docs">Docs</span> It can fill in checkout forms; robots.txt rules for it affect all Shopping surfaces. <span class="tag analysis">Analysis</span> Don't block it on product, cart or checkout paths, in robots.txt or bot protection.</div></div>
+    <div class="stat" data-claims="D3-C408"><div class="v">50<span class="x">%</span></div><div class="l">of the time, lululemon's own conversational attributes were used in relevant AI Mode recommendations</div><div class="s">Google's testing with one brand; Google blog, 16 September 2026</div></div>
+  </div>
+
+</section>
+
+<!-- ================= 08 ================= -->
+<section class="s" id="s08">
+  <div class="section-head">
+    <div class="num">08</div>
+    <div class="kicker">Section 08 · Inside Search Console · Ariel Kroszynski</div>
+    <h2>Five Search Console launches</h2>
+    <div class="lead" data-claims="D3-C412">Google presented five Search Console launches of the past year: query groups, AI-powered configuration of the Performance report, generative AI control and reporting, platform properties for social accounts, and multimodal search reporting.</div>
+  </div>
+
+  <figure data-claims="D3-C463 D1-C124 D3-C442 D3-C453 D3-C465 D3-C464">
+    <svg viewBox="0 0 680 112" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <line x1="30" y1="56" x2="650" y2="56" stroke="#c7cdd8" stroke-width="2"/>
+      <g fill="#2457e6"><circle cx="40" cy="56" r="6"/><circle cx="432" cy="56" r="6"/><circle cx="495" cy="56" r="6"/></g>
+      <circle cx="640" cy="56" r="7" fill="#0b8a5f"/>
+      <text x="30" y="80" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">27 OCT 2025</text>
+      <text x="30" y="96" font-size="11.5" font-weight="700" fill="#0f1d33">Query groups</text>
+      <text x="432" y="22" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">3 JUN 2026</text>
+      <text x="432" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Generative AI reports</text>
+      <text x="495" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">JUL 2026</text>
+      <text x="495" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Platform properties</text>
+      <text x="650" y="22" text-anchor="end" font-size="9" font-weight="700" letter-spacing="1.2" fill="#0b8a5f">24 SEP 2026 · NEWEST</text>
+      <text x="650" y="38" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f1d33">Multimodal reporting</text>
+      <rect x="150" y="70" width="230" height="36" rx="8" fill="#f5f7fb" stroke="#98a2b3" stroke-dasharray="4 3"/>
+      <text x="164" y="85" font-size="10" font-weight="700" fill="#0f1d33">AI-powered configuration</text>
+      <text x="164" y="99" font-size="9" fill="#667085">no date on stage; experimental</text>
+    </svg>
+    <figcaption><b>A year of launches.</b> Dates of Google's announcements. The AI-powered configuration was presented without a date and is still shown to only a small share of users.</figcaption>
+  </figure>
+
+  <table class="avoid">
+    <thead><tr><th style="width:30mm">Launch</th><th>What it shows <span class="tag stage">Stage</span></th><th style="width:34mm">Where</th><th style="width:52mm">Documented limits <span class="tag docs">Docs</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C413 D3-C421 D3-C422 D3-C463"><td class="k">Query groups</td><td>Queries with the same intent in one group, titled by its most prominent query, with the group's total clicks</td><td>Insights report; a click opens the Performance report</td><td>Computed with AI; groups may change; no effect on ranking; only for properties with many queries</td></tr>
+      <tr data-claims="D3-C429 D3-C464 D3-C435"><td class="k">AI-powered configuration</td><td>A chat box that turns a plain-language request into Performance report settings</td><td>Performance report for Search results</td><td>Experimental; a small share of users; 20 requests per user per day</td></tr>
+      <tr data-claims="D3-C437 D3-C439 D1-C124"><td class="k">Generative AI reports</td><td>Impressions in Google's AI surfaces, by page, country and device</td><td>Left navigation, under Search results</td><td>Impressions only: no clicks, no query dimension</td></tr>
+      <tr data-claims="D3-C443 D3-C447 D3-C466 D3-C467"><td class="k">Platform properties</td><td>Google traffic to an Instagram, TikTok, X or YouTube account</td><td>A property per account, verified through the platform</td><td>Google Search, Discover and News only; ownership rechecked; data after a few days</td></tr>
+      <tr data-claims="D3-C458 D3-C459 D3-C465"><td class="k">Multimodal search reporting</td><td>Searches with Lens, Circle to Search, uploaded images and Chrome's image search</td><td>Performance report, multimodal search type</td><td>Also in the generative AI report; exportable; global from 24 September 2026</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1 · Query groups</h3>
+  <p data-claims="D3-C413 D3-C414 D3-C415 D3-C417 D3-C418 D3-C420"><span class="tag stage">Stage</span> Query groups put together queries with the same intent in different words: more or fewer words, or spelling errors. <span class="tag slide">Slide</span> "How to spell Britney Spears?" <span class="tag stage">Stage</span> Google's logs show hundreds of ways to write it. Grouping goes beyond matching text; granularity is the hard part, and some queries aren't understood or land in illogical groups <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D3-C419 D3-C423 D3-C416 D3-C426 D3-C427"><span class="tag stage">Stage</span> Groups follow meaning: "Gemini" meant the star sign in 2023 and may be grouped differently now. A click on a group opens the Performance report with a regex filter of all its queries. <span class="tag analysis">Analysis</span> The archive page on the slide lists 593 spellings (about 2011). The launch was placed in December on stage; Google's post is dated 27 October 2025. Read groups as intent themes: write for the intent, not each spelling.</p>
+
+  <h3>2 · AI-powered configuration</h3>
+  <p data-claims="D3-C428 D3-C429 D3-C430 D3-C431 D3-C432 D3-C433 D3-C434"><span class="tag stage">Stage</span> The Performance report is complex, so users now describe the analysis in a chat box, in any language <span class="muted">(not&nbsp;in&nbsp;docs)</span>, for example: "Show me queries on phone searches that contain the word sports in the last 6 months." It lists its changes and applies them after approval; follow-ups build on them: "So it's not one-shot, but you can also interact with it." In Google's test, "wine-related queries that lead to my site" produced a regex of wine names, such as Merlot, joined by pipes.</p>
+  <div class="callout avoid">
+    <div class="h">Check the AI-built filter</div>
+    <p data-claims="D3-C464 D3-C435"><span class="tag docs">Docs</span> It keeps existing report filters when it adds new ones. <span class="tag analysis">Analysis</span> Read the proposed filters and regexes before trusting the numbers: the feature is experimental, AI can misread requests, and it covers only the Search results report, without sorting or export.</p>
+  </div>
+
+  <h3>3 · Generative AI control and reporting</h3>
+  <p data-claims="D3-C436 D3-C437 D3-C438 D3-C439 D3-C440 D3-C441"><span class="tag stage">Stage</span> Every property owner can tell Google whether the site's content may be used in AI search results. A report under Search results shows impressions in Google's AI surfaces by page, country and device, and should get richer; the regular Performance report still includes AI traffic. <span class="tag analysis">Analysis</span> No clicks, no queries: measure the visits that follow AI answers in your own analytics.</p>
+
+  <h3>4 · Platform properties</h3>
+  <div class="grid2" style="grid-template-columns: 1fr 60mm; align-items: start; margin-bottom: 1mm;">
+    <p class="mt0" data-claims="D3-C442 D3-C443 D3-C444 D3-C445 D3-C446 D3-C447 D3-C448 D3-C449 D3-C450"><span class="tag stage">Stage</span> Launched three or four months before the event, they bring Instagram, TikTok, X and YouTube accounts into Search Console, with more platforms to come <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>. Instead of a token on the homepage or in DNS, a pop-up from the platform asks the user to let Google identify the account, which proves ownership. A landing page shows clicks, search types, top content, trends, query groups and countries, and Google published a guide to using them.</p>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D3-C451"><span class="c"># Performance › Compare › Page</span>
+<span class="k">URLs containing</span> <span class="v">/watch</span>
+  <span class="c"># YouTube long-form</span>
+<span class="k">URLs containing</span> <span class="v">/shorts/</span>
+  <span class="c"># YouTube Shorts</span>
+<span class="c"># Instagram: /p/ vs reels</span></pre>
+  </div>
+  <p data-claims="D3-C452 D3-C466 D3-C467 D3-C468 D3-C453"><span class="tag stage">Stage</span> In the example channel, long-form videos got more Google traffic than Shorts: one channel, not a rule <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> One property per account; access pauses when the platform login expires; the data covers Google Search, Discover and News only; accounts of a claimed Search profile are added automatically. <span class="tag analysis">Analysis</span> Media teams: add every account, compare formats by URL pattern.</p>
+
+  <h3>5 · Multimodal search reporting</h3>
+  <p data-claims="D3-C454 D3-C455 D3-C457 D3-C458 D3-C459 D3-C465"><span class="tag slide">Slide</span> The newest launch, under a "Hot from the oven" badge. <span class="tag stage">Stage</span> Until about a week and a half before the talk, the Performance report showed essentially text searches. Now Google Lens, Circle to Search, uploaded images and Chrome's right-click image search are counted under the multimodal search type. <span class="tag docs">Docs</span> Announced 24 September 2026; also in the generative AI report, and exportable.</p>
+  <p data-claims="D3-C462 D3-C425"><span class="tag analysis">Analysis</span> This search type has no queries dimension: judge image-led traffic by page, country and device, and make product images distinctive enough for Lens to match. <span class="tag stage">Stage</span> The team reads the thumbs-up and thumbs-down feedback on every new feature.</p>
+
+</section>
+
+<!-- ================= 09 ================= -->
+<section class="s" id="s09">
+  <div class="section-head">
+    <div class="num">09</div>
+    <div class="kicker">Section 09 · Lightning session L: Understanding SERPs and your users</div>
+    <h2>Search Console data and AI visibility</h2>
+    <div class="lead" data-claims="D3-C469 D3-C471 D3-C505 D3-C518">Two community talks. One feeds Search Console's bulk export to an LLM to support decisions for clients; the other argues that rankings and clicks no longer show SEO's value once AI answers take part of the demand.</div>
+  </div>
+
+  <h3>Search Console data, fed to an LLM</h3>
+  <p data-claims="D3-C469 D3-C470 D3-C471"><span class="tag stage">Stage</span> Nik Vujic, an agency founder, feeds Search Console and GA4 data to an LLM agent to support client decisions. Search Console is his favourite SEO tool; third-party tools only estimate. The workflow starts with the bulk export to BigQuery.</p>
+
+  <figure data-claims="D3-C472 D3-C475 D3-C477 D3-C478">
+    <svg viewBox="0 0 680 84" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s9a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <rect x="0.5" y="1" width="149.5" height="82" rx="10" fill="#e8eefd"/>
+      <rect x="176" y="1" width="150" height="82" rx="10" fill="#e8eefd"/>
+      <rect x="352" y="1" width="150" height="82" rx="10" fill="#e8eefd"/>
+      <rect x="528" y="1" width="151.5" height="82" rx="10" fill="#0b1a33"/>
+      <g fill="#2457e6"><circle cx="24" cy="24" r="11"/><circle cx="200" cy="24" r="11"/><circle cx="376" cy="24" r="11"/></g>
+      <g font-size="11" font-weight="700" fill="#fff" text-anchor="middle"><text x="24" y="28">1</text><text x="200" y="28">2</text><text x="376" y="28">3</text></g>
+      <g font-size="11.5" font-weight="700" fill="#0f1d33">
+        <text x="44" y="21">Filter in</text><text x="44" y="35">Search Console</text>
+        <text x="220" y="21">Bulk export</text><text x="220" y="35">to BigQuery</text>
+        <text x="396" y="21">LLM agent</text><text x="396" y="35">queries the data</text>
+      </g>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="14" y="58">branded vs non-branded,</text><text x="14" y="71">clicks and impressions</text>
+        <text x="190" y="58">most complete dataset;</text><text x="190" y="71">anonymized queries out</text>
+        <text x="366" y="58">or, to start, import the</text><text x="366" y="71">data into any LLM</text>
+      </g>
+      <text x="542" y="34" font-size="15" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Evidence,</text>
+      <text x="542" y="52" font-size="15" font-family="Fraunces, 'Noto Symbols'" fill="#fff">not a sample</text>
+      <text x="542" y="71" font-size="9.5" fill="#dbe5ff">for client decisions</text>
+      <g stroke="#667085" stroke-width="1.3"><path d="M151 42H174" marker-end="url(#s9a)"/><path d="M327 42H350" marker-end="url(#s9a)"/><path d="M503 42H526" marker-end="url(#s9a)"/></g>
+    </svg>
+    <figcaption><b>The community workflow.</b> Three steps from Nik Vujic's slides, which add: "No agent needed to start: pull the data and import it into the LLM of your choice, and talk with it."</figcaption>
+  </figure>
+
+  <p data-claims="D3-C472 D3-C473 D3-C499"><span class="tag slide">Slide</span> "Apply the filters you need, even natively in GSC. For example branded vs non-branded, with clicks and impressions." <span class="tag docs">Docs</span> The branded filter is an AI-assisted classification, not a regular expression, and may misidentify some queries. It works only for top-level properties with enough queries and impressions, and has been open to all eligible sites since 11 March 2026.</p>
+
+  <table class="avoid">
+    <thead><tr><th style="width:34mm">Route</th><th style="width:36mm">Limit</th><th>What to know</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C474 D3-C480"><td class="k">Interface export</td><td>1,000 rows</td><td><span class="tag slide">Slide</span> "The UI export is limited to 1,000 rows." <span class="tag docs">Docs</span> Confirmed.</td></tr>
+      <tr data-claims="D3-C479 D3-C480 D3-C502"><td class="k">Search Analytics API, Looker Studio</td><td>50,000 rows per day per site per search type</td><td><span class="tag stage">Stage</span> Looker Studio was the second way past the limits. <span class="tag analysis">Analysis</span> It lifts the 1,000-row limit, not the daily cap.</td></tr>
+      <tr data-claims="D3-C475 D3-C476 D3-C502"><td class="k">Bulk export to BigQuery</td><td>No daily row limit</td><td><span class="tag analysis">Analysis</span> "Anonymized queries excluded" means the text: rows stay with an empty query, often the top "query". Have the LLM skip them in rankings but keep them in totals.</td></tr>
+      <tr data-claims="D3-C481 D3-C500"><td class="k">Any filtered view</td><td>Anonymized queries left out</td><td><span class="tag docs">Docs</span> Filtered rows don't add up to the chart totals. <span class="tag analysis">Analysis</span> Branded plus non-branded won't match the unfiltered total; tell the LLM the gap is expected.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C501"><span class="tag analysis">Analysis</span> Spot-check queries in each branded group before an LLM sees the split; on URL-path or subdomain properties, use a regex query filter.</p>
+
+  <h4>Uses, and where the data misleads</h4>
+  <ul>
+    <li data-claims="D3-C482 D3-C485"><span class="tag stage">Stage</span> Compare articles; to report a refresh on a large site, let the LLM count the queries the content improved on.</li>
+    <li data-claims="D3-C483 D3-C484"><span class="tag stage">Stage</span> After publishing, queries show up first, clicks and impressions much later <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> A query only shows through an impression: what rises first is the number of queries with a few impressions each.</li>
+    <li data-claims="D3-C486 D3-C487"><span class="tag stage">Stage</span> Refresh, because Google loves fresh, quality content <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Google documents freshness systems only for queries that expect current information.</li>
+    <li data-claims="D3-C488 D3-C489 D3-C490"><span class="tag stage">Stage</span> Spot unwanted indexed pages; group an article's queries to fix bad cannibalization; start each experiment with a hypothesis and let the LLM report the test group's data.</li>
+  </ul>
+  <p data-claims="D3-C491 D3-C492 D3-C498 D3-C493 D3-C494 D3-C496 D3-C497"><span class="tag stage">Stage</span> For LLM traffic he trusts only the GA4 API with Looker Studio; GA4's LLM channels miss AI Overviews and AI Mode. <span class="tag docs">Docs</span> Search Console counts that traffic as Web search. <span class="tag stage">Stage</span> Tag Manager events can track each LLM <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Is good SEO good GEO? His agency's combined data says "it depends". <span class="tag analysis">Analysis</span> That mixed Google's AI features with other LLMs; compare each surface per page.</p>
+
+  <h3>A second talk: when rankings rise and clicks don't</h3>
+  <p data-claims="D3-C503 D3-C504 D3-C505 D3-C510 D3-C511"><span class="tag stage">Stage</span> A business's rankings for valuable commercial keywords rose over a year while clicks stayed flat: "we rely on a metric that no longer stands up to scrutiny". AI takes part of the demand, informational queries first; in the speaker's brand data local terms now lose clicks too, and AI features spread to commercial results <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D3-C506 D3-C507 D3-C508"><span class="tag docs">Docs</span> Google wrote in August 2025 that total organic clicks were relatively stable, with traffic shifting between sites and some quick answers ending without a click. <span class="tag analysis">Analysis</span> No figures on either side: measure per site and query type.</p>
+  <p data-claims="D3-C514 D3-C515 D3-C516 D3-C517 D3-C544"><span class="tag stage">Stage</span> Think like marketers before attribution: look at downstream impact on other channels. A cited Similarweb study: AI recommendations lead to later visits, direct, paid or otherwise <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Scope: ChatGPT, US desktop, three industries, 2026; recommended brands 2.5 times likelier to get a visit within 7 days, 55.9% of it branded searches.</p>
+
+  <div class="grid2" style="grid-template-columns: 1fr 58mm; align-items: start;">
+    <div class="card" data-claims="D3-C519 D3-C520 D3-C521 D3-C524"><div class="badge" style="color:#6d3fd6">Community case study</div><div class="ct">A controlled test of AI visibility</div><div class="cs"><span class="tag stage">Stage</span> A brand that had lost organic clicks worked only on its AI visibility for a set period: no campaigns, no budget changes. Inquiries rose significantly (no figure given); the brand had a record month. Its top-of-page share in paid search fell, so paid click-through rate should have dipped.</div></div>
+    <div class="stat" data-claims="D3-C522 D3-C541"><div class="v">+36<span class="x">%</span></div><div class="l">paid search click-through rate during the test</div><div class="s">One unpublished test of one unnamed brand; no period or baseline given: an illustration, not a benchmark</div></div>
+  </div>
+
+  <figure data-claims="D3-C530 D3-C531 D3-C527">
+    <svg viewBox="0 0 680 52" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s9b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <rect x="0.5" y="1" width="149.5" height="50" rx="10" fill="#2457e6"/>
+      <rect x="176" y="1" width="150" height="50" rx="10" fill="#f5f7fb" stroke="#c7cdd8"/>
+      <rect x="352" y="1" width="150" height="50" rx="10" fill="#f5f7fb" stroke="#c7cdd8"/>
+      <rect x="528" y="1" width="151.5" height="50" rx="10" fill="#e8eefd"/>
+      <g font-size="10.5" font-weight="700" text-anchor="middle">
+        <text x="75" y="22" fill="#fff">AI recommendation</text><text x="75" y="37" font-weight="400" font-size="9.5" fill="#dbe5ff">a visit becomes likelier</text>
+        <text x="251" y="22" fill="#0f1d33">Social check</text><text x="251" y="37" font-weight="400" font-size="9.5" fill="#667085">or seen while scrolling</text>
+        <text x="427" y="22" fill="#0f1d33">Brand search</text><text x="427" y="37" font-weight="400" font-size="9.5" fill="#667085">organic, or a paid ad</text>
+        <text x="604" y="22" fill="#0f1d33">Generic search</text><text x="604" y="37" font-weight="400" font-size="9.5" fill="#667085">clicks the brand it knows</text>
+      </g>
+      <g stroke="#667085" stroke-width="1.3"><path d="M151 26H174" marker-end="url(#s9b)"/><path d="M327 26H350" marker-end="url(#s9b)"/><path d="M503 26H526" marker-end="url(#s9b)"/></g>
+    </svg>
+    <figcaption><b>A journey without attribution.</b> The speaker's simplified path from an AI recommendation to a click; a brand that bids on its own name may see the brand search arrive as a paid click. <span data-claims="D3-C526 D3-C544">A cited study found 82% of people click a brand they know, whatever its position <span class="muted">(not&nbsp;in&nbsp;docs)</span>: Red C's 2018 eye-tracking study of shopping-type searches, so quote that scope.</span></figcaption>
+  </figure>
+
+  <h3>What to report instead</h3>
+  <p data-claims="D3-C518 D3-C532 D3-C525 D3-C533 D3-C534 D3-C535 D3-C536"><span class="tag stage">Stage</span> "rankings and clicks don't really equal real outcomes anymore". Ask the paid search team for Google Ads click-through rate reports, and report conversion rates and traffic by channel. <span class="tag docs">Docs</span> Google suggests tracking conversions and time on site, and judging the overall value of visits from Search, not clicks alone.</p>
+  <p data-claims="D3-C542 D3-C543"><span class="tag analysis">Analysis</span> The generative AI report shows no clicks: put organic next to direct traffic, branded paid search, conversions and revenue. Before your own AI visibility test, record period, baseline and other marketing changes; compare with a similar control area.</p>
+
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="s" id="s10">
+  <div class="section-head">
+    <div class="num">10</div>
+    <div class="kicker">Section 10 · Mastering the messy middle · Pablo Pérez</div>
+    <h2>How AI changes purchase decisions</h2>
+    <div class="lead" data-claims="D3-C557 D3-C559 D3-C575">Google's marketing research found that shoppers who use AI Mode or AI Overviews feel more confident: they hand AI the effort of a decision, not the choice, and still come back to Search and brand websites to double-check.</div>
+  </div>
+
+  <p data-claims="D3-C546 D3-C547 D3-C548 D3-C551 D3-C549 D3-C550"><span class="tag stage">Stage</span> Google has used the "messy middle" model since 2019 for the stretch between a purchase's trigger and the purchase. People loop between exploring the category, its prices, brands and options, and evaluating them until confident enough to buy, torn between gathering more information and the effort of processing it. <span class="tag docs">Docs</span> Google's report <i>Marketing in the messy middle</i> calls exploration expansive and evaluation reductive; its study with The Behavioural Architects held in more than 20 countries.</p>
+
+  <figure data-claims="D3-C547 D3-C566 D3-C567 D3-C574 D3-C575">
+    <svg viewBox="0 0 680 164" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="s10a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker>
+        <marker id="s10b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <rect x="0.5" y="0.5" width="329" height="163" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="16" y="21" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">WITHOUT AI: PINBALL</text>
+      <rect x="16" y="32" width="298" height="28" rx="8" fill="#e8eefd"/>
+      <text x="28" y="50" font-size="11" font-weight="600" fill="#2457e6">Exploring · adds options</text>
+      <rect x="16" y="122" width="298" height="28" rx="8" fill="#e3f4ec"/>
+      <text x="28" y="140" font-size="11" font-weight="600" fill="#0b8a5f">Evaluating · narrows them down</text>
+      <path d="M44 64L78 118L112 64L146 118L180 64L214 118L248 64L284 116" stroke="#98a2b3" stroke-width="1.4" fill="none" marker-end="url(#s10a)"/>
+      <rect x="350" y="0.5" width="329.5" height="163" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="366" y="21" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">WITH AI: CLOSER TO A FUNNEL</text>
+      <rect x="366" y="32" width="298" height="28" rx="8" fill="#e8eefd"/>
+      <text x="378" y="50" font-size="11" font-weight="600" fill="#2457e6">Exploring first, with AI taking the effort</text>
+      <path d="M515 61V73" stroke="#667085" stroke-width="1.3" marker-end="url(#s10b)"/>
+      <rect x="366" y="76" width="298" height="28" rx="8" fill="#e3f4ec"/>
+      <text x="378" y="94" font-size="11" font-weight="600" fill="#0b8a5f">Then evaluating, towards a decision</text>
+      <path d="M515 105V117" stroke="#667085" stroke-width="1.3" marker-end="url(#s10b)"/>
+      <rect x="366.5" y="120" width="297" height="32" rx="8" fill="#fff" stroke="#b86e00"/>
+      <text x="378" y="133" font-size="9" font-weight="700" letter-spacing="1.1" fill="#b86e00">HIGH-STAKES BUYS: REASSURANCE</text>
+      <text x="378" y="146" font-size="9.5" fill="#2a3446">Double-check on Search and brand sites, then buy</text>
+    </svg>
+    <figcaption><b>Pinball versus funnel.</b> Google's research as presented: without AI, shoppers bounce between the two mindsets; AI users mostly explore first, then evaluate, and double-check before risky purchases <span class="muted">(not&nbsp;in&nbsp;docs)</span>. The speaker still called the funnel a common language for strategy, not how people decide.</figcaption>
+  </figure>
+
+  <h3>The new research: shoppers "boosted" by AI</h3>
+  <p data-claims="D3-C552 D3-C553 D3-C554 D3-C555"><span class="tag stage">Stage</span> How AI changes decisions is the number one question Google's consumer insights team receives. The new study rests on conversations with consumers and, because people don't always do what they say, on behavioural panels run with research partners <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag press">Press</span> The DMEXCO 2026 programme (24 September) described it as tens of thousands of AI-moderated interviews and observed journeys across Europe.</p>
+  <div class="grid3">
+    <div class="stat" data-claims="D3-C550 D3-C556"><div class="v">31,000</div><div class="l">in-market online shoppers in the original messy-middle study</div><div class="s">UK, 2019; an earlier research wave</div></div>
+    <div class="stat" data-claims="D3-C553"><div class="v">23,000</div><div class="l">consumer conversations behind the AI findings</div><div class="s">Presented October 2026; countries not stated</div></div>
+    <div class="stat" data-claims="D3-C554"><div class="v">40,000</div><div class="l">participants in behavioural panels, with research partners</div><div class="s">One panel or the total: not made clear</div></div>
+  </div>
+
+  <p data-claims="D3-C557 D3-C559 D3-C560"><span class="tag stage">Stage</span> The headline: people who use AI Mode or AI Overviews feel much more confident about purchase decisions. They hand AI the mental effort, not the choice: "that doesn't mean they are surrendering their choices. What's happening is that consumers are feeling boosted." Confused, overwhelmed shoppers come to feel like category experts <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <h3>What AI gives shoppers <span class="muted">(not&nbsp;in&nbsp;docs)</span></h3>
+  <div class="grid3">
+    <div class="card" data-claims="D3-C561 D3-C562"><div class="badge" style="color:#2457e6">1 · Ease</div><div class="cs"><span class="tag stage">Stage</span> Information condensed, choice overload made manageable; a photo instead of typing lowers the barrier.</div></div>
+    <div class="card" data-claims="D3-C563 D3-C564"><div class="badge" style="color:#0b8a5f">2 · Assistance</div><div class="cs"><span class="tag stage">Stage</span> A category cut to the features that matter (for a phone, battery and picture quality), plus what similar people chose.</div></div>
+    <div class="card" data-claims="D3-C568"><div class="badge" style="color:#6d3fd6">3 · Suggestion</div><div class="cs"><span class="tag stage">Stage</span> Ideas, brands and products the shopper hadn't thought of: curiosity costs less.</div></div>
+  </div>
+
+  <h3>More searching, more brand websites</h3>
+  <p data-claims="D3-C569 D3-C570 D3-C571 D3-C572 D3-C573 D3-C584 D3-C585"><span class="tag stage">Stage</span> AI users run more searches and "also visit more websites of brands" <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>. Their journeys are sometimes longer but feel shorter, and they no longer feel stuck. In October 2026 they were a small but growing group <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google says people use Search more than ever with the AI features (March 2025) and visit a greater diversity of websites with AI Overviews.</p>
+
+  <h3>Reassurance: the double-check before buying</h3>
+  <p data-claims="D3-C574 D3-C575 D3-C580 D3-C576"><span class="tag stage">Stage</span> For high-risk or high-involvement purchases, ease, assistance and suggestion often aren't enough: after exploring with AI, people return to Google Search and the provider's own website to check trust in the company and details such as cancellation policies. A new or less familiar brand should expect that check and prepare for it <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's helpful-content questions ask about clear sourcing, expertise and background on the author or site.</p>
+  <p data-claims="D3-C577 D3-C578 D3-C579"><span class="tag slide">Slide</span> The brand heuristic: "A cognitive shortcut where consumers use a brand's name and reputation as a proxy for product quality, reliability, and value". <span class="tag stage">Stage</span> In the reassurance step a familiar brand conveys a lot of confidence. <span class="tag docs">Docs</span> The messy-middle report calls brand one of the strongest heuristics in consumer choice.</p>
+  <p data-claims="D3-C581 D3-C582 D3-C583"><span class="tag slide">Slide</span> Nine Google Trends panels (web search, 2016 to March 2026) showed trust checks rising in several languages, such as <code>is [brand] legit?</code>, <code>Ist [brand] seriös?</code> and <code>trustpilot</code>. <span class="tag stage">Stage</span> The rise began around 2020 in the UK and most countries checked <span class="muted">(not&nbsp;in&nbsp;docs)</span>: people taking the extra step.</p>
+
+  <h3>What Google advised</h3>
+  <ul>
+    <li data-claims="D3-C586 D3-C587 D3-C588 D3-C589"><span class="tag slide">Slide</span> "Optimise for people to win in generative AI search" with unique, helpful, human-centric content: a human still decides. <span class="tag docs">Docs</span> Google's guide to generative AI features says much the same.</li>
+    <li data-claims="D3-C590 D3-C591 D3-C592"><span class="tag slide">Slide</span> Partner with opinion formers: creators, experts, institutions <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag stage">Stage</span> Be present on Search and on your own site, where the brand speaks in its own voice.</li>
+  </ul>
+
+  <div class="callout avoid">
+    <div class="h">Research about people, not a ranking signal</div>
+    <p data-claims="D3-C595 D3-C596"><span class="tag analysis">Analysis</span> Marketing research on how people decide, not on how Google ranks. Check the brand-visits finding against your own branded and direct traffic.</p>
+    <ul>
+      <li data-claims="D3-C593">Company details, reviews, policies and contact on indexable, linked pages.</li>
+      <li data-claims="D3-C594">Track "[brand] legit" or "[brand] seriös" per market; answer on your own site.</li>
+      <li data-claims="D3-C597">Name the features that decide a category; show what similar buyers chose.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="s" id="s11">
+  <div class="section-head">
+    <div class="num">11</div>
+    <div class="kicker">Section 11 · How long does it take to..? · Gary Illyes</div>
+    <h2>How long Google's processes take</h2>
+    <div class="lead" data-claims="D3-C598 D3-C600 D3-C604 D3-C634 D3-C665 D3-C638">Google shared estimates from its internal logs of how long its processes take, as information rather than targets. Finding and recrawling pages takes far longer than indexing them, and every step waits for the one before.</div>
+  </div>
+
+  <p data-claims="D3-C598 D3-C599"><span class="tag stage">Stage</span> An experiment: estimates from internal logs, informative, nothing to obsess about. <span class="tag slide">Slide</span> Each chart showed a minimum, a typical value, an end point and dotted corner cases, with the footnote "Times expressed on the diagram are estimations based on internal analysis."</p>
+
+  <figure data-claims="D3-C599 D3-C600 D3-C601 D3-C604 D3-C610 D3-C612 D3-C613 D3-C622 D3-C625 D3-C631 D3-C634 D3-C636 D3-C651 D3-C654 D3-C655 D3-C657 D3-C659 D3-C661 D3-C662 D3-C663">
+    <svg viewBox="0 0 680 379" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0" y="4" width="14" height="7" rx="3.5" fill="#2457e6"/>
+      <text x="19" y="11" font-size="9.5" fill="#2a3446">Crawling</text>
+      <rect x="84.2" y="4" width="14" height="7" rx="3.5" fill="#0b8a5f"/>
+      <text x="103.2" y="11" font-size="9.5" fill="#2a3446">Indexing</text>
+      <rect x="168.4" y="4" width="14" height="7" rx="3.5" fill="#b86e00"/>
+      <text x="187.4" y="11" font-size="9.5" fill="#2a3446">Changes you make</text>
+      <rect x="295.8" y="4" width="14" height="7" rx="3.5" fill="#c8372d"/>
+      <text x="314.8" y="11" font-size="9.5" fill="#2a3446">Penalties and updates</text>
+      <circle cx="454.20000000000005" cy="7.5" r="4" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="463.20000000000005" y="11" font-size="9.5" fill="#2a3446">typical</text>
+      <line x1="519.0" y1="7.5" x2="539.0" y2="7.5" stroke="#667085" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <text x="545.0" y="11" font-size="9.5" fill="#2a3446">corner cases</text>
+      <text x="0" y="44" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">PROCESS · TYPICAL</text>
+      <line x1="196.0" y1="50" x2="196.0" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="196.0" y="44" font-size="9" text-anchor="middle" fill="#667085">1 s</text>
+      <line x1="294.2" y1="50" x2="294.2" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="294.2" y="44" font-size="9" text-anchor="middle" fill="#667085">1 min</text>
+      <line x1="392.3" y1="50" x2="392.3" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="392.3" y="44" font-size="9" text-anchor="middle" fill="#667085">1 h</text>
+      <line x1="468.5" y1="50" x2="468.5" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="468.5" y="44" font-size="9" text-anchor="middle" fill="#667085">1 day</text>
+      <line x1="515.2" y1="50" x2="515.2" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="515.2" y="44" font-size="9" text-anchor="middle" fill="#667085">1 wk</text>
+      <line x1="550.4" y1="50" x2="550.4" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="550.4" y="44" font-size="9" text-anchor="middle" fill="#667085">1 mo</text>
+      <line x1="610.0" y1="50" x2="610.0" y2="375" stroke="#e4e7ec" stroke-width="1"/>
+      <text x="610.0" y="44" font-size="9" text-anchor="middle" fill="#667085">1 yr</text>
+      <line x1="652" y1="50" x2="652" y2="375" stroke="#c7cdd8" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="652" y="44" font-size="9" font-weight="700" text-anchor="middle" fill="#c8372d">never</text>
+      <rect x="0" y="58" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="72.1" font-size="10" font-weight="600" fill="#0f1d33">URL discovery</text>
+      <text x="186" y="71.9" font-size="9" text-anchor="end" fill="#667085">~20 h</text>
+      <line x1="541.5" y1="68.5" x2="652" y2="68.5" stroke="#2457e6" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="196.0" y="64.5" width="345.5" height="8" rx="4" fill="#2457e6"/>
+      <circle cx="464.2" cy="68.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="93.1" font-size="10" font-weight="600" fill="#0f1d33">URL refresh</text>
+      <text x="186" y="92.9" font-size="9" text-anchor="end" fill="#667085">~30 days</text>
+      <line x1="550.1" y1="89.5" x2="652" y2="89.5" stroke="#2457e6" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="196.0" y="85.5" width="354.1" height="8" rx="4" fill="#2457e6"/>
+      <circle cx="550.1" cy="89.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="100" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="114.1" font-size="10" font-weight="600" fill="#0f1d33">Sitemap</text>
+      <text x="186" y="113.9" font-size="9" text-anchor="end" fill="#667085">~24 h</text>
+      <line x1="468.5" y1="110.5" x2="652" y2="110.5" stroke="#2457e6" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="294.2" y="106.5" width="174.3" height="8" rx="4" fill="#2457e6"/>
+      <circle cx="468.5" cy="110.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="135.1" font-size="10" font-weight="600" fill="#0f1d33">robots.txt</text>
+      <text x="186" y="134.9" font-size="9" text-anchor="end" fill="#667085">~24 h</text>
+      <rect x="196.0" y="127.5" width="273.5" height="8" rx="4" fill="#2457e6"/>
+      <circle cx="468.5" cy="131.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="142" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="156.1" font-size="10" font-weight="600" fill="#0f1d33">Crawl demand (Search)</text>
+      <text x="186" y="155.9" font-size="9" text-anchor="end" fill="#667085">~20 h</text>
+      <line x1="541.5" y1="152.5" x2="576.8" y2="152.5" stroke="#2457e6" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="294.2" y="148.5" width="247.3" height="8" rx="4" fill="#2457e6"/>
+      <circle cx="464.2" cy="152.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="177.1" font-size="10" font-weight="600" fill="#0f1d33">Rendering</text>
+      <text x="186" y="176.9" font-size="9" text-anchor="end" fill="#667085">hours if queued</text>
+      <line x1="485.1" y1="173.5" x2="541.5" y2="173.5" stroke="#0b8a5f" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="196.0" y="169.5" width="289.1" height="8" rx="4" fill="#0b8a5f"/>
+      <circle cx="418.7" cy="173.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="184" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="198.1" font-size="10" font-weight="600" fill="#0f1d33">Meta annotations</text>
+      <text x="186" y="197.9" font-size="9" text-anchor="end" fill="#667085">45–90 min</text>
+      <line x1="468.5" y1="194.5" x2="501.8" y2="194.5" stroke="#0b8a5f" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="323.0" y="190.5" width="145.5" height="8" rx="4" fill="#0b8a5f"/>
+      <circle cx="395.0" cy="194.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="219.1" font-size="10" font-weight="600" fill="#0f1d33">Indexing end to end</text>
+      <text x="186" y="218.9" font-size="9" text-anchor="end" fill="#667085">~1.5 h</text>
+      <line x1="402.1" y1="215.5" x2="652" y2="215.5" stroke="#0b8a5f" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="196.0" y="211.5" width="206.1" height="8" rx="4" fill="#0b8a5f"/>
+      <circle cx="402.1" cy="215.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="226" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="240.1" font-size="10" font-weight="600" fill="#0f1d33">Removal (Search Console)</text>
+      <text x="186" y="239.9" font-size="9" text-anchor="end" fill="#667085">~2 h</text>
+      <rect x="294.2" y="232.5" width="174.3" height="8" rx="4" fill="#b86e00"/>
+      <circle cx="409.0" cy="236.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="261.1" font-size="10" font-weight="600" fill="#0f1d33">Snippet and title</text>
+      <text x="186" y="260.9" font-size="9" text-anchor="end" fill="#667085">1–2 days</text>
+      <line x1="541.5" y1="257.5" x2="576.8" y2="257.5" stroke="#b86e00" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="468.5" y="253.5" width="73.0" height="8" rx="4" fill="#b86e00"/>
+      <circle cx="478.2" cy="257.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="268" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="282.1" font-size="10" font-weight="600" fill="#0f1d33">Image beside a result</text>
+      <text x="186" y="281.9" font-size="9" text-anchor="end" fill="#667085">1–2 weeks</text>
+      <line x1="548.4" y1="278.5" x2="576.8" y2="278.5" stroke="#b86e00" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="468.5" y="274.5" width="79.9" height="8" rx="4" fill="#b86e00"/>
+      <circle cx="524.9" cy="278.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="303.1" font-size="10" font-weight="600" fill="#0f1d33">Manual action lifted</text>
+      <text x="186" y="302.9" font-size="9" text-anchor="end" fill="#667085">1–2 weeks</text>
+      <line x1="558.1" y1="299.5" x2="583.7" y2="299.5" stroke="#c8372d" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="490.5" y="295.5" width="67.6" height="8" rx="4" fill="#c8372d"/>
+      <circle cx="524.9" cy="299.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="310" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="324.1" font-size="10" font-weight="600" fill="#0f1d33">Core update hits</text>
+      <text x="186" y="323.9" font-size="9" text-anchor="end" fill="#667085">2–4 weeks</text>
+      <rect x="531.8" y="316.5" width="16.6" height="8" rx="4" fill="#c8372d"/>
+      <circle cx="541.5" cy="320.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <text x="6" y="345.1" font-size="10" font-weight="600" fill="#0f1d33">Core update recovery</text>
+      <text x="186" y="344.9" font-size="9" text-anchor="end" fill="#667085">3–6 months</text>
+      <line x1="593.4" y1="341.5" x2="610.0" y2="341.5" stroke="#c8372d" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="576.8" y="337.5" width="16.6" height="8" rx="4" fill="#c8372d"/>
+      <circle cx="586.5" cy="341.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <rect x="0" y="352" width="680" height="21" fill="#f5f7fb"/>
+      <text x="6" y="366.1" font-size="10" font-weight="600" fill="#0f1d33">Spam update</text>
+      <text x="186" y="365.9" font-size="9" text-anchor="end" fill="#667085">days to weeks</text>
+      <line x1="531.8" y1="362.5" x2="576.8" y2="362.5" stroke="#c8372d" stroke-width="2.4" stroke-dasharray="2 3"/>
+      <rect x="468.5" y="358.5" width="63.3" height="8" rx="4" fill="#c8372d"/>
+      <circle cx="478.2" cy="362.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+      <circle cx="524.9" cy="362.5" r="4.2" fill="#0f1d33" stroke="#fff" stroke-width="1.2"/>
+    </svg>
+    <figcaption><b>Fifteen processes on one time scale.</b> Redrawn from Google's charts on a log scale, positions approximate: bar = minimum to usual end, dot = typical, dotted = corner cases up to "never". The meta-annotation minimum, "200s" under the slide's Seconds column, is 200 seconds (about three minutes). Most of these figures are <span class="muted">not&nbsp;in&nbsp;docs</span>.</figcaption>
+  </figure>
+
+  <h3>Crawling: finding and refreshing URLs</h3>
+  <p data-claims="D3-C602 D3-C603 D3-C605 D3-C606 D3-C677"><span class="tag stage">Stage</span> Google knows hundreds of trillions of URLs (October 2026) <span class="muted">(not&nbsp;in&nbsp;docs)</span> and crawls far fewer: a smaller crawl space is enough. URLs left unrefreshed for a very long time are dropped; news sites can be refreshed in seconds <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Against the "hundreds of billions" of indexed pages in Google's ranking systems guide, about one known URL in a thousand is indexed, taken at face value.</p>
+  <p data-claims="D3-C607 D3-C609"><span class="tag stage">Stage</span> On one audience member's very large site, the homepage was crawled about five times a day and soft-404 clusters every 160 to 190 days. <span class="tag analysis">Analysis</span> Link deep pages from strong hubs; check recrawl by depth in logs.</p>
+  <p data-claims="D3-C611 D3-C612 D3-C614 D3-C615 D3-C667"><span class="tag slide">Slide</span> A useful sitemap of a high-quality site is refetched within 14 days at most <span class="muted">(not&nbsp;in&nbsp;docs)</span>; a lower-quality site's maybe never. <span class="tag stage">Stage</span> robots.txt: a 24-hour objective, per RFC 9309; submitting it in Search Console forces a refresh. <span class="tag docs">Docs</span> The same.</p>
+  <p data-claims="D3-C618 D3-C619 D3-C620 D3-C668 D3-C623 D3-C621"><span class="tag stage">Stage</span> On 500 errors Google cuts crawl capacity within about four hours; increases take one to three weeks, and every site's capacity is recalculated within a month <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>. Buzz about a few URLs raises crawl demand for the whole site. <span class="tag docs">Docs</span> Many 500, 503 or 429 replies lower the crawl rate until they stop. <span class="tag analysis">Analysis</span> A 5xx burst costs hours to cause and weeks to repair.</p>
+
+  <h3>Rendering and indexing</h3>
+  <p data-claims="D3-C626 D3-C627 D3-C629 D3-C628"><span class="tag stage">Stage</span> Rendering happens right after crawling or later in a queue; JavaScript content reaches indexing in hours, at worst weeks; the queue clears within weeks <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Gary Illyes: "we keep saying that we render every single URL on the internet. I would say that that's not true" <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D3-C676 D3-C630"><span class="tag analysis">Analysis</span> Google's JavaScript guide says every 200 page is queued for rendering; queued is not rendered. Put critical content, links and meta tags in the server HTML.</p>
+  <p data-claims="D3-C632 D3-C635 D3-C638"><span class="tag stage">Stage</span> Meta annotations such as robots meta tags are a critical step: indexing waits for them <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag slide">Slide</span> "Indexing end to end" ends when a document reaches the serving index, tokenized <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Being found takes far longer than being indexed: for speed, link new pages from often-crawled ones and keep sitemaps accurate.</p>
+
+  <h3>Changes you make</h3>
+  <table>
+    <thead><tr><th style="width:29mm">Change</th><th>Said on stage</th><th style="width:52mm">Google's docs</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C639"><td class="k">404 or noindex</td><td><span class="tag stage">Stage</span> Out of the serving index in 1–3 weeks, often sooner.</td><td></td></tr>
+      <tr data-claims="D3-C640 D3-C669 D3-C670"><td class="k">New canonical</td><td><span class="tag stage">Stage</span> Usually 1–3 weeks; can be seconds.</td><td><span class="tag docs">Docs</span> Clusters may hold up to two weeks. <span class="tag analysis">Analysis</span> The short end.</td></tr>
+      <tr data-claims="D3-C642 D3-C643 D3-C671 D3-C672"><td class="k">Site move</td><td><span class="tag stage">Stage</span> All signals recalculated: weeks (small site), 1–3 months on average, a year at worst.</td><td><span class="tag docs">Docs</span> Weeks for small sites; redirects at least a year.</td></tr>
+      <tr data-claims="D3-C646 D3-C647"><td class="k">Structured data</td><td><span class="tag stage">Stage</span> Hours to 1–2 weeks <span class="muted">(not&nbsp;in&nbsp;docs)</span>; never if not trusted.</td><td></td></tr>
+      <tr data-claims="D3-C648 D3-C649 D3-C650"><td class="k">Images, video</td><td><span class="tag stage">Stage</span> Images: hours to two days, under 150 s at best; video analysis: months <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td></td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D3-C652 D3-C656 D3-C660 D3-C673 D3-C675 D3-C674"><span class="tag stage">Stage</span> Removals reach serving about every 2 hours; the image beside a result changes only after reindexing and an embeddings step <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Some manual actions are never lifted: nobody cleans up. <span class="tag docs">Docs</span> Removals take up to a day and last six months; title links change after a recrawl (days to weeks); most reconsideration reviews take days or weeks.</p>
+
+  <div class="callout avoid">
+    <div class="h">What to do with these numbers</div>
+    <ul>
+      <li data-claims="D3-C616"><span class="tag analysis">Analysis</span> Ship robots.txt changes a day ahead; for urgent ones, request a refresh.</li>
+      <li data-claims="D3-C653">To hide a URL fast: the Removals tool (about 2 hours) plus a noindex or 404 (1–3 weeks).</li>
+      <li data-claims="D3-C658 D3-C645">Judge a new title after days, a site move after one to three months; keep redirects a year.</li>
+      <li data-claims="D3-C664">Manual actions lift within weeks of a real clean-up; core-update recovery takes months.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ================= 12 ================= -->
+<section class="s" id="s12">
+  <div class="section-head">
+    <div class="num">12</div>
+    <div class="kicker">Section 12 · Wrapping all up · Gary Illyes</div>
+    <h2>AI in Search, used responsibly</h2>
+    <div class="lead" data-claims="D3-C680 D3-C686 D3-C701">The closing talk put AI back into proportion: machine learning has run in Search for decades, hallucinations can't be removed, and AI features use the same processes as classic results, so AI SEO is just SEO.</div>
+  </div>
+
+  <p data-claims="D3-C678 D3-C679 D3-C680 D3-C681"><span class="tag stage">Stage</span> The closing message: use AI, but understand it well enough to use it responsibly. AI is an umbrella of technologies, one of which is machine learning, systems that learn from large amounts of data <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Machine learning is about 50 years old; Google has used it for "probably 30 years", since the statistical models behind "Did you mean" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Some ranking features are plain machine learning models, which beat LLMs at some tasks.</p>
+
+  <figure data-claims="D3-C679 D3-C680 D3-C681 D3-C682 D3-C683 D3-C684 D3-C686">
+    <svg viewBox="0 0 680 138" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0.5" width="679" height="137" rx="12" fill="#f5f7fb" stroke="#c7cdd8"/>
+      <text x="16" y="19" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">ARTIFICIAL INTELLIGENCE · AN UMBRELLA OF TECHNOLOGIES</text>
+      <rect x="16" y="28" width="648" height="98" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="30" y="46" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">MACHINE LEARNING</text>
+      <text x="650" y="46" font-size="9.5" text-anchor="end" fill="#667085">Used in Search for "probably 30 years", since Did you mean</text>
+      <rect x="30" y="56" width="190" height="58" rx="8" fill="#e8eefd"/>
+      <text x="44" y="76" font-size="11" font-weight="700" fill="#0f1d33">Plain ML models</text>
+      <text x="44" y="92" font-size="9.5" fill="#2a3446">Some ranking features: for</text>
+      <text x="44" y="105" font-size="9.5" fill="#2a3446">some tasks better than LLMs</text>
+      <rect x="234" y="56" width="416" height="58" rx="8" fill="#0b1a33"/>
+      <text x="248" y="70" font-size="8.5" font-weight="700" letter-spacing="1.1" fill="#bcd0ff">LARGE LANGUAGE MODELS · CONCEPTS IN A VECTOR SPACE</text>
+      <rect x="248" y="76" width="192" height="32" rx="6" fill="#fff"/>
+      <text x="260" y="89" font-size="10" font-weight="700" fill="#0f1d33">Predictive</text>
+      <text x="260" y="102" font-size="9" fill="#2a3446">Next word; BERT, used in Search</text>
+      <rect x="450" y="76" width="186" height="32" rx="6" fill="#fff"/>
+      <text x="462" y="89" font-size="10" font-weight="700" fill="#0f1d33">Generative</text>
+      <text x="462" y="102" font-size="9" fill="#c8372d">From a prompt; may hallucinate</text>
+    </svg>
+    <figcaption><b>AI is an umbrella.</b> The closing talk's map of the terms, drawn from what was said on stage.</figcaption>
+  </figure>
+
+  <p data-claims="D3-C682 D3-C683 D3-C684"><span class="tag stage">Stage</span> LLMs are deep learning on internet-scale data, mapping concepts by context in a vector space; predictive models guess the next word, generative ones produce output from a prompt <span class="muted">(not&nbsp;in&nbsp;docs)</span>. BERT, long used in Search, is technically an LLM.</p>
+
+  <h3>Hallucinations and deception</h3>
+  <p data-claims="D3-C686 D3-C687 D3-C688"><span class="tag stage">Stage</span> Any model can hallucinate, and current training can't stop it; grounding or RAG reduces hallucinations but cannot eliminate them <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Models, image models included, make things up when information is missing.</p>
+  <p data-claims="D3-C689 D3-C690 D3-C691 D3-C692 D3-C710 D3-C711 D3-C693"><span class="tag stage">Stage</span> Any deception earns a page the lowest rater rating, and fake personas are a growing case: an author bio with an AI-generated headshot of a person who doesn't exist. Raters can't penalise a site, but their ratings become labels that improve the algorithms, so unchecked AI output harms indirectly. <span class="tag docs">Docs</span> The rater guidelines (September 2025) rate made-up author profiles Lowest; no single rating changes a page's ranking directly. <span class="tag analysis">Analysis</span> Show only real authors with real photos and verifiable profiles, and check AI output before it goes live.</p>
+
+  <h3>AI slop is scaled content abuse</h3>
+  <p data-claims="D3-C694 D3-C695 D3-C696 D3-C697 D3-C713"><span class="tag stage">Stage</span> Pages once churned out with Perl or PHP scripts are now churned out with LLMs, and cheaper tokens mean more AI slop. Google counts it as scaled content abuse and goes to great lengths to remove it. Citing its rater guidelines: "it's not the tool that was used that is the problem, but rather how the tool was used and what for." <span class="tag docs">Docs</span> Google added this to its generative AI content guidance on 1 October 2026.</p>
+
+  <h3>The closing slides</h3>
+  <p data-claims="D3-C698 D3-C700"><span class="tag slide">Slide</span> Use AI to supercharge workflows, content, website and customer management, but responsibly: AI hallucinates, so don't add to the sea of AI slop.</p>
+  <div class="quote" data-claims="D3-C701">"AI features on Google Search use exactly the same processes as traditional results."<span class="by">Closing slide: "AI on Google is just SEO", no new acronym needed</span></div>
+  <p data-claims="D3-C702 D3-C703 D3-C704 D3-C705 D3-C706 D3-C707 D3-C712 D3-C709"><span class="tag stage">Stage</span> AI Overviews and AI Mode sit on 25 to 30 years of Search infrastructure, with very few processes of their own. Gary Illyes: "To me, that means that SEO is not dead." Search changed every year, from the Florida update in 2003 to the Knowledge Graph <span class="muted">(not&nbsp;in&nbsp;docs)</span>, each time with new opportunities; shiny things such as guessing fan-out queries distract from helpful content. Web Guide groups results into categories with summaries. From the community talks he judged that most SEOs have a very good handle on Search. <span class="tag docs">Docs</span> A Search Labs experiment since July 2025, using a custom Gemini and query fan-out.</p>
+
+  <h3>Three days, one pipeline</h3>
+  <table>
+    <thead><tr><th style="width:28mm">Topic</th><th style="width:68mm">Days 1 and 2</th><th>Day 3</th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C038 D2-C726 D3-C702"><td class="k">One index for AI</td><td><span class="tag slide">Slide</span> Same crawl and index. <span class="tag stage">Stage</span> Same snippets.</td><td><span class="tag stage">Stage</span> Very few processes of their own.</td></tr>
+      <tr data-claims="D1-C129 D2-C727 D3-C059 D3-C065"><td class="k">Query fan-out</td><td><span class="tag docs">Docs</span> No page per variant. <span class="tag stage">Stage</span> Same index.</td><td><span class="tag stage">Stage</span> Like typed queries; don't overfocus.</td></tr>
+      <tr data-claims="D2-C654 D3-C006 D3-C080"><td class="k">Language</td><td><span class="tag stage">Stage</span> Country and language help ranking.</td><td><span class="tag stage">Stage</span> Detected first, matched at retrieval.</td></tr>
+      <tr data-claims="D2-C476 D3-C325 D3-C328"><td class="k">Markup and AI</td><td><span class="tag stage">Stage</span> The same data feeds AI features.</td><td><span class="tag stage">Stage</span> Not needed. <span class="tag analysis">Analysis</span> Its data can still help.</td></tr>
+      <tr data-claims="D2-C131 D2-C256 D3-C628 D3-C676"><td class="k">Rendering <span class="no">Tension</span></td><td><span class="tag docs">Docs</span> Every 200 page queued. <span class="tag stage">Stage</span> Nearly all rendered.</td><td><span class="tag stage">Stage</span> Not every URL. <span class="tag analysis">Analysis</span> Queued ≠ rendered.</td></tr>
+      <tr data-claims="D1-C085 D3-C613 D3-C614"><td class="k">robots.txt</td><td><span class="tag docs">Docs</span> Cached for up to 24 hours.</td><td><span class="tag slide">Slide</span> About 24 h. <span class="tag stage">Stage</span> Per RFC 9309.</td></tr>
+      <tr data-claims="D1-C126 D3-C618"><td class="k">Server errors</td><td><span class="tag docs">Docs</span> 5xx slow crawling at once.</td><td><span class="tag stage">Stage</span> Capacity cut within about 4 hours.</td></tr>
+      <tr data-claims="D2-C668 D3-C205"><td class="k">AI against spam</td><td><span class="tag stage">Stage</span> More AI, highly accurate.</td><td><span class="tag stage">Stage</span> Faster, stronger spam updates.</td></tr>
+      <tr data-claims="D1-C130 D3-C135"><td class="k">MUM</td><td><span class="tag docs">Docs</span> Not used for general ranking.</td><td><span class="tag analysis">Analysis</span> Listed on a slide: a system, not proof it ranks.</td></tr>
+      <tr data-claims="D1-C057 D1-C124 D3-C437 D3-C518"><td class="k">Measurement</td><td><span class="tag slide">Slide</span> Business metrics. <span class="tag docs">Docs</span> AI report: no clicks.</td><td><span class="tag stage">Stage</span> AI impressions reported; clicks aren't outcomes.</td></tr>
+      <tr data-claims="D1-C058 D3-C586"><td class="k">For people</td><td><span class="tag slide">Slide</span> Optimise for people.</td><td><span class="tag slide">Slide</span> The same, from marketing research.</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<!-- ================= 13 ================= -->
+<section class="s" id="s13">
+  <div class="section-head">
+    <div class="num">13</div>
+    <div class="kicker">Section 13 · Take it back to the office</div>
+    <h2>Day 3 action checklist</h2>
+    <div class="lead">Checks that turn Day 3 into work, grouped for the content team, the development team and whoever reports on Search.</div>
+  </div>
+
+  <div class="check-group">Content team</div>
+  <ul class="check">
+    <li data-claims="D3-C024 D3-C047 D3-C055">Pages use the words and spellings the audience types; no synonym lists; variants checked in Search first</li>
+    <li data-claims="D3-C196 D3-C191">Reviews and AI-assisted articles add own tests, photos and expertise beyond what an LLM would answer</li>
+    <li data-claims="D3-C411">Product Q&amp;As answer real customer questions from support tickets, reviews and sales chats</li>
+    <li data-claims="D3-C427">Query groups are read as intent themes: one page per intent, not one per phrasing</li>
+    <li data-claims="D3-C593 D3-C594">Company details, policies, reviews and contact are indexable pages; "[brand] legit" queries are tracked</li>
+    <li data-claims="D3-C693">Only real authors with real photos and verifiable profiles; no invented personas or AI headshots</li>
+  </ul>
+  <div class="check-group">Development team</div>
+  <ul class="check">
+    <li data-claims="D3-C086">Each page has one main language and a clear target country, with hreflang between the versions</li>
+    <li data-claims="D3-C211 D3-C301">The back button works; Googlebot sees what users see; no doorway pages; the CMS is patched</li>
+    <li data-claims="D3-C230 D3-C336">Articles allow <code>max-image-preview:large</code> with an image at least 1,200&nbsp;px wide; WebSite markup names the site</li>
+    <li data-claims="D3-C351 D3-C410 D3-C390">Feed and Product markup carry identical values; Storebot-Google is not blocked on shop paths</li>
+    <li data-claims="D3-C630">Critical content, links and meta tags are in the HTML the server sends</li>
+    <li data-claims="D3-C616 D3-C645 D3-C653">robots.txt changes ship a day early; redirects stay a year; urgent removals use the Removals tool</li>
+  </ul>
+  <div class="check-group">Measurement and reporting</div>
+  <ul class="check">
+    <li data-claims="D3-C441 D3-C542">The AI report is read as impressions; visits, conversions and revenue come from your own analytics</li>
+    <li data-claims="D3-C453 D3-C462">Social accounts are platform properties; multimodal traffic is judged by page, country and device</li>
+    <li data-claims="D3-C502 D3-C501">Large sites use the BigQuery bulk export; the branded split is spot-checked before LLM analysis</li>
+    <li data-claims="D3-C272 D3-C299">After a core update: compare a full week after rollout with the week before, then review the whole site</li>
+  </ul>
+
+</section>
+
+<!-- ================= 14 ================= -->
+<section class="s" id="s14">
+  <div class="section-head">
+    <div class="num">14</div>
+    <div class="kicker">Section 14 · Beyond the documentation</div>
+    <h2>Said on stage, not in Google's docs</h2>
+    <div class="lead">Points from Google's speakers that I could not find in Google's documentation. Not wrong for that, but not commitments either: treat them as informed hints and recheck before you build on them.</div>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:70mm">Point</th><th style="width:27mm">Who</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr data-claims="D3-C063 D3-C095"><td class="k"><span class="tag stage">Stage</span> Fan-out queries are not added to Search Console</td><td>John Mueller</td><td><span class="tag analysis">Analysis</span> The docs fit: AI answers count under the user's own query.</td></tr>
+      <tr data-claims="D3-C012 D3-C038 D3-C039"><td class="k"><span class="tag stage">Stage</span> Stop words are dropped; "siblings" such as Canon and Nikon are kept apart</td><td>John Mueller</td><td>[Canon camera] should not show Nikon cameras.</td></tr>
+      <tr data-claims="D3-C083 D3-C096"><td class="k"><span class="tag stage">Stage</span> Quality is the most important signal for ordering candidates at retrieval</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> The docs name quality for ranking, never for retrieval.</td></tr>
+      <tr data-claims="D3-C164 D3-C160"><td class="k"><span class="tag stage">Stage</span> Search quality raters may also work for other search engines</td><td>Google</td><td><span class="tag slide">Slide</span> Raters cannot affect any one site's rankings.</td></tr>
+      <tr data-claims="D3-C284 D3-C300"><td class="k"><span class="tag stage">Stage</span> Scaled content abuse replaces link spam as the spam type worth talking about</td><td>Google</td><td><span class="tag analysis">Analysis</span> Audit mass-produced pages before old link patterns.</td></tr>
+      <tr data-claims="D3-C302 D3-C303"><td class="k"><span class="tag stage">Stage</span> The results page is an auction of result types, a metaphor, not ads</td><td>Gary Illyes</td><td>Text results remain the most common type.</td></tr>
+      <tr data-claims="D3-C311 D2-C740"><td class="k"><span class="tag stage">Stage</span> An image used as a query is searched as embeddings</td><td>Gary Illyes</td><td>Day 2: Google also retrieves documents through embeddings.</td></tr>
+      <tr data-claims="D3-C363 D3-C365"><td class="k"><span class="tag stage">Stage</span> A few flexible feed attributes instead of hundreds of narrow ones</td><td>Alex Jansen</td><td>Six were added for AI shopping.</td></tr>
+      <tr data-claims="D3-C380 D3-C381"><td class="k"><span class="tag stage">Stage</span> The new attributes can also be read from schema.org markup</td><td>Alex Jansen</td><td><span class="tag analysis">Analysis</span> Merchant Center maps only item_group_title; the feed is the documented route.</td></tr>
+      <tr data-claims="D3-C430 D3-C444 D3-C443"><td class="k"><span class="tag stage">Stage</span> AI-powered configuration takes any language; more platforms are coming to platform properties</td><td>Ariel Kroszynski</td><td>Today: Instagram, TikTok, X and YouTube.</td></tr>
+      <tr data-claims="D3-C600 D3-C604 D3-C634 D3-C638"><td class="k"><span class="tag slide">Slide</span> On average, about 20 hours to discover a URL, 30 days to refresh it, 1.5 hours to index it</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> Speed comes from discovery: links from often-crawled pages, accurate sitemaps.</td></tr>
+      <tr data-claims="D3-C628 D3-C676"><td class="k"><span class="tag stage">Stage</span> Not every URL gets rendered</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> Queued is not rendered: don't rely on rendering for critical content.</td></tr>
+      <tr data-claims="D3-C687 D3-C686"><td class="k"><span class="tag stage">Stage</span> Grounding (RAG) reduces hallucinations but cannot remove them</td><td>Gary Illyes</td><td>No current training method removes them either.</td></tr>
+      <tr data-claims="D3-C559 D3-C556"><td class="k"><span class="tag stage">Stage</span> Shoppers are "boosted" by AI: they hand over the effort, not the choice</td><td>Pablo Pérez</td><td><span class="tag analysis">Analysis</span> Quote the 2026 research apart from the 2019 messy-middle study.</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<!-- ================= 15 ================= -->
+<section class="s" id="s15">
+  <div class="section-head">
+    <div class="num">15</div>
+    <div class="kicker">Section 15 · Stay in touch</div>
+    <h2>Help complete this guide</h2>
+    <div class="lead">This guide covers what I could capture in the room. If you heard something on Day 3 that isn't written here, tell me and I'll add it, so everyone who attended ends up with the full picture.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="badge" style="color:#2457e6">01 · Add what I missed</div>
+      <div class="ct">Heard something that isn't here?</div>
+      <div class="cs">
+        <p>These parts of Day 3 are the biggest gaps:</p>
+        <ul class="small">
+          <li>Quality prevails, after lunch</li>
+          <li>Uncovering Trustworthy Experiences on Discover: slides only, no recording</li>
+          <li>Poster session M: Success Strategies That Work</li>
+          <li>The Q&amp;A panel and the closing</li>
+        </ul>
+        <p style="margin-bottom:0">Each addition is labelled and checked against Google's documentation before it goes in, and credited to you by name if you like.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="badge" style="color:#0b8a5f">02 · The full knowledge base</div>
+      <div class="ct">Every Day 3 point, in the web edition</div>
+      <div class="cs">
+        <p>This guide is a selection. The web edition holds all of Day 3's points, about 700, with topic pages, session pages, a search and the verification status of every point. It is a folder that opens offline from <code>index.html</code>.</p>
+        <p>An agent-ready version of the same data lets AI tools answer questions about the event, with every answer traceable to its slide, session or document.</p>
+        <p style="margin-bottom:0">Message me and I'll share both.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="ctext">
+      <div class="ck">Let's keep in contact</div>
+      <div class="cname">{{AUTHOR}}</div>
+      <div class="ctitle">{{TITLE_LINE}}</div>
+      <div class="cline">WhatsApp &nbsp;<a class="cnum" href="{{WA_URL}}">{{PHONE}}</a></div>
+      <div class="cline">LinkedIn &nbsp;<a class="clink" href="{{LI_URL}}">{{LI_TEXT}}</a></div>
+      <div class="csub">Message me with additions, corrections, or to get the web edition.</div>
+    </div>
+    <div class="cqrs">
+      <div class="cqr">{{QR}}<div class="cqrl">WhatsApp</div></div>
+      <div class="cqr">{{QRLI}}<div class="cqrl">LinkedIn</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="s" id="src">
+  <div class="section-head plain">
+    <div class="kicker">References</div>
+    <h2>Sources</h2>
+    <div class="lead">This guide is built from {{PHOTOS}} photos of the slides and my recordings of 11 sessions, transcribed and checked against the slides where I had them. Every point labelled Docs was checked against these pages on {{CHECKED}}.</div>
+  </div>
+  <ol class="sources" style="padding-left:8mm; line-height:1.2">
+{{SOURCES}}
+  </ol>
+  <p class="small muted" style="margin-top:4mm">Search Central Live is a Google event. This is an independent attendee guide by {{AUTHOR}}, not an official Google publication. Statistics are as presented on stage, with their scope as stated.</p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+area,topic,topic_id,D1-S01,D1-S02,D1-S03,D1-S04,D1-S05,D1-S06,D1-S07,D1-S08,D1-S10,D1-S11,D1-S12,D1-S00,D2-S02,D2-S03,D2-S04,D2-S05,D2-S06,D2-S07,D2-S08,D2-S09,D2-S11,D2-S12,D2-S13,D2-S14,D2-S15,D2-S16,D2-S17,D2-S19,D2-S20,D2-S23,D2-S24,D3-S02,D3-S03,D3-S04,D3-S05,D3-S06,D3-S07,D3-S10,D3-S11,D3-S12,D3-S13,D3-S16,D3-S17,D3-S18,event_claims,all_claims,event_sessions,event_days
+The state of Search,How Search is evolving,search-evolution,15,4,0,1,0,0,0,0,0,5,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,0,0,0,3,0,1,1,3,0,14,1,0,0,0,0,0,4,55,65,13,3
+The state of Search,AI Mode usage and query trends,ai-mode-usage,17,9,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,3,0,0,33,39,7,3
+The state of Search,AI Overviews usage,ai-overviews-usage,8,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,3,0,0,18,26,4,2
+The state of Search,Google's five ecosystem principles,ecosystem-principles,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,10,2,2
+The state of Search,Search Agents in AI Mode,search-agents,0,4,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,2,1
+The state of Search,How AI Search links to websites,ai-links-to-web,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,7,10,4,2
+The state of Search,Consumer decisions and the messy middle,consumer-decisions,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,0,0,38,50,2,2
+Publisher controls,The generative AI opt-out in Search Console,genai-optout,0,2,0,1,0,0,3,0,0,0,3,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,14,24,6,3
+Publisher controls,Google-Extended,google-extended,0,0,0,0,0,0,1,0,0,0,2,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,13,4,2
+Publisher controls,Search profiles,search-profiles,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,6,1,1
+Publisher controls,Preferred sources,preferred-sources,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,3,2,2
+Publisher controls,Linked subscriptions,linked-subscriptions,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,3,2,2
+Publisher controls,Robots meta tags and noindex,robots-meta-tag,0,0,0,0,0,0,0,0,0,0,0,0,1,1,22,0,0,0,0,1,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,32,46,7,2
+Publisher controls,Snippets and preview controls,snippet-controls,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,2,0,28,42,6,2
+AI and Search,SEO vs GEO,seo-vs-geo,0,4,6,2,0,0,0,0,0,2,1,0,0,0,0,2,0,1,0,0,0,3,0,0,4,1,0,0,0,4,0,0,2,0,2,0,0,0,0,0,2,1,0,4,41,52,16,3
+AI and Search,Query fan-out,query-fanout,2,0,3,5,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,11,0,0,0,0,0,0,0,0,0,0,1,26,38,8,3
+AI and Search,llms.txt,llms-txt,0,0,1,2,0,0,0,0,0,0,10,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,17,3,1
+AI and Search,AI-written vs human-written content,ai-content-detection,1,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,7,0,2,0,0,0,0,0,0,8,27,33,6,3
+AI and Search,AI systems already inside Search,ai-in-search-systems,4,1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,3,1,0,0,0,0,2,1,3,0,0,0,1,3,0,0,0,0,0,1,0,0,12,43,50,14,3
+AI and Search,Gemini and Search,gemini-and-search,4,0,2,1,1,0,0,0,0,0,0,0,0,0,0,4,0,7,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,23,28,9,3
+AI and Search,Content for people,helpful-content,4,0,7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,2,1,0,0,0,1,4,2,0,0,5,18,24,2,2,0,0,0,1,4,0,5,88,125,17,3
+AI and Search,Measuring success in the AI era,measurement,0,1,1,8,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,5,0,0,0,2,0,1,0,0,0,0,0,0,1,4,0,0,1,0,0,4,37,0,0,0,68,96,12,3
+AI and Search,Chunking content for AI,chunking,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,10,2,2
+AI and Search,AI crawlers and agents on your site,ai-crawlers-and-agents,0,0,0,15,5,3,1,0,3,1,18,0,0,0,1,5,2,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,60,75,13,3
+AI and Search,Measuring AI visibility and brand impact,measuring-ai-visibility,0,0,0,20,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,36,44,4,2
+AI and Search,AI in SEO and content workflows,ai-in-seo-workflows,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,47,2,2
+How Search works,"The pipeline: crawling, indexing, serving",pipeline-overview,0,1,6,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,3,0,0,0,0,1,0,0,0,0,2,1,20,21,12,3
+How Search works,Ranking signals by result type,ranking-signals-by-vertical,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,5,6,5,3
+How Search works,How long Google's processes take,processing-times,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,33,0,35,38,2,2
+Crawling,The crawl pipeline,crawl-pipeline,0,0,1,0,13,0,0,0,3,0,0,0,1,2,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,25,33,8,3
+Crawling,URL discovery,url-discovery,0,0,3,0,2,0,0,0,1,0,0,0,5,4,0,1,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,23,33,9,3
+Crawling,Crawl errors,crawl-errors,0,0,0,1,5,23,0,2,2,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,37,53,7,3
+Crawling,Soft 404s,soft-404,0,0,0,0,1,6,0,0,2,0,0,0,0,0,0,3,4,8,1,2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,29,40,10,3
+Crawling,HTTP versions and Googlebot,http-protocols,0,0,0,0,3,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,7,1,1
+Crawling,robots.txt rules,robots-txt,0,0,0,1,3,0,19,5,1,0,12,0,11,0,3,6,2,0,0,1,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,70,96,13,3
+Crawling,robots.txt group parsing differences,robots-group-parsing,0,0,0,0,0,0,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,9,2,1
+Crawling,Crawl budget,crawl-budget,0,0,0,0,0,1,0,0,18,0,17,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,43,51,8,3
+Crawling,Crawl rate limit (hostload),crawl-rate-limit,0,0,0,0,0,3,0,0,5,0,7,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,20,29,5,3
+Crawling,Crawl demand,crawl-demand,0,0,1,0,3,0,0,0,3,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,26,34,6,3
+Crawling,Crawl demand inherited by path,crawl-demand-inheritance,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,5,2,2
+Crawling,Faceted navigation,faceted-navigation,0,0,0,0,0,0,0,0,4,1,4,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,13,4,2
+Crawling,HTTP caching for crawlers,http-caching,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,5,3,1
+Crawling,Directives and crawl budget,crawl-directives,0,0,0,0,0,0,0,0,4,0,1,0,5,0,7,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,32,5,2
+Crawling,"Pagination and ""load more""",pagination,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,10,2,2
+Crawling,Crawlable links,crawlable-links,0,0,0,0,0,0,0,0,0,0,1,0,0,8,0,8,7,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,28,38,6,3
+Crawling,Sitemaps,sitemaps,0,0,0,0,2,0,0,0,0,0,3,0,9,0,0,0,0,0,1,1,0,0,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,24,34,8,3
+Crawling,Similar URLs and URL normalisation,url-normalization,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,10,1,1
+Rendering and JavaScript,How Google renders pages,rendering,0,0,1,0,0,0,0,0,0,0,0,0,0,0,3,27,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,49,69,5,3
+Rendering and JavaScript,JavaScript SEO pitfalls and fixes,javascript-seo,0,0,0,0,0,0,0,0,0,0,1,0,0,2,4,46,29,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,85,124,8,3
+Rendering and JavaScript,Lazy loading and content behind interactions,lazy-loading,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,19,2,1
+Rendering and JavaScript,Debugging rendering,rendering-debugging,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,43,2,1
+Rendering and JavaScript,Embedding apps safely: Web Fragments,web-fragments,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,33,40,2,1
+Indexing,Duplicate content,duplicate-content,0,0,2,2,0,0,0,0,1,2,2,1,0,1,0,0,0,0,30,4,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,49,63,12,3
+Indexing,Processing: from fetched page to index,indexing-pipeline,0,0,1,1,0,0,0,0,0,0,0,0,0,11,0,4,0,1,0,0,8,0,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,33,40,9,3
+Indexing,Main content and page sections,main-content,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,19,1,0,0,3,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,36,6,2
+Indexing,Tokenization: how text is stored,tokenization,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,0,0,0,0,0,0,0,0,6,0,0,1,1,0,0,0,0,0,0,0,0,0,0,20,23,4,2
+Indexing,Canonical selection,canonical-selection,0,0,1,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,19,8,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,35,56,7,3
+Indexing,"Canonical graphs: chains, loops and leaders",canonical-graphs,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,41,2,1
+Indexing,"Redirects, site moves and alternate names",site-moves,0,0,0,1,0,1,0,0,0,0,6,0,6,0,0,0,0,0,9,37,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,65,85,9,3
+Indexing,Pruning and consolidating content,content-pruning,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,1,1
+The index and its signals,Signals calculated during indexing,indexing-signals,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,13,1,1,0,0,2,0,0,0,0,0,0,0,0,0,1,0,20,25,7,3
+The index and its signals,Spam detection and SpamBrain,spam-detection,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,6,1,0,0,0,0,1,11,0,2,0,0,0,0,0,1,3,28,50,10,3
+The index and its signals,Index selection: deciding what gets indexed,index-selection,0,0,3,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,2,0,0,0,0,0,0,0,0,7,24,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,42,50,8,3
+The index and its signals,Indexing statuses in Search Console,page-indexing-report,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,16,22,6,3
+The index and its signals,What the index looks like,index-structure,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,17,0,0,2,0,0,0,1,0,0,0,0,0,0,0,24,31,6,3
+Structured data and media,Images,images,1,4,2,0,0,0,0,0,0,0,0,1,0,0,5,0,0,0,0,0,2,0,28,7,0,0,0,0,0,0,0,0,0,0,0,4,0,5,0,7,0,0,4,0,70,87,11,3
+Structured data and media,Accessibility and ARIA,accessibility,0,0,0,6,0,0,0,0,0,0,0,1,0,0,2,1,0,0,0,0,0,0,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,24,5,2
+Structured data and media,Why structured data still matters,structured-data,0,0,0,3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,24,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,5,0,0,0,2,0,40,47,8,3
+Structured data and media,Implementing structured data,structured-data-implementation,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,4,0,0,0,0,0,39,61,5,3
+Structured data and media,Schema.org vocabulary,schema-org,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,14,17,2,2
+Structured data and media,Product and merchant markup,merchant-markup,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,12,0,0,0,0,0,20,36,3,2
+Structured data and media,Video in Search,video,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1,0,31,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,40,46,7,3
+Structured data and media,"Shopping data: feeds, markup and Storebot",shopping-data,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,31,0,0,0,0,0,34,57,2,1
+International and multilingual sites,hreflang annotations,hreflang,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,2,0,0,0,0,20,6,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,34,53,6,2
+International and multilingual sites,Page language and language versions,page-language,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,9,2,0,5,2,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,26,36,7,2
+International and multilingual sites,Country targeting,geotargeting,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,10,5,0,3,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,23,34,6,2
+International and multilingual sites,Localisation beyond translation,localisation,0,0,0,2,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,0,0,0,0,0,12,27,0,0,1,0,0,0,3,0,0,0,0,1,0,0,0,0,0,0,50,70,8,3
+International and multilingual sites,Non-Latin scripts and word segmentation,non-latin-scripts,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,15,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,27,32,4,2
+Serving and ranking,Rich results,rich-results,0,0,0,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,14,0,0,0,0,1,0,29,35,5,3
+Serving and ranking,Query understanding,query-understanding,0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,53,0,0,0,0,5,1,0,0,0,0,0,64,74,7,3
+Serving and ranking,Retrieval: finding candidates in the index,retrieval,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,11,0,0,0,0,0,0,0,0,0,0,0,14,16,4,3
+Serving and ranking,Ranking systems and signals,ranking-systems,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,10,0,0,0,0,0,0,0,0,0,17,23,5,3
+Serving and ranking,Testing changes and quality raters,search-quality-evaluation,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,4,0,0,0,0,0,0,5,33,49,5,3
+Serving and ranking,Core updates and spam updates,search-updates,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,24,0,0,0,0,0,2,0,28,45,4,2
+Serving and ranking,Spam policies and manual actions,spam-policies,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,7,0,11,0,0,0,0,0,2,0,23,33,5,3
+Serving and ranking,The results page and search features,serp-anatomy,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,0,0,0,0,21,24,3,2
+Serving and ranking,Google Discover,discover,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,9,14,2,2
+Search Console,What's new in Search Console,search-console-features,0,0,0,0,3,0,3,0,0,0,3,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,42,0,0,0,0,54,68,7,3
+Search Console,Working with Search Console data,search-console-data,0,0,0,6,0,0,0,0,3,0,8,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,0,0,0,34,47,5,3
+Search trends and Google Trends,Reading Google Trends data,trends-data,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,2,0,0,28,37,2,2
+Search trends and Google Trends,Google Trends tools and features,trends-features,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,1,0,0,0,0,0,0,0,0,0,0,0,26,31,2,2
+Search trends and Google Trends,Using Google Trends for SEO and content,trends-for-seo,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,16,0,0,1,0,0,0,0,0,0,0,0,0,0,19,29,3,2
+Working with Google,Requesting features from Google,feature-requests,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,8,9,6,3
+Working with Google,The scope of SEO,seo-scope,0,0,0,6,0,0,0,0,0,3,0,1,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,2,21,21,7,3
+Working with Google,Web standards and how to take part,web-standards,0,0,0,3,0,0,5,0,0,0,1,0,0,0,3,7,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,23,25,8,3
+Working with Google,Organic results are not for sale,honest-results,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,1,1

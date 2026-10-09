@@ -1,0 +1,1697 @@
+{
+  "version": "v2.13.0",
+  "data_through": "2026-10-02",
+  "event": {
+    "name": "Search Central Live Deep Dive Europe 2026",
+    "city": "Barcelona",
+    "dates": "2026-09-30 to 2026-10-02"
+  },
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-09-30",
+      "theme": "Crawling",
+      "sessions": [
+        {
+          "id": "D1-S01",
+          "time": "11:00",
+          "title": "Welcome and opening keynotes",
+          "speakers": [
+            "Lino Cattaruzzi"
+          ],
+          "role": "President, Google Iberia",
+          "kind": "talk",
+          "coverage": [
+            "slides",
+            "transcript"
+          ],
+          "note": "Covers two agenda slots: the 11:00 Welcome (event host) and the 11:20 Opening keynote by Lino Cattaruzzi, named in the host's on-stage hand-over; he also presented the Larry Page quote and the five ecosystem principles. Transcript from a second attendee recording; an audio recording covers the keynote from its first minute to the end.",
+          "claim_count": 60,
+          "topics": [
+            "search-evolution",
+            "ai-overviews-usage",
+            "ai-mode-usage",
+            "ecosystem-principles",
+            "helpful-content",
+            "honest-results",
+            "serp-anatomy",
+            "images",
+            "ai-links-to-web",
+            "search-quality-evaluation",
+            "ai-in-search-systems",
+            "gemini-and-search",
+            "query-fanout",
+            "consumer-decisions",
+            "ai-content-detection",
+            "video"
+          ]
+        },
+        {
+          "id": "D1-S02",
+          "time": "11:35",
+          "title": "What's new in the world of Search",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Speaker from his self-introduction at the start of the talk, in a second attendee recording.",
+          "claim_count": 41,
+          "topics": [
+            "ai-mode-usage",
+            "images",
+            "search-agents",
+            "ai-links-to-web",
+            "linked-subscriptions",
+            "search-profiles",
+            "preferred-sources",
+            "genai-optout",
+            "google-extended",
+            "pipeline-overview",
+            "seo-vs-geo",
+            "search-evolution",
+            "ai-overviews-usage",
+            "query-understanding",
+            "measurement",
+            "ai-in-search-systems"
+          ]
+        },
+        {
+          "id": "D1-S03",
+          "time": "11:45",
+          "title": "How Search works and where's AI?",
+          "speakers": [
+            "Cherry Prommawin",
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Cherry Prommawin presented crawling, indexing and serving in classic Search and Gary Illyes the AI parts (his hand-over and her self-introduction at the start). Transcript from a second attendee recording.",
+          "claim_count": 55,
+          "topics": [
+            "pipeline-overview",
+            "ai-in-search-systems",
+            "query-fanout",
+            "seo-vs-geo",
+            "gemini-and-search",
+            "url-discovery",
+            "ranking-signals-by-vertical",
+            "images",
+            "ai-content-detection",
+            "helpful-content",
+            "llms-txt",
+            "measurement",
+            "genai-optout",
+            "crawl-demand",
+            "crawl-pipeline",
+            "indexing-pipeline",
+            "indexing-signals",
+            "index-selection",
+            "ranking-systems",
+            "rendering",
+            "duplicate-content",
+            "canonical-selection",
+            "index-structure",
+            "query-understanding",
+            "serp-anatomy",
+            "retrieval"
+          ]
+        },
+        {
+          "id": "D1-S04",
+          "time": "13:10",
+          "title": "Lightning session A: Automation and AI",
+          "speakers": [
+            "James Powley",
+            "Rafael Kovashikawa",
+            "Kira Breuer",
+            "Carlos Ortega",
+            "Thiago Pojda",
+            "other community speakers"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Hosted by Gary Illyes and Cherry Prommawin. Seven talks: AI automation in agency SEO work (James Powley, SEO Director, Blue Array: self-introduction and hand-over); LLM errors on search data (Rafael Kovashikawa, AI Engineer & SEO Specialist, FUSE: hand-over 'Raphael', the only Rafael on the official speaker list); an LLM fix loop for structured data (a live demo with Google's Rich Results Test); automating monthly SEO reports (Kira Breuer, SEO Manager, Greven Medien GmbH & Co. KG: hand-over 'Kiran' in the speech-to-text and her self-description as an SEO manager at a local agency in Cologne, matched to the only Kira on the official speaker list, whose job and city agree); preparing sites for humans and AI agents (Carlos Ortega, Freelance SEO Consultant: the next speaker's back-reference 'as we were just shown by Carlos', the only Carlos on the official speaker list); GEO and its metrics (Thiago Pojda, SEO Director & Entrepreneur, SIXT SE: the host's hand-over and his self-introduction); AI search as a funnel. The other speakers were not named. Transcript from a second attendee recording and an audio recording; no slides photographed.",
+          "claim_count": 98,
+          "topics": [
+            "seo-scope",
+            "ai-in-seo-workflows",
+            "duplicate-content",
+            "site-moves",
+            "measuring-ai-visibility",
+            "search-console-data",
+            "measurement",
+            "structured-data-implementation",
+            "rich-results",
+            "ai-crawlers-and-agents",
+            "llms-txt",
+            "robots-txt",
+            "accessibility",
+            "structured-data",
+            "main-content",
+            "web-standards",
+            "helpful-content",
+            "seo-vs-geo",
+            "query-fanout",
+            "spam-policies",
+            "localisation",
+            "search-evolution",
+            "gemini-and-search",
+            "genai-optout",
+            "crawl-errors",
+            "indexing-pipeline",
+            "merchant-markup"
+          ]
+        },
+        {
+          "id": "D1-S05",
+          "time": "14:05",
+          "title": "How crawling works",
+          "speakers": [
+            "Cherry Prommawin",
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "slides",
+            "transcript"
+          ],
+          "note": "Speakers from on-stage hand-overs between the two and the host's thanks to Gary and Cherry. Transcript from a second attendee recording; two audio recordings cover the talk except for about three minutes before the crawling infrastructure part.",
+          "claim_count": 34,
+          "topics": [
+            "crawl-pipeline",
+            "robots-txt",
+            "url-discovery",
+            "crawl-demand",
+            "rendering",
+            "http-protocols",
+            "crawl-errors",
+            "soft-404",
+            "http-caching",
+            "ai-crawlers-and-agents",
+            "spam-detection",
+            "gemini-and-search",
+            "sitemaps",
+            "search-console-features"
+          ]
+        },
+        {
+          "id": "D1-S06",
+          "time": "14:35",
+          "title": "How crawling errors affect Search",
+          "speakers": [
+            "Cherry Prommawin",
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "notes",
+            "transcript"
+          ],
+          "note": "Cherry Prommawin presented the status codes and Gary Illyes the DNS, network, CDN and soft 404 errors (on-stage hand-overs; the host thanked both). Transcript from a second attendee recording and a complete audio recording.",
+          "claim_count": 39,
+          "topics": [
+            "crawl-errors",
+            "crawl-rate-limit",
+            "soft-404",
+            "robots-txt",
+            "ai-crawlers-and-agents",
+            "site-moves",
+            "http-caching",
+            "crawl-budget",
+            "page-indexing-report"
+          ]
+        },
+        {
+          "id": "D1-S07",
+          "time": "15:10",
+          "title": "How Google interprets robots.txt",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "slides",
+            "transcript"
+          ],
+          "note": "Audio recording from the first minutes of the talk to its end, including a robots.txt quiz; the speaker is not named in the recording. The unknown-line slide stays with this talk: the recording reads out its example and value, although the photo's time stamp falls a few minutes after the hand-over to Lightning session B.",
+          "claim_count": 36,
+          "topics": [
+            "robots-txt",
+            "robots-group-parsing",
+            "crawl-directives",
+            "google-extended",
+            "web-standards",
+            "genai-optout",
+            "ai-crawlers-and-agents",
+            "search-console-features"
+          ]
+        },
+        {
+          "id": "D1-S08",
+          "time": "15:30",
+          "title": "Lightning session B: Robots.txt",
+          "speakers": [
+            "Dave Smart",
+            "other community speakers"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "One community talk was recorded: robots.txt pitfalls seen in the wild (Dave Smart, Tech SEO, Tame the Bots: the host's hand-over, his self-introduction and the official speaker list). The audio recording ends during his talk.",
+          "claim_count": 5,
+          "topics": [
+            "robots-txt",
+            "robots-group-parsing",
+            "crawl-errors",
+            "page-indexing-report"
+          ]
+        },
+        {
+          "id": "D1-S09",
+          "time": "15:40",
+          "title": "What would you do?: Crawling Edition",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D1-S10",
+          "time": "16:00",
+          "title": "How Google thinks about crawl budget",
+          "speakers": [
+            "Cherry Prommawin"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "slides",
+            "transcript"
+          ],
+          "note": "The second attendee recording starts mid-talk, so the opening is from slides only.",
+          "claim_count": 52,
+          "topics": [
+            "crawl-pipeline",
+            "crawl-rate-limit",
+            "crawl-budget",
+            "crawl-demand",
+            "crawl-demand-inheritance",
+            "soft-404",
+            "faceted-navigation",
+            "http-caching",
+            "crawl-directives",
+            "robots-txt",
+            "spam-detection",
+            "duplicate-content",
+            "crawl-errors",
+            "ai-crawlers-and-agents",
+            "ranking-systems",
+            "search-console-data",
+            "url-discovery"
+          ]
+        },
+        {
+          "id": "D1-S11",
+          "time": "16:20",
+          "title": "Lightning session C: Crawling",
+          "speakers": [
+            "Tobias Schwarz",
+            "Jovana Avramovic"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Two community talks were recorded: similar URLs (Tobias Schwarz, CTO and Founder, Audisto, from his self-introduction) and why technical SEO still matters in AI search (Jovana Avramovic, SEO Consultant: hand-over 'Joanna' in the speech-to-text, matched to the official speaker list). Transcript from a second attendee recording.",
+          "claim_count": 23,
+          "topics": [
+            "url-normalization",
+            "duplicate-content",
+            "canonical-selection",
+            "faceted-navigation",
+            "ai-crawlers-and-agents",
+            "search-evolution",
+            "seo-scope",
+            "ai-mode-usage",
+            "seo-vs-geo",
+            "query-fanout",
+            "structured-data",
+            "chunking",
+            "measuring-ai-visibility"
+          ]
+        },
+        {
+          "id": "D1-S12",
+          "time": "16:35",
+          "title": "Q&A",
+          "speakers": [
+            "John Mueller",
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "qa",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Panel named in the moderator's invitation ('John and Gary'); an answer carries a name only where an on-stage cue names its speaker. Audience questioners are not named. Transcript from a second attendee recording; two audio recordings cover most of the panel as well (from the AI crawlers question to the llms.txt answers, and from the Search Console API answer to the end).",
+          "claim_count": 85,
+          "topics": [
+            "feature-requests",
+            "ai-crawlers-and-agents",
+            "crawl-demand",
+            "seo-vs-geo",
+            "robots-txt",
+            "crawl-budget",
+            "web-standards",
+            "search-agents",
+            "crawl-rate-limit",
+            "search-console-features",
+            "faceted-navigation",
+            "duplicate-content",
+            "measurement",
+            "search-console-data",
+            "measuring-ai-visibility",
+            "llms-txt",
+            "processing-times",
+            "crawl-directives",
+            "sitemaps",
+            "site-moves",
+            "google-extended",
+            "genai-optout",
+            "pagination",
+            "crawlable-links",
+            "javascript-seo"
+          ]
+        },
+        {
+          "id": "D1-S13",
+          "time": "17:25",
+          "title": "Daily wrap-up",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Housekeeping only (second attendee recording); no claims.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D1-S00",
+          "time": "",
+          "title": "Day 1, session not recorded",
+          "speakers": [],
+          "role": null,
+          "kind": "unrecorded",
+          "coverage": [
+            "notes"
+          ],
+          "note": "Points from my notes where I did not write down which session they came from.",
+          "claim_count": 17,
+          "topics": [
+            "duplicate-content",
+            "canonical-selection",
+            "pagination",
+            "images",
+            "accessibility",
+            "seo-scope",
+            "rich-results",
+            "llms-txt",
+            "http-protocols"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-10-01",
+      "theme": "Indexing",
+      "sessions": [
+        {
+          "id": "D2-S01",
+          "time": "10:00",
+          "title": "Checkin and Networking",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S02",
+          "time": "10:15",
+          "title": "Welcome to indexing day!",
+          "speakers": [
+            "Gary Illyes",
+            "Cherry Prommawin"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Presented by Gary Illyes and Cherry Prommawin (named in the host's hand-over; turns not attributable). Highly rated Slido questions skipped on Day 1 for lack of time: four on slides with written answers, one more (sloppy migrations) only spoken, then a recap of Day 1. Transcript from a second attendee recording.",
+          "claim_count": 36,
+          "topics": [
+            "sitemaps",
+            "url-discovery",
+            "site-moves",
+            "merchant-markup",
+            "robots-txt",
+            "crawl-directives",
+            "robots-meta-tag",
+            "index-selection",
+            "pipeline-overview",
+            "crawl-pipeline",
+            "crawl-budget"
+          ]
+        },
+        {
+          "id": "D2-S03",
+          "time": "10:25",
+          "title": "How is HTML interpreted",
+          "speakers": [
+            "Cherry Prommawin"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Speaker from a back-reference in a later talk ('Cherry already talked about the page ... main content'), heard in a second attendee recording. The author's recording starts mid-talk, so the opening is from slides only.",
+          "claim_count": 27,
+          "topics": [
+            "indexing-pipeline",
+            "crawl-pipeline",
+            "crawl-rate-limit",
+            "google-extended",
+            "pipeline-overview",
+            "main-content",
+            "canonical-selection",
+            "duplicate-content",
+            "hreflang",
+            "crawlable-links",
+            "url-discovery",
+            "javascript-seo",
+            "robots-meta-tag"
+          ]
+        },
+        {
+          "id": "D2-S04",
+          "time": "10:30",
+          "title": "Controlling indexing",
+          "speakers": [
+            "John Mueller"
+          ],
+          "role": "Search Relations Team Lead",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides",
+            "video"
+          ],
+          "note": "Named on the title slide. The first recording stops mid-sentence at the closing slide; a second, independent recording covers the end of the talk (robots.txt and robots meta rules, robots meta tags and JavaScript).",
+          "claim_count": 66,
+          "topics": [
+            "web-standards",
+            "robots-txt",
+            "robots-meta-tag",
+            "snippet-controls",
+            "crawl-directives",
+            "ai-crawlers-and-agents",
+            "google-extended",
+            "images",
+            "genai-optout",
+            "query-fanout",
+            "index-structure",
+            "ai-links-to-web",
+            "javascript-seo",
+            "video",
+            "localisation",
+            "accessibility",
+            "crawl-demand",
+            "rendering"
+          ]
+        },
+        {
+          "id": "D2-S05",
+          "time": "10:40",
+          "title": "Lightning session D: Rendering and JavaScript",
+          "speakers": [
+            "Erin Sparling",
+            "Sören Bendig",
+            "Rebecca Yu",
+            "Natalia Venditto"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Four parts: a short Google opener by Erin Sparling (Partner Technology Manager, Google), then community talks by Sören Bendig (CEO, Audisto) on rendering blind spots, Rebecca Yu (SEO Manager, JAKALA) on debugging JavaScript rendering, and Natalia Venditto (Principal Software Engineer, Adobe) on Web Fragments.",
+          "claim_count": 150,
+          "topics": [
+            "rendering",
+            "search-evolution",
+            "ai-crawlers-and-agents",
+            "seo-vs-geo",
+            "pipeline-overview",
+            "gemini-and-search",
+            "google-extended",
+            "robots-txt",
+            "javascript-seo",
+            "indexing-pipeline",
+            "crawl-pipeline",
+            "rendering-debugging",
+            "web-fragments",
+            "seo-scope",
+            "crawlable-links",
+            "lazy-loading",
+            "url-discovery",
+            "faceted-navigation",
+            "page-language",
+            "soft-404",
+            "pagination",
+            "web-standards",
+            "accessibility",
+            "snippet-controls"
+          ]
+        },
+        {
+          "id": "D2-S06",
+          "time": "11:15",
+          "title": "What is Google friendly JavaScript",
+          "speakers": [
+            "Erin Sparling"
+          ],
+          "role": "Partner Technology Manager",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides",
+            "video"
+          ],
+          "note": "Same speaker as the opener of Lightning session D.",
+          "claim_count": 55,
+          "topics": [
+            "rendering",
+            "javascript-seo",
+            "soft-404",
+            "robots-txt",
+            "lazy-loading",
+            "crawlable-links",
+            "web-standards",
+            "web-fragments",
+            "rendering-debugging",
+            "ai-crawlers-and-agents",
+            "page-indexing-report",
+            "http-caching"
+          ]
+        },
+        {
+          "id": "D2-S07",
+          "time": "11:30",
+          "title": "Understanding what's on a page",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides",
+            "video"
+          ],
+          "note": "Speaker from the author's recording label. Opened with Slido quiz questions, then the part on main content, which only a second attendee recording captured.",
+          "claim_count": 48,
+          "topics": [
+            "main-content",
+            "indexing-pipeline",
+            "duplicate-content",
+            "tokenization",
+            "helpful-content",
+            "index-structure",
+            "non-latin-scripts",
+            "spam-detection",
+            "gemini-and-search",
+            "chunking",
+            "seo-vs-geo",
+            "soft-404",
+            "index-selection",
+            "javascript-seo",
+            "feature-requests",
+            "ai-in-search-systems",
+            "search-quality-evaluation",
+            "ranking-systems"
+          ]
+        },
+        {
+          "id": "D2-S08",
+          "time": "11:55",
+          "title": "Handling web duplication",
+          "speakers": [
+            "John Mueller"
+          ],
+          "role": "Search Relations Team Lead",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Speaker from the next talk's back-reference ('pick up where John left off with the canonical links'), heard in a second attendee recording.",
+          "claim_count": 58,
+          "topics": [
+            "duplicate-content",
+            "index-selection",
+            "canonical-selection",
+            "site-moves",
+            "hreflang",
+            "geotargeting",
+            "measurement",
+            "page-indexing-report",
+            "localisation",
+            "main-content",
+            "soft-404",
+            "crawl-budget",
+            "crawl-errors",
+            "ai-crawlers-and-agents",
+            "ai-in-search-systems",
+            "javascript-seo",
+            "sitemaps",
+            "pagination",
+            "canonical-graphs"
+          ]
+        },
+        {
+          "id": "D2-S09",
+          "time": "12:05",
+          "title": "Lightning session E: Managing Duplicates and Site Moves",
+          "speakers": [
+            "Tobias Schwarz",
+            "Martyna Ağanoğlu",
+            "David Carrasco Pamies"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript",
+            "one-slide"
+          ],
+          "note": "Three community talks: broken canonical graphs (Tobias Schwarz, CTO and Founder, Audisto); consolidating two competing loan-comparison sites into one brand (Martyna Ağanoğlu, SEO Specialist, Loando / Clar); the decisions behind a multi-site migration after an acquisition (David Carrasco Pamies, SEO Consultant, Magnify). Speakers from on-stage introductions and the official speaker list; talks 2 and 3 are only in the second attendee recording.",
+          "claim_count": 82,
+          "topics": [
+            "canonical-graphs",
+            "canonical-selection",
+            "duplicate-content",
+            "site-moves",
+            "url-discovery",
+            "robots-meta-tag",
+            "robots-txt",
+            "hreflang",
+            "page-language",
+            "content-pruning",
+            "helpful-content",
+            "soft-404",
+            "sitemaps",
+            "crawlable-links",
+            "search-console-features",
+            "measurement",
+            "crawl-budget",
+            "search-console-data"
+          ]
+        },
+        {
+          "id": "D2-S10",
+          "time": "12:30",
+          "title": "Lunch",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S11",
+          "time": "13:30",
+          "title": "Finding the gold nuggets: structured data, media, and more!",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "one-slide"
+          ],
+          "note": "Short introduction to feature extraction (structured data, images, video). Introduced by name by the host and named again in the hand-over at the end of the next talk.",
+          "claim_count": 11,
+          "topics": [
+            "indexing-pipeline",
+            "pipeline-overview",
+            "crawl-pipeline",
+            "duplicate-content",
+            "structured-data",
+            "images",
+            "video",
+            "structured-data-implementation"
+          ]
+        },
+        {
+          "id": "D2-S12",
+          "time": "13:35",
+          "title": "What is Structured Data and why we need it on the internet.",
+          "speakers": [
+            "Ryan Levering"
+          ],
+          "role": "Software Engineer",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Named in the previous speaker's hand-over ('Ryan is going to talk about how we are actually dealing with structured data'), heard clearly in a second attendee recording; he said he has been a software engineer at Google for about 15 years, focused on data ingestion.",
+          "claim_count": 74,
+          "topics": [
+            "search-evolution",
+            "ecosystem-principles",
+            "structured-data",
+            "rich-results",
+            "ai-crawlers-and-agents",
+            "ai-in-search-systems",
+            "schema-org",
+            "structured-data-implementation",
+            "main-content",
+            "gemini-and-search",
+            "merchant-markup",
+            "seo-vs-geo",
+            "web-standards",
+            "feature-requests"
+          ]
+        },
+        {
+          "id": "D2-S13",
+          "time": "13:50",
+          "title": "Using images to your advantage and Engaging Search users with videos",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "one-slide"
+          ],
+          "note": "Introduced by name by the previous speaker. The author's recording stops partway through the list of video SEO factors; a second attendee recording covers the rest of the talk (video factors, formats, discovery, robots controls, AI-generated images).",
+          "claim_count": 66,
+          "topics": [
+            "images",
+            "video",
+            "indexing-pipeline",
+            "crawl-directives",
+            "accessibility",
+            "ranking-signals-by-vertical",
+            "sitemaps",
+            "structured-data-implementation",
+            "helpful-content",
+            "url-discovery",
+            "retrieval",
+            "robots-txt",
+            "robots-meta-tag",
+            "snippet-controls",
+            "discover",
+            "ai-content-detection",
+            "ai-in-search-systems"
+          ]
+        },
+        {
+          "id": "D2-S14",
+          "time": "14:00",
+          "title": "Lightning session F: Media",
+          "speakers": [
+            "a community speaker",
+            "Patrick Domanico"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Two community talks, captured by a second attendee recording: rewriting image alt text with an LLM through a crawler (speaker not named) and 'prompt journalism' (Patrick Domanico, Technical SEO Manager & Freelance Journalist, dentsu: hand-over 'Patrick', the only Patrick on the official speaker list).",
+          "claim_count": 15,
+          "topics": [
+            "images",
+            "accessibility",
+            "measurement",
+            "helpful-content",
+            "ai-in-seo-workflows",
+            "video",
+            "structured-data",
+            "search-console-features"
+          ]
+        },
+        {
+          "id": "D2-S15",
+          "time": "14:15",
+          "title": "Focusing on Internationalisation and Localisation",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": null,
+          "claim_count": 64,
+          "topics": [
+            "page-language",
+            "hreflang",
+            "geotargeting",
+            "sitemaps",
+            "indexing-signals",
+            "main-content",
+            "site-moves",
+            "non-latin-scripts",
+            "seo-vs-geo",
+            "localisation",
+            "measurement",
+            "spam-detection"
+          ]
+        },
+        {
+          "id": "D2-S16",
+          "time": "14:30",
+          "title": "Lightning session G: Internationalisation",
+          "speakers": [
+            "Alizée Baudez",
+            "a second community speaker"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Alizée Baudez (International SEO Consultant) on language, region and authority, named from her self-introduction, which matches the official speaker list; then Zahra Laleh's talk on non-Latin scripts, presented on her behalf by a colleague who was not named; a second attendee recording covers the rest of that talk.",
+          "claim_count": 46,
+          "topics": [
+            "localisation",
+            "hreflang",
+            "geotargeting",
+            "page-language",
+            "trends-for-seo",
+            "non-latin-scripts",
+            "query-understanding",
+            "spam-policies",
+            "spam-detection",
+            "measurement",
+            "search-updates",
+            "seo-vs-geo",
+            "serp-anatomy"
+          ]
+        },
+        {
+          "id": "D2-S17",
+          "time": "14:45",
+          "title": "Poster session H: Indexing",
+          "speakers": [
+            "Community speakers"
+          ],
+          "role": null,
+          "kind": "poster",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Poster session on the floor; a second attendee recording captured only the host's introduction and the list of poster topics.",
+          "claim_count": 3,
+          "topics": [
+            "seo-scope",
+            "site-moves",
+            "search-console-features"
+          ]
+        },
+        {
+          "id": "D2-S18",
+          "time": "15:25",
+          "title": "Break",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S19",
+          "time": "15:30",
+          "title": "Calculating (some) signals",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": null,
+          "claim_count": 33,
+          "topics": [
+            "indexing-signals",
+            "page-language",
+            "geotargeting",
+            "index-selection",
+            "ranking-signals-by-vertical",
+            "spam-detection",
+            "ai-in-search-systems",
+            "gemini-and-search",
+            "indexing-pipeline",
+            "helpful-content"
+          ]
+        },
+        {
+          "id": "D2-S20",
+          "time": "15:40",
+          "title": "Deciding what goes in the index?",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Same speaker and recording as Calculating (some) signals.",
+          "claim_count": 39,
+          "topics": [
+            "index-selection",
+            "helpful-content",
+            "ai-in-search-systems",
+            "crawl-demand-inheritance",
+            "indexing-signals",
+            "indexing-pipeline",
+            "geotargeting",
+            "page-language",
+            "localisation",
+            "spam-detection",
+            "robots-meta-tag",
+            "soft-404",
+            "duplicate-content",
+            "canonical-selection",
+            "page-indexing-report",
+            "crawl-budget",
+            "crawl-demand",
+            "main-content"
+          ]
+        },
+        {
+          "id": "D2-S21",
+          "time": "15:50",
+          "title": "Lightning session J: Indexing and Troubleshooting",
+          "speakers": [
+            "Community speakers"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "none"
+          ],
+          "note": "Nothing captured; speakers unknown.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S22",
+          "time": "16:00",
+          "title": "What would you do?: Indexing Edition",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "none"
+          ],
+          "note": "Interactive audience exercise; nothing captured.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S23",
+          "time": "16:15",
+          "title": "How does the index look like?",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "The speaker refers back to the earlier talk on tokenization (Understanding what's on a page). No slides were photographed.",
+          "claim_count": 26,
+          "topics": [
+            "pipeline-overview",
+            "index-structure",
+            "tokenization",
+            "indexing-signals",
+            "snippet-controls",
+            "query-fanout",
+            "seo-vs-geo",
+            "ai-in-search-systems",
+            "helpful-content"
+          ]
+        },
+        {
+          "id": "D2-S24",
+          "time": "16:20",
+          "title": "Google Trends",
+          "speakers": [
+            "Omri Weisman"
+          ],
+          "role": "Engineering Manager, Google Trends",
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Speaker matched from his self-introduction to the official speaker list. No slides were photographed.",
+          "claim_count": 71,
+          "topics": [
+            "trends-data",
+            "trends-features",
+            "ai-mode-usage",
+            "measurement",
+            "search-evolution",
+            "trends-for-seo",
+            "helpful-content",
+            "localisation"
+          ]
+        },
+        {
+          "id": "D2-S25",
+          "time": "16:45",
+          "title": "Q&A",
+          "speakers": [
+            "Google panel"
+          ],
+          "role": null,
+          "kind": "qa",
+          "coverage": [
+            "none"
+          ],
+          "note": "Nothing captured.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S26",
+          "time": "17:25",
+          "title": "Daily Wrap-up",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "none"
+          ],
+          "note": "Nothing captured.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D2-S00",
+          "time": "",
+          "title": "Day 2, session not recorded",
+          "speakers": [],
+          "role": null,
+          "kind": "unrecorded",
+          "coverage": [
+            "none"
+          ],
+          "note": "Points whose session is not known. Every Day 2 recording and photo is assigned to a session, so none so far.",
+          "claim_count": 0,
+          "topics": []
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-10-02",
+      "theme": "Serving: Ranking, Search Console, and Performance",
+      "sessions": [
+        {
+          "id": "D3-S01",
+          "time": "10:00",
+          "title": "Checkin and Networking",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S02",
+          "time": "10:15",
+          "title": "Welcome to serving and ranking day!",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "one-slide"
+          ],
+          "note": "One slide with the day's journey through serving: query understanding, retrieval, ranking and search features. No recording.",
+          "claim_count": 1,
+          "topics": [
+            "pipeline-overview",
+            "query-understanding",
+            "retrieval"
+          ]
+        },
+        {
+          "id": "D3-S03",
+          "time": "10:25",
+          "title": "Making sense of users' queries",
+          "speakers": [
+            "John Mueller",
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Two parts: query understanding (language, synonyms, entities, query rewriting, query fan-out) by John Mueller, then retrieval from the index (posting lists, language, country and quality signals) by Gary Illyes. Speakers from on-stage references: a later talk called the first part John's talk, and the first part ended by handing over to Gary.",
+          "claim_count": 95,
+          "topics": [
+            "query-understanding",
+            "pipeline-overview",
+            "search-evolution",
+            "page-language",
+            "hreflang",
+            "non-latin-scripts",
+            "tokenization",
+            "trends-features",
+            "query-fanout",
+            "helpful-content",
+            "localisation",
+            "seo-vs-geo",
+            "measurement",
+            "retrieval",
+            "index-structure",
+            "indexing-signals",
+            "geotargeting",
+            "ranking-systems"
+          ]
+        },
+        {
+          "id": "D3-S04",
+          "time": "10:45",
+          "title": "Lightning session K: Facets of quality",
+          "speakers": [
+            "Community speakers"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Only one community talk was recorded: writing for people rather than for search-engine metrics, with a case study from the speaker's own company. The other talks of this block were not captured.",
+          "claim_count": 33,
+          "topics": [
+            "helpful-content",
+            "seo-scope",
+            "spam-detection",
+            "trends-for-seo",
+            "tokenization",
+            "search-updates",
+            "search-evolution",
+            "ai-in-search-systems",
+            "measurement"
+          ]
+        },
+        {
+          "id": "D3-S05",
+          "time": "11:15",
+          "title": "How Google thinks about Quality",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "The speaker is not named on the slides or in the recording.",
+          "claim_count": 88,
+          "topics": [
+            "helpful-content",
+            "ranking-systems",
+            "search-quality-evaluation",
+            "ai-in-search-systems",
+            "spam-detection",
+            "ranking-signals-by-vertical",
+            "search-evolution",
+            "seo-vs-geo",
+            "ai-content-detection",
+            "spam-policies",
+            "feature-requests"
+          ]
+        },
+        {
+          "id": "D3-S06",
+          "time": "11:45",
+          "title": "Uncovering Trustworthy Experiences on Discover",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "slides"
+          ],
+          "note": "Slides only: Discover eligibility, E-E-A-T and large image requirements. No recording; the presenter is not named on the photographed slides.",
+          "claim_count": 13,
+          "topics": [
+            "discover",
+            "helpful-content",
+            "images"
+          ]
+        },
+        {
+          "id": "D3-S07",
+          "time": "12:00",
+          "title": "What are quality updates",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Why Search changes: feature updates, core updates and spam updates, and what recovery means. The speaker is not named.",
+          "claim_count": 71,
+          "topics": [
+            "search-evolution",
+            "search-quality-evaluation",
+            "spam-detection",
+            "search-updates",
+            "rich-results",
+            "ai-content-detection",
+            "index-structure",
+            "index-selection",
+            "spam-policies",
+            "helpful-content",
+            "measurement",
+            "duplicate-content"
+          ]
+        },
+        {
+          "id": "D3-S08",
+          "time": "12:10",
+          "title": "Lunch",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S09",
+          "time": "13:10",
+          "title": "Quality prevails",
+          "speakers": [],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "none"
+          ],
+          "note": "Nothing captured; speaker and format unknown.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S10",
+          "time": "13:25",
+          "title": "How Search results are born",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Search features, rich results and structured data. Speaker from the next speaker's reference on stage to Gary's product rich result example; the same person as the retrieval part of Making sense of users' queries.",
+          "claim_count": 50,
+          "topics": [
+            "serp-anatomy",
+            "query-understanding",
+            "search-evolution",
+            "images",
+            "snippet-controls",
+            "rich-results",
+            "preferred-sources",
+            "linked-subscriptions",
+            "video",
+            "pipeline-overview",
+            "structured-data",
+            "ai-links-to-web",
+            "structured-data-implementation",
+            "localisation",
+            "merchant-markup",
+            "shopping-data"
+          ]
+        },
+        {
+          "id": "D3-S11",
+          "time": "13:40",
+          "title": "Shopping on Search: Beyond the blue links",
+          "speakers": [
+            "Alex Jansen"
+          ],
+          "role": "Software Engineer, Google Shopping",
+          "kind": "talk",
+          "coverage": [
+            "transcript"
+          ],
+          "note": "Speaker matched from his self-introduction to the official speaker list. No slides were photographed.",
+          "claim_count": 60,
+          "topics": [
+            "shopping-data",
+            "schema-org",
+            "merchant-markup",
+            "query-understanding",
+            "ai-mode-usage",
+            "ai-crawlers-and-agents",
+            "structured-data",
+            "structured-data-implementation",
+            "crawl-pipeline",
+            "robots-txt",
+            "helpful-content"
+          ]
+        },
+        {
+          "id": "D3-S12",
+          "time": "13:55",
+          "title": "Inside Search Console: What’s New & How to Use It",
+          "speakers": [
+            "Ariel Kroszynski"
+          ],
+          "role": "Front-End Engineering Manager, Search Console",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Named on the title slide. Query groups, AI-powered report configuration, AI reporting, social platform properties and multimodal search reporting.",
+          "claim_count": 57,
+          "topics": [
+            "search-console-features",
+            "feature-requests",
+            "helpful-content",
+            "genai-optout",
+            "measurement",
+            "search-profiles",
+            "images"
+          ]
+        },
+        {
+          "id": "D3-S13",
+          "time": "14:20",
+          "title": "Lightning session L: Understanding SERPs and your users",
+          "speakers": [
+            "Nik Vujic",
+            "a community speaker"
+          ],
+          "role": null,
+          "kind": "lightning",
+          "coverage": [
+            "transcript",
+            "one-slide"
+          ],
+          "note": "Nik Vujic (Founder, Get Stuff Digital) on Search Console data through BigQuery and an LLM agent, named from his self-introduction, which matches the official speaker list; then a community speaker who was not named, on AI visibility and brand familiarity. Other talks of this block were not captured.",
+          "claim_count": 76,
+          "topics": [
+            "search-console-data",
+            "measurement",
+            "ai-in-search-systems",
+            "ranking-signals-by-vertical",
+            "helpful-content",
+            "page-indexing-report",
+            "duplicate-content",
+            "ai-overviews-usage",
+            "ai-mode-usage",
+            "seo-vs-geo",
+            "feature-requests",
+            "measuring-ai-visibility",
+            "seo-scope"
+          ]
+        },
+        {
+          "id": "D3-S14",
+          "time": "14:45",
+          "title": "Poster session M: Success Strategies That Work",
+          "speakers": [
+            "Daniel Hernandez Susa",
+            "Gaetano Romeo",
+            "Victoria Yap",
+            "Elif Öztürk",
+            "Jo Juliana Turnbull",
+            "Erin Sparling"
+          ],
+          "role": null,
+          "kind": "poster",
+          "coverage": [
+            "one-slide"
+          ],
+          "note": "Poster presenters as listed on the photographed programme slide; the posters themselves were not captured, so there are no claims.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S15",
+          "time": "15:25",
+          "title": "Break",
+          "speakers": [],
+          "role": null,
+          "kind": "break",
+          "coverage": [
+            "none"
+          ],
+          "note": null,
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S16",
+          "time": "15:30",
+          "title": "Mastering the messy middle",
+          "speakers": [
+            "Pablo Pérez"
+          ],
+          "role": "Senior Marketing Research & Insights Manager",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Named on the title slide. How AI changes consumer decision making between trigger and purchase; the recording starts mid-talk.",
+          "claim_count": 53,
+          "topics": [
+            "consumer-decisions",
+            "ai-mode-usage",
+            "ai-overviews-usage",
+            "helpful-content",
+            "trends-data",
+            "seo-vs-geo",
+            "trends-for-seo",
+            "measurement"
+          ]
+        },
+        {
+          "id": "D3-S17",
+          "time": "15:45",
+          "title": "How long does it take to..?",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "slides"
+          ],
+          "note": "Speaker from the author's recording label. Google's estimated processing times for crawling, indexing and serving, based on internal analysis.",
+          "claim_count": 80,
+          "topics": [
+            "processing-times",
+            "url-discovery",
+            "crawl-budget",
+            "crawl-demand",
+            "index-selection",
+            "crawlable-links",
+            "soft-404",
+            "sitemaps",
+            "robots-txt",
+            "web-standards",
+            "crawl-rate-limit",
+            "crawl-errors",
+            "rendering",
+            "indexing-pipeline",
+            "javascript-seo",
+            "robots-meta-tag",
+            "canonical-selection",
+            "site-moves",
+            "indexing-signals",
+            "structured-data",
+            "rich-results",
+            "images",
+            "video",
+            "snippet-controls",
+            "spam-policies",
+            "search-updates",
+            "spam-detection",
+            "pipeline-overview"
+          ]
+        },
+        {
+          "id": "D3-S18",
+          "time": "16:00",
+          "title": "Wrapping all up: AI, Search, and making sense of everything.",
+          "speakers": [
+            "Gary Illyes"
+          ],
+          "role": "Search Relations",
+          "kind": "talk",
+          "coverage": [
+            "transcript",
+            "one-slide"
+          ],
+          "note": "Speaker from the author's recording label; same recording as How long does it take to..?, with no new introduction.",
+          "claim_count": 36,
+          "topics": [
+            "ai-in-search-systems",
+            "gemini-and-search",
+            "ai-content-detection",
+            "search-quality-evaluation",
+            "helpful-content",
+            "spam-detection",
+            "seo-vs-geo",
+            "pipeline-overview",
+            "search-evolution",
+            "query-fanout",
+            "ai-links-to-web",
+            "seo-scope"
+          ]
+        },
+        {
+          "id": "D3-S19",
+          "time": "16:20",
+          "title": "Q&A",
+          "speakers": [
+            "Alex Jansen",
+            "John Mueller",
+            "Ariel Kroszynski",
+            "Duy Nguyen",
+            "Gary Illyes"
+          ],
+          "role": "Google panel",
+          "kind": "qa",
+          "coverage": [
+            "one-slide"
+          ],
+          "note": "Panel named on the Q&A slide. The questions and answers were not recorded.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S20",
+          "time": "17:20",
+          "title": "Closing",
+          "speakers": [
+            "Google"
+          ],
+          "role": null,
+          "kind": "talk",
+          "coverage": [
+            "one-slide"
+          ],
+          "note": "Closing slide with the feedback link; nothing recorded.",
+          "claim_count": 0,
+          "topics": []
+        },
+        {
+          "id": "D3-S00",
+          "time": "",
+          "title": "Day 3, session not recorded",
+          "speakers": [],
+          "role": null,
+          "kind": "unrecorded",
+          "coverage": [
+            "none"
+          ],
+          "note": "Points whose session is not known. Every Day 3 recording and photo is assigned to a session, so none so far.",
+          "claim_count": 0,
+          "topics": []
+        }
+      ]
+    }
+  ]
+}

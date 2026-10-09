@@ -1,0 +1,136 @@
+# Every session of the event. IDs are stable: D<day>-S<nn>. Times are the official agenda times, in quotes.
+# coverage: slides | notes | transcript | one-slide | video | none (one value or a list)
+# kind: talk | lightning | panel | qa | poster | break (default talk). Optional: note (one line), role (printed after the speaker).
+# D<day>-S00 = session not recorded: its slide/stage claims may name the speaker in `who` (any name, audience or unknown).
+event:
+  name: Search Central Live Deep Dive Europe 2026
+  city: Barcelona
+  dates: 2026-09-30 to 2026-10-02
+days:
+  - day: 1
+    date: 2026-09-30
+    theme: Crawling
+    sessions:
+      - {id: D1-S01, time: "11:00", title: "Welcome and opening keynotes", speaker: "Lino Cattaruzzi", role: "President, Google Iberia", coverage: [slides, transcript],
+         note: "Covers two agenda slots: the 11:00 Welcome (event host) and the 11:20 Opening keynote by Lino Cattaruzzi, named in the host's on-stage hand-over; he also presented the Larry Page quote and the five ecosystem principles. Transcript from a second attendee recording; an audio recording covers the keynote from its first minute to the end."}
+      - {id: D1-S02, time: "11:35", title: "What's new in the world of Search", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, slides],
+         note: "Speaker from his self-introduction at the start of the talk, in a second attendee recording."}
+      - {id: D1-S03, time: "11:45", title: "How Search works and where's AI?", speaker: ["Cherry Prommawin", "Gary Illyes"], role: "Search Relations", coverage: [transcript, slides],
+         note: "Cherry Prommawin presented crawling, indexing and serving in classic Search and Gary Illyes the AI parts (his hand-over and her self-introduction at the start). Transcript from a second attendee recording."}
+      - {id: D1-S04, time: "13:10", title: "Lightning session A: Automation and AI", speaker: ["James Powley", "Rafael Kovashikawa", "Kira Breuer", "Carlos Ortega", "Thiago Pojda", "other community speakers"], kind: lightning, coverage: transcript,
+         note: "Hosted by Gary Illyes and Cherry Prommawin. Seven talks: AI automation in agency SEO work (James Powley, SEO Director, Blue Array: self-introduction and hand-over); LLM errors on search data (Rafael Kovashikawa, AI Engineer & SEO Specialist, FUSE: hand-over 'Raphael', the only Rafael on the official speaker list); an LLM fix loop for structured data (a live demo with Google's Rich Results Test); automating monthly SEO reports (Kira Breuer, SEO Manager, Greven Medien GmbH & Co. KG: hand-over 'Kiran' in the speech-to-text and her self-description as an SEO manager at a local agency in Cologne, matched to the only Kira on the official speaker list, whose job and city agree); preparing sites for humans and AI agents (Carlos Ortega, Freelance SEO Consultant: the next speaker's back-reference 'as we were just shown by Carlos', the only Carlos on the official speaker list); GEO and its metrics (Thiago Pojda, SEO Director & Entrepreneur, SIXT SE: the host's hand-over and his self-introduction); AI search as a funnel. The other speakers were not named. Transcript from a second attendee recording and an audio recording; no slides photographed."}
+      - {id: D1-S05, time: "14:05", title: "How crawling works", speaker: ["Cherry Prommawin", "Gary Illyes"], role: "Search Relations", coverage: [slides, transcript],
+         note: "Speakers from on-stage hand-overs between the two and the host's thanks to Gary and Cherry. Transcript from a second attendee recording; two audio recordings cover the talk except for about three minutes before the crawling infrastructure part."}
+      - {id: D1-S06, time: "14:35", title: "How crawling errors affect Search", speaker: ["Cherry Prommawin", "Gary Illyes"], role: "Search Relations", coverage: [notes, transcript],
+         note: "Cherry Prommawin presented the status codes and Gary Illyes the DNS, network, CDN and soft 404 errors (on-stage hand-overs; the host thanked both). Transcript from a second attendee recording and a complete audio recording."}
+      - {id: D1-S07, time: "15:10", title: "How Google interprets robots.txt", speaker: "Google", coverage: [slides, transcript],
+         note: "Audio recording from the first minutes of the talk to its end, including a robots.txt quiz; the speaker is not named in the recording. The unknown-line slide stays with this talk: the recording reads out its example and value, although the photo's time stamp falls a few minutes after the hand-over to Lightning session B."}
+      - {id: D1-S08, time: "15:30", title: "Lightning session B: Robots.txt", speaker: ["Dave Smart", "other community speakers"], kind: lightning, coverage: transcript,
+         note: "One community talk was recorded: robots.txt pitfalls seen in the wild (Dave Smart, Tech SEO, Tame the Bots: the host's hand-over, his self-introduction and the official speaker list). The audio recording ends during his talk."}
+      - {id: D1-S09, time: "15:40", title: "What would you do?: Crawling Edition", speaker: "Google", coverage: none}
+      - {id: D1-S10, time: "16:00", title: "How Google thinks about crawl budget", speaker: "Cherry Prommawin", role: "Search Relations", coverage: [slides, transcript],
+         note: "The second attendee recording starts mid-talk, so the opening is from slides only."}
+      - {id: D1-S11, time: "16:20", title: "Lightning session C: Crawling", speaker: ["Tobias Schwarz", "Jovana Avramovic"], kind: lightning, coverage: transcript,
+         note: "Two community talks were recorded: similar URLs (Tobias Schwarz, CTO and Founder, Audisto, from his self-introduction) and why technical SEO still matters in AI search (Jovana Avramovic, SEO Consultant: hand-over 'Joanna' in the speech-to-text, matched to the official speaker list). Transcript from a second attendee recording."}
+      - {id: D1-S12, time: "16:35", title: "Q&A", speaker: ["John Mueller", "Gary Illyes"], role: "Search Relations", kind: qa, coverage: transcript,
+         note: "Panel named in the moderator's invitation ('John and Gary'); an answer carries a name only where an on-stage cue names its speaker. Audience questioners are not named. Transcript from a second attendee recording; two audio recordings cover most of the panel as well (from the AI crawlers question to the llms.txt answers, and from the Search Console API answer to the end)."}
+      - {id: D1-S13, time: "17:25", title: "Daily wrap-up", speaker: "Google", coverage: transcript,
+         note: "Housekeeping only (second attendee recording); no claims."}
+      - {id: D1-S00, time: "", title: "Day 1, session not recorded", speaker: "", coverage: notes,
+         note: "Points from my notes where I did not write down which session they came from."}
+  - day: 2
+    date: 2026-10-01
+    theme: Indexing
+    sessions:
+      - {id: D2-S01, time: "10:00", title: "Checkin and Networking", speaker: "", kind: break, coverage: none}
+      - {id: D2-S02, time: "10:15", title: "Welcome to indexing day!", speaker: ["Gary Illyes", "Cherry Prommawin"], role: "Search Relations", coverage: [transcript, slides],
+         note: "Presented by Gary Illyes and Cherry Prommawin (named in the host's hand-over; turns not attributable). Highly rated Slido questions skipped on Day 1 for lack of time: four on slides with written answers, one more (sloppy migrations) only spoken, then a recap of Day 1. Transcript from a second attendee recording."}
+      - {id: D2-S03, time: "10:25", title: "How is HTML interpreted", speaker: "Cherry Prommawin", role: "Search Relations", coverage: [transcript, slides],
+         note: "Speaker from a back-reference in a later talk ('Cherry already talked about the page ... main content'), heard in a second attendee recording. The author's recording starts mid-talk, so the opening is from slides only."}
+      - {id: D2-S04, time: "10:30", title: "Controlling indexing", speaker: "John Mueller", role: "Search Relations Team Lead", coverage: [transcript, slides, video],
+         note: "Named on the title slide. The first recording stops mid-sentence at the closing slide; a second, independent recording covers the end of the talk (robots.txt and robots meta rules, robots meta tags and JavaScript)."}
+      - {id: D2-S05, time: "10:40", title: "Lightning session D: Rendering and JavaScript", speaker: ["Erin Sparling", "Sören Bendig", "Rebecca Yu", "Natalia Venditto"], kind: lightning, coverage: [transcript, slides],
+         note: "Four parts: a short Google opener by Erin Sparling (Partner Technology Manager, Google), then community talks by Sören Bendig (CEO, Audisto) on rendering blind spots, Rebecca Yu (SEO Manager, JAKALA) on debugging JavaScript rendering, and Natalia Venditto (Principal Software Engineer, Adobe) on Web Fragments."}
+      - {id: D2-S06, time: "11:15", title: "What is Google friendly JavaScript", speaker: "Erin Sparling", role: "Partner Technology Manager", coverage: [transcript, slides, video],
+         note: "Same speaker as the opener of Lightning session D."}
+      - {id: D2-S07, time: "11:30", title: "Understanding what's on a page", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, slides, video],
+         note: "Speaker from the author's recording label. Opened with Slido quiz questions, then the part on main content, which only a second attendee recording captured."}
+      - {id: D2-S08, time: "11:55", title: "Handling web duplication", speaker: "John Mueller", role: "Search Relations Team Lead", coverage: [transcript, slides],
+         note: "Speaker from the next talk's back-reference ('pick up where John left off with the canonical links'), heard in a second attendee recording."}
+      - {id: D2-S09, time: "12:05", title: "Lightning session E: Managing Duplicates and Site Moves", speaker: ["Tobias Schwarz", "Martyna Ağanoğlu", "David Carrasco Pamies"], kind: lightning, coverage: [transcript, one-slide],
+         note: "Three community talks: broken canonical graphs (Tobias Schwarz, CTO and Founder, Audisto); consolidating two competing loan-comparison sites into one brand (Martyna Ağanoğlu, SEO Specialist, Loando / Clar); the decisions behind a multi-site migration after an acquisition (David Carrasco Pamies, SEO Consultant, Magnify). Speakers from on-stage introductions and the official speaker list; talks 2 and 3 are only in the second attendee recording."}
+      - {id: D2-S10, time: "12:30", title: "Lunch", speaker: "", kind: break, coverage: none}
+      - {id: D2-S11, time: "13:30", title: "Finding the gold nuggets: structured data, media, and more!", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, one-slide],
+         note: "Short introduction to feature extraction (structured data, images, video). Introduced by name by the host and named again in the hand-over at the end of the next talk."}
+      - {id: D2-S12, time: "13:35", title: "What is Structured Data and why we need it on the internet.", speaker: "Ryan Levering", role: "Software Engineer", coverage: [transcript, slides],
+         note: "Named in the previous speaker's hand-over ('Ryan is going to talk about how we are actually dealing with structured data'), heard clearly in a second attendee recording; he said he has been a software engineer at Google for about 15 years, focused on data ingestion."}
+      - {id: D2-S13, time: "13:50", title: "Using images to your advantage and Engaging Search users with videos", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, one-slide],
+         note: "Introduced by name by the previous speaker. The author's recording stops partway through the list of video SEO factors; a second attendee recording covers the rest of the talk (video factors, formats, discovery, robots controls, AI-generated images)."}
+      - {id: D2-S14, time: "14:00", title: "Lightning session F: Media", speaker: ["a community speaker", "Patrick Domanico"], kind: lightning, coverage: transcript,
+         note: "Two community talks, captured by a second attendee recording: rewriting image alt text with an LLM through a crawler (speaker not named) and 'prompt journalism' (Patrick Domanico, Technical SEO Manager & Freelance Journalist, dentsu: hand-over 'Patrick', the only Patrick on the official speaker list)."}
+      - {id: D2-S15, time: "14:15", title: "Focusing on Internationalisation and Localisation", speaker: "Google", coverage: [transcript, slides]}
+      - {id: D2-S16, time: "14:30", title: "Lightning session G: Internationalisation", speaker: ["Alizée Baudez", "a second community speaker"], kind: lightning, coverage: transcript,
+         note: "Alizée Baudez (International SEO Consultant) on language, region and authority, named from her self-introduction, which matches the official speaker list; then Zahra Laleh's talk on non-Latin scripts, presented on her behalf by a colleague who was not named; a second attendee recording covers the rest of that talk."}
+      - {id: D2-S17, time: "14:45", title: "Poster session H: Indexing", speaker: "Community speakers", kind: poster, coverage: transcript,
+         note: "Poster session on the floor; a second attendee recording captured only the host's introduction and the list of poster topics."}
+      - {id: D2-S18, time: "15:25", title: "Break", speaker: "", kind: break, coverage: none}
+      - {id: D2-S19, time: "15:30", title: "Calculating (some) signals", speaker: "Google", coverage: transcript}
+      - {id: D2-S20, time: "15:40", title: "Deciding what goes in the index?", speaker: "Google", coverage: transcript,
+         note: "Same speaker and recording as Calculating (some) signals."}
+      - {id: D2-S21, time: "15:50", title: "Lightning session J: Indexing and Troubleshooting", speaker: "Community speakers", kind: lightning, coverage: none,
+         note: "Nothing captured; speakers unknown."}
+      - {id: D2-S22, time: "16:00", title: "What would you do?: Indexing Edition", speaker: "Google", coverage: none,
+         note: "Interactive audience exercise; nothing captured."}
+      - {id: D2-S23, time: "16:15", title: "How does the index look like?", speaker: "Google", coverage: transcript,
+         note: "The speaker refers back to the earlier talk on tokenization (Understanding what's on a page). No slides were photographed."}
+      - {id: D2-S24, time: "16:20", title: "Google Trends", speaker: "Omri Weisman", role: "Engineering Manager, Google Trends", coverage: transcript,
+         note: "Speaker matched from his self-introduction to the official speaker list. No slides were photographed."}
+      - {id: D2-S25, time: "16:45", title: "Q&A", speaker: "Google panel", kind: qa, coverage: none,
+         note: "Nothing captured."}
+      - {id: D2-S26, time: "17:25", title: "Daily Wrap-up", speaker: "Google", coverage: none,
+         note: "Nothing captured."}
+      - {id: D2-S00, time: "", title: "Day 2, session not recorded", speaker: "", coverage: none,
+         note: "Points whose session is not known. Every Day 2 recording and photo is assigned to a session, so none so far."}
+  - day: 3
+    date: 2026-10-02
+    theme: "Serving: Ranking, Search Console, and Performance"
+    sessions:
+      - {id: D3-S01, time: "10:00", title: "Checkin and Networking", speaker: "", kind: break, coverage: none}
+      - {id: D3-S02, time: "10:15", title: "Welcome to serving and ranking day!", speaker: "Google", coverage: one-slide,
+         note: "One slide with the day's journey through serving: query understanding, retrieval, ranking and search features. No recording."}
+      - {id: D3-S03, time: "10:25", title: "Making sense of users' queries", speaker: ["John Mueller", "Gary Illyes"], role: "Search Relations", coverage: [transcript, slides],
+         note: "Two parts: query understanding (language, synonyms, entities, query rewriting, query fan-out) by John Mueller, then retrieval from the index (posting lists, language, country and quality signals) by Gary Illyes. Speakers from on-stage references: a later talk called the first part John's talk, and the first part ended by handing over to Gary."}
+      - {id: D3-S04, time: "10:45", title: "Lightning session K: Facets of quality", speaker: "Community speakers", kind: lightning, coverage: transcript,
+         note: "Only one community talk was recorded: writing for people rather than for search-engine metrics, with a case study from the speaker's own company. The other talks of this block were not captured."}
+      - {id: D3-S05, time: "11:15", title: "How Google thinks about Quality", speaker: "Google", coverage: [transcript, slides],
+         note: "The speaker is not named on the slides or in the recording."}
+      - {id: D3-S06, time: "11:45", title: "Uncovering Trustworthy Experiences on Discover", speaker: "Google", coverage: slides,
+         note: "Slides only: Discover eligibility, E-E-A-T and large image requirements. No recording; the presenter is not named on the photographed slides."}
+      - {id: D3-S07, time: "12:00", title: "What are quality updates", speaker: "Google", coverage: [transcript, slides],
+         note: "Why Search changes: feature updates, core updates and spam updates, and what recovery means. The speaker is not named."}
+      - {id: D3-S08, time: "12:10", title: "Lunch", speaker: "", kind: break, coverage: none}
+      - {id: D3-S09, time: "13:10", title: "Quality prevails", speaker: "", coverage: none,
+         note: "Nothing captured; speaker and format unknown."}
+      - {id: D3-S10, time: "13:25", title: "How Search results are born", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, slides],
+         note: "Search features, rich results and structured data. Speaker from the next speaker's reference on stage to Gary's product rich result example; the same person as the retrieval part of Making sense of users' queries."}
+      - {id: D3-S11, time: "13:40", title: "Shopping on Search: Beyond the blue links", speaker: "Alex Jansen", role: "Software Engineer, Google Shopping", coverage: transcript,
+         note: "Speaker matched from his self-introduction to the official speaker list. No slides were photographed."}
+      - {id: D3-S12, time: "13:55", title: "Inside Search Console: What’s New & How to Use It", speaker: "Ariel Kroszynski", role: "Front-End Engineering Manager, Search Console", coverage: [transcript, slides],
+         note: "Named on the title slide. Query groups, AI-powered report configuration, AI reporting, social platform properties and multimodal search reporting."}
+      - {id: D3-S13, time: "14:20", title: "Lightning session L: Understanding SERPs and your users", speaker: ["Nik Vujic", "a community speaker"], kind: lightning, coverage: [transcript, one-slide],
+         note: "Nik Vujic (Founder, Get Stuff Digital) on Search Console data through BigQuery and an LLM agent, named from his self-introduction, which matches the official speaker list; then a community speaker who was not named, on AI visibility and brand familiarity. Other talks of this block were not captured."}
+      - {id: D3-S14, time: "14:45", title: "Poster session M: Success Strategies That Work", speaker: ["Daniel Hernandez Susa", "Gaetano Romeo", "Victoria Yap", "Elif Öztürk", "Jo Juliana Turnbull", "Erin Sparling"], kind: poster, coverage: one-slide,
+         note: "Poster presenters as listed on the photographed programme slide; the posters themselves were not captured, so there are no claims."}
+      - {id: D3-S15, time: "15:25", title: "Break", speaker: "", kind: break, coverage: none}
+      - {id: D3-S16, time: "15:30", title: "Mastering the messy middle", speaker: "Pablo Pérez", role: "Senior Marketing Research & Insights Manager", coverage: [transcript, slides],
+         note: "Named on the title slide. How AI changes consumer decision making between trigger and purchase; the recording starts mid-talk."}
+      - {id: D3-S17, time: "15:45", title: "How long does it take to..?", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, slides],
+         note: "Speaker from the author's recording label. Google's estimated processing times for crawling, indexing and serving, based on internal analysis."}
+      - {id: D3-S18, time: "16:00", title: "Wrapping all up: AI, Search, and making sense of everything.", speaker: "Gary Illyes", role: "Search Relations", coverage: [transcript, one-slide],
+         note: "Speaker from the author's recording label; same recording as How long does it take to..?, with no new introduction."}
+      - {id: D3-S19, time: "16:20", title: "Q&A", speaker: ["Alex Jansen", "John Mueller", "Ariel Kroszynski", "Duy Nguyen", "Gary Illyes"], role: "Google panel", kind: qa, coverage: one-slide,
+         note: "Panel named on the Q&A slide. The questions and answers were not recorded."}
+      - {id: D3-S20, time: "17:20", title: "Closing", speaker: "Google", coverage: one-slide,
+         note: "Closing slide with the feedback link; nothing recorded."}
+      - {id: D3-S00, time: "", title: "Day 3, session not recorded", speaker: "", coverage: none,
+         note: "Points whose session is not known. Every Day 3 recording and photo is assigned to a session, so none so far."}

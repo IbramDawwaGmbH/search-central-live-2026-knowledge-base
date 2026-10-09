@@ -1,0 +1,11 @@
+# Python packages for the knowledge base. install-tools.bat runs: python -m pip install -r requirements.txt
+# HEIC photos are decoded with Windows' own decoder (WPF, see _system/tools/heic2jpg.ps1), not pillow-heif.
+pyyaml>=6.0        # read and write the YAML data
+playwright>=1.40   # print the PDFs and check the website (then: python -m playwright install chromium)
+pypdf>=4.0         # assemble and check PDFs
+pdfplumber>=0.10   # read PDF text and fonts in checks
+pypdfium2>=4.0     # render PDF pages to images in checks
+reportlab>=4.0     # PDF building blocks
+qrcode>=7.4        # QR codes in the field guides
+pillow>=10.0       # images and EXIF capture times (ingest)
+jsonschema>=4.18   # validate the agent pack against its JSON Schema

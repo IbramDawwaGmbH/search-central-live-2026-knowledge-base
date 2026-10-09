@@ -1,0 +1,70 @@
+# Per-day text for the field guide PDFs. make_pdf.py, build_ocean.py, build_deco.py and build.py read it.
+# For a new day, copy the whole day1 block, rename it (day2, day3) and rewrite every value.
+# Keep this file UTF-8. "·" in cover_date is printed with extra spacing on the Deep Dive and Art Deco covers.
+day1:
+  edition: Day 1 Field Guide                     # Deep Dive and Art Deco covers, the line under the eyebrow
+  title: [How Google Crawls, in the Age of, AI SEARCH]   # Deep Dive and Art Deco covers, three title lines (t1, t2, t3)
+  subtitle: "A senior-level guide to Day 1 in Barcelona: what Google showed about AI Mode, how the crawler really works, why robots.txt breaks, and how crawl budget is decided, plus the community talks and the Q&A. Every point labelled and checked against Google's documentation."
+  cover_date: Barcelona · 30 September 2026       # every cover ({{COVER_DATE}} in the template)
+  footer: How Google Crawls in the Age of AI Search   # Deep Dive and modern, bottom left of every page
+  pdf:                                            # document properties shown by PDF viewers
+    deco:
+      title: How Google Crawls in the Age of AI Search — Day 1 Field Guide (Art Deco edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 1: crawling, robots.txt, crawl budget and AI in Search"
+    modern:
+      title: How Google Crawls in the Age of AI Search — Day 1 Field Guide
+      subject: "Search Central Live Deep Dive Europe 2026, Day 1: crawling, robots.txt, crawl budget and AI in Search"
+    ocean:                                        # the Deep Dive edition (make_pdf.py style ocean)
+      title: How Google Crawls in the Age of AI Search — Day 1 Field Guide (Deep Dive edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 1: crawling, robots.txt, crawl budget and AI in Search"
+  pages:                                          # visible text that finds the page of {{PTK}} and {{PSRC}}
+    PTK: Key takeaways                            # ({{Pnn}} is always found by "Section nn")
+    PSRC: Every point labelled Docs was checked
+  photos: 45                                      # {{PHOTOS}} in the sources lead
+  sources_checked: 4 October 2026                 # optional override of {{CHECKED}} in the sources lead; without it the
+                                                  # lead prints the newest 'checked' date (sources.yaml) of the listed sources.
+                                                  # Set for a finished day, so a later day's re-check does not change its guide.
+  sources_extra: [scl-announcement]               # listed under Sources although no claim cites them
+day2:
+  edition: Day 2 Field Guide
+  title: [How Google Indexes, in the Age of, AI SEARCH]
+  subtitle: "A senior-level guide to Day 2 in Barcelona: how Google renders and deduplicates pages, which robots rules steer AI answers, and what gets indexed, plus the community talks on site moves and media. Every point labelled and checked against Google's documentation."
+  cover_date: Barcelona · 1 October 2026
+  footer: How Google Indexes in the Age of AI Search
+  pdf:
+    deco:
+      title: How Google Indexes in the Age of AI Search — Day 2 Field Guide (Art Deco edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 2: HTML processing, robots meta tags, rendering, deduplication, structured data, international SEO, index selection and Google Trends"
+    modern:
+      title: How Google Indexes in the Age of AI Search — Day 2 Field Guide
+      subject: "Search Central Live Deep Dive Europe 2026, Day 2: HTML processing, robots meta tags, rendering, deduplication, structured data, international SEO, index selection and Google Trends"
+    ocean:
+      title: How Google Indexes in the Age of AI Search — Day 2 Field Guide (Deep Dive edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 2: HTML processing, robots meta tags, rendering, deduplication, structured data, international SEO, index selection and Google Trends"
+  pages:
+    PTK: Key takeaways
+    PSRC: Every point labelled Docs was checked
+  photos: 64
+  sources_checked: 3 October 2026
+  sources_extra: [scl-announcement]
+day3:
+  edition: Day 3 Field Guide
+  title: [How Google Serves, in the Age of, AI SEARCH]
+  subtitle: "A senior-level guide to Day 3 in Barcelona: how Google understands queries and ranks pages, what is new in Search Console, and how long its processes take. Every point labelled and checked against Google's documentation."
+  cover_date: Barcelona · 2 October 2026
+  footer: How Google Serves in the Age of AI Search
+  pdf:
+    deco:
+      title: How Google Serves in the Age of AI Search — Day 3 Field Guide (Art Deco edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 3: query understanding, retrieval, quality and ranking, core and spam updates, search features and rich results, shopping data, Search Console, measuring AI visibility, consumer decisions, processing times and AI in Search"
+    modern:
+      title: How Google Serves in the Age of AI Search — Day 3 Field Guide
+      subject: "Search Central Live Deep Dive Europe 2026, Day 3: query understanding, retrieval, quality and ranking, core and spam updates, search features and rich results, shopping data, Search Console, measuring AI visibility, consumer decisions, processing times and AI in Search"
+    ocean:
+      title: How Google Serves in the Age of AI Search — Day 3 Field Guide (Deep Dive edition)
+      subject: "Search Central Live Deep Dive Europe 2026, Day 3: query understanding, retrieval, quality and ranking, core and spam updates, search features and rich results, shopping data, Search Console, measuring AI visibility, consumer decisions, processing times and AI in Search"
+  pages:
+    PTK: Key takeaways
+    PSRC: Every point labelled Docs was checked
+  photos: 33
+  sources_extra: [scl-announcement]

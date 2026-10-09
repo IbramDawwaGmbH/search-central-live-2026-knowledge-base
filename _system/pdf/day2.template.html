@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How Google Indexes in the Age of AI Search — Day 2 Field Guide</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Day 2 refinements, both styles */
+.nw, .no { white-space: nowrap; }
+figure svg { overflow: visible; }
+p, li, td, figcaption, .lead, .card, .stat, .legend div { text-wrap: pretty; }
+.toc .t, .toc .d { line-height: 1.25; }
+.toc .d { margin-top: 0; }
+li { break-inside: avoid; }
+.stat .v .x { font-family: 'Jost', 'Fraunces', 'Noto Symbols'; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  {{COVER_ART}}
+  <div style="position:absolute;left:0;right:0;bottom:0;height:70mm;background:linear-gradient(180deg, rgba(11,26,51,0) 0%, rgba(11,26,51,0.92) 55%, #0b1a33 100%);"></div>
+  <div class="inner">
+    <div class="eyebrow">Search Central Live Deep Dive Europe 2026 &nbsp;·&nbsp; Day 2 Field Guide</div>
+    <div class="rule"></div>
+    <h1>How Google Indexes in the Age of <em>AI Search</em></h1>
+    <div class="sub">{{SUBTITLE}}</div>
+    <div class="spacer"></div>
+    <div class="meta">
+      <div><div class="k">Notes &amp; guide by</div><div class="v name">{{AUTHOR}}</div></div>
+      <div><div class="k">Event</div><div class="v">{{COVER_DATE}}</div></div>
+      <div><div class="k">Edition</div><div class="v">3 October 2026</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTENTS ================= -->
+<div class="front">
+  <h2 class="title">Contents</h2>
+  <div class="toc">
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Key takeaways<span class="d">The fourteen things to remember from Day 2</span></span><span class="p">{{PTK}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">01</span><span class="t">Day 2 at a glance<span class="d">The agenda, a map of the day and the three-day arc</span></span><span class="p">{{P01}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">02</span><span class="t">From HTML to extracted elements<span class="d">Parsing, link extraction, four questions from the welcome Q&amp;A</span></span><span class="p">{{P02}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">03</span><span class="t">Controlling indexing<span class="d">Every robots rule and snippet control, what each does to AI answers</span></span><span class="p">{{P03}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">04</span><span class="t">Rendering and JavaScript<span class="d">The render loop, four common problems, three community talks</span></span><span class="p">{{P04}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">05</span><span class="t">Understanding what's on a page<span class="d">Main content, tokens, the chunking myth, soft 404 detection</span></span><span class="p">{{P05}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">06</span><span class="t">Duplicates and canonicals<span class="d">Clusters, canonical selection, canonical graphs, two site moves</span></span><span class="p">{{P06}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">07</span><span class="t">Feature extraction: structured data, images, video<span class="d">Why markup matters, images, video, AI images, two media talks</span></span><span class="p">{{P07}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">08</span><span class="t">Language, country and hreflang<span class="d">hreflang code mistakes, localisation, non-Latin scripts, posters</span></span><span class="p">{{P08}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">09</span><span class="t">Signals and index selection<span class="d">What is calculated at indexing; the Page indexing report</span></span><span class="p">{{P09}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">10</span><span class="t">Inside the index<span class="d">Tokens, posting lists, embeddings; one index and one set of snippets for AI</span></span><span class="p">{{P10}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">11</span><span class="t">Google Trends for SEO<span class="d">Share, not volume; three uses; what is new</span></span><span class="p">{{P11}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">12</span><span class="t">What changed since Day 1<span class="d">Two contradictions, and what Day 2 added to Day 1</span></span><span class="p">{{P12}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">13</span><span class="t">Day 2 action checklist<span class="d">Seventeen checks to run this week</span></span><span class="p">{{P13}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">14</span><span class="t">Said on stage, not in Google's docs<span class="d">Points to treat as informed hints</span></span><span class="p">{{P14}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">15</span><span class="t">Help complete this guide<span class="d">Send what I missed; get the web edition</span></span><span class="p">{{P15}}</span></div>
+    <div class="row" style="padding:0.3mm 0"><span class="n">—</span><span class="t">Sources<span class="d">Google documentation and press reports used to check this guide</span></span><span class="p">{{PSRC}}</span></div>
+  </div>
+
+  <div class="legend">
+    <h4>How to read the labels</h4>
+    <div><span class="tag slide">Slide</span> Shown on screen during the session</div>
+    <div><span class="tag stage">Stage</span> Said on stage, from my recordings or a second attendee&#8217;s</div>
+    <div><span class="tag docs">Docs</span> Google's published documentation</div>
+    <div><span class="tag press">Press</span> A third-party report of what Google said</div>
+    <div><span class="tag analysis">Analysis</span> My interpretation, not Google's words</div>
+    <div><span class="muted">(not&nbsp;in&nbsp;docs)</span> Said at the event; not in Google's docs</div>
+  </div>
+</div>
+
+<!-- ================= TAKEAWAYS ================= -->
+<section class="s" id="tk">
+  <div class="section-head plain">
+    <div class="kicker">Summary</div>
+    <h2>Key takeaways</h2>
+    <div class="lead" data-claims="D2-C026 D2-C726">Day 2 followed a fetched page into the index. Most of what decides whether it is indexed, and how it is shown, in AI answers too, happens there.</div>
+  </div>
+  <ol class="takeaways">
+    <li data-claims="D2-C128 D2-C131 D2-C133"><div><b>Rendering is a separate, expensive pass.</b><span>Every 200 page without noindex is queued for a detached render. Put what indexing needs in the server HTML.</span></div></li>
+    <li data-claims="D2-C195 D2-C268 D2-C271 D2-C272"><div><b>Googlebot neither clicks nor scrolls.</b><span>Content behind a click or a scroll listener never loads. The viewport is about 10,000 pixels tall.</span></div></li>
+    <li data-claims="D2-C022 D2-C058 D2-C108"><div><b>A robots.txt block is not a noindex.</b><span>noindex works only on a page Google may crawl, and removing it with JavaScript doesn't work.</span></div></li>
+    <li data-claims="D2-C072 D2-C073 D2-C728"><div><b>Snippet rules are now AI rules.</b><span>nosnippet and max-snippet also limit AI Overviews and AI Mode, which are built from snippets.</span></div></li>
+    <li data-claims="D2-C312 D2-C313 D2-C330 D2-C331 D2-C332"><div><b>Where text sits matters; chunking doesn't.</b><span>Footer words weigh less than main content. Gemini reads millions of tokens; 100-word chunks miss the point.</span></div></li>
+    <li data-claims="D2-C345 D2-C348 D2-C354"><div><b>Duplicates become one representative plus alternate names.</b><span>One URL per cluster is indexed and gets the others' signals; old domains in site: queries are alternate names.</span></div></li>
+    <li data-claims="D2-C379 D2-C380 D2-C399"><div><b>Google decides the canonical.</b><span>rel=canonical is often wrong, so it is one input. When your signals disagree, Google can't tell what you want.</span></div></li>
+    <li data-claims="D2-C459 D2-C471 D2-C476 D2-C480"><div><b>Structured data is still the precise, cheap route.</b><span>Google prefers markup to LLM extraction, and the same data feeds AI features. There is no special AI markup.</span></div></li>
+    <li data-claims="D2-C565 D2-C566 D2-C575 D2-C579 D2-C580"><div><b>hreflang fails on small mistakes.</b><span>Every page needs a self-reference, return links and ISO codes: sv not se, GB not UK, never EU.</span></div></li>
+    <li data-claims="D2-C680 D2-C682 D2-C706 D2-C714"><div><b>Index selection is a quality gate.</b><span>'Crawled – currently not indexed' is mostly about quality; 'Discovered' means Google doesn't want to crawl it yet.</span></div></li>
+    <li data-claims="D2-C726 D2-C727"><div><b>There is no separate AI index.</b><span>AI Overviews and AI Mode query the same index and use the same token-based snippets as web results.</span></div></li>
+    <li data-claims="D2-C916 D2-C924 D2-C942 D2-C944"><div><b>A video needs a watch page and a visible player.</b><span>Without a watch page, or below the fold, it isn't indexed, Gary Illyes said. The docs want the player at load.</span></div></li>
+    <li data-claims="D2-C881 D2-C883 D2-C911"><div><b>Consolidate by intent; never redirect to the homepage.</b><span>Merge pages that serve one intent and redirect only to a same-intent page. Removed URLs get a 404 or 410.</span></div></li>
+    <li data-claims="D2-C784 D2-C785 D2-C788"><div><b>Google Trends shows share, not volume.</b><span>A line falling since 2004 can hide rising searches. Compare terms in one chart; take volumes elsewhere.</span></div></li>
+  </ol>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="s" id="s01">
+  <div class="section-head">
+    <div class="num">01</div>
+    <div class="kicker">Section 01</div>
+    <h2>Day 2 at a glance</h2>
+    <div class="lead" data-claims="D2-C026">Day 2 followed a page from the crawler's hand-over into the index, then looked inside the index and at Google Trends. Community lightning talks ran in between. This guide selects from nearly 1,000 points; the web edition holds every one.</div>
+  </div>
+
+  <div class="agenda">
+{{AGENDA}}
+  </div>
+  <p class="small muted" style="margin-top:3mm">This edition adds a second attendee's recording of most of the day to my recordings and slide photos. It filled in the welcome Q&amp;A, the end of the robots meta talk, the part on main content, Lightning sessions E and F and the end of the video talk. Still not covered: Lightning session J, "What would you do?", the Q&amp;A and the wrap-up; of Poster session H, only the topics.</p>
+
+  <figure data-claims="D2-C024 D2-C026 D2-C027 D2-C028 D2-C127 D2-C128 D2-C048 D2-C169 D2-C173 D2-C268 D2-C271 D2-C345 D2-C444 D2-C446 D2-C648 D2-C696 D2-C720 D2-C722 D2-C732 D2-C740">
+    <svg viewBox="0 0 680 414" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2457e6"/></marker>
+      </defs>
+      <rect x="0.5" y="0" width="129.5" height="54" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="65" y="25" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Crawl queue</text>
+      <text x="65" y="41" text-anchor="middle" font-size="9.5" fill="#667085">URLs waiting to be fetched</text>
+      <path d="M130 27H158" stroke="#667085" stroke-width="1.3" marker-end="url(#pa)"/>
+      <rect x="160" y="0" width="130" height="54" rx="10" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="225" y="25" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Crawler</text>
+      <text x="225" y="41" text-anchor="middle" font-size="9.5" fill="#667085">Day 1</text>
+      <path d="M290 27H318" stroke="#667085" stroke-width="1.3" marker-end="url(#pa)"/>
+      <rect x="320" y="0" width="360" height="54" rx="10" fill="#e8eefd"/>
+      <text x="338" y="24" font-size="12" font-weight="700" fill="#0f1d33">Fetched page and fetch record</text>
+      <text x="338" y="41" font-size="9.5" fill="#2a3446">HTML, fetch result, connect time, TTFB, robots policies</text>
+      <path d="M500 54V80" stroke="#667085" stroke-width="1.3" marker-end="url(#pa)"/>
+      <rect x="150" y="82" width="529.4" height="270" rx="12" fill="#fff" stroke="#2457e6" stroke-width="1.2"/>
+      <text x="168" y="102" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">PROCESSING · SIX STEPS FROM THE SLIDE</text>
+      <path d="M176 129V324" stroke="#bcd0ff" stroke-width="2"/>
+      <g font-size="10.5" font-weight="700" text-anchor="middle" fill="#fff">
+        <circle cx="176" cy="129" r="10" fill="#2457e6"/><text x="176" y="133">1</text>
+        <circle cx="176" cy="168" r="10" fill="#2457e6"/><text x="176" y="172">2</text>
+        <circle cx="176" cy="207" r="10" fill="#2457e6"/><text x="176" y="211">3</text>
+        <circle cx="176" cy="246" r="10" fill="#2457e6"/><text x="176" y="250">4</text>
+        <circle cx="176" cy="285" r="10" fill="#2457e6"/><text x="176" y="289">5</text>
+        <circle cx="176" cy="324" r="10" fill="#2457e6"/><text x="176" y="328">6</text>
+      </g>
+      <g font-size="11.5" font-weight="700" fill="#0f1d33">
+        <rect x="196" y="112" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="134">HTML parsing</text>
+        <rect x="196" y="151" width="160" height="34" rx="8" fill="#fff" stroke="#2457e6" stroke-dasharray="4 3"/><text x="208" y="173">Rendering</text>
+        <rect x="196" y="190" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="212">Deduplication</text>
+        <rect x="196" y="229" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="251">Feature extraction</text>
+        <rect x="196" y="268" width="160" height="34" rx="8" fill="#e8eefd"/><text x="208" y="290">Signal extraction</text>
+        <rect x="196" y="307" width="160" height="34" rx="8" fill="#2457e6"/><text x="208" y="329" fill="#fff">Index selection</text>
+      </g>
+      <g font-size="10" fill="#2a3446">
+        <text x="370" y="126">DOM; main content; canonical, hreflang,</text><text x="370" y="139">links and robots meta extracted</text>
+        <text x="370" y="165">Detached, expensive system: headless</text><text x="370" y="178">Chromium; no clicks, no scrolling</text>
+        <text x="370" y="204">Clusters equivalent URLs, one</text><text x="370" y="217">representative, others' signals forwarded</text>
+        <text x="370" y="243">Structured data, images and video,</text><text x="370" y="256">only for the deduplicated set</text>
+        <text x="370" y="282">Language, country, freshness,</text><text x="370" y="295">SafeSearch and spam</text>
+        <text x="370" y="321">Thresholds; noindex (likely reading),</text><text x="370" y="334">soft 404s, duplicates, spam dropped</text>
+      </g>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <rect x="604" y="119" width="30" height="20" rx="8" fill="#0b1a33"/><text x="619" y="133">02</text>
+        <rect x="640" y="119" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="133">05</text>
+        <rect x="640" y="158" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="172">04</text>
+        <rect x="640" y="197" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="211">06</text>
+        <rect x="640" y="236" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="250">07</text>
+        <rect x="640" y="275" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="289">09</text>
+        <rect x="640" y="314" width="30" height="20" rx="8" fill="#0b1a33"/><text x="655" y="328">09</text>
+      </g>
+      <path d="M150 168H66V56" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#pb)"/>
+      <path d="M150 129H66" stroke="#2457e6" stroke-width="1.3" fill="none"/>
+      <g font-size="9.5" fill="#2457e6">
+        <text x="0" y="198">Links extracted from</text><text x="0" y="212">the raw and the</text><text x="0" y="226">rendered HTML go</text><text x="0" y="240">back to the queue</text>
+      </g>
+      <path d="M415 352V366" stroke="#667085" stroke-width="1.3" marker-end="url(#pa)"/>
+      <rect x="150" y="368" width="530" height="46" rx="10" fill="#0b1a33"/>
+      <text x="170" y="397" font-size="17" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Index</text>
+      <text x="232" y="396" font-size="10" fill="#dbe5ff">Tokens with metadata and signals; posting lists and embeddings</text>
+      <rect x="640" y="381" width="30" height="20" rx="8" fill="none" stroke="#bcd0ff"/>
+      <text x="655" y="395" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">10</text>
+    </svg>
+    <figcaption><b>A map of Day 2.</b> The processing steps as listed on Google's pipeline slide, with the section of this guide that covers each one.</figcaption>
+  </figure>
+
+  <figure data-claims="D1-C036 D1-C037 D1-C038 D2-C322">
+    <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker>
+      </defs>
+      <rect x="0.5" y="1" width="209.5" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="20" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 1</text>
+      <text x="20" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Crawling</text>
+      <text x="20" y="83" font-size="10.5" fill="#667085">Discovery, fetching, robots.txt,</text>
+      <text x="20" y="97" font-size="10.5" fill="#667085">crawl budget</text>
+      <path d="M216 60H236" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="235" y="1" width="210" height="118" rx="12" fill="#2457e6"/>
+      <text x="255" y="31" font-size="10" font-weight="700" fill="#bcd0ff" letter-spacing="1.4">DAY 2 · THIS GUIDE</text>
+      <text x="255" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Indexing</text>
+      <text x="255" y="83" font-size="10.5" fill="#dbe5ff">Parsing, rendering, duplicates,</text>
+      <text x="255" y="97" font-size="10.5" fill="#dbe5ff">signals, index selection</text>
+      <path d="M451 60H471" stroke="#98a2b3" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="470" y="1" width="209.5" height="118" rx="12" fill="#f5f7fb" stroke="#e4e7ec"/>
+      <text x="490" y="31" font-size="10" font-weight="700" fill="#667085" letter-spacing="1.4">DAY 3</text>
+      <text x="490" y="61" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#0f1d33">Serving</text>
+      <text x="490" y="83" font-size="10.5" fill="#667085">Ranking, query interpretation,</text>
+      <text x="490" y="97" font-size="10.5" fill="#667085">grounding, query fan-out</text>
+    </svg>
+    <figcaption><b>The three-day arc.</b> One stage of Google Search per day, as shown on Day 1's "How Search works" slide.</figcaption>
+  </figure>
+
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="s" id="s02">
+  <div class="section-head">
+    <div class="num">02</div>
+    <div class="kicker">Section 02 · How is HTML interpreted · Cherry Prommawin</div>
+    <h2>From HTML to extracted elements</h2>
+    <div class="lead" data-claims="D2-C027 D2-C028 D2-C030">Processing starts with the HTML the crawler fetched. Google parses it into a DOM, tells header, navigation and main content apart, and extracts the elements site owners add for indexing.</div>
+  </div>
+
+  <h3>What the crawler hands over</h3>
+  <div class="grid2" style="grid-template-columns: 74mm 1fr; align-items: start;">
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C024 D2-C025"><span class="c"># Illustrative fetch record,</span>
+<span class="c"># fields as on the slide</span>
+<span class="k">fetch result</span>       …
+<span class="k">connect time</span>       … ms
+<span class="k">time to 1st byte</span>   … ms
+<span class="k">robots policies</span>
+  opt-out-google-extended
+<span class="k">HTTP response</span>
+  HTTP/1.1 200 OK
+  &lt;!doctype html&gt; …</pre>
+    <div>
+      <p class="mt0" data-claims="D2-C024"><span class="tag slide">Slide</span> The crawler passes on more than the HTML: the fetch result, connect time and time to first byte in milliseconds, the robots policies that apply, and the raw HTTP response. <span class="muted">(not&nbsp;in&nbsp;docs)</span></p>
+      <p data-claims="D2-C025 D1-C086"><span class="tag slide">Slide</span> The robots policies travel with the page into processing; the example showed the Google-Extended opt-out. <span class="tag docs">Docs</span> Google-Extended is a control token, not a crawler (see Day 1).</p>
+      <p data-claims="D2-C026"><span class="tag slide">Slide</span> Processing then runs six steps: HTML parsing, rendering, deduplication, feature extraction, signal extraction and index selection (the map in Day 2 at a glance).</p>
+    </div>
+  </div>
+
+  <h3>What Google extracts from the HTML</h3>
+  <table>
+    <thead><tr><th style="width:30mm">Element</th><th>What Google does with it</th><th style="width:24mm">See</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C031 D2-C032"><td class="k"><code>rel=canonical</code></td><td><span class="tag slide">Slide</span> In the head; states which page represents another. Used in deduplication and canonical selection.</td><td>Duplicates</td></tr>
+      <tr data-claims="D2-C033 D2-C034"><td class="k"><code>hreflang</code></td><td><span class="tag slide">Slide</span> Tells Google a page has an equivalent in another language. <span class="tag stage">Stage</span> Knowing those versions is useful in ranking.</td><td>Language</td></tr>
+      <tr data-claims="D2-C036 D2-C038 D2-C048"><td class="k">Links</td><td><span class="tag slide">Slide</span> "We like links." <span class="tag stage">Stage</span> Used to discover pages, understand site structure and rank. <span class="tag slide">Slide</span> New URLs go back to the crawl queue.</td><td>This section</td></tr>
+      <tr data-claims="D2-C049"><td class="k">Robots meta</td><td><span class="tag stage">Stage</span> Probably one of the most important extracted elements, or at least one this audience cares about.</td><td>Controls</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" data-claims="D2-C035">
+    <div class="h">Analysis</div>
+    <p>Put <code>rel=canonical</code> and <code>hreflang</code> in the head of the HTML your server sends, not only in JavaScript-rendered HTML. Google reads them while parsing, without waiting for rendering.</p>
+  </div>
+
+  <h3>Links Google can and cannot extract</h3>
+  <div class="grid2" style="grid-template-columns: 80mm 1fr; align-items: start;">
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C039 D2-C040 D2-C041 D2-C042"><span class="c">&lt;!-- Google can extract --&gt;</span>
+<span class="v">&lt;a href="https://example.com/products"&gt;</span>
+<span class="v">&lt;a href="/products"&gt;</span>
+
+<span class="c">&lt;!-- Google cannot extract (slide) --&gt;</span>
+<span class="x">&lt;a onclick="goTo('products')"&gt;</span>
+<span class="x">&lt;span href="/products"&gt;</span>
+<span class="x">&lt;a routerLink="/products"&gt;</span>
+<span class="x">&lt;a href="javascript:goTo('products')"&gt;</span></pre>
+    <div>
+      <p class="mt0" data-claims="D2-C039 D2-C040 D2-C041"><span class="tag slide">Slide</span> An <code>a</code> element with an <code>href</code>, absolute or relative, is the normal way to link. An <code>onclick</code> handler never runs because Googlebot does not click, and <code>href</code> on a <code>span</code> is not a standard link.</p>
+      <p data-claims="D2-C043"><span class="tag docs">Docs</span> Google's link guide calls these patterns not recommended and notes that Google may still try to parse them.</p>
+      <p data-claims="D2-C044"><span class="tag analysis">Analysis</span> The slide is stricter than the docs. Either way, none of them is a link you can rely on for discovery.</p>
+      <p data-claims="D2-C046 D2-C047"><span class="tag stage">Stage</span> Google sometimes extracts URLs typed as plain text <span class="muted">(not&nbsp;in&nbsp;docs; partly unclear in the recording)</span>. <span class="tag analysis">Analysis</span> Don't count on it.</p>
+    </div>
+  </div>
+
+  <div class="callout avoid" data-claims="D2-C045">
+    <div class="h">Analysis</div>
+    <p>Audit every template and component that outputs links: navigation, pagination, filters, product tiles, language selectors. Each needs a real <code>a</code> element with an <code>href</code>; anything else leaves the target pages without a link Google can rely on.</p>
+  </div>
+
+  <h3>Four questions from the welcome Q&amp;A</h3>
+  <p class="small muted" data-claims="D2-C820 D2-C838">Day 1's leftover questions, answered on slides, then on stage, by Gary Illyes and Cherry Prommawin.</p>
+  <div class="grid2">
+    <div class="card" data-claims="D2-C019 D2-C020 D2-C021 D2-C844 D2-C022 D2-C023"><div class="badge" style="color:#c8372d">robots.txt and noindex</div><div class="ct">Why isn't a disallow treated as noindex?</div><div class="cs"><span class="tag slide">Slide</span> "Simply put, it's because of sites that are extremely important and like to disallow their most important pages, either accidentally or out of ignorance." <span class="muted">(not&nbsp;in&nbsp;docs)</span> Disallowed content isn't indexed, but the URLs can still appear. <span class="tag stage">Stage</span> A national tax authority blocking its key PDFs still gets their URLs shown <span class="muted">(the example not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> A crawler that can't fetch a page never sees its noindex. <span class="tag analysis">Analysis</span> robots.txt for crawling, noindex for indexing.</div></div>
+    <div class="card" data-claims="D2-C001 D2-C002 D2-C820 D2-C838 D2-C005 D2-C008"><div class="badge" style="color:#2457e6">HTML sitemaps</div><div class="ct">Do they still help large sites?</div><div class="cs"><span class="tag slide">Slide</span> Good ones are hard to make for large sites: "Better rely on hubs like category pages that link out to your important pages." <span class="tag stage">Stage</span> "if you want to make one, knock yourself out". <span class="tag docs">Docs</span> Google's ecommerce guide: menus to categories to products, plus a sitemap or Merchant Center feed. <span class="tag analysis">Analysis</span> Google's line has moved since a 2005 post that encouraged HTML sitemaps.</div></div>
+    <div class="card" data-claims="D2-C009 D2-C010 D2-C011 D2-C841 D2-C013 D2-C014"><div class="badge" style="color:#0b8a5f">Out of stock</div><div class="ct">Keep the page or redirect it?</div><div class="cs"><span class="tag slide">Slide</span> "It depends on the importance of the PDPs to the users." Some users wait months, or pre-order. <span class="tag stage">Stage</span> A rare watch battery is worth the wait; a cheese is simply swapped <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> A 302 keeps the source URL in results. <span class="tag analysis">Analysis</span> Keep the page live with a 200 and current availability in Product markup; redirect only if users would rather switch than wait.</div></div>
+    <div class="card" data-claims="D2-C015 D2-C017 D2-C018 D2-C842 D2-C843"><div class="badge" style="color:#6d3fd6">Sitemaps</div><div class="ct">List them in robots.txt?</div><div class="cs"><span class="tag slide">Slide</span> "If it's included in the robots.txt file, any crawler can pick your sitemaps up". A sitemap not listed there has to be submitted instead, for example in Search Console. <span class="tag stage">Stage</span> "you can include it in robots.txt. No problem whatsoever." The trade-off: anyone can then see the sitemap.</div></div>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="s" id="s03">
+  <div class="section-head">
+    <div class="num">03</div>
+    <div class="kicker">Section 03 · John Mueller, Search Relations Team Lead</div>
+    <h2>Controlling indexing</h2>
+    <div class="lead" data-claims="D2-C058 D2-C056 D2-C072">robots.txt controls crawling, not indexing. Robots meta tags control whether a page is indexed and how it is shown, and some of them now also decide what AI Overviews and AI Mode may use.</div>
+  </div>
+
+  <div class="quote" data-claims="D2-C053">"You can use robots meta tags to be more visible in Search results than without robots meta tags."<span class="by">True or false? John Mueller's opening quiz. His answer: true</span></div>
+
+  <p data-claims="D2-C054 D2-C057 D2-C055"><span class="tag slide">Slide</span> The tag sits in the head and gives page-specific instructions: <code>&lt;meta name="robots" content="rule1,rule2"&gt;</code>, or with the name <code>googlebot</code> instead of <code>robots</code>. <span class="tag docs">Docs</span> Google also respects robots meta tags placed in the body.</p>
+
+  <h3>Every rule John Mueller covered</h3>
+  <table>
+    <thead><tr><th style="width:33mm">Rule</th><th>What it does</th><th style="width:58mm">The catch</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C059"><td class="k"><code>all</code></td><td><span class="tag slide">Slide</span> "This is the default value - it does nothing".</td><td>It is not an instruction to index the page.</td></tr>
+      <tr data-claims="D2-C061 D2-C062 D2-C069"><td class="k"><code>noindex</code></td><td><span class="tag slide">Slide</span> Keeps the page out of results. Typical uses on the slide: internal admin pages, temporary landing pages, thin content.</td><td><span class="tag docs">Docs</span> Never seen on a URL that robots.txt disallows.</td></tr>
+      <tr data-claims="D2-C063 D2-C064 D2-C821"><td class="k"><code>nofollow</code></td><td><span class="tag stage">Stage</span> Passes no signals to any link on the page; Mueller called it weird and very broad, and doubted it would exist if the tags were reinvented today.</td><td>Use <code>rel=nofollow</code> on the specific links instead.</td></tr>
+      <tr data-claims="D2-C068"><td class="k"><code>none</code></td><td><span class="tag stage">Stage</span> <code>noindex</code> plus <code>nofollow</code>.</td><td>Works only if Google can see the tag.</td></tr>
+      <tr data-claims="D2-C070 D2-C072 D2-C071"><td class="k"><code>nosnippet</code></td><td><span class="tag slide">Slide</span> No text snippet or video preview; the title still shows. Also no direct input for AI Overviews and AI Mode.</td><td><span class="tag docs">Docs</span> A static image thumbnail may still appear.</td></tr>
+      <tr data-claims="D2-C076 D2-C077 D2-C078 D2-C080 D2-C079"><td class="k"><code>data-nosnippet</code></td><td><span class="tag stage">Stage</span> An HTML attribute that keeps one piece of text, such as a phone number, out of the snippet; it works on a handful of elements.</td><td>An unclosed <code>div</code> can hide the rest of the page; valid HTML matters here. <span class="tag docs">Docs</span> Don't toggle it with JavaScript.</td></tr>
+      <tr data-claims="D2-C082 D2-C084 D2-C728"><td class="k"><code>max-snippet:[n]</code></td><td><span class="tag slide">Slide</span> Limits the snippet to <em>n</em> characters; <code>0</code> equals <code>nosnippet</code>. <span class="tag docs">Docs</span> Also limits use in AI Overviews and AI Mode.</td><td><span class="tag stage">Stage</span> Too short a value may mean no snippet at all <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+      <tr data-claims="D2-C085 D2-C086"><td class="k"><code>max-snippet:-1</code></td><td><span class="tag slide">Slide</span> No limit, "can be more than without" a rule <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td><span class="tag docs">Docs</span> Google picks the length it finds most effective; no promise of longer snippets.</td></tr>
+      <tr data-claims="D2-C087 D2-C089"><td class="k"><code>max-image-preview</code></td><td><span class="tag slide">Slide</span> <code>none</code>, <code>standard</code> or <code>large</code> image previews.</td><td><span class="tag stage">Stage</span> <code>large</code> matters mainly in Discover.</td></tr>
+      <tr data-claims="D2-C090 D2-C091"><td class="k"><code>max-video-preview</code></td><td><span class="tag slide">Slide</span> Seconds of video preview; <code>0</code> a static image, <code>-1</code> no limit.</td><td><span class="tag stage">Stage</span> He doesn't expect <code>-1</code> to give an hour-long preview.</td></tr>
+      <tr data-claims="D2-C093 D2-C094 D2-C095"><td class="k"><code>notranslate</code></td><td><span class="tag stage">Stage</span> No translation offered in results. In a meta tag named <code>google</code> it also turns off Chrome's translation.</td><td><span class="tag docs">Docs</span> Opts the page out of all translation features in Search.</td></tr>
+      <tr data-claims="D2-C099"><td class="k"><code>noimageindex</code></td><td><span class="tag stage">Stage</span> None of the page's images are indexed.</td><td>Mueller saw no reason to use it.</td></tr>
+      <tr data-claims="D2-C100 D2-C101"><td class="k"><code>unavailable_after</code></td><td><span class="tag stage">Stage</span> The page drops out of results after a set date and time; most sites don't use it.</td><td><span class="tag docs">Docs</span> Crawling of the URL slows sharply after the date.</td></tr>
+      <tr data-claims="D2-C102 D2-C103 D1-C029"><td class="k">Search generative AI</td><td><span class="tag slide">Slide</span> Not a tag but a Search Console setting: exclude keeps links and content out of AI Overviews and AI Mode.</td><td>Include is the default; set per property.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout avoid">
+    <div class="h">Snippets are what AI answers are built from</div>
+    <p data-claims="D2-C073"><span class="tag stage">Stage</span> "we use the snippet as a way of building out the AI Overviews and the AI Mode answers". If a page forbids a snippet, Google cannot use it there.</p>
+    <p data-claims="D2-C074"><span class="tag docs">Docs</span> To appear as a supporting link in AI Overviews or AI Mode, a page must be indexed and eligible to be shown with a snippet.</p>
+    <p data-claims="D2-C075"><span class="tag analysis">Analysis</span> Before adding <code>nosnippet</code> or a low <code>max-snippet</code>, weigh the cost in AI features as well as in classic results.</p>
+  </div>
+
+  <h3>The recommendation for maximum visibility</h3>
+  <div class="grid2" style="grid-template-columns: 1fr 84mm; align-items: center;">
+    <div>
+      <p class="mt0" data-claims="D2-C104"><span class="tag slide">Slide</span> "To be as visible as possible in Google, use: <code class="nw">max-image-preview:large</code>, <code class="nw">max-snippet:-1</code>"</p>
+      <p class="mt0" data-claims="D2-C105"><span class="tag analysis">Analysis</span> Set both on every indexable template unless licensing forbids it, and check that no CMS, plug-in or CDN adds lower limits.</p>
+    </div>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C104"><span class="k">&lt;meta</span> name="robots"
+  content="<span class="v">max-snippet:-1,</span>
+           <span class="v">max-image-preview:large</span>"<span class="k">&gt;</span></pre>
+  </div>
+
+  <h3>Robots rules, JavaScript and AI crawlers</h3>
+  <p data-claims="D2-C850 D2-C851"><span class="tag stage">Stage</span> Robots meta rules only work if robots.txt lets Google fetch the page. A blocked page's URL can still be indexed; its content can't.</p>
+  <p data-claims="D2-C106 D2-C108 D2-C852 D2-C853 D2-C107 D2-C854 D2-C855"><span class="tag slide">Slide</span> Rules can be added with JavaScript, but it takes longer, and removing a <code>noindex</code> that way doesn't work. <span class="tag stage">Stage</span> When Google sees a <code>noindex</code> in the HTML, "we won't even process the JavaScript". Put robots meta tags in the HTML exactly as intended; use JavaScript only where nothing else is possible, as in a JavaScript web app. <span class="tag docs">Docs</span> Google says it <em>may</em> skip rendering on a noindex page. <span class="tag analysis">Analysis</span> Never serve a <code>noindex</code> that a script is meant to lift.</p>
+  <p data-claims="D2-C066 D2-C067"><span class="tag stage">Stage</span> "AI crawlers don't really know what to do with a nofollow link, because they're looking at the content" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> nofollow is no access control: use robots.txt per crawler, Google-Extended for Gemini, the Search generative AI setting for AI features.</p>
+  <p data-claims="D2-C050 D2-C051 D2-C052"><span class="tag stage">Stage</span> robots.txt has an RFC (9309, co-authored by Gary Illyes); robots meta tags have none yet, and Mueller invited the room to help write one.</p>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="s" id="s04">
+  <div class="section-head">
+    <div class="num">04</div>
+    <div class="kicker">Section 04 · Erin Sparling · Lightning session D</div>
+    <h2>Rendering and JavaScript</h2>
+    <div class="lead" data-claims="D2-C256 D2-C128 D2-C262">Google renders nearly all of the web with a real browser engine, in a detached system that is expensive to run. If content is not in the final DOM, Google can't see it.</div>
+  </div>
+
+  <p data-claims="D2-C112 D2-C115"><span class="tag slide">Slide</span> "Rendering Pages to Index What Users See." <span class="tag stage">Stage</span> In Erin Sparling's words, "our mission is very simple these days: execute JavaScript"; the implementation is complex and expensive <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+
+  <figure data-claims="D2-C127 D2-C128 D2-C131 D2-C167 D2-C168 D2-C169 D2-C171 D2-C172 D2-C173 D2-C206 D2-C268 D2-C269 D2-C271 D2-C272 D2-C277">
+    <svg viewBox="0 0 680 296" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="ra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="rb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2457e6"/></marker>
+        <marker id="rc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b86e00"/></marker>
+      </defs>
+      <path d="M340 34V14H60V32" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#rb)"/>
+      <text x="200" y="10" text-anchor="middle" font-size="9.5" fill="#2457e6">new URLs from links in the raw and the rendered HTML</text>
+      <rect x="0.5" y="34" width="119.5" height="62" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="60" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Crawl queue</text>
+      <text x="60" y="78" text-anchor="middle" font-size="9.5" fill="#667085">URLs to fetch</text>
+      <path d="M120 65H148" stroke="#667085" stroke-width="1.3" marker-end="url(#ra)"/>
+      <rect x="150" y="34" width="120" height="62" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="210" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Crawler</text>
+      <text x="210" y="78" text-anchor="middle" font-size="9.5" fill="#667085">Googlebot</text>
+      <path d="M270 65H298" stroke="#667085" stroke-width="1.3" marker-end="url(#ra)"/>
+      <rect x="300" y="34" width="150" height="62" rx="10" fill="#e8eefd"/>
+      <text x="375" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Processing</text>
+      <text x="375" y="74" text-anchor="middle" font-size="9.5" fill="#2a3446">links extracted from</text>
+      <text x="375" y="87" text-anchor="middle" font-size="9.5" fill="#2a3446">the raw HTML</text>
+      <path d="M450 48H568" stroke="#667085" stroke-width="1.3" marker-end="url(#ra)"/>
+      <text x="508" y="41" text-anchor="middle" font-size="9.5" fill="#667085">rendered HTML is indexed</text>
+      <rect x="570" y="34" width="110" height="62" rx="10" fill="#0b1a33"/>
+      <text x="625" y="70" text-anchor="middle" font-size="16" font-family="Fraunces, 'Noto Symbols'" fill="#fff">Index</text>
+      <path d="M375 96V164" stroke="#667085" stroke-width="1.3" marker-end="url(#ra)"/>
+      <text x="383" y="128" font-size="9.5" fill="#667085">every 200 page,</text>
+      <text x="383" y="141" font-size="9.5" fill="#667085">unless noindex</text>
+      <rect x="300" y="166" width="150" height="76" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="375" y="191" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1d33">Render queue</text>
+      <text x="375" y="209" text-anchor="middle" font-size="9.5" fill="#667085">seconds to a couple of</text>
+      <text x="375" y="222" text-anchor="middle" font-size="9.5" fill="#667085">minutes, sometimes longer</text>
+      <path d="M450 204H478" stroke="#667085" stroke-width="1.3" marker-end="url(#ra)"/>
+      <path d="M530 150V80H452" stroke="#2457e6" stroke-width="1.3" fill="none" marker-end="url(#rb)"/>
+      <text x="538" y="118" font-size="9.5" fill="#2457e6">rendered HTML;</text>
+      <text x="538" y="131" font-size="9.5" fill="#2457e6">links extracted again</text>
+      <rect x="480" y="150" width="200" height="106" rx="10" fill="#2457e6"/>
+      <text x="496" y="173" font-size="12" font-weight="700" fill="#fff">Renderer</text>
+      <text x="496" y="192" font-size="10" fill="#e3eaff">Headless Chromium</text>
+      <text x="496" y="207" font-size="10" fill="#e3eaff">Viewport about 10,000 px tall</text>
+      <text x="496" y="222" font-size="10" fill="#e3eaff">No clicks, no scrolling</text>
+      <text x="496" y="237" font-size="10" fill="#e3eaff">No permission APIs, no WebGL</text>
+      <path d="M580 256V282H210V98" stroke="#b86e00" stroke-width="1.3" fill="none" stroke-dasharray="4 3" marker-end="url(#rc)"/>
+      <text x="395" y="276" text-anchor="middle" font-size="9.5" fill="#b86e00">fetches JS, CSS and API calls through Googlebot, so robots.txt applies</text>
+      <text x="0" y="150" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">A DETACHED SYSTEM</text>
+      <text x="0" y="168" font-size="9.5" fill="#2a3446">Drawn inside indexing, but</text>
+      <text x="0" y="181" font-size="9.5" fill="#2a3446">kept separate because it is</text>
+      <text x="0" y="194" font-size="9.5" fill="#2a3446">slow and expensive to run</text>
+    </svg>
+    <figcaption><b>The render loop.</b> Redrawn from Google's pipeline slides and the JavaScript SEO basics diagram. Queue time: a community slide said seconds to a couple of minutes; Google's guide says a few seconds, possibly longer, with no upper limit.</figcaption>
+  </figure>
+
+  <p data-claims="D2-C131 D2-C130 D2-C132"><span class="tag docs">Docs</span> Every page with a 200 status goes to the render queue unless a robots rule says not to index it. <span class="tag stage">Stage</span> Content indexable without JavaScript "can pass through" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> It doesn't wait for the slower pass; the page is still rendered.</p>
+  <p data-claims="D2-C118 D2-C120 D2-C124 D2-C117"><span class="tag stage">Stage</span> Gemini training reuses Search's rendering: "if it works for Search, it works for Gemini for training", if the site allows training on its content. A page a Gemini user asks about is read live, which takes time, so render fast or on the server <span class="muted">(not&nbsp;in&nbsp;docs)</span>. AI Overviews and AI Mode typically don't read pages live to ground their answers.</p>
+
+  <h3>Google's four common JavaScript problems</h3>
+  <table>
+    <thead><tr><th style="width:34mm">Problem</th><th>What happens</th><th style="width:62mm">Fix</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C261 D2-C266 D2-C269 D2-C259 D2-C279"><td class="k">Content missing from the rendered HTML</td><td><span class="tag slide">Slide</span> "The most common issue." <span class="muted">(not&nbsp;in&nbsp;docs)</span> Causes: JavaScript Googlebot can't fetch, content waiting for events such as clicks, and disabled browser APIs.</td><td><span class="tag stage">Stage</span> Server-side or hybrid rendering, fallbacks, no placeholders left in the DOM, differential serving and polyfills. Permission APIs such as location aren't supported.</td></tr>
+      <tr data-claims="D2-C284 D2-C285 D2-C286"><td class="k"><code>#</code> in URLs</td><td><span class="tag slide">Slide</span> "Fragment identifiers (#) are often ignored by crawlers." A fragment exists only in the browser.</td><td><span class="tag slide">Slide</span> "Use the History API for clean URLs in SPAs." <span class="tag stage">Stage</span> Relatively straightforward.</td></tr>
+      <tr data-claims="D2-C264 D2-C292 D2-C294"><td class="k">Soft 404s</td><td><span class="tag slide">Slide</span> The app shows a "Not Found" message but returns HTTP 200.</td><td><span class="tag stage">Stage</span> A real 404. <span class="tag docs">Docs</span> Or a JavaScript redirect to a URL that returns 404, or noindex added by JavaScript.</td></tr>
+      <tr data-claims="D2-C265 D2-C297"><td class="k">Blocked resources</td><td><span class="tag slide">Slide</span> robots.txt disallows critical <code>.js</code> files or API endpoints.</td><td><span class="tag docs">Docs</span> Block only resources a page doesn't need to be understood.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>No clicks, no scrolling, a very tall viewport</h3>
+  <p data-claims="D2-C271 D2-C272 D2-C274 D2-C273"><span class="tag stage">Stage</span> Google doesn't scroll; "around 10,000 pixels is what the viewport gets rendered as" <span class="muted">(not&nbsp;in&nbsp;docs)</span>, so content that loads on viewport entry does load. <span class="tag docs">Docs</span> John Mueller called it "viewport expansion" in 2023: rendering a page like a very long phone.</p>
+  <div class="grid2" style="grid-template-columns: 90mm 1fr; align-items: start;">
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C197 D2-C201 D2-C198 D2-C202"><span class="c">// Never runs: Googlebot doesn't scroll</span>
+<span class="x">addEventListener('scroll', loadMore);</span>
+<span class="c">// Doesn't exist until someone clicks</span>
+<span class="x">tab.onclick = () =&gt; fetch('/api/specs');</span>
+
+<span class="c">// Fires on viewport entry; it is tall</span>
+<span class="v">new IntersectionObserver(load).observe(el);</span>
+<span class="c">// In the DOM from the start, hidden</span>
+<span class="v">&lt;div class="tab-panel" hidden&gt;…&lt;/div&gt;</span></pre>
+    <div>
+      <p class="mt0" data-claims="D2-C196 D2-C202"><span class="tag slide">Slide</span> "Not visible versus hidden. Present versus absent in the DOM." Hidden content is indexed; absent content is not.</p>
+      <p data-claims="D2-C275 D2-C276"><span class="tag analysis">Analysis</span> Treat 10,000 pixels as a margin, not a target. <span class="tag docs">Docs</span> Infinite scroll needs paginated chunks with their own URLs, linked in sequence.</p>
+      <p data-claims="D2-C277 D2-C282"><span class="tag stage">Stage</span> WebGL effects aren't applied. <span class="tag analysis">Analysis</span> Feature-detect them, with a fallback.</p>
+    </div>
+  </div>
+
+  <h3>Lightning session D: three community talks</h3>
+  <h4>Rendering blind spots · Sören Bendig, Audisto</h4>
+  <p data-claims="D2-C139 D2-C160"><span class="tag stage">Stage</span> "everything you want cited, include it in the raw HTML, server-side rendered". <span class="tag slide">Slide</span> His five blind spots:</p>
+  <table class="avoid">
+    <tbody>
+      <tr data-claims="D2-C160 D2-C137 D2-C145 D2-C146"><td class="k" style="width:38mm">Content changes</td><td><span class="tag stage">Stage</span> Raw and rendered versions differ: offer counts on a travel site; a bigger newsletter discount in the rendered version than in the HTML the server sent (the two recordings differ on the figures).</td></tr>
+      <tr data-claims="D2-C160 D2-C140"><td class="k">Invisible links</td><td><span class="tag stage">Stage</span> A sub-navigation built only by JavaScript vanishes for bots when rendering fails.</td></tr>
+      <tr data-claims="D2-C160 D2-C149 D2-C151"><td class="k">Rendering timeouts</td><td><span class="tag stage">Stage</span> Slow APIs leave unresolved placeholders in titles and snippets, on different pages each crawl <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+      <tr data-claims="D2-C160 D2-C156"><td class="k">Content Security Policy</td><td><span class="tag stage">Stage</span> On a large German banking group's page, a video was blocked by a CSP violation.</td></tr>
+      <tr data-claims="D2-C160 D2-C157 D2-C163"><td class="k">Blocked resources</td><td><span class="tag stage">Stage</span> Never block what rendering needs. Per-session tools that also run for bots can cost a high-traffic site thousands of euros a month <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C159 D2-C164 D2-C142 D2-C858 D2-C860 D2-C148"><span class="tag stage">Stage</span> A page can also render completely blank while its raw HTML looks fine, and one site rendered HTML tags into its meta description, which search engines would ignore <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Check rendering at scale with a modern crawler, not only in DevTools. <span class="tag docs">Docs</span> The renderer may skip requests such as analytics, so client-side analytics won't show its activity fully. <span class="tag analysis">Analysis</span> Diff raw and rendered HTML per template.</p>
+
+  <h4>Debugging rendering for Search · Rebecca Yu, JAKALA</h4>
+  <div class="grid2" style="grid-template-columns: 1fr 58mm; align-items: start;">
+    <div>
+      <p class="mt0" data-claims="D2-C176 D2-C177 D2-C180 D2-C181"><span class="tag stage">Stage</span> Look for the content in the rendered HTML in URL Inspection: "I always treat this page as the final source of truth". If it's missing, filter DevTools' Network tab by Fetch/XHR, reload, and check that each request runs and isn't blocked or disallowed.</p>
+      <p data-claims="D2-C183 D2-C186 D2-C187"><span class="tag stage">Stage</span> Four overlooked mistakes: non-crawlable links, hash links included; error pages returning 200 in single-page apps; content behind interaction; blocked scripts or APIs. <span class="tag slide">Slide</span> A language selector built as a button: "the entire alternate-language cluster is orphaned."</p>
+      <p data-claims="D2-C204 D2-C209 D2-C210"><span class="tag slide">Slide</span> "If the renderer can't fetch it, the renderer can't run it." robots.txt applies per host. <span class="tag analysis">Analysis</span> Check API and CDN hosts too.</p>
+    </div>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C207 D2-C208"><span class="c"># Carve out only what</span>
+<span class="c"># rendering needs (slide)</span>
+<span class="k">User-agent:</span> *
+<span class="x">Disallow:</span> /api/
+<span class="v">Allow:</span> /api/products/
+<span class="c"># Longest match wins</span></pre>
+  </div>
+
+  <h4>Web Fragments · Natalia Venditto, Adobe</h4>
+  <p data-claims="D2-C218 D2-C219 D2-C221"><span class="tag stage">Stage</span> Embedding AI-generated apps can break the host page in three ways: collisions in the global JavaScript scope, CSS bleed, and fate sharing, where the app's crash takes the host down <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <table class="avoid">
+    <thead><tr><th style="width:34mm">Approach <span class="tag slide">Slide</span></th><th style="width:22mm">JS isolated</th><th style="width:22mm">Styles isolated</th><th style="width:22mm">Part of the page</th><th>The catch</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C223 D2-C224"><td class="k">iframe</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">✕</td><td>"Walled off from DOM, navigation, layout"</td></tr>
+      <tr data-claims="D2-C223 D2-C228"><td class="k">Shadow DOM</td><td class="no">✕</td><td class="ok">✓</td><td class="ok">✓</td><td>"Still shares JS globals"</td></tr>
+      <tr data-claims="D2-C223 D2-C229 D2-C230"><td class="k">Rewrite everything</td><td>By hand</td><td>By hand</td><td class="ok">✓</td><td>"Can't rewrite code you didn't write"</td></tr>
+      <tr data-claims="D2-C223 D2-C231"><td class="k">Web Fragments</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td>"Needs patches today"</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C232 D2-C234 D2-C237 D2-C251 D2-C253 D2-C254 D2-C247 D2-C249 D2-C235 D2-C250"><span class="tag stage">Stage</span> A hidden iframe runs the app's JavaScript while its DOM sits in a shadow root: "we monkey patch the browser to containerize it". The aim is a standard; ShadowRealm, at stage 2.7, would do much of it <span class="muted">(not&nbsp;in&nbsp;docs)</span>. She recommended server-rendering the fragments: an app reframed that way is fully indexable <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google flattens shadow DOM when it renders. <span class="tag analysis">Analysis</span> Check such pages in URL Inspection.</p>
+
+  <h3>Rendering debugging checklist</h3>
+  <ul class="check">
+    <li data-claims="D2-C179">One URL per template in URL Inspection: main content, prices and links are in the rendered HTML</li>
+    <li data-claims="D2-C148">Raw and rendered HTML diffed per template; any difference in prices, offers or links is a bug</li>
+    <li data-claims="D2-C154">Recurring crawls flag unresolved placeholders (<code>&#123;&#123;brand&#125;&#125;</code>, <code>undefined</code>); each URL is rendered twice</li>
+    <li data-claims="D2-C158 D2-C298">Missing content: robots.txt on every host and the CSP checked via the live test's resources and console</li>
+    <li data-claims="D2-C290 D2-C295">Single-page apps: no <code>href="#…"</code> routes, and the server returns 404 for unknown paths</li>
+    <li data-claims="D2-C308">A valid live test proves access, not indexing; the Page indexing report confirms it</li>
+  </ul>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="s" id="s05">
+  <div class="section-head">
+    <div class="num">05</div>
+    <div class="kicker">Section 05 · Gary Illyes</div>
+    <h2>Understanding what's on a page</h2>
+    <div class="lead" data-claims="D2-C312 D2-C318 D2-C338">Google weighs words by where they sit, stores pages as tokens rather than text, and detects soft 404s with a model that reads layout as well as language.</div>
+  </div>
+
+  <h3>The main content carries the weight</h3>
+  <p data-claims="D2-C309 D2-C314"><span class="tag slide">Slide</span> On Google's example blog page, the header and navigation were marked as not so important and the main content as very important: the post title and opening sentence counted; the tagline and the categories sidebar were supplementary.</p>
+  <p data-claims="D2-C862 D2-C863 D2-C864 D2-C865 D2-C866 D2-C867 D2-C861 D2-C868"><span class="tag stage">Stage</span> Gary Illyes's definition: "Main content is any part of the page that directly helps the page achieve its purpose". It is not only text: images, videos, a tool, user-generated content, the comments below a post, tab content, every heading and the visible title can all be part of it. What sits in the navigation or header tells Google the site doesn't particularly care about it. And "It's the main content that we consider for ranking."</p>
+  <p data-claims="D2-C870 D2-C871"><span class="tag docs">Docs</span> The Search Quality Rater Guidelines give the same definition; tabs, reviews and comments count as main or supplementary content depending on the page's purpose.</p>
+  <figure data-claims="D2-C309 D2-C313 D2-C314">
+    <svg viewBox="0 0 680 186" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0" width="299.5" height="176" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <rect x="10" y="10" width="280" height="24" rx="4" fill="#f5f7fb"/><text x="20" y="26" font-size="9" fill="#667085">Blog name · tagline</text>
+      <rect x="10" y="40" width="280" height="16" rx="4" fill="#f5f7fb"/><text x="20" y="52" font-size="8.5" fill="#98a2b3">Home · Posts · About</text>
+      <rect x="10" y="62" width="196" height="80" rx="4" fill="#e8eefd" stroke="#2457e6"/>
+      <rect x="20" y="72" width="140" height="9" rx="2" fill="#2457e6"/>
+      <path d="M20 94H188" stroke="#2457e6" stroke-width="3" stroke-linecap="round"/>
+      <g stroke="#98a2b3" stroke-width="3" stroke-linecap="round"><path d="M20 106H194"/><path d="M20 117H176"/><path d="M20 128H186"/></g>
+      <rect x="214" y="62" width="76" height="80" rx="4" fill="#f5f7fb"/>
+      <text x="222" y="80" font-size="8" font-weight="700" fill="#667085">Categories</text>
+      <text x="222" y="94" font-size="8.5" fill="#667085">Hugo (7)</text>
+      <g stroke="#c7cdd8" stroke-width="3" stroke-linecap="round"><path d="M222 108H270"/><path d="M222 120H262"/></g>
+      <rect x="10" y="148" width="280" height="20" rx="4" fill="#f5f7fb"/><text x="20" y="161" font-size="8.5" fill="#98a2b3">Footer links and text</text>
+      <g font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">
+        <circle cx="276" cy="22" r="8" fill="#0b1a33"/><text x="276" y="25.5">1</text>
+        <circle cx="192" cy="76" r="8" fill="#0b1a33"/><text x="192" y="79.5">2</text>
+        <circle cx="281" cy="76" r="8" fill="#0b1a33"/><text x="281" y="79.5">3</text>
+        <circle cx="276" cy="158" r="8" fill="#0b1a33"/><text x="276" y="161.5">4</text>
+        <circle cx="344" cy="20" r="8" fill="#0b1a33"/><text x="344" y="23.5">1</text>
+        <circle cx="344" cy="68" r="8" fill="#2457e6"/><text x="344" y="71.5">2</text>
+        <circle cx="344" cy="120" r="8" fill="#0b1a33"/><text x="344" y="123.5">3</text>
+        <circle cx="344" cy="160" r="8" fill="#c8372d"/><text x="344" y="163.5">4</text>
+      </g>
+      <g font-size="11" font-weight="700" fill="#0f1d33">
+        <text x="362" y="24">Header and navigation</text>
+        <text x="362" y="72" fill="#2457e6">Main content</text>
+        <text x="362" y="124">Category sidebar</text>
+        <text x="362" y="164" fill="#c8372d">Footer</text>
+      </g>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="362" y="39">Not so important</text>
+        <text x="362" y="87">Very important: the post title and the</text>
+        <text x="362" y="100">opening sentence count</text>
+        <text x="362" y="139">Supplementary, less important text</text>
+        <text x="362" y="179">Unlikely to contribute much to ranking</text>
+      </g>
+    </svg>
+    <figcaption><b>Where words count.</b> Redrawn from Google's example blog page; the footer weighting was said on stage and is not in the docs.</figcaption>
+  </figure>
+  <p data-claims="D2-C312 D2-C313 D2-C315 D2-C316"><span class="tag stage">Stage</span> Words get different weights depending on the part of the page they sit in: "if you put something in a footer, it's more likely that it's not going to contribute much to ranking" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. The simplest way to make a word count is to move it into the main content, because "where you position text on a page will already contribute quite a bit to ranking that page". And not everything can be main content: then nothing would stand out.</p>
+  <p data-claims="D2-C310 D2-C311 D2-C317"><span class="tag docs">Docs</span> Google's canonicalization guide calls it the primary content, or centerpiece, and clusters pages whose centerpiece matches. <span class="tag stage">Stage</span> Illyes pointed to the Search Quality Rater Guidelines as the detailed reference. <span class="tag analysis">Analysis</span> Put the terms a page should rank for in its title, headings and opening paragraphs, not in footer or sidebar blocks.</p>
+
+  <h3>Tokens, not pages</h3>
+  <p data-claims="D2-C318 D2-C319 D2-C320 D2-C321"><span class="tag stage">Stage</span> The Search index doesn't store sentences or HTML. Text is cut into the smallest units that can still be searched: words, for languages written with spaces; statistically segmented words for Thai and Chinese, with exactly the same segmentation applied to queries <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <p data-claims="D2-C323 D2-C324 D2-C343"><span class="tag stage">Stage</span> Each token carries metadata for ranking: whether it appeared in the header or the main content ("centerpiece"), in bold or in a heading, plus spam markers such as white text on a white background <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Leftover hidden keyword blocks are a liability, not neutral clutter.</p>
+
+  <figure data-claims="D2-C326 D2-C327 D2-C328">
+    <svg viewBox="0 0 680 128" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <text x="0" y="14" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">SEARCH TOKENIZER · WORDS STAY WHOLE</text>
+      <g font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">
+        <rect x="0" y="24" width="64" height="28" rx="8" fill="#e8eefd"/><text x="12" y="43">tl;dr</text>
+        <rect x="72" y="24" width="104" height="28" rx="8" fill="#e8eefd"/><text x="84" y="43">robots.txt</text>
+        <rect x="184" y="24" width="44" height="28" rx="8" fill="#e8eefd"/><text x="196" y="43">can</text>
+        <rect x="236" y="24" width="60" height="28" rx="8" fill="#e8eefd"/><text x="248" y="43">block</text>
+        <rect x="304" y="24" width="52" height="28" rx="8" fill="#e8eefd"/><text x="316" y="43">bots</text>
+      </g>
+      <text x="0" y="78" font-size="9" font-weight="700" letter-spacing="1.3" fill="#6d3fd6">AI-MODEL TOKENIZER · SUB-WORD PIECES MAPPED TO IDS</text>
+      <g font-family="JetBrains Mono, 'Noto Symbols'" font-size="11" fill="#0f1d33">
+        <rect x="0.5" y="88" width="31.5" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="8" y="107">tl</text>
+        <rect x="38" y="88" width="24" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="46" y="107">;</text>
+        <rect x="68" y="88" width="32" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="76" y="107">dr</text>
+        <rect x="106" y="88" width="62" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="114" y="107">robots</text>
+        <rect x="174" y="88" width="24" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="182" y="107">.</text>
+        <rect x="204" y="88" width="40" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="212" y="107">txt</text>
+        <rect x="250" y="88" width="44" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="258" y="107">can</text>
+        <rect x="300" y="88" width="60" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="308" y="107">block</text>
+        <rect x="366" y="88" width="52" height="28" rx="8" fill="#fff" stroke="#6d3fd6"/><text x="374" y="107">bots</text>
+      </g>
+      <text x="272" y="127" text-anchor="middle" font-size="9" fill="#6d3fd6">ID 740</text>
+      <rect x="452" y="24" width="228" height="92" rx="10" fill="#f5f7fb"/>
+      <text x="468" y="46" font-size="10.5" font-weight="700" fill="#0f1d33">Same text, different units</text>
+      <text x="468" y="64" font-size="9.5" fill="#2a3446">Search keeps robots.txt and tl;dr</text>
+      <text x="468" y="78" font-size="9.5" fill="#2a3446">whole. The AI tokenizer splits them,</text>
+      <text x="468" y="92" font-size="9.5" fill="#2a3446">punctuation included, and works with</text>
+      <text x="468" y="106" font-size="9.5" fill="#2a3446">numeric IDs, not words.</text>
+    </svg>
+    <figcaption><b>Two tokenizers.</b> Illustrative sentence; the splits follow Gary Illyes's two slides, where "can" mapped to ID 740 each time it appeared.</figcaption>
+  </figure>
+  <p data-claims="D2-C325 D2-C329"><span class="tag stage">Stage</span> Tokenization for AI models such as Gemini, in training and in inference, differs from tokenization for Search, "or mostly" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Day 1's slide said Gemini shares tokenization with Search. Read it as a shared step with different outputs.</p>
+
+  <div class="callout avoid">
+    <div class="h">The chunking myth</div>
+    <p data-claims="D2-C330 D2-C331 D2-C332 D2-C869 D2-C825"><span class="tag stage">Stage</span> The advice to chunk content for AI is misunderstood. Chunking is real, but it matters at the level of a model's context window, and Gemini's holds millions of tokens (Illyes also put it at 900,000 to a million). Gemini doesn't need 100- or 200-word chunks; thought of in millions of tokens, chunking has perhaps lost its meaning anyway <span class="muted">(that last point not&nbsp;in&nbsp;docs)</span>.</p>
+    <p data-claims="D2-C333 D2-C872"><span class="tag analysis">Analysis</span> Don't rewrite pages into short, self-contained chunks. Write for readers: clear headings, complete explanations. Google's long-context docs say 1 million tokens or more: plan with one million as the floor.</p>
+  </div>
+
+  <h3>How Google spots a soft 404</h3>
+  <p data-claims="D2-C334 D2-C335 D2-C336 D2-C337"><span class="tag stage">Stage</span> A soft 404 should return an error but returns 200, and because error pages are worded in endless ways, keyword matching can't find them <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag slide">Slide</span> Four common causes: pages that look like errors but aren't, thin or empty content, server or CMS misconfiguration, and JavaScript content that fails to load. Plus a bonus: "Mistakes in Google's systems (that you should notify us about)".</p>
+  <p data-claims="D2-C338 D2-C339 D2-C340"><span class="tag stage">Stage</span> Detection uses a model, "something like BERT, that is specifically trained to understand page structure". Position decides: an error in the navigation need not make a soft 404, but an error alone in the main content does <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</p>
+  <figure data-claims="D2-C339 D2-C340">
+    <svg viewBox="0 0 680 136" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <rect x="0.5" y="0" width="179.5" height="136" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <rect x="10" y="10" width="160" height="20" rx="4" fill="#fbe7e5"/>
+      <text x="18" y="24" font-size="9" fill="#c8372d">Error: menu failed to load</text>
+      <rect x="10" y="38" width="40" height="88" rx="4" fill="#f5f7fb"/>
+      <rect x="58" y="38" width="112" height="88" rx="4" fill="#e3f4ec"/>
+      <g stroke="#0b8a5f" stroke-width="3" stroke-linecap="round"><path d="M68 54H156"/><path d="M68 66H160"/><path d="M68 78H146"/><path d="M68 90H158"/><path d="M68 102H138"/><path d="M68 114H152"/></g>
+      <text x="196" y="22" font-size="9" font-weight="700" letter-spacing="1.2" fill="#0b8a5f">NOT A SOFT 404</text>
+      <text x="196" y="42" font-size="10" fill="#2a3446">The error sits in the</text>
+      <text x="196" y="56" font-size="10" fill="#2a3446">navigation; the main</text>
+      <text x="196" y="70" font-size="10" fill="#2a3446">content is real.</text>
+      <rect x="350" y="0" width="180" height="136" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <rect x="360" y="10" width="160" height="20" rx="4" fill="#f5f7fb"/>
+      <rect x="360" y="38" width="40" height="88" rx="4" fill="#f5f7fb"/>
+      <rect x="408" y="38" width="112" height="88" rx="4" fill="#fbe7e5"/>
+      <text x="464" y="78" text-anchor="middle" font-size="9.5" fill="#c8372d">Error establishing</text>
+      <text x="464" y="92" text-anchor="middle" font-size="9.5" fill="#c8372d">a database connection</text>
+      <text x="546" y="22" font-size="9" font-weight="700" letter-spacing="1.2" fill="#c8372d">SOFT 404</text>
+      <text x="546" y="42" font-size="10" fill="#2a3446">The main content is</text>
+      <text x="546" y="56" font-size="10" fill="#2a3446">only an error, though</text>
+      <text x="546" y="70" font-size="10" fill="#2a3446">header and menu</text>
+      <text x="546" y="84" font-size="10" fill="#2a3446">look normal.</text>
+    </svg>
+    <figcaption><b>Position decides.</b> Illustration of the example given on stage.</figcaption>
+  </figure>
+  <p data-claims="D2-C342"><span class="tag analysis">Analysis</span> Return real status codes for error states, also in single-page apps: 404 or 410 for missing content, 503 for outages such as a failed database connection.</p>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="s" id="s06">
+  <div class="section-head">
+    <div class="num">06</div>
+    <div class="kicker">Section 06 · Handling web duplication · John Mueller · Lightning session E</div>
+    <h2>Duplicates and canonicals</h2>
+    <div class="lead" data-claims="D2-C345 D2-C348 D2-C380">Google clusters equivalent URLs, indexes one representative and forwards the others' signals to it. Which URL represents the cluster is Google's call; your signals only steer it.</div>
+  </div>
+
+  <p data-claims="D2-C344 D2-C349 D2-C350 D2-C351"><span class="tag stage">Stage</span> John Mueller gave two reasons to deduplicate: users don't want the same page ten times; and room: the index can't hold everything, storage has many competing uses and its price has risen sharply <span class="muted">(that last point not&nbsp;in&nbsp;docs)</span>. A site migration is simply deduplication across sites: the owner says the old and the new domain are the same, and that Google should pick the new one.</p>
+
+  <figure data-claims="D2-C345 D2-C346 D2-C347 D2-C348 D2-C352 D2-C353 D2-C354 D2-C356 D2-C360">
+    <svg viewBox="0 0 680 266" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="da" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="db" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0b8a5f"/></marker>
+      </defs>
+      <text x="0" y="14" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">CLUSTERED FROM</text>
+      <g font-size="11" font-weight="600" fill="#0f1d33">
+        <rect x="0.5" y="26" width="117.5" height="36" rx="8" fill="#f5f7fb" stroke="#e4e7ec"/><text x="12" y="49">Redirects</text>
+        <rect x="0.5" y="74" width="117.5" height="36" rx="8" fill="#f5f7fb" stroke="#e4e7ec"/><text x="12" y="97">Content</text>
+        <rect x="0.5" y="122" width="117.5" height="36" rx="8" fill="#f5f7fb" stroke="#e4e7ec"/><text x="12" y="145">rel=canonical</text>
+        <rect x="0.5" y="170" width="117.5" height="36" rx="8" fill="#f5f7fb" stroke="#e4e7ec"/><text x="12" y="193">"Magic bucket"</text>
+      </g>
+      <g stroke="#98a2b3" stroke-width="1.2" fill="none">
+        <path d="M118 44C136 44 134 116 148 116"/><path d="M118 92C134 92 134 116 148 116"/><path d="M118 140C134 140 134 116 148 116"/><path d="M118 188C136 188 134 116 148 116"/>
+      </g>
+      <path d="M140 116H148" stroke="#98a2b3" stroke-width="1.2" marker-end="url(#da)"/>
+      <rect x="150" y="10" width="282" height="242" rx="12" fill="#f5f7fb" stroke="#c7cdd8" stroke-dasharray="5 4"/>
+      <text x="166" y="32" font-size="9" font-weight="700" letter-spacing="1.3" fill="#667085">ONE DUPLICATE CLUSTER</text>
+      <rect x="166" y="42" width="226" height="50" rx="8" fill="#0b1a33"/>
+      <text x="180" y="61" font-size="8.5" font-weight="700" letter-spacing="1.1" fill="#bcd0ff">REPRESENTATIVE · "THE CANONICAL"</text>
+      <text x="180" y="81" font-size="11" font-family="JetBrains Mono, 'Noto Symbols'" fill="#fff">example.com/shoes</text>
+      <text x="166" y="118" font-size="8.5" font-weight="700" letter-spacing="1.1" fill="#667085">ALTERNATE NAMES</text>
+      <g font-size="10.5" font-family="JetBrains Mono, 'Noto Symbols'" fill="#2a3446">
+        <rect x="166" y="126" width="226" height="30" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="178" y="145">www.example.com/shoes</text>
+        <rect x="166" y="164" width="226" height="30" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="178" y="183">example.com/shoes?ref=nl</text>
+        <rect x="166" y="202" width="226" height="30" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="178" y="221">old-brand.com/shoes</text>
+      </g>
+      <path d="M402 214C420 190 420 110 402 74" stroke="#0b8a5f" stroke-width="1.4" fill="none" marker-end="url(#db)"/>
+      <text x="166" y="246" font-size="9" fill="#0b8a5f">The others' signals are forwarded to the representative</text>
+      <path d="M392 67H458" stroke="#667085" stroke-width="1.2" marker-end="url(#da)"/>
+      <path d="M432 150H458" stroke="#667085" stroke-width="1.2" marker-end="url(#da)"/>
+      <path d="M432 222H458" stroke="#667085" stroke-width="1.2" marker-end="url(#da)"/>
+      <rect x="460" y="10" width="220" height="74" rx="10" fill="#e3f4ec"/>
+      <text x="474" y="30" font-size="9" font-weight="700" letter-spacing="1.2" fill="#0b8a5f">INDEXED</text>
+      <text x="474" y="50" font-size="11" font-weight="700" fill="#0f1d33">One copy: the representative</text>
+      <text x="474" y="68" font-size="9.5" fill="#2a3446">Signals such as links forwarded to it</text>
+      <rect x="460" y="98" width="219.5" height="90" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="474" y="118" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">ALTERNATE NAMES</text>
+      <text x="474" y="138" font-size="11" font-weight="700" fill="#0f1d33">Tracked, not stored again</text>
+      <text x="474" y="156" font-size="9.5" fill="#2a3446">Can show for old-domain and old-</text>
+      <text x="474" y="170" font-size="9.5" fill="#2a3446">brand searches, and in site: queries</text>
+      <rect x="460" y="200" width="219.5" height="64" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="474" y="220" font-size="9" font-weight="700" letter-spacing="1.2" fill="#667085">LOCALISED EQUIVALENTS</text>
+      <text x="474" y="238" font-size="9.5" fill="#2a3446">you.de and you.at: hreflang picks</text>
+      <text x="474" y="252" font-size="9.5" fill="#2a3446">the version to show</text>
+    </svg>
+    <figcaption><b>One cluster, one representative.</b> Mechanism from Google's duplication slides; the URLs are illustrative.</figcaption>
+  </figure>
+
+  <h3>How clusters form</h3>
+  <table>
+    <thead><tr><th style="width:30mm">Input</th><th>What Google said</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C361 D2-C362 D2-C013 D2-C363"><td class="k">Redirects</td><td><span class="tag stage">Stage</span> Trusted very much: a clear sign there is one version. And "the permanent redirect really only matters for canonicalization, not for clustering." <span class="tag docs">Docs</span> With a 302, Search keeps showing the source URL. <span class="tag analysis">Analysis</span> Use 301 or 308 for moves you want reflected.</td></tr>
+      <tr data-claims="D2-C364 D2-C365 D2-C366 D2-C367"><td class="k">Content</td><td><span class="tag stage">Stage</span> Exact matches (www and non-www), near matches, structurally similar content and soft 404s <span class="muted">(the four-way split is not&nbsp;in&nbsp;docs)</span>. <span class="tag slide">Slide</span> Translated menu and footer around an untranslated main text: "When main content is the same, pages may be clustered."</td></tr>
+      <tr data-claims="D2-C379 D2-C380"><td class="k">rel=canonical</td><td><span class="tag stage">Stage</span> Probably the most common signal, and very often wrong, for example a placeholder value instead of a real URL (partly unclear in the recording). So Google makes its own judgement.</td></tr>
+      <tr data-claims="D2-C360"><td class="k">"Magic bucket"</td><td><span class="tag stage">Stage</span> Everything else.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>When a URL pattern decides</h4>
+  <p data-claims="D2-C368 D2-C369 D2-C370 D2-C371 D2-C373"><span class="tag slide">Slide</span> If <code>/buy/fax</code>, <code>/buy/typewriter</code> and <code>/office-equipment</code> show the same content, Google's systems may assume every <code>/buy/</code> URL does: "Do we even need to crawl /buy/seo-service ?" A car dealer's near-identical city pages can be folded into one city the same way <span class="muted">(not&nbsp;in&nbsp;docs)</span>. The advice: avoid many similar-looking URLs with the same content, and return errors for URLs that no longer exist. <span class="tag docs">Docs</span> To split a wrong cluster, make the pages clearly different; Google may keep them clustered for up to two weeks after the fix.</p>
+
+  <h4>Bot walls make duplicates</h4>
+  <p data-claims="D2-C374 D2-C375 D2-C376 D2-C377"><span class="tag stage">Stage</span> A CDN challenge page shown to Googlebot on many URLs or domains gets them clustered as duplicates; Google struggles to recognise such pages as errors and can't solve the puzzles. AI agents browsing for users hit the same walls and may buy elsewhere <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's CDN post: such pages may be dropped as duplicates and recover slowly; send crawlers a 503.</p>
+
+  <h3>Choosing the representative</h3>
+  <p data-claims="D2-C386"><span class="tag stage">Stage</span> Many criteria, weighted by machine learning: "we use some kind of machine learning to understand how strong these criteria should be. And this changes from time to time." <span class="muted">(not&nbsp;in&nbsp;docs)</span></p>
+  <div class="grid3">
+    <div class="card" data-claims="D2-C387 D2-C388"><div class="badge" style="color:#c8372d">Hijacking</div><div class="cs"><span class="tag slide">Slide</span> Several domains claiming the same content: your own staging copy, or third parties, malicious or not. Report cases Google gets wrong.</div></div>
+    <div class="card" data-claims="D2-C387 D2-C389"><div class="badge" style="color:#0b8a5f">User experience</div><div class="cs"><span class="tag slide">Slide</span> The page must load: a broken certificate, failing JavaScript or a page that can't load counts against a URL. The slide also lists meta refresh and security.</div></div>
+    <div class="card" data-claims="D2-C387 D2-C390 D2-C391"><div class="badge" style="color:#2457e6">Site-owner signals</div><div class="cs"><span class="tag slide">Slide</span> Redirects, only the preferred URL in sitemaps, and rel=canonical, which "also helps a bit". <span class="tag docs">Docs</span> Redirects and rel=canonical are strong signals; sitemaps weak.</div></div>
+  </div>
+  <p data-claims="D2-C399 D2-C400"><span class="tag stage">Stage</span> When every signal points the same way, Google follows the owner; but "if there are multiple things in different directions, we don't know what to do." <span class="tag analysis">Analysis</span> Before a migration or template change, align redirects, rel=canonical, internal links, sitemaps, hreflang and working HTTPS.</p>
+
+  <div class="grid2">
+    <div class="card" data-claims="D2-C381 D2-C382 D2-C383 D2-C385 D2-C384"><div class="ct">Same language, different countries</div><div class="cs"><span class="tag slide">Slide</span> German pages for Germany, Austria and Switzerland are tricky to deduplicate. "We try to use hreflang alternates." Avoid "clever" geo-redirecting. <span class="tag docs">Docs</span> Pages in hreflang clusters are preferred as canonicals. <span class="tag analysis">Analysis</span> Use de-DE, de-AT, de-CH and make the pages differ in more than boilerplate.</div></div>
+    <div class="card" data-claims="D2-C354 D2-C355 D2-C356 D2-C357 D2-C358"><div class="ct">Old domains after a migration</div><div class="cs"><span class="tag slide">Slide</span> Alternate names are why <code>site:</code> queries still show an old domain, which owners misread as a failed move. Someone searching an old brand may see the old URL. <span class="tag stage">Stage</span> The redirect takes them on. <span class="tag docs">Docs</span> "This is normal and as users get used to the new domain name, the alternate names will fade away without you doing anything." <span class="tag analysis">Analysis</span> Judge the move in Search Console; keep redirects long term.</div></div>
+  </div>
+
+  <p data-claims="D2-C393 D2-C395 D2-C394"><span class="tag stage">Stage</span> Pointing a paginated series' canonicals to page 1 can sometimes make sense, for example to strengthen a category page <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's 2013 post calls it incorrect: later pages' content would not be indexed. <span class="tag analysis">Analysis</span> Keep self-referencing canonicals unless you deliberately want later pages folded into page 1.</p>
+  <p data-claims="D2-C396 D2-C397"><span class="tag slide">Slide</span> The closing list: use redirects for migrations, use HTTP result codes, "Don't block agents.", check your rel=canonical links, use hreflang to help Google localise, report weird canonicals in the forums, make secure pages that work, and keep canonical signals clear.</p>
+
+  <h3>Canonical graphs · Tobias Schwarz, Audisto</h3>
+  <p data-claims="D2-C406 D2-C407 D2-C408 D2-C401"><span class="tag stage">Stage</span> In this community talk, checking canonicals pair by pair misses the picture. A canonical group is every URL connected by canonical links; its leader is the page they all lead to. Audit whole groups, with redirects and the indexability of each member: broken canonicals let the wrong pages show up in results.</p>
+  <figure data-claims="D2-C407 D2-C412 D2-C419 D2-C421 D2-C422 D2-C424 D2-C427">
+    <svg viewBox="0 0 680 232" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2457e6"/></marker>
+        <marker id="gb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b86e00"/></marker>
+        <marker id="gc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#98a2b3"/></marker>
+      </defs>
+      <g font-size="9" font-weight="700" letter-spacing="1.2">
+        <rect x="0" y="0" width="160" height="196" rx="10" fill="#f5f7fb"/><text x="14" y="22" fill="#0b8a5f">HEALTHY GROUP</text>
+        <rect x="173" y="0" width="160" height="196" rx="10" fill="#f5f7fb"/><text x="187" y="22" fill="#c8372d">CHAIN</text>
+        <rect x="346" y="0" width="160" height="196" rx="10" fill="#f5f7fb"/><text x="360" y="22" fill="#c8372d">LOOP</text>
+        <rect x="519" y="0" width="161" height="196" rx="10" fill="#f5f7fb"/><text x="533" y="22" fill="#c8372d">UNREACHABLE LEADER</text>
+      </g>
+      <g font-size="11" font-weight="700" text-anchor="middle">
+        <rect x="16" y="44" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="34" y="61" fill="#0f1d33">A</text>
+        <rect x="16" y="88" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="34" y="105" fill="#0f1d33">B</text>
+        <rect x="16" y="132" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="34" y="149" fill="#0f1d33">C</text>
+        <rect x="104" y="88" width="40" height="26" rx="8" fill="#0b1a33"/><text x="124" y="105" fill="#fff">L</text>
+        <rect x="189" y="58" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="207" y="75" fill="#0f1d33">A</text>
+        <rect x="277" y="58" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="295" y="75" fill="#0f1d33">B</text>
+        <rect x="275" y="130" width="40" height="26" rx="8" fill="#0b1a33"/><text x="295" y="147" fill="#fff">L</text>
+        <rect x="364" y="88" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="382" y="105" fill="#0f1d33">A</text>
+        <rect x="452" y="88" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="470" y="105" fill="#0f1d33">B</text>
+        <rect x="535" y="40" width="129" height="24" rx="8" fill="#fff" stroke="#c7cdd8" stroke-dasharray="3 3"/><text x="599" y="56" font-size="9.5" font-weight="600" fill="#667085">Site navigation</text>
+        <rect x="535" y="110" width="36" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/><text x="553" y="127" fill="#0f1d33">A</text>
+        <rect x="624" y="110" width="40" height="26" rx="8" fill="#0b1a33"/><text x="644" y="127" fill="#fff">L</text>
+      </g>
+      <g fill="#b86e00">
+        <path d="M116 87l2-7 4 4 2-6 2 6 4-4 2 7z"/>
+        <path d="M287 129l2-7 4 4 2-6 2 6 4-4 2 7z"/>
+        <path d="M636 109l2-7 4 4 2-6 2 6 4-4 2 7z"/>
+      </g>
+      <g stroke="#2457e6" stroke-width="1.4" fill="none">
+        <path d="M52 57L102 91" marker-end="url(#ga)"/>
+        <path d="M52 101H102" marker-end="url(#ga)"/>
+        <path d="M52 145L102 111" marker-end="url(#ga)"/>
+        <path d="M225 71H275" marker-end="url(#ga)"/>
+        <path d="M400 95C420 80 432 80 450 95" marker-end="url(#ga)"/>
+        <path d="M452 108C432 123 420 123 402 108" marker-end="url(#ga)"/>
+        <path d="M571 123H622" marker-end="url(#ga)"/>
+      </g>
+      <path d="M295 84V118" stroke="#b86e00" stroke-width="1.4" stroke-dasharray="4 3" fill="none" marker-end="url(#gb)"/>
+      <text x="302" y="110" font-size="9" font-weight="700" fill="#b86e00">301</text>
+      <path d="M553 64V108" stroke="#98a2b3" stroke-width="1.4" stroke-dasharray="1.5 3" fill="none" marker-end="url(#gc)"/>
+      <g font-size="9.5" fill="#2a3446">
+        <text x="14" y="176">Every canonical points</text><text x="14" y="189">straight at the leader</text>
+        <text x="187" y="176">A's canonical target</text><text x="187" y="189">redirects on to L</text>
+        <text x="360" y="176">A and B point at each</text><text x="360" y="189">other: no leader at all</text>
+        <text x="533" y="176">Users reach A only; L is</text><text x="533" y="189">reachable via canonical</text>
+      </g>
+      <g font-size="9.5" fill="#667085">
+        <path d="M150 222H176" stroke="#2457e6" stroke-width="1.4" marker-end="url(#ga)"/><text x="184" y="225">rel=canonical</text>
+        <path d="M290 222H316" stroke="#b86e00" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#gb)"/><text x="324" y="225">redirect</text>
+        <path d="M400 222H426" stroke="#98a2b3" stroke-width="1.4" stroke-dasharray="1.5 3" marker-end="url(#gc)"/><text x="434" y="225">internal link</text>
+      </g>
+    </svg>
+    <figcaption><b>Canonical groups and their leaders.</b> Illustration of the patterns shown in the community talk; the real-world chain ran from a feed URL through a 301 on another subdomain.</figcaption>
+  </figure>
+  <table class="avoid">
+    <thead><tr><th style="width:42mm">Pattern</th><th>Community speaker <span class="tag stage">Stage</span></th><th style="width:62mm">Google's docs <span class="tag docs">Docs</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C417 D2-C873 D2-C418"><td class="k">Several canonicals on one page</td><td>Invalid; the engine falls back on its own heuristic, or ignores the tags completely.</td><td>Google will likely ignore all of them.</td></tr>
+      <tr data-claims="D2-C419 D2-C421 D2-C420 D2-C439"><td class="k">Chain</td><td>Improper use; runs through canonicals or through server- or client-side redirects.</td><td>Google can follow chains but recommends one canonical target. <span class="tag analysis">Analysis</span> A gap in severity, not in advice.</td></tr>
+      <tr data-claims="D2-C424 D2-C425"><td class="k">Loop</td><td>No leader, so the group's canonical information can't be used <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td>—</td></tr>
+      <tr data-claims="D2-C427 D2-C428"><td class="k">Leader users can't reach</td><td>"you're telling the search engine to index something that a human can't reach". Make the linked page the leader.</td><td>—</td></tr>
+      <tr data-claims="D2-C433 D2-C434 D2-C435"><td class="k">Canonicals across languages</td><td>Misuse: only one language version would rank. Connect versions with hreflang.</td><td>On hreflang pages, the canonical should be in the same language.</td></tr>
+      <tr data-claims="D2-C429 D2-C430 D2-C440"><td class="k">Weak leader</td><td>Valid but likely suboptimal; the strongest page should lead <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td>Links to duplicates are consolidated into the canonical. <span class="tag analysis">Analysis</span> The real risk is Google choosing another page.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C416"><span class="tag analysis">Analysis</span> To audit at scale, resolve every crawled URL to where its canonicals and redirects finally lead, group URLs by that leader, and flag groups with more than one hop, a loop, several canonicals on a page, or a leader that is noindexed, blocked, non-200 or redirecting.</p>
+
+  <h3>Merging two competing sites · Martyna Ağanoğlu, Loando</h3>
+  <p data-claims="D2-C874 D2-C875 D2-C876 D2-C877"><span class="tag stage">Stage</span> Two of Poland's first loan-comparison sites did exactly the same thing and competed for the same users, keywords and results. After an acquisition by a group active in eleven markets, they became one brand. Three goals came before any technical work: lower costs, one strong brand, and a simple structure instead of hundreds of similar URLs competing with each other.</p>
+  <figure data-claims="D2-C878 D2-C879 D2-C880 D2-C881 D2-C882 D2-C883">
+    <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="ma" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <rect x="0.5" y="14" width="109.5" height="52" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="55" y="37" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Site A</text>
+      <text x="55" y="53" text-anchor="middle" font-size="9.5" fill="#667085">loan comparison</text>
+      <rect x="0.5" y="84" width="109.5" height="52" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="55" y="107" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f1d33">Site B</text>
+      <text x="55" y="123" text-anchor="middle" font-size="9.5" fill="#667085">the same, competing</text>
+      <path d="M110 40H136V75H148" stroke="#667085" stroke-width="1.3" fill="none"/>
+      <path d="M110 110H136V75H148" stroke="#667085" stroke-width="1.3" fill="none" marker-end="url(#ma)"/>
+      <rect x="150" y="14" width="160" height="122" rx="10" fill="#e8eefd"/>
+      <text x="164" y="36" font-size="9" font-weight="700" letter-spacing="1.2" fill="#2457e6">EVERY URL, BOTH SITES</text>
+      <text x="164" y="58" font-size="12" font-weight="700" fill="#0f1d33">2,000+ URLs exported</text>
+      <g font-size="9.5" fill="#2a3446"><text x="164" y="78">Scored on traffic, conversion,</text><text x="164" y="92">backlinks, revenue, rankings.</text><text x="164" y="110">Kept only with real potential</text><text x="164" y="124">to earn and a fit with the business</text></g>
+      <g stroke="#667085" stroke-width="1.3" fill="none">
+        <path d="M310 75H326V27H338" marker-end="url(#ma)"/><path d="M326 75H338" marker-end="url(#ma)"/><path d="M326 75V123H338" marker-end="url(#ma)"/>
+      </g>
+      <rect x="340" y="10" width="170" height="34" rx="8" fill="#e3f4ec"/>
+      <text x="352" y="31" font-size="11" font-weight="700" fill="#0b8a5f">Keep</text><text x="390" y="31" font-size="9.5" fill="#2a3446">earns and fits</text>
+      <rect x="340" y="58" width="170" height="34" rx="8" fill="#e8eefd"/>
+      <text x="352" y="79" font-size="11" font-weight="700" fill="#2457e6">Merge</text><text x="394" y="79" font-size="9.5" fill="#2a3446">one article per intent</text>
+      <rect x="340" y="106" width="170" height="34" rx="8" fill="#fbe7e5"/>
+      <text x="352" y="127" font-size="11" font-weight="700" fill="#c8372d">Remove</text><text x="404" y="127" font-size="9.5" fill="#2a3446">error, not the homepage</text>
+      <g stroke="#667085" stroke-width="1.3" fill="none">
+        <path d="M510 27H530V60H548" marker-end="url(#ma)"/><path d="M510 75H530V60"/>
+      </g>
+      <text x="552" y="124" font-size="9" fill="#667085">Old URLs: 301 only to</text><text x="552" y="136" font-size="9" fill="#667085">a same-intent page</text>
+      <rect x="550" y="14" width="130" height="92" rx="10" fill="#0b1a33"/>
+      <text x="564" y="36" font-size="9" font-weight="700" letter-spacing="1.2" fill="#bcd0ff">ONE BRAND</text>
+      <text x="564" y="66" font-size="22" font-family="Fraunces, 'Noto Symbols'" fill="#fff">~100</text>
+      <text x="564" y="84" font-size="9.5" fill="#dbe5ff">URLs, about 95%</text>
+      <text x="564" y="97" font-size="9.5" fill="#dbe5ff">fewer than before</text>
+    </svg>
+    <figcaption><b>Keep, merge or remove.</b> The decision every URL got in the community case study, with the speaker's figures.</figcaption>
+  </figure>
+  <p data-claims="D2-C878 D2-C882 D2-C883 D2-C884 D2-C885 D2-C887 D2-C888 D2-C912"><span class="tag stage">Stage</span> Both domains were checked for past penalties and compared on traffic, conversion and revenue before one was chosen. Removed URLs got an error status; none went to the homepage, even those still bringing traffic. Then: new sitemaps, a change of address in Search Console, internal links pointing at the new pages, merged analytics, the financial experts behind the site introduced, and Search Console checked daily against the old baseline for months. <span class="tag docs">Docs</span> Google's site move guide lists the same three technical steps.</p>
+  <p data-claims="D2-C889 D2-C890 D2-C911 D2-C913 D2-C914"><span class="tag stage">Stage</span> Traffic grew from the first day, with no dip; revenue grew 100% month over month (the speaker's figure, period not stated). <span class="tag docs">Docs</span> Don't redirect many old URLs to one irrelevant page such as the homepage; return 404 or 410 for content that isn't moved. <span class="tag analysis">Analysis</span> Which of the two codes matters less than not redirecting to an unrelated page. At about 2,000 URLs crawl budget is hardly the gain; one strong URL per intent, with its signals consolidated, is.</p>
+
+  <h3>A migration after an acquisition · David Carrasco Pamies, Magnify</h3>
+  <div class="quote" data-claims="D2-C893">"I think there are no complex migrations. There are complex people."<span class="by">David Carrasco Pamies, on a migration still under way</span></div>
+  <table class="avoid">
+    <thead><tr><th>Absorb</th><th>Keep apart</th><th>Merge</th><th>Plug in</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C894"><td><span class="tag stage">Stage</span> One site is integrated into the other</td><td>Both sites stay</td><td>Two or three sites become a new one</td><td>A full site becomes a section of the other</td></tr>
+    </tbody>
+  </table>
+  <div class="grid2" style="grid-template-columns: 1fr 74mm; align-items: start;">
+    <div>
+      <p class="mt0" data-claims="D2-C895 D2-C896 D2-C897 D2-C898 D2-C900"><span class="tag stage">Stage</span> Run the migration around one document, the redirect map, which gives every old URL an approved destination. Most failures look technical but trace back to a decision nobody made: in his project, more than 7,000 URLs still had none. Prioritise by business value, not only traffic; ask support and sales which pages make buyers buy, and other teams about what a crawler can't reveal, such as legal requirements.</p>
+      <p data-claims="D2-C902 D2-C903 D2-C904 D2-C905"><span class="tag stage">Stage</span> Before launch, freeze the inventory: CMS export, crawl, sitemap, search data and logs. After it, 200s across the new domain prove only that URLs work. Test every URL's route, answer and lead, automated, with people checking the critical journeys, and give moved content its own baseline.</p>
+    </div>
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C899 D2-C904"><span class="c"># One row of a redirect map,</span>
+<span class="c"># fields as in the talk (illustrative)</span>
+<span class="k">old URL</span>   /pricing-enterprise
+<span class="k">new URL</span>   /products/x/pricing
+<span class="k">survives</span>  the product answer,
+          the demo request
+<span class="k">approves</span>  the decision's owner
+<span class="k">test</span>      <span class="v">route</span> · <span class="v">answer</span> · <span class="v">lead</span></pre>
+  </div>
+  <p data-claims="D2-C906 D2-C907 D2-C915"><span class="tag stage">Stage</span> An unnamed study's median recovery is 304 days, but broken routes need action at once. <span class="tag analysis">Analysis</span> Google's guide says weeks until new URLs show; traffic takes longer: report both.</p>
+</section>
+
+<!-- ================= 07 ================= -->
+<section class="s" id="s07">
+  <div class="section-head">
+    <div class="num">07</div>
+    <div class="kicker">Section 07 · Finding the gold nuggets · Lightning session F</div>
+    <h2>Feature extraction: structured data, images, video</h2>
+    <div class="lead" data-claims="D2-C444 D2-C446 D2-C471">After deduplication, Google pulls the "gold nuggets" out of each page: structured data, images and videos. Markup is still the precise, cheap route, and Google says it will keep preferring it.</div>
+  </div>
+
+  <p data-claims="D2-C441 D2-C443 D2-C444 D2-C449 D2-C451 D2-C450"><span class="tag stage">Stage</span> A dedicated system, whose internal name Gary Illyes wouldn't share, does the expensive extraction, and it runs after deduplication so the work is spent on a trimmed set of documents <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's guidelines: "we recommend placing the same structured data on all page duplicates, not just on the canonical page". <span class="tag analysis">Analysis</span> Markup that exists only on a duplicate that loses canonical selection may never be extracted.</p>
+
+  <h3>Why structured data still matters</h3>
+  <p data-claims="D2-C457 D2-C458"><span class="tag stage">Stage</span> Ryan Levering, a Google software engineer who works on data ingestion, described two camps inside Google: markup is useless because models can read pages, or markup is the future of machines talking to each other. The truth, he said, is in the middle. <span class="tag slide">Slide</span> Four reasons it still matters:</p>
+  <div class="grid2">
+    <div class="card" data-claims="D2-C459 D2-C460 D2-C461"><div class="badge" style="color:#2457e6">Precision</div><div class="cs"><span class="tag slide">Slide</span> Higher accuracy than large-scale LLM extraction for complex schema such as sale pricing. <span class="tag stage">Stage</span> In his tests LLMs invented properties and got nested pricing wrong <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</div></div>
+    <div class="card" data-claims="D2-C463 D2-C466 D2-C467"><div class="badge" style="color:#0b8a5f">Extra content</div><div class="cs"><span class="tag slide">Slide</span> Metadata the page text lacks, such as full ISO dates (Google may misread a visible date's time zone) or stable IDs. <span class="tag docs">Docs</span> Still only for content users can see.</div></div>
+    <div class="card" data-claims="D2-C469 D2-C470 D2-C471"><div class="badge" style="color:#6d3fd6">Efficiency</div><div class="cs"><span class="tag stage">Stage</span> Even Google can't run complex models on every page; parsing markup is nearly free: "So we're always going to prefer that particular approach." <span class="muted">(not&nbsp;in&nbsp;docs)</span></div></div>
+    <div class="card" data-claims="D2-C473 D2-C474"><div class="badge" style="color:#b86e00">Focus</div><div class="cs"><span class="tag slide">Slide</span> Markup points at the pertinent data, so Google doesn't pick up, say, a related product's price <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</div></div>
+  </div>
+  <p data-claims="D2-C476 D2-C477 D2-C478 D2-C480 D2-C479"><span class="tag stage">Stage</span> The same processed markup feeds classic results and AI Overviews and AI Mode. Raw schema.org is generally not put straight into a model's context: it is sorted, checked and indexed first, partly because raw markup would be an abuse vector <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's guide to generative AI features lists overfocusing on structured data among things not needed; it still helps rich results. <span class="tag analysis">Analysis</span> Skip markup written for AI; implement the types Google documents.</p>
+
+  <div class="grid2" style="grid-template-columns: 1fr 62mm; align-items: start;">
+    <div>
+      <h4 class="mt0">What Google recommended</h4>
+      <ul class="small">
+        <li data-claims="D2-C494 D2-C495 D2-C496"><span class="tag stage">Stage</span> <span class="nw">JSON-LD</span>, microdata and RDFa enter the same pipelines; <span class="nw">JSON-LD</span> is recommended because people make fewer mistakes with one block. Microdata saves page weight <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+        <li data-claims="D2-C488 D2-C500 D2-C501"><span class="tag stage">Stage</span> "we will never penalize you for having more structured data on your pages", but irrelevant markup can be treated as abuse. <span class="tag docs">Docs</span> A manual action removes rich results, not rankings.</li>
+        <li data-claims="D2-C503 D2-C504"><span class="tag stage">Stage</span> A common fault: two plug-ins emit the same type, and an event page reads like a list of events <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Test one page per template.</li>
+        <li data-claims="D2-C502 D2-C492 D2-C490 D2-C498"><span class="tag stage">Stage</span> Use unique identifiers (an organisation's homepage URL) and only relevant types. <span class="tag slide">Slide</span> Find them in the Search gallery, and test in the Rich Results Test first.</li>
+      </ul>
+    </div>
+    <div class="stat" data-claims="D2-C482 D2-C483"><div class="v">2.7<span class="x">×</span></div><div class="l">more search traffic for Rakuten Recipes after adding recipe markup, plus 1.5× session duration</div><div class="s">Case study, May 2018; "old", said the speaker</div></div>
+  </div>
+
+  <h4>Coming and changing</h4>
+  <div class="grid3">
+    <div class="card" data-claims="D2-C514 D2-C515 D2-C517 D2-C520"><div class="ct">SHACL validation rules</div><div class="cs"><span class="tag slide">Slide</span> Coming soon: downloadable rules on each feature guide, to check markup in your own build before publishing <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag stage">Stage</span> Search Console stays the reference.</div></div>
+    <div class="card" data-claims="D2-C506 D2-C507 D2-C505"><div class="ct">Merchant markup</div><div class="cs"><span class="tag stage">Stage</span> Sale prices can carry validity dates; loyalty programs and shipping policies were added in 2025. <span class="tag docs">Docs</span> The July 2026 docs log calls the sale-dates change a clarification.</div></div>
+    <div class="card" data-claims="D2-C510 D2-C511 D2-C522"><div class="ct">Adoption decides</div><div class="cs"><span class="tag stage">Stage</span> schema.org now publishes usage statistics per type, because Google often waits for adoption before building a feature <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Little-used features were removed in 2025.</div></div>
+  </div>
+
+  <h3>Images and video</h3>
+  <table class="avoid">
+    <thead><tr><th style="width:40mm">On the page</th><th>What Google said</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C524 D2-C447 D2-C525"><td class="k"><code>&lt;img src&gt;</code></td><td><span class="tag stage">Stage</span> What Google's HTML parser looks for. Extracted images go to the image indexing service and can appear in Discover, Images, web results and AI features.</td></tr>
+      <tr data-claims="D2-C526"><td class="k"><code>&lt;picture&gt;</code></td><td><span class="tag stage">Stage</span> Supported only because it must contain an <code>img</code>, which is what gets extracted.</td></tr>
+      <tr data-claims="D2-C528 D2-C826 D2-C529"><td class="k">CSS background</td><td><span class="tag stage">Stage</span> "we don't support CSS background extraction"; Illyes even suggested it to keep an image out <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> The documented ways are a robots.txt rule for <span class="nw">Googlebot-Image</span> or a noindex <span class="nw">X-Robots-Tag</span>.</td></tr>
+      <tr data-claims="D2-C531 D2-C532 D2-C533 D2-C535 D2-C536 D2-C534"><td class="k"><code>src</code> and <code>alt</code></td><td><span class="tag stage">Stage</span> Google uses three <code>img</code> attributes <span class="muted">(not&nbsp;in&nbsp;docs)</span>: <code>src</code> matters most, then <code>alt</code>, which should describe the image for someone who can't see it, and lets it rank for those concepts. <span class="tag docs">Docs</span> The image guide calls alt text the most important attribute for image metadata.</td></tr>
+      <tr data-claims="D2-C537 D2-C539"><td class="k">Surrounding text</td><td><span class="tag stage">Stage</span> Critical for understanding and ranking the image. <span class="tag analysis">Analysis</span> Give key images a caption, not just alt text.</td></tr>
+      <tr data-claims="D2-C527 D2-C540"><td class="k">Image sitemap</td><td><span class="tag stage">Stage</span> The other reliable way to tell Google about images.</td></tr>
+      <tr data-claims="D2-C541 D2-C542 D2-C543 D2-C545"><td class="k">Formats</td><td><span class="tag stage">Stage</span> Nearly all popular formats work; AVIF currently has ingestion hiccups <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> AVIF is listed as supported. <span class="tag analysis">Analysis</span> Keep WebP or JPEG in the <code>img src</code>.</td></tr>
+      <tr data-claims="D2-C553 D2-C556 D2-C916 D2-C918 D2-C924 D2-C551 D2-C554 D2-C942"><td class="k">Video</td><td><span class="tag slide">Slide</span> A dedicated watch page per video, listed in a sitemap. <span class="tag stage">Stage</span> Without a watch page, or below the fold, a video won't be indexed <span class="muted">(the fold part not&nbsp;in&nbsp;docs)</span>; the HTML needs a video container, and <span class="nw">JSON-LD</span> on top. <span class="tag docs">Docs</span> Only watch-page videos are eligible, with the player on the page at load, not behind a click.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C552 D2-C555"><span class="tag slide">Slide</span> The seven video factors also include high-quality content, compelling titles and descriptions, relevant thumbnails and fast pages, and a warning: "just because you spent money on a genAI subscription, that does not mean you are going to do well with AI generated videos"</p>
+  <div class="grid2" style="align-items: start;">
+    <div>
+      <h4 class="mt0">The rest of the video talk</h4>
+      <ul class="small">
+        <li data-claims="D2-C917 D2-C919 D2-C920"><span class="tag stage">Stage</span> A wrong thumbnail makes very many viewers drop out at the start. "Fast-loading pages" really means a fast-loading video: a CDN that beats your own server is a win <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+        <li data-claims="D2-C921 D2-C922 D2-C923"><span class="tag stage">Stage</span> The popular formats are supported; Google recommends the MP4 container and standard codecs <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+        <li data-claims="D2-C925 D2-C926 D2-C927 D2-C929"><span class="tag stage">Stage</span> Video sitemaps aren't critical, but Google ingests them far more often than it can process HTML, and they say which URLs to check <span class="muted">(partly&nbsp;not&nbsp;in&nbsp;docs)</span>. Text around the video, and people talking about it, help it surface.</li>
+        <li data-claims="D2-C928"><span class="tag stage">Stage</span> Consider YouTube or Vimeo: they solved video search years ago.</li>
+        <li data-claims="D2-C944"><span class="tag analysis">Analysis</span> Put a watch page's main video in the first viewport and load the player without a click-to-play placeholder.</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="mt0">Robots rules for images and video</h4>
+      <ul class="small">
+        <li data-claims="D2-C930 D2-C931 D2-C932"><span class="tag stage">Stage</span> A media indexer attaches images and videos to their host page's URL <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Googlebot-Image and Googlebot-Video fetch them; a robots.txt disallow on the file keeps it out.</li>
+        <li data-claims="D2-C933"><span class="tag stage">Stage</span> Unlike a blocked web page, a blocked video is never shown by its URL alone <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</li>
+        <li data-claims="D2-C934 D2-C935 D2-C945"><span class="tag stage">Stage</span> <code>noimageindex</code> also stops videos, whose thumbnails are images <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Never set it on watch pages.</li>
+      </ul>
+      <h4>AI-generated images</h4>
+      <ul class="small">
+        <li data-claims="D2-C937 D2-C938 D2-C939 D2-C940 D2-C941"><span class="tag stage">Stage</span> Up to the site owner. Google shows AI images "if they are looking for them specifically" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Diffusion models garble text: Google's own 2025 timeline image jumped from 1994 to 1995 and back. Check them for hallucinations and regenerate.</li>
+        <li data-claims="D2-C943"><span class="tag docs">Docs</span> Google Images reads IPTC <code>trainedAlgorithmicMedia</code> and can show C2PA details in "About this image".</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Lightning session F: two community talks on media</h3>
+  <div class="grid2">
+    <div class="card" data-claims="D2-C946 D2-C947 D2-C948 D2-C949 D2-C950 D2-C951 D2-C952 D2-C462"><div class="badge" style="color:#c8372d">A community speaker</div><div class="ct">LLM alt text that missed the point</div><div class="cs"><span class="tag stage">Stage</span> Since version 20 (May 2024) Screaming Frog can call ChatGPT through custom JavaScript, so SEOs rewrote alt text at scale. For a page selling an anxiety medicine for cats, the model saw only a cat and a veterinarian and dropped the page's intent; image performance in Search Console fell after the rollout. Test in List mode on chosen URLs first. A safer script adds the page title to the image description; it still covers only the hero image and one market. <span class="tag docs">Docs</span> Google says AI-written alt text should be fact-checked before publishing.</div></div>
+    <div class="card" data-claims="D2-C953 D2-C954 D2-C955 D2-C956 D2-C957 D2-C958 D2-C959 D2-C960"><div class="badge" style="color:#2457e6">Patrick Domanico · dentsu</div><div class="ct">"Prompt journalism": more from what you recorded</div><div class="cs"><span class="tag stage">Stage</span> Optimise interviews and podcasts you already have, not more content. Clean the transcript of fillers with editorial judgment, without correcting the speaker's grammar (W3C guidance). Let AI map it into chapters, headings and entities, which can feed metadata and structured data; write the inverted pyramid as a prompt for the article, then cut angles for LinkedIn, Substack, X and YouTube. Social accounts can be verified in Search Console to track that content.</div></div>
+  </div>
+</section>
+
+<!-- ================= 08 ================= -->
+<section class="s" id="s08">
+  <div class="section-head">
+    <div class="num">08</div>
+    <div class="kicker">Section 08 · Internationalisation · Lightning session G · Posters</div>
+    <h2>Language, country and hreflang</h2>
+    <div class="lead" data-claims="D2-C584 D2-C585 D2-C586 D2-C565">Google reads a page's language from its content and records one language per page. hreflang only maps equivalent versions to audiences, and it fails on small mistakes.</div>
+  </div>
+
+  <p data-claims="D2-C961 D2-C559 D2-C560 D2-C561"><span class="tag stage">Stage</span> Working out a site's localised pages and target countries is one of the complex tasks of indexing, Google said, and started with the basics: Google may find language versions on its own, but each needs its own URL; switching languages by cookie or by swapping content in place makes them very hard to handle. <span class="tag docs">Docs</span> Googlebot mostly crawls from US IP addresses and sends no Accept-Language header.</p>
+  <div class="grid2" style="grid-template-columns: 1fr 1fr; align-items: start;">
+<pre class="code mt0" style="font-variant-ligatures: none;" data-claims="D2-C562 D2-C564"><span class="c">&lt;!-- In the head of every version,</span>
+<span class="c">     the page's own URL included --&gt;</span>
+<span class="k">&lt;link</span> rel="alternate" hreflang="<span class="v">en</span>"
+  href="https://example.com/en/"<span class="k">&gt;</span>
+<span class="k">&lt;link</span> rel="alternate" hreflang="<span class="v">en-gb</span>"
+  href="https://example.com/en-gb/"<span class="k">&gt;</span>
+<span class="k">&lt;link</span> rel="alternate" hreflang="<span class="v">es</span>"
+  href="https://example.com/es/"<span class="k">&gt;</span></pre>
+    <div>
+      <h4 class="mt0">The mistakes Google sees most</h4>
+      <ul>
+        <li data-claims="D2-C565 D2-C570 D2-C572"><span class="tag slide">Slide</span> "If page X links to page Y, page Y must link back to page X." <span class="tag stage">Stage</span> One-way pairs are ignored, or anyone could claim to be your language version.</li>
+        <li data-claims="D2-C566"><span class="tag stage">Stage</span> No self-reference: every page must list its own URL too.</li>
+        <li data-claims="D2-C568 D2-C569"><span class="tag stage">Stage</span> Two or three methods at once, conflicting. <span class="tag docs">Docs</span> HTML head, HTTP header and sitemap are equivalent; pick one.</li>
+        <li data-claims="D2-C573"><span class="tag docs">Docs</span> Alternate URLs must be fully qualified, protocol included.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>hreflang code mistakes</h3>
+  <p data-claims="D2-C962"><span class="tag stage">Stage</span> Wrong language and region codes are a mistake Google finds very often, the same ones again and again, especially in Europe, because owners assume the codes are easy.</p>
+  <table class="avoid">
+    <thead><tr><th style="width:24mm">Written</th><th style="width:34mm">Meant</th><th style="width:30mm">Correct</th><th>Why <span class="tag slide">Slide</span> <span class="tag stage">Stage</span> <span class="tag analysis">Analysis</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C575 D2-C576 D2-C583"><td class="k"><span class="no">se</span>, <span class="no">se-SE</span></td><td>Swedish (Sweden)</td><td><code>sv</code>, <code>sv-SE</code></td><td>The language part is ISO 639-1; SE is Sweden's country code. <code>se</code> is Northern Sami.</td></tr>
+      <tr data-claims="D2-C575"><td class="k"><span class="no">dk</span></td><td>Danish</td><td><code>da</code></td><td>DK is Denmark's country code, not the language.</td></tr>
+      <tr data-claims="D2-C575 D2-C578"><td class="k"><span class="no">cz</span></td><td>Czech</td><td><code>cs</code></td><td>CZ is Czechia's country code and domain; Czech is <code>cs</code>.</td></tr>
+      <tr data-claims="D2-C579"><td class="k"><span class="no">en-UK</span></td><td>English (United Kingdom)</td><td><code>en-GB</code></td><td>Regions are ISO 3166-1 Alpha-2 codes.</td></tr>
+      <tr data-claims="D2-C579"><td class="k"><span class="no">de-SW</span></td><td>German (Switzerland)</td><td><code>de-CH</code></td><td>Switzerland is CH.</td></tr>
+      <tr data-claims="D2-C579 D2-C583"><td class="k"><span class="no">de-GE</span></td><td>German (Germany)</td><td><code>de-DE</code></td><td>GE is a valid code, for Georgia, so the error is silent.</td></tr>
+      <tr data-claims="D2-C580"><td class="k"><span class="no">en-EU</span></td><td>European Union</td><td>One per country</td><td>hreflang targets countries only.</td></tr>
+      <tr data-claims="D2-C581 D2-C583"><td class="k"><span class="no">en-LA</span>, <span class="no">en-SA</span></td><td>Los Angeles, South Africa</td><td>A country code</td><td>LA is Laos and SA is Saudi Arabia; a city is never a region.</td></tr>
+      <tr data-claims="D2-C582"><td class="k"><span class="no">GB</span></td><td>United Kingdom</td><td><code>en-GB</code></td><td>A region code can't stand alone; the value must name a language.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Language comes from the content</h3>
+  <p data-claims="D2-C584 D2-C585 D2-C586 D2-C587"><span class="tag stage">Stage</span> Google doesn't use hreflang to determine a page's language, nor a language code in the URL: it reads the content, and annotates each page with one language <span class="muted">(that part not&nbsp;in&nbsp;docs)</span>. Pages that mix languages are hard to place.</p>
+  <p data-claims="D2-C589 D2-C590"><span class="tag docs">Docs</span> Pages that translate only the menu and footer around the same main text count as duplicates. <span class="tag analysis">Analysis</span> Translate templates together with the main text.</p>
+
+  <h3>Country targeting</h3>
+  <p data-claims="D2-C591 D2-C592 D2-C593 D2-C594 D2-C595 D2-C596 D2-C597 D2-C982"><span class="tag stage">Stage</span> A ccTLD is one of the strongest country signals; server location (an unclear word in the recording) is not really reliable nowadays <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> A second recording heard "IP address" for the strongest signal; the docs back the ccTLD. <span class="tag docs">Docs</span> Google still lists server location as a possible, not definitive, signal, and marks URL parameters such as <code>?loc=de</code> as not recommended. <span class="tag stage">Stage</span> ccTLD, subdomain or subdirectory are all fine; the choice depends on availability, cost, local law and commitment. "Don't try to move your domain now."</p>
+  <p data-claims="D2-C632"><span class="tag docs">Docs</span> Google's locale signals also include local addresses and phone numbers, local language and currency, links from other local sites and Business Profile signals.</p>
+
+  <div class="callout avoid">
+    <div class="h">AI answers hide language gaps</div>
+    <p data-claims="D2-C601 D2-C602 D2-C603"><span class="tag stage">Stage</span> AI Overviews and AI Mode need no extra work: they sit on top of web results. But in classic results users notice missing or poorly translated content; AI answers synthesise it away, "an invisible gap". And "AI is still language-dependent": a query in another language draws on different data.</p>
+    <p data-claims="D2-C607"><span class="tag analysis">Analysis</span> Test AI answers with native-language queries in each market, and compare with the country breakdown of Search Console's generative AI report.</p>
+  </div>
+  <p data-claims="D2-C608 D2-C610 D2-C611 D2-C612"><span class="tag stage">Stage</span> Machine translation is the owner's call, weighed against quality, local conventions and culture; dates and calendars differ (in Thailand the current year is 2569) <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Automated translation of scraped content is a listed example of scaled content abuse. <span class="tag analysis">Analysis</span> Treat machine translation as a first draft for a native reviewer.</p>
+
+  <h3>Lightning session G: two community talks</h3>
+  <div class="grid2">
+    <div class="card" data-claims="D2-C618 D2-C619 D2-C623 D2-C624 D2-C626 D2-C630 D2-C631 D2-C640 D2-C633"><div class="badge" style="color:#2457e6">Alizée Baudez · International SEO consultant</div><div class="ct">The translation was right; the region wasn't checked</div><div class="cs"><span class="tag stage">Stage</span> A furniture maker's Dutch site converted at a fraction of its other markets despite clean translations and hreflang; Dutch homes are narrow, with steep stairs. "the translation was right, but the region was never checked". hreflang for de-AT doesn't make a brand trusted in Austria. If you can't name three local sources that see your brand as present: "don't bother expanding to another country; just fix the ones you already have". She cited a 2017 Semrush study: 75% of 20,000 multilingual sites had at least one hreflang error.</div></div>
+    <div class="card" data-claims="D2-C643 D2-C644 D2-C645 D2-C646 D2-C647 D2-C963 D2-C964 D2-C965 D2-C981"><div class="badge" style="color:#6d3fd6">Community talk · presented by a colleague</div><div class="ct">Non-Latin scripts: letters, direction, keyboards</div><div class="cs"><span class="tag stage">Stage</span> Arabic and Persian have letters that look identical but are different Unicode characters, such as the Arabic and the Persian ye, so a searcher may type one variant while the site uses the other, and keyword data splits across variants <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Titles, product names and URLs that mix right-to-left and left-to-right text can display in a confusing order. And the same Persian query may be typed in Latin letters. <span class="tag docs">Docs</span> Google's 2023 post gives the same case for Hindi. <span class="tag analysis">Analysis</span> Research each spelling separately and add up the volumes.</div></div>
+  </div>
+  <p data-claims="D2-C967 D2-C968 D2-C977 D2-C978 D2-C979"><span class="tag stage">Stage</span> In competitive Persian, Turkish and Arabic searches, bought links and paid editorial content still visibly sway rankings, the presenter observed, as a description and not a recommendation (no data shown) <span class="muted">(not&nbsp;in&nbsp;docs)</span>; Google treats buying links as spam and in October 2023 improved spam coverage by language. <span class="tag docs">Docs</span> That update names Turkish and "other languages", and cloaking, hacked, auto-generated and scraped spam. <span class="tag analysis">Analysis</span> It names neither Persian nor link spam, so it doesn't show the bought links were dealt with.</p>
+  <p data-claims="D2-C972 D2-C971 D2-C980 D2-C969 D2-C970 D2-C973"><span class="tag stage">Stage</span> AI answers to Persian queries are written in Persian but cite some English sources, because thinner Persian content sends retrieval to other languages ("cross-lingual retrieval"). Features also launch language by language. <span class="tag docs">Docs</span> Site names reached all languages only in September 2023. <span class="tag stage">Stage</span> Persian offers fewer natural link opportunities; base the strategy on each market's maturity. Multilingual SEO is not just translation.</p>
+
+  <h3>Poster session H</h3>
+  <p data-claims="D2-C974 D2-C975 D2-C976"><span class="tag stage">Stage</span> Posters were added for topics that need a longer, one-to-one discussion than a seven-minute talk. Topics included technical SEO testing in CI/CD pipelines, internal links that move rankings, the URL Inspection tool and API, bringing everyone on board in complex migrations, moving a CMS from WordPress to Contentful, the "global Spanish" problem and going beyond prompts. One poster, by a Googler, was on bringing Google's tools into WordPress sites.</p>
+</section>
+
+<!-- ================= 09 ================= -->
+<section class="s" id="s09">
+  <div class="section-head">
+    <div class="num">09</div>
+    <div class="kicker">Section 09 · Calculating signals · Index selection</div>
+    <h2>Signals and index selection</h2>
+    <div class="lead" data-claims="D2-C662 D2-C682 D2-C695">Some signals are calculated at indexing because ranking has no time for them. Index selection then applies thresholds to decide what the finite index keeps, and quality decides most of it.</div>
+  </div>
+
+  <h3>Signals calculated at indexing</h3>
+  <p class="small muted">Two talks by the same Google speaker.</p>
+  <table>
+    <thead><tr><th style="width:28mm">Signal</th><th>What was said <span class="tag stage">Stage</span></th><th style="width:56mm">Docs and analysis</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C649 D2-C651 D2-C652 D2-C653 D2-C654 D2-C655"><td class="k">Country and language</td><td>"Both of them are extremely, extremely important". Language is weighted in index selection, otherwise "you would have an English index"; country too, so the UK or Switzerland isn't swamped by the US or Germany <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Both are used again in ranking.</td><td><span class="tag analysis">Analysis</span> A small country in a big language should make its country unmistakable.</td></tr>
+      <tr data-claims="D2-C656 D2-C657 D2-C658 D2-C659"><td class="k">Freshness</td><td>Matters for queries that deserve fresh results, such as a breaking event; partly calculated at indexing, used in ranking. "It doesn't play a big role in index selection." <span class="muted">(not&nbsp;in&nbsp;docs)</span></td><td><span class="tag analysis">Analysis</span> Changing a page's date won't get it indexed.</td></tr>
+      <tr data-claims="D2-C660 D2-C661 D2-C662 D2-C663 D2-C664"><td class="k">SafeSearch</td><td>Calculated at indexing from the whole page and its links, because "In ranking, everything has to happen online, and there's just not enough time to calculate those things." Explicit content doesn't lower indexing chances <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td><span class="tag docs">Docs</span> Keep explicit pages on a separate domain or subdomain.</td></tr>
+      <tr data-claims="D2-C666 D2-C669 D2-C676 D2-C671 D2-C674 D2-C675"><td class="k">Spam</td><td>"If we detect that something is spam, then we're not letting it into the index." SpamBrain is now built on Gemini <span class="muted">(not&nbsp;in&nbsp;docs)</span>; over 99% of visits from Search are spam-free.</td><td><span class="tag docs">Docs</span> SpamBrain launched in 2018; it found 5× more spam sites in 2022 than in 2021. <span class="tag analysis">Analysis</span> Quote these documented figures.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C677"><span class="tag analysis">Analysis</span> Because these signals are fixed at indexing, a fix (a page's language, content that triggers SafeSearch) only counts once Google recrawls and reprocesses the page.</p>
+
+  <figure data-claims="D2-C682 D2-C684 D2-C685 D2-C687 D2-C693 D2-C696 D2-C706 D2-C707 D2-C711 D2-C714 D2-C688">
+    <svg viewBox="0 0 680 222" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="ia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+        <marker id="ib" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c8372d"/></marker>
+      </defs>
+      <text x="500" y="11" text-anchor="middle" font-size="9.5" fill="#667085">thresholds · signals · what Google knows</text>
+      <text x="500" y="23" text-anchor="middle" font-size="9.5" fill="#667085">about the site and section · importance</text>
+      <g font-size="11.5" font-weight="700" text-anchor="middle">
+        <rect x="0.5" y="32" width="99.5" height="50" rx="10" fill="#fff" stroke="#c7cdd8"/><text x="50" y="53" fill="#0f1d33">Known</text><text x="50" y="68" fill="#0f1d33">URLs</text>
+        <rect x="130" y="32" width="120" height="50" rx="10" fill="#e8eefd"/><text x="190" y="53" fill="#0f1d33">Crawl</text><text x="190" y="68" fill="#0f1d33">scheduling</text>
+        <rect x="280" y="32" width="120" height="50" rx="10" fill="#fff" stroke="#c7cdd8"/><text x="340" y="53" fill="#0f1d33">Crawled and</text><text x="340" y="68" fill="#0f1d33">processed</text>
+        <rect x="430" y="32" width="140" height="50" rx="10" fill="#2457e6"/><text x="500" y="53" fill="#fff">Index selection</text><text x="500" y="69" font-size="9.5" font-weight="400" fill="#dbe5ff">predictive, machine learning</text>
+        <rect x="600" y="32" width="80" height="50" rx="10" fill="#0b1a33"/><text x="640" y="62" fill="#fff" font-size="15" font-weight="400" font-family="Fraunces, 'Noto Symbols'">Index</text>
+      </g>
+      <g stroke="#667085" stroke-width="1.3">
+        <path d="M100 57H128" marker-end="url(#ia)"/><path d="M250 57H278" marker-end="url(#ia)"/><path d="M400 57H428" marker-end="url(#ia)"/><path d="M570 57H598" marker-end="url(#ia)"/>
+      </g>
+      <path d="M190 82V110" stroke="#c8372d" stroke-width="1.3" marker-end="url(#ib)"/>
+      <path d="M470 82V110" stroke="#c8372d" stroke-width="1.3" marker-end="url(#ib)"/>
+      <path d="M540 82V96H600V110" stroke="#c8372d" stroke-width="1.3" fill="none" marker-end="url(#ib)"/>
+      <rect x="110" y="112" width="190" height="110" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="124" y="131" font-size="10.5" font-weight="700" fill="#0f1d33">Discovered – currently</text>
+      <text x="124" y="144" font-size="10.5" font-weight="700" fill="#0f1d33">not indexed</text>
+      <g font-size="9.5" fill="#2a3446"><text x="124" y="162">Known, not crawled yet.</text><text x="124" y="175">On stage: Google doesn't want</text><text x="124" y="188">to crawl it yet. Help page:</text><text x="124" y="201">a crawl was expected to</text><text x="124" y="214">overload the site.</text></g>
+      <rect x="320" y="112" width="190" height="110" rx="10" fill="#fbe7e5"/>
+      <text x="334" y="131" font-size="9" font-weight="700" letter-spacing="1.2" fill="#c8372d">DROPPED AT SELECTION</text>
+      <g font-size="9.5" fill="#2a3446"><text x="334" y="149">noindex</text><text x="334" y="162">unavailable_after date passed</text><text x="334" y="175">soft 404</text><text x="334" y="188">non-canonical duplicate</text><text x="334" y="201">spam</text><text x="334" y="214">other policies</text></g>
+      <rect x="530" y="112" width="149.5" height="110" rx="10" fill="#fff" stroke="#c7cdd8"/>
+      <text x="544" y="131" font-size="10.5" font-weight="700" fill="#0f1d33">Crawled – currently</text>
+      <text x="544" y="144" font-size="10.5" font-weight="700" fill="#0f1d33">not indexed</text>
+      <g font-size="9.5" fill="#2a3446"><text x="544" y="162">Processed, not kept.</text><text x="544" y="175">"Most of the time" a</text><text x="544" y="188">quality issue.</text></g>
+    </svg>
+    <figcaption><b>Where pages stop.</b> Two Search Console statuses mapped to the stage that produces them. In the dropped list, “noindex” is the likely reading of one unclear word in the recording.</figcaption>
+  </figure>
+  <h3>How index selection decides</h3>
+  <ul>
+    <li data-claims="D2-C680 D2-C681 D2-C682"><span class="tag stage">Stage</span> "our index is immense. Like, immense. But it is a finite resource." Most URLs wouldn't be useful to users, so thresholds decide what is kept.</li>
+    <li data-claims="D2-C684 D2-C685 D2-C686"><span class="tag stage">Stage</span> It is a predictive system built on machine learning, and it uses what Google knows about the site: "the index selection system is going to be more forgiving when it sees a new URL from your site" if the site or section serves users well <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Launch new pages where Google already indexes well.</li>
+    <li data-claims="D2-C689 D2-C690 D2-C691 D2-C692"><span class="tag stage">Stage</span> Where coverage of a country or language is thin, the bar drops: in a language such as Basque, a site that starts publishing can very likely replace spam in the index (one condition was inaudible) <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> An opening for content written for that market, not for bulk machine translation.</li>
+    <li data-claims="D2-C693 D2-C694 D2-C695"><span class="tag stage">Stage</span> Importance counts: news sites' pages usually get indexed (a likely reading) very fast <span class="muted">(not&nbsp;in&nbsp;docs)</span>. In the end "focusing on the quality is the most reliable way to get stuff in the index".</li>
+    <li data-claims="D2-C701 D2-C702 D2-C703"><span class="tag stage">Stage</span> Non-canonical duplicates are dropped, so "only canonicals" reach results. <span class="tag docs">Docs</span> An alternate can still be shown in some contexts, such as a mobile URL to a mobile user.</li>
+  </ul>
+
+  <h3>Reading the Page indexing report</h3>
+  <table class="avoid">
+    <thead><tr><th style="width:34mm">Status</th><th>On stage <span class="tag stage">Stage</span></th><th style="width:40mm">Help page <span class="tag docs">Docs</span></th><th style="width:44mm">What to do <span class="tag analysis">Analysis</span></th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C706 D2-C709 D2-C707 D2-C708 D2-C710"><td class="k">Discovered – currently not indexed</td><td>A crawl-scheduling state: Google doesn't want to crawl it yet; "The first one is kind of nastier." Getting other pages indexed and showing they're useful helps <span class="muted">(partly&nbsp;not&nbsp;in&nbsp;docs)</span>.</td><td>Found, not crawled, typically because a crawl was expected to overload the site.</td><td>Rule out slow responses and server errors, then raise quality; resubmitting changes nothing.</td></tr>
+      <tr data-claims="D2-C711 D2-C713 D2-C714 D2-C712 D2-C716"><td class="k">Crawled – currently not indexed</td><td>An index selection decision; "most of the time it is actually a quality issue" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. If quality is even, look at a different template that hides the content.</td><td>May be indexed later; no need to resubmit.</td><td>Compare with indexed pages of the same type: thin, duplicate, soft-404-like content, template.</td></tr>
+    </tbody>
+  </table>
+  <p data-claims="D2-C717 D2-C718 D2-C679"><span class="tag stage">Stage</span> Use the report's not-indexed reasons to test changes. And rather than hunting signals in the docs: "If you are just focusing on actually creating the content that users will like, then that's probably a better use of your life."</p>
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="s" id="s10">
+  <div class="section-head">
+    <div class="num">10</div>
+    <div class="kicker">Section 10 · How does the index look like?</div>
+    <h2>Inside the index</h2>
+    <div class="lead" data-claims="D2-C720 D2-C721 D2-C732 D2-C740 D2-C726">The index holds tokens with their metadata and signals, not pages. Retrieval runs on posting lists and on embeddings, and AI Overviews and AI Mode use the same index and the same snippets.</div>
+  </div>
+
+  <figure data-claims="D2-C732 D2-C733 D2-C736 D2-C737 D2-C738 D2-C740 D2-C741 D2-C724 D2-C726 D2-C727">
+    <svg viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Symbols'">
+      <defs>
+        <marker id="xa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#667085"/></marker>
+      </defs>
+      <rect x="215" y="0" width="250" height="34" rx="10" fill="#0b1a33"/>
+      <text x="340" y="22" text-anchor="middle" font-size="11.5" font-family="JetBrains Mono, 'Noto Symbols'" fill="#fff">waterproof hiking boots</text>
+      <path d="M260 34C260 46 160 44 160 56" stroke="#667085" stroke-width="1.3" fill="none" marker-end="url(#xa)"/>
+      <path d="M420 34C420 46 520 44 520 56" stroke="#667085" stroke-width="1.3" fill="none" marker-end="url(#xa)"/>
+      <rect x="0" y="58" width="330" height="136" rx="12" fill="#f5f7fb"/>
+      <text x="16" y="79" font-size="9" font-weight="700" letter-spacing="1.3" fill="#2457e6">POSTING LISTS · DECADES OLD</text>
+      <text x="16" y="95" font-size="9.5" fill="#667085">Same tokenizer as indexing; important words only</text>
+      <g font-size="10.5" font-family="JetBrains Mono, 'Noto Symbols'" fill="#2a3446">
+        <text x="16" y="117">waterproof</text><text x="106" y="117">→ 4 · <tspan fill="#2457e6" font-weight="700">7</tspan> · <tspan fill="#2457e6" font-weight="700">9</tspan> · 30</text>
+        <text x="16" y="134">hiking</text><text x="106" y="134">→ 3 · <tspan fill="#2457e6" font-weight="700">7</tspan> · <tspan fill="#2457e6" font-weight="700">9</tspan> · 12 · 18</text>
+        <text x="16" y="151">boots</text><text x="106" y="151">→ 2 · <tspan fill="#2457e6" font-weight="700">7</tspan> · <tspan fill="#2457e6" font-weight="700">9</tspan> · 15 · 21</text>
+      </g>
+      <line x1="16" y1="162" x2="314" y2="162" stroke="#c7cdd8"/>
+      <text x="16" y="181" font-size="10.5" fill="#0f1d33"><tspan font-weight="700">Intersect</tspan> → documents 7 and 9, unranked</text>
+      <rect x="350" y="58" width="330" height="136" rx="12" fill="#f5f7fb"/>
+      <text x="366" y="79" font-size="9" font-weight="700" letter-spacing="1.3" fill="#6d3fd6">EMBEDDINGS · A VECTOR SPACE</text>
+      <text x="366" y="95" font-size="9.5" fill="#667085">Parts of documents become vectors</text>
+      <g fill="#98a2b3">
+        <circle cx="384" cy="118" r="3.5"/><circle cx="410" cy="176" r="3.5"/><circle cx="436" cy="134" r="3.5"/><circle cx="452" cy="182" r="3.5"/><circle cx="472" cy="112" r="3.5"/><circle cx="398" cy="154" r="3.5"/><circle cx="612" cy="114" r="3.5"/><circle cx="640" cy="160" r="3.5"/><circle cx="660" cy="126" r="3.5"/>
+      </g>
+      <circle cx="548" cy="146" r="32" fill="none" stroke="#6d3fd6" stroke-dasharray="4 3"/>
+      <g fill="#6d3fd6"><circle cx="530" cy="134" r="4"/><circle cx="566" cy="160" r="4"/><circle cx="560" cy="128" r="4"/></g>
+      <path d="M548 140L554 146L548 152L542 146Z" fill="#0b1a33"/>
+      <text x="668" y="186" text-anchor="end" font-size="9.5" fill="#6d3fd6">nearest to the query</text>
+      <path d="M165 194V214" stroke="#667085" stroke-width="1.3" marker-end="url(#xa)"/>
+      <path d="M515 194V214" stroke="#667085" stroke-width="1.3" marker-end="url(#xa)"/>
+      <rect x="100" y="216" width="480" height="32" rx="10" fill="#e8eefd"/>
+      <text x="340" y="236" text-anchor="middle" font-size="11" fill="#0f1d33"><tspan font-weight="700">Candidates</tspan>, with snippets rebuilt from the positions of their tokens</text>
+      <path d="M250 248V262" stroke="#667085" stroke-width="1.3" marker-end="url(#xa)"/>
+      <path d="M430 248V262" stroke="#667085" stroke-width="1.3" marker-end="url(#xa)"/>
+      <rect x="150" y="264" width="200" height="26" rx="8" fill="#fff" stroke="#c7cdd8"/>
+      <text x="250" y="281" text-anchor="middle" font-size="10.5" font-weight="600" fill="#0f1d33">Web results</text>
+      <rect x="360" y="264" width="200" height="26" rx="8" fill="#2457e6"/>
+      <text x="460" y="281" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">AI Overviews and AI Mode</text>
+    </svg>
+    <figcaption><b>Two ways in, one index.</b> Illustrative query and document numbers; the mechanism as described on stage, which Google has not documented in this detail.</figcaption>
+  </figure>
+
+  <p data-claims="D2-C720 D2-C721 D2-C722"><span class="tag stage">Stage</span> Each page's tokens are stored as they are, with their metadata: "we don't have the full content of the page in our index" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. Nearly every signal calculated for a document, such as quality, country and language, is attached to it.</p>
+  <p data-claims="D2-C732 D2-C824 D2-C733 D2-C736 D2-C738 D2-C734"><span class="tag stage">Stage</span> Posting lists, a structure at least 60 years old, list for most tokens the URLs that contain them; the lists of a query's important words are intersected into unranked candidates <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Google's explainer simplifies this to "an entry for every word".</p>
+  <p data-claims="D2-C740 D2-C741 D2-C745 D2-C746"><span class="tag stage">Stage</span> "just like you build a posting list, you can also build a vector space": the distance between embeddings of document parts and of the query decides what comes back. Both routes work from page content, so "this mantra that we started 25 years ago or whatever still stands, whether we like it or not".</p>
+
+  <div class="callout avoid">
+    <div class="h">The same index, the same snippets for AI answers</div>
+    <p data-claims="D2-C724 D2-C726 D2-C727 D2-C728"><span class="tag stage">Stage</span> "the snippet that you see was reconstructed from these tokens" <span class="muted">(not&nbsp;in&nbsp;docs)</span>. AI Overviews and AI Mode use those same structures and snippets: fan-out queries go to the Search index and come back with snippets that feed the answer. <span class="tag docs">Docs</span> nosnippet and max-snippet govern that use.</p>
+    <p data-claims="D2-C730 D2-C742"><span class="tag analysis">Analysis</span> If a page never appears as a source, check indexing, snippet rules and the Search generative AI setting first. Name the subject in the words people search with and explain it fully; keyword variations add nothing.</p>
+  </div>
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="s" id="s11">
+  <div class="section-head">
+    <div class="num">11</div>
+    <div class="kicker">Section 11 · Omri Weisman, Engineering Manager, Google Trends</div>
+    <h2>Google Trends for SEO</h2>
+    <div class="lead" data-claims="D2-C747 D2-C784 D2-C789">Google Trends is a sample of aggregated, anonymised searches, shown as search interest, not volume. Google presented three uses: keyword selection, scheduling and ideation.</div>
+  </div>
+
+  <p data-claims="D2-C748 D2-C749 D2-C755 D2-C756 D2-C750 D2-C780"><span class="tag stage">Stage</span> Trends covers web, image, shopping and news search plus YouTube, but not Discover, by world, country or region, "from 2004 and up until three minutes ago". <span class="tag docs">Docs</span> Internal searches made by AI Mode and AI Overviews are filtered out, and privacy noise means a one-off spike on a rare query may not be real.</p>
+
+  <h3>Interest is not volume, and spikes need context</h3>
+  <p data-claims="D2-C783 D2-C786 D2-C784 D2-C788"><span class="tag stage">Stage</span> Interest in ski has declined since 2004, yet Google's internal numbers show ski searches rising <span class="muted">(not&nbsp;in&nbsp;docs)</span>: "Search interest is not search volume." <span class="tag analysis">Analysis</span> A falling line is not a shrinking market; take volumes from Search Console or keyword tools.</p>
+  <p data-claims="D2-C777 D2-C779 D2-C781"><span class="tag stage">Stage</span> An early-2012 spike for "ai" came from a hit song with the Portuguese word in its title, not from artificial intelligence <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag analysis">Analysis</span> Read the queries behind a spike before acting on it.</p>
+  <p data-claims="D2-C769 D2-C770 D2-C771 D2-C773 D2-C775"><span class="tag stage">Stage</span> Worldwide interest in Gemini passed ChatGPT for the first time in September 2025, in the Nano Banana surge, and its baseline stayed higher <span class="muted">(not&nbsp;in&nbsp;docs)</span>. <span class="tag docs">Docs</span> Nano Banana was announced on 26 August 2025. <span class="tag analysis">Analysis</span> Judge a launch by the baseline after the spike.</p>
+
+  <h3>Three uses for SEO</h3>
+  <table>
+    <thead><tr><th style="width:28mm">Use</th><th>How Google showed it <span class="tag stage">Stage</span></th><th style="width:60mm">Tip</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C790 D2-C791 D2-C795 D2-C796 D2-C793"><td class="k">Keyword selection</td><td>Compare terms on the Explore page for the right country, region and time frame; use the higher-interest wording; check top and rising queries.</td><td><span class="tag analysis">Analysis</span> Compare per market: the winning wording can differ within one language.</td></tr>
+      <tr data-claims="D2-C798 D2-C799 D2-C800 D2-C803"><td class="k">Scheduling</td><td>Seasonal patterns predict the next wave. In the US, umbrella and sunscreen searches both peak in June <span class="muted">(not&nbsp;in&nbsp;docs)</span>.</td><td><span class="tag analysis">Analysis</span> Publish a few weeks before the rise in each target country.</td></tr>
+      <tr data-claims="D2-C804 D2-C805 D2-C792"><td class="k">Ideation</td><td>Trending now shows a real-world event within about ten minutes; journalists check it every morning for gaps.</td><td><span class="tag docs">Docs</span> "you shouldn't write about something just because it's trending"</td></tr>
+    </tbody>
+  </table>
+
+  <h3>New in Google Trends</h3>
+  <div class="grid3">
+    <div class="card" data-claims="D2-C762 D2-C763 D2-C806 D2-C807 D2-C809"><div class="ct">A new Explore page</div><div class="cs"><span class="tag stage">Stage</span> Launched early 2026; the legacy page will be retired <span class="muted">(not&nbsp;in&nbsp;docs)</span>. "Suggest search terms" uses Gemini to pick up to eight terms from a plain-language request.</div></div>
+    <div class="card" data-claims="D2-C811 D2-C813 D2-C815 D2-C814 D2-C816"><div class="ct">Comparisons, maps, categories</div><div class="cs"><span class="tag stage">Stage</span> Year-, month- and week-over-week chips; regional maps; the category filter is back <span class="muted">(the last two not&nbsp;in&nbsp;docs)</span>. <span class="tag press">Press</span> Search Engine Roundtable, August and September 2026.</div></div>
+    <div class="card" data-claims="D2-C766 D2-C767 D2-C818"><div class="ct">Trending now, Trends TV</div><div class="cs"><span class="tag stage">Stage</span> Trending now covers 125 countries, and trends.google.com/tv suits an office screen. <span class="tag docs">Docs</span> The help page says 100+ countries and regions.</div></div>
+  </div>
+</section>
+
+<!-- ================= 12 ================= -->
+<section class="s" id="s12">
+  <div class="section-head">
+    <div class="num">12</div>
+    <div class="kicker">Section 12 · Across the days</div>
+    <h2>What changed since Day 1</h2>
+    <div class="lead" data-claims="D2-C325 D2-C393">Day 2 mostly explained the mechanisms behind Day 1's slides. Two points pulled against what Day 1 said or Google documents.</div>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:30mm">Topic</th><th style="width:58mm">Day 1</th><th>Day 2</th></tr></thead>
+    <tbody>
+      <tr data-claims="D1-C039 D2-C325 D2-C329"><td class="k">Tokenization <span class="no">Contradicts</span></td><td><span class="tag slide">Slide</span> Gemini shares technologies such as tokenization with Search.</td><td><span class="tag stage">Stage</span> The two tokenizers differ, "or mostly". <span class="tag analysis">Analysis</span> A shared step with different outputs.</td></tr>
+      <tr data-claims="D1-C115 D2-C393 D2-C395"><td class="k">Paginated canonicals <span class="no">Contradicts</span></td><td><span class="tag docs">Docs</span> Don't use page 1 as the canonical of a series.</td><td><span class="tag stage">Stage</span> It can sometimes make sense. <span class="tag docs">Docs</span> The 2013 post still calls it incorrect.</td></tr>
+      <tr data-claims="D1-C037 D2-C344 D2-C350 D2-C680 D2-C684"><td class="k">A finite index</td><td><span class="tag slide">Slide</span> Indexing is one big but not limitless index.</td><td><span class="tag stage">Stage</span> Immense but finite; storage is contested and dearer; a predictive ML system decides what is kept.</td></tr>
+      <tr data-claims="D1-C038 D1-C051 D2-C073 D2-C726 D2-C727"><td class="k">AI on the same index</td><td><span class="tag slide">Slide</span> AI Mode and AI Overviews use Search's crawl and index; fan-out expands the query.</td><td><span class="tag stage">Stage</span> They are built from the same token-based snippets; fan-out queries hit the same index.</td></tr>
+      <tr data-claims="D1-C054 D2-C330 D2-C331"><td class="k">Chunking</td><td><span class="tag slide">Slide</span> No need to chop content for AI.</td><td><span class="tag stage">Stage</span> Chunking matters only at the context window, which for Gemini holds millions of tokens.</td></tr>
+      <tr data-claims="D1-C063 D1-C092 D2-C024 D2-C026"><td class="k">The pipeline</td><td><span class="tag slide">Slide</span> Fetch replies go to indexing; changes in connect time and TTFB (and 429/5xx) drive hostload.</td><td><span class="tag slide">Slide</span> The fetch record carries those timings and the robots policies; processing has six steps.</td></tr>
+      <tr data-claims="D1-C115 D1-C114 D2-C268 D2-C271 D2-C272"><td class="k">No clicking</td><td><span class="tag docs">Docs</span> Crawlers don't click buttons. <span class="tag stage">Stage</span> "Load more" is risky.</td><td><span class="tag stage">Stage</span> Click-loaded content isn't supported; no scrolling; a viewport of about 10,000 pixels.</td></tr>
+      <tr data-claims="D1-C073 D1-C042 D2-C338 D2-C190 D2-C903"><td class="k">Soft 404s</td><td><span class="tag docs">Docs</span> A success code on an error-like page: excluded, still crawled. <span class="tag slide">Slide</span> BERT reads words in context.</td><td><span class="tag stage">Stage</span> Found by a BERT-like model reading layout; common in single-page apps. After a migration, 200s prove only that URLs work.</td></tr>
+      <tr data-claims="D1-C078 D2-C374 D2-C376"><td class="k">Bot challenges</td><td><span class="tag analysis">Analysis</span> Never serve a challenge page with a 200.</td><td><span class="tag stage">Stage</span> Such pages get clustered as duplicates. <span class="tag docs">Docs</span> Send crawlers a 503.</td></tr>
+      <tr data-claims="D1-C094 D2-C685 D2-C369"><td class="k">Inheritance by path</td><td><span class="tag slide">Slide</span> Unknown URLs inherit their parent path's quality and popularity.</td><td><span class="tag stage">Stage</span> Index selection is more forgiving for strong sections. <span class="tag slide">Slide</span> A URL pattern can make crawling a new URL unnecessary.</td></tr>
+      <tr data-claims="D1-C110 D2-C020 D2-C846 D2-C850"><td class="k">robots.txt and noindex</td><td><span class="tag analysis">Analysis</span> A blocked URL can still be indexed, and its noindex is never seen.</td><td><span class="tag slide">Slide</span> Why Google won't treat a block as noindex: important sites block their best pages by mistake. <span class="tag stage">Stage</span> An important URL may be indexed without its content; robots meta rules need a fetchable page.</td></tr>
+      <tr data-claims="D1-C329 D2-C848"><td class="k">Opting out</td><td><span class="tag stage">Stage</span> robots.txt is how site owners opt out of Google's crawling.</td><td><span class="tag stage">Stage</span> Google strongly believes owners should be able to opt out, for legal reasons or for crawl budget.</td></tr>
+      <tr data-claims="D1-C039 D2-C118 D2-C669"><td class="k">Gemini</td><td><span class="tag slide">Slide</span> Gemini uses crawlers for data and grounds on the Search index.</td><td><span class="tag stage">Stage</span> Its training reuses Search's rendering (where training is allowed); SpamBrain is now built on Gemini.</td></tr>
+      <tr data-claims="D1-C006 D2-C752 D1-C030 D2-C103"><td class="k">Repeated</td><td><span class="tag slide">Slide</span> 5 trillion+ searches a year. <span class="tag docs">Docs</span> The generative AI opt-out.</td><td><span class="tag stage">Stage</span> The same figure, announced in early 2025. <span class="tag slide">Slide</span> The opt-out, again.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 13 ================= -->
+<section class="s" id="s13">
+  <div class="section-head">
+    <div class="num">13</div>
+    <div class="kicker">Section 13 · Take it back to the office</div>
+    <h2>Day 2 action checklist</h2>
+    <div class="lead">Seventeen checks that turn Day 2 into work. Most need URL Inspection, a crawler and a look at your templates.</div>
+  </div>
+
+  <div class="check-group">Rendering and indexing controls</div>
+  <ul class="check">
+    <li data-claims="D2-C133">Title, canonical, robots meta, main text and links are in the HTML the server sends</li>
+    <li data-claims="D2-C203">Tab content is in the initial DOM, lazy loading fires on viewport entry, long lists have paginated links</li>
+    <li data-claims="D2-C298">robots.txt on every host (site, API, CDN) allows the scripts and endpoints rendering needs</li>
+    <li data-claims="D2-C023 D2-C109">Pages to keep out are crawlable and carry <code>noindex</code> in the server HTML</li>
+    <li data-claims="D2-C105 D2-C075"><code>max-snippet:-1</code> and <code>max-image-preview:large</code> on indexable templates; snippet limits weighed as AI limits</li>
+  </ul>
+  <div class="check-group">Duplicates, canonicals and site moves</div>
+  <ul class="check">
+    <li data-claims="D2-C400">Redirects, rel=canonical, internal links, sitemaps and hreflang all name one preferred URL</li>
+    <li data-claims="D2-C416">Canonical groups: one hop, no loops, one canonical per page, an indexable and linked leader</li>
+    <li data-claims="D2-C378 D2-C372">Bot challenges reach crawlers as a 503; empty variant combinations return 404</li>
+    <li data-claims="D2-C895 D2-C883 D2-C911">Every moved URL has an approved same-intent destination; removed URLs return 404 or 410, never the homepage</li>
+  </ul>
+  <div class="check-group">Content, markup and media</div>
+  <ul class="check">
+    <li data-claims="D2-C317 D2-C343">Ranking terms sit in the title, headings and opening text; no hidden keyword blocks remain</li>
+    <li data-claims="D2-C504 D2-C450">One page per template passes the Rich Results Test without duplicate types; duplicates carry the same markup</li>
+    <li data-claims="D2-C538 D2-C557">Images that should rank use <code>img</code> with a real <code>src</code>; key videos have their own watch page and markup</li>
+    <li data-claims="D2-C944 D2-C945">Watch pages load the player in the first viewport without a click, and carry no <code>noimageindex</code></li>
+  </ul>
+  <div class="check-group">International</div>
+  <ul class="check">
+    <li data-claims="D2-C574 D2-C583">hreflang: self-reference, return links, one method, codes validated against ISO 639-1 and 3166-1</li>
+    <li data-claims="D2-C590 D2-C189">Templates are translated with the main text; the language selector uses plain <code>&lt;a href&gt;</code> links</li>
+  </ul>
+  <div class="check-group">Index selection and measurement</div>
+  <ul class="check">
+    <li data-claims="D2-C716 D2-C710">Not-indexed URLs are compared with indexed pages of the same type, not resubmitted again and again</li>
+    <li data-claims="D2-C788">Trends lines are read as shares; volumes come from Search Console or keyword tools</li>
+  </ul>
+</section>
+
+<!-- ================= 14 ================= -->
+<section class="s" id="s14">
+  <div class="section-head">
+    <div class="num">14</div>
+    <div class="kicker">Section 14 · Beyond the documentation</div>
+    <h2>Said on stage, not in Google's docs</h2>
+    <div class="lead">Points from Google's speakers that I could not find in Google's documentation. Not wrong for that, but not commitments either: treat them as informed hints and recheck before you build on them.</div>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:70mm">Point</th><th style="width:27mm">Who</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr data-claims="D2-C313 D2-C317"><td class="k"><span class="tag stage">Stage</span> Footer words weigh less</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> Ranking terms belong in the main content.</td></tr>
+      <tr data-claims="D2-C318 D2-C324 D2-C343"><td class="k"><span class="tag stage">Stage</span> The index stores tokens and metadata, spam markers included</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> Hidden text is recorded, not ignored.</td></tr>
+      <tr data-claims="D2-C724 D2-C726"><td class="k"><span class="tag stage">Stage</span> Snippets are rebuilt from token positions</td><td>Google</td><td>AI Overviews and AI Mode use the same snippets.</td></tr>
+      <tr data-claims="D2-C338 D2-C339"><td class="k"><span class="tag stage">Stage</span> A BERT-like model reads page structure to detect soft 404s</td><td>Gary Illyes</td><td>An error alone in the main content is enough.</td></tr>
+      <tr data-claims="D2-C272 D2-C274"><td class="k"><span class="tag stage">Stage</span> The rendering viewport is about 10,000 pixels tall</td><td>Erin Sparling</td><td>Lazy loading on viewport entry works.</td></tr>
+      <tr data-claims="D2-C118 D2-C119"><td class="k"><span class="tag stage">Stage</span> Gemini training reuses Search's rendering (where training is allowed)</td><td>Erin Sparling</td><td><span class="tag analysis">Analysis</span> No separate rendering work for Gemini.</td></tr>
+      <tr data-claims="D2-C386 D2-C368"><td class="k"><span class="tag stage">Stage</span> Machine learning weighs canonical criteria; <span class="tag slide">Slide</span> URL patterns can decide clusters</td><td>Google</td><td>The weighting changes from time to time.</td></tr>
+      <tr data-claims="D2-C684 D2-C685 D2-C686"><td class="k"><span class="tag stage">Stage</span> Index selection is predictive, and forgiving for strong sections</td><td>Google</td><td><span class="tag analysis">Analysis</span> Launch new pages where Google already indexes well.</td></tr>
+      <tr data-claims="D2-C652 D2-C690 D2-C658 D2-C661"><td class="k"><span class="tag stage">Stage</span> Language and country balance the index; freshness and explicit content don't sway selection</td><td>Google</td><td>Thinly covered languages get a lower bar.</td></tr>
+      <tr data-claims="D2-C669 D2-C668"><td class="k"><span class="tag stage">Stage</span> SpamBrain is now built on Gemini</td><td>Google</td><td>Google says its AI spam detection is highly accurate.</td></tr>
+      <tr data-claims="D2-C471 D2-C472"><td class="k"><span class="tag stage">Stage</span> Google will always prefer markup to model extraction</td><td>Google</td><td><span class="tag analysis">Analysis</span> Keep markup for prices, offers and dates.</td></tr>
+      <tr data-claims="D2-C514 D2-C520"><td class="k"><span class="tag slide">Slide</span> SHACL validation rules for structured data are coming</td><td>Google</td><td><span class="tag analysis">Analysis</span> Plan an automated markup test.</td></tr>
+      <tr data-claims="D2-C706 D2-C707"><td class="k"><span class="tag stage">Stage</span> 'Discovered – currently not indexed': Google doesn't want to crawl it yet</td><td>Google</td><td><span class="tag docs">Docs</span> The help page cites expected server overload.</td></tr>
+      <tr data-claims="D2-C924 D2-C944"><td class="k"><span class="tag stage">Stage</span> A video below the fold is not indexed</td><td>Gary Illyes</td><td><span class="tag analysis">Analysis</span> The docs only require the player at load; put it in the first viewport anyway.</td></tr>
+      <tr data-claims="D2-C935 D2-C933"><td class="k"><span class="tag stage">Stage</span> <code>noimageindex</code> also stops videos; a blocked video never shows as a bare URL</td><td>Gary Illyes</td><td>Media controls reach further than their names suggest.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 15 ================= -->
+<section class="s" id="s15">
+  <div class="section-head">
+    <div class="num">15</div>
+    <div class="kicker">Section 15 · Stay in touch</div>
+    <h2>Help complete this guide</h2>
+    <div class="lead">This guide covers what I could capture in the room. If you heard something on Day 2 that isn't written here, tell me and I'll add it, so everyone who attended ends up with the full picture.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="badge" style="color:#2457e6">01 · Add what I missed</div>
+      <div class="ct">Heard something that isn't here?</div>
+      <div class="cs">
+        <p>A second attendee's recording filled most of the first edition's gaps. These are still missing:</p>
+        <ul class="small">
+          <li>Lightning session J: Indexing and Troubleshooting</li>
+          <li>What would you do?: Indexing Edition</li>
+          <li>Poster session H: everything beyond the topics</li>
+          <li>The Q&amp;A and the daily wrap-up</li>
+        </ul>
+        <p style="margin-bottom:0">Each addition is labelled and checked against Google's documentation before it goes in, and credited to you by name if you like.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="badge" style="color:#0b8a5f">02 · The full knowledge base</div>
+      <div class="ct">Every Day 2 point, in the web edition</div>
+      <div class="cs">
+        <p>This guide is a selection. The web edition holds all of Day 2's points, nearly 1,000, with topic pages, session pages, a search and the verification status of every point. It is a folder that opens offline from <code>index.html</code>.</p>
+        <p>An agent-ready version of the same data lets AI tools answer questions about the event, with every answer traceable to its slide, session or document.</p>
+        <p style="margin-bottom:0">Message me and I'll share both.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="ctext">
+      <div class="ck">Let's keep in contact</div>
+      <div class="cname">{{AUTHOR}}</div>
+      <div class="ctitle">{{TITLE_LINE}}</div>
+      <div class="cline">WhatsApp &nbsp;<a class="cnum" href="{{WA_URL}}">{{PHONE}}</a></div>
+      <div class="cline">LinkedIn &nbsp;<a class="clink" href="{{LI_URL}}">{{LI_TEXT}}</a></div>
+      <div class="csub">Message me with additions, corrections, or to get the web edition.</div>
+    </div>
+    <div class="cqrs">
+      <div class="cqr">{{QR}}<div class="cqrl">WhatsApp</div></div>
+      <div class="cqr">{{QRLI}}<div class="cqrl">LinkedIn</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="s" id="src">
+  <div class="section-head plain">
+    <div class="kicker">References</div>
+    <h2>Sources</h2>
+    <div class="lead">This guide is built from {{PHOTOS}} photos of the slides, my recordings of 16 sessions and a second attendee's recording of most of the day, transcribed and checked against the slides where I had them. Every point labelled Docs was checked against these pages on {{CHECKED}}.</div>
+  </div>
+  <ol class="sources" style="padding-left:8mm; line-height:1.15">
+{{SOURCES}}
+  </ol>
+  <p class="small muted" style="margin-top:4mm">Search Central Live is a Google event. This is an independent attendee guide by {{AUTHOR}}, not an official Google publication. Statistics are as presented on stage, with their scope as stated.</p>
+</section>
+
+</body>
+</html>

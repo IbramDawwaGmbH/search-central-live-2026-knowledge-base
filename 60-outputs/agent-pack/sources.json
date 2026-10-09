@@ -1,0 +1,1696 @@
+{
+  "gsc-genai-control": {
+    "title": "Search generative AI control",
+    "url": "https://support.google.com/webmasters/answer/16908024?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "ai-optimization-guide": {
+    "title": "Optimizing your website for generative AI features on Google Search",
+    "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "genai-perf-reports-blog": {
+    "title": "Introducing Search Generative AI performance reports in Search Console",
+    "url": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports",
+    "publisher": "Search Central blog (3 June 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-profiles-blog": {
+    "title": "A new profile to help publishers and creators highlight their work on Search",
+    "url": "https://blog.google/products-and-platforms/products/search/a-new-profile-to-help-publishers-and-creators-highlight-their-work-on-search/",
+    "publisher": "Google blog (4 June 2026)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "search-profiles-update": {
+    "title": "3 new ways we're improving Search profiles for publishers",
+    "url": "https://blog.google/products-and-platforms/products/search/3-new-ways-were-improving-search-profiles-for-publishers/",
+    "publisher": "Google blog (16 September 2026)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "search-profile-help": {
+    "title": "Manage your Search profile",
+    "url": "https://support.google.com/websearch/answer/16904750?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "how-search-works": {
+    "title": "In-depth guide to how Google Search works",
+    "url": "https://developers.google.com/search/docs/fundamentals/how-search-works",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-essentials": {
+    "title": "Google Search Essentials",
+    "url": "https://developers.google.com/search/docs/essentials",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ranking-systems-guide": {
+    "title": "A guide to Google Search ranking systems",
+    "url": "https://developers.google.com/search/docs/appearance/ranking-systems-guide",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mum-blog": {
+    "title": "MUM: A new AI milestone for understanding information",
+    "url": "https://blog.google/products-and-platforms/products/search/introducing-mum/",
+    "publisher": "Google blog (18 May 2021)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "helpful-content": {
+    "title": "Creating helpful, reliable, people-first content",
+    "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawling-infrastructure": {
+    "title": "Crawling infrastructure",
+    "url": "https://developers.google.com/crawling",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawlers-overview": {
+    "title": "Overview of Google crawlers and fetchers (user agents)",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/overview-google-crawlers",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "common-crawlers": {
+    "title": "List of Google's common crawlers",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "robots-spec": {
+    "title": "How Google interprets the robots.txt specification",
+    "url": "https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "crawl-budget-guide": {
+    "title": "Optimize your crawl budget",
+    "url": "https://developers.google.com/crawling/docs/crawl-budget",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "faceted-nav-guide": {
+    "title": "Managing crawling of faceted navigation URLs",
+    "url": "https://developers.google.com/crawling/docs/faceted-navigation",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "http-network-errors": {
+    "title": "How HTTP status codes affect Google's crawlers",
+    "url": "https://developers.google.com/crawling/docs/troubleshooting/http-status-codes",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "dns-network-errors": {
+    "title": "Debug network and DNS errors for Google's crawlers",
+    "url": "https://developers.google.com/crawling/docs/troubleshooting/dns-network-errors",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "troubleshoot-crawling-errors": {
+    "title": "Troubleshoot Google Search crawling errors",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/troubleshoot-crawling-errors",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "qualify-outbound-links": {
+    "title": "Qualify your outbound links to Google",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "nofollow-hints-blog": {
+    "title": "Evolving \"nofollow\" – new ways to identify the nature of links",
+    "url": "https://developers.google.com/search/blog/2019/09/evolving-nofollow-new-ways-to-identify",
+    "publisher": "Search Central blog (10 September 2019)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "pagination-guide": {
+    "title": "Pagination, incremental page loading, and their impact on Google Search",
+    "url": "https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "canonicalization": {
+    "title": "What is canonicalization",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/canonicalization",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "duplicate-content-penalty-blog": {
+    "title": "Demystifying the \"duplicate content penalty\"",
+    "url": "https://developers.google.com/search/blog/2008/09/demystifying-duplicate-content-penalty",
+    "publisher": "Search Central blog (12 September 2008)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "crawling-december-caching": {
+    "title": "Crawling December: HTTP caching",
+    "url": "https://developers.google.com/search/blog/2024/12/crawling-december-caching",
+    "publisher": "Search Central blog (9 December 2024)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "crawling-december-cdns": {
+    "title": "Crawling December: CDNs and crawling",
+    "url": "https://developers.google.com/search/blog/2024/12/crawling-december-cdns",
+    "publisher": "Search Central blog (24 December 2024)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "sej-duplicate-urls": {
+    "title": "Google Says It Can Handle Multiple URLs To The Same Content",
+    "url": "https://www.searchenginejournal.com/google-says-it-can-handle-multiple-urls-to-the-same-content/571424/",
+    "publisher": "Search Engine Journal (8 April 2026)",
+    "kind": "press",
+    "checked": "2026-10-02"
+  },
+  "scl-announcement": {
+    "title": "Search Central Deep Dive Europe 2026: Apparently we're going to Barcelona",
+    "url": "https://developers.google.com/search/blog/2026/07/search-central-live-deep-dive-europe-2026",
+    "publisher": "Search Central blog (6 July 2026)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "robots-intro": {
+    "title": "Introduction to robots.txt",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "no-page-information-help": {
+    "title": "No page information in search results",
+    "url": "https://support.google.com/webmasters/answer/7489871?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "block-indexing-noindex": {
+    "title": "Block Search indexing with noindex",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/block-indexing",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "build-sitemap": {
+    "title": "Build and submit a sitemap",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ecommerce-site-structure": {
+    "title": "Help Google understand your ecommerce website structure",
+    "url": "https://developers.google.com/search/docs/specialty/ecommerce/help-google-understand-your-ecommerce-site-structure",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "html-sitemap-blog": {
+    "title": "How is a Google Sitemap different from an HTML sitemap?",
+    "url": "https://developers.google.com/search/blog/2005/09/how-is-google-sitemap-different-from",
+    "publisher": "Search Central blog (26 September 2005)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "pause-online-business": {
+    "title": "Temporarily pause or disable a website",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/pause-online-business",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "redirects-guide": {
+    "title": "Redirects and Google Search",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/301-redirects",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "robots-meta-tag-spec": {
+    "title": "Robots meta tag, data-nosnippet, and X-Robots-Tag specifications",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "meta-tags-supported": {
+    "title": "meta tags and attributes that Google supports",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/special-tags",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "links-crawlable": {
+    "title": "Link best practices for Google",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "javascript-seo-basics": {
+    "title": "Understand the JavaScript SEO basics",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "localized-versions": {
+    "title": "Tell Google about localized versions of your page",
+    "url": "https://developers.google.com/search/docs/specialty/international/localized-versions",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "snippets-guide": {
+    "title": "Control your snippets in search results",
+    "url": "https://developers.google.com/search/docs/appearance/snippet",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-features-guide": {
+    "title": "AI features and your website",
+    "url": "https://developers.google.com/search/docs/appearance/ai-features",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "google-discover": {
+    "title": "Discover and your website",
+    "url": "https://developers.google.com/search/docs/appearance/google-discover",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "translated-results": {
+    "title": "Translated results in Google Search",
+    "url": "https://developers.google.com/search/docs/appearance/translated-results",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "seo-starter-guide": {
+    "title": "Search Engine Optimization (SEO) Starter Guide",
+    "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "robots-refresher-future-blog": {
+    "title": "Robots Refresher: Future-proof Robots Exclusion Protocol",
+    "url": "https://developers.google.com/search/blog/2025/03/robots-future",
+    "publisher": "Search Central blog (28 March 2025)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "rep-formalizing-blog": {
+    "title": "Formalizing the Robots Exclusion Protocol Specification",
+    "url": "https://developers.google.com/search/blog/2019/07/rep-id",
+    "publisher": "Search Central blog (1 July 2019)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "notranslate-blog-2008": {
+    "title": "Helping you break the language barrier",
+    "url": "https://developers.google.com/search/blog/2008/10/helping-you-break-language-barrier",
+    "publisher": "Search Central blog (14 October 2008)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "chromium-translate": {
+    "title": "Translate",
+    "url": "https://www.chromium.org/developers/design-documents/translate/",
+    "publisher": "The Chromium Projects",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "fix-search-javascript": {
+    "title": "Fix Search-related JavaScript problems",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/fix-search-javascript",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "dynamic-rendering": {
+    "title": "Dynamic rendering as a workaround",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "lazy-loading-guide": {
+    "title": "Fix lazy-loaded content",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/lazy-loading",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "url-inspection-help": {
+    "title": "URL Inspection tool",
+    "url": "https://support.google.com/webmasters/answer/9012289?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "user-triggered-fetchers": {
+    "title": "List of Google user-triggered fetchers",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-user-triggered-fetchers",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawling-december-resources": {
+    "title": "Crawling December: The how and why of Googlebot crawling",
+    "url": "https://developers.google.com/search/blog/2024/12/crawling-december-resources",
+    "publisher": "Search Central blog (3 December 2024)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "inside-googlebot-blog": {
+    "title": "Inside Googlebot: demystifying crawling, fetching, and the bytes we process",
+    "url": "https://developers.google.com/search/blog/2026/03/crawler-blog-post",
+    "publisher": "Search Central blog (31 March 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mobile-first-indexing": {
+    "title": "Mobile site and mobile-first indexing best practices",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "seo-office-hours-2023-03": {
+    "title": "March 2023 Google SEO office hours",
+    "url": "https://developers.google.com/search/help/office-hours/2023/march",
+    "publisher": "Google Search Central (SEO office hours transcript, March 2023)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "seo-office-hours-2023-12": {
+    "title": "December 2023 Google SEO office hours",
+    "url": "https://developers.google.com/search/help/office-hours/2023/december",
+    "publisher": "Google Search Central (SEO office hours transcript, December 2023)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "indexifembedded-blog": {
+    "title": "New robots tag: indexifembedded",
+    "url": "https://developers.google.com/search/blog/2022/01/robots-meta-tag-indexifembedded",
+    "publisher": "Search Central blog (21 January 2022)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "verify-site-ownership": {
+    "title": "Verify your site ownership",
+    "url": "https://support.google.com/webmasters/answer/9008080?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "consolidate-duplicate-urls": {
+    "title": "How to specify a canonical URL with rel=\"canonical\" and other methods",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "canonicalization-troubleshooting": {
+    "title": "Fix canonicalization issues",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "site-move-with-url-changes": {
+    "title": "How to move a site",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "multi-regional-sites": {
+    "title": "Managing multi-regional and multilingual sites",
+    "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "rel-canonical-mistakes-blog": {
+    "title": "5 common mistakes with rel=canonical",
+    "url": "https://developers.google.com/search/blog/2013/04/5-common-mistakes-with-relcanonical",
+    "publisher": "Search Central blog (8 April 2013)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "rater-guidelines": {
+    "title": "General Guidelines",
+    "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+    "publisher": "Google Search Quality Rater Guidelines (PDF, 11 September 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "gemini-long-context": {
+    "title": "Long context",
+    "url": "https://ai.google.dev/gemini-api/docs/long-context",
+    "publisher": "Google AI for Developers (Gemini API docs)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "gemini-tokens": {
+    "title": "Understand and count tokens",
+    "url": "https://ai.google.dev/gemini-api/docs/tokens",
+    "publisher": "Google AI for Developers (Gemini API docs)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "specify-canonical-blog": {
+    "title": "Specify your canonical",
+    "url": "https://developers.google.com/search/blog/2009/02/specify-your-canonical",
+    "publisher": "Search Central blog (12 February 2009)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "intro-structured-data": {
+    "title": "Introduction to structured data markup in Google Search",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "structured-data-guidelines": {
+    "title": "General structured data guidelines",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-gallery": {
+    "title": "Structured data markup that Google Search supports",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/search-gallery",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "review-snippet-sd": {
+    "title": "Review snippet (Review, AggregateRating) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "event-sd": {
+    "title": "Event (Event) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/event",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "organization-sd": {
+    "title": "Organization (Organization) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/organization",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "loyalty-program-sd": {
+    "title": "Loyalty program (MemberProgram) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/loyalty-program",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "shipping-policy-sd": {
+    "title": "Merchant shipping policy (ShippingService) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/shipping-policy",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "merchant-listing-sd": {
+    "title": "Merchant listing (Product, Offer) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/merchant-listing",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "search-docs-updates": {
+    "title": "Latest documentation updates",
+    "url": "https://developers.google.com/search/updates",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "simplifying-serp-blog": {
+    "title": "Simplifying the search results page",
+    "url": "https://developers.google.com/search/blog/2025/06/simplifying-search-results",
+    "publisher": "Search Central blog (12 June 2025)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "rakuten-case-study": {
+    "title": "Rakuten increased time on site 1.5x with the recipe search experience on Google",
+    "url": "https://developers.google.com/search/case-studies/rakuten-case-study",
+    "publisher": "Google Search Central case study (8 May 2018)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "schema-org-launch-blog": {
+    "title": "Introducing schema.org: Search engines come together for a richer web",
+    "url": "https://developers.google.com/search/blog/2011/06/introducing-schemaorg-search-engines",
+    "publisher": "Search Central blog (2 June 2011)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "rich-results-test-help": {
+    "title": "Rich Results Test",
+    "url": "https://support.google.com/webmasters/answer/7445569?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "gen-ai-content-guide": {
+    "title": "Google Search's guidance on using generative AI content on your website",
+    "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "image-seo": {
+    "title": "Google image SEO best practices",
+    "url": "https://developers.google.com/search/docs/appearance/google-images",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "image-sitemaps": {
+    "title": "Image sitemaps",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "avif-blog": {
+    "title": "Supporting AVIF in Google Search",
+    "url": "https://developers.google.com/search/blog/2024/08/happy-avifriday",
+    "publisher": "Search Central blog (30 August 2024)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "remove-images": {
+    "title": "Remove images hosted on your site from search results",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/prevent-images-on-your-page",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "video-seo": {
+    "title": "Video SEO best practices",
+    "url": "https://developers.google.com/search/docs/appearance/video",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "video-sitemaps": {
+    "title": "Video sitemaps and alternatives",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "locale-adaptive-pages": {
+    "title": "How Google crawls locale-adaptive pages",
+    "url": "https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "spam-policies": {
+    "title": "Spam policies for Google web search",
+    "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "accented-characters-blog": {
+    "title": "How search results may differ based on accented characters and interface languages",
+    "url": "https://developers.google.com/search/blog/2006/08/how-search-results-may-differ-based-on",
+    "publisher": "Search Central blog (1 September 2006)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "results-language-help": {
+    "title": "How Google knows what language to show in search results",
+    "url": "https://support.google.com/websearch/answer/13511324?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sej-semrush-hreflang-mistakes": {
+    "title": "75% of Multilingual Websites Have Hreflang Implementation Mistakes",
+    "url": "https://www.searchenginejournal.com/75-multilingual-websites-hreflang-implementation-mistakes/185737/",
+    "publisher": "Search Engine Journal (15 February 2017)",
+    "kind": "press",
+    "checked": "2026-10-02"
+  },
+  "page-indexing-help": {
+    "title": "Page indexing report",
+    "url": "https://support.google.com/webmasters/answer/7440203?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "safesearch-guidelines": {
+    "title": "Guidelines for sites with explicit content",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/safesearch",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "webspam-report-2022": {
+    "title": "How we fought spam on Google Search in 2022",
+    "url": "https://developers.google.com/search/blog/2023/04/webspam-report-2022",
+    "publisher": "Search Central blog (11 April 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "webspam-report-2021": {
+    "title": "How we fought Search spam on Google in 2021",
+    "url": "https://developers.google.com/search/blog/2022/04/webspam-report-2021",
+    "publisher": "Search Central blog (21 April 2022)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "spam-updates": {
+    "title": "Google Search spam updates and your site",
+    "url": "https://developers.google.com/search/updates/spam-updates",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-content-policies": {
+    "title": "Content policies for Google Search",
+    "url": "https://support.google.com/websearch/answer/10622781?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "hsw-organizing-information": {
+    "title": "How Google Search organizes information",
+    "url": "https://www.google.com/search/howsearchworks/how-search-works/organizing-information/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-powers-search-blog": {
+    "title": "How AI powers great search results",
+    "url": "https://blog.google/products-and-platforms/products/search/how-ai-powers-great-search-results/",
+    "publisher": "Google blog (3 February 2022)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "ai-mode-launch-blog": {
+    "title": "Expanding AI Overviews and introducing AI Mode",
+    "url": "https://blog.google/products-and-platforms/products/search/ai-mode-search/",
+    "publisher": "Google blog (5 March 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "trends-get-started-sc": {
+    "title": "Get started with Google Trends",
+    "url": "https://developers.google.com/search/docs/monitor-debug/trends-start",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-home": {
+    "title": "Google Trends",
+    "url": "https://trends.google.com/trends/",
+    "publisher": "Google Trends",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-faq": {
+    "title": "FAQ about Google Trends data",
+    "url": "https://support.google.com/trends/answer/4365533?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-search-terms-topics": {
+    "title": "Compare search terms and topics",
+    "url": "https://support.google.com/trends/answer/17309543?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-compare-terms": {
+    "title": "Compare Trends search terms",
+    "url": "https://support.google.com/trends/answer/4359550?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "trends-related-searches": {
+    "title": "Find related searches",
+    "url": "https://support.google.com/trends/answer/4355000?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-explore-gemini-help": {
+    "title": "Understanding How the Google Trends Explore Page uses Gemini models",
+    "url": "https://support.google.com/trends/answer/16763742?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-quick-comparisons": {
+    "title": "Compare search interest over time with quick comparisons",
+    "url": "https://support.google.com/trends/answer/17261722?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-trending-now-help": {
+    "title": "Explore the searches that are Trending now",
+    "url": "https://support.google.com/trends/answer/3076011?hl=en",
+    "publisher": "Google Trends Help",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-explore-gemini-blog": {
+    "title": "An easier way to explore Search trends with Gemini",
+    "url": "https://blog.google/products-and-platforms/products/search/google-trends-explore-with-ai/",
+    "publisher": "Google blog (14 January 2026)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trending-now-blog-2024": {
+    "title": "3 Trending Now updates to help you keep up with the latest trends",
+    "url": "https://blog.google/products-and-platforms/products/search/google-trends-trending-now-update/",
+    "publisher": "Google blog (14 August 2024)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "ai-personalization-shopping-blog": {
+    "title": "AI, personalization and the future of shopping",
+    "url": "https://blog.google/products/ads-commerce/ai-personalization-and-the-future-of-shopping/",
+    "publisher": "Google blog (3 March 2025)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "trends-tutorials-blog": {
+    "title": "Learn all about Google Trends with our new YouTube tutorials",
+    "url": "https://developers.google.com/search/blog/2024/09/google-trends-tutorials",
+    "publisher": "Search Central blog (12 September 2024)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "gni-basics-trends": {
+    "title": "Basics of Google Trends",
+    "url": "https://newsinitiative.withgoogle.com/resources/trainings/basics-of-google-trends/",
+    "publisher": "Google News Initiative",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "gni-advanced-trends": {
+    "title": "Advanced Google Trends",
+    "url": "https://newsinitiative.withgoogle.com/resources/trainings/advanced-google-trends/",
+    "publisher": "Google News Initiative",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "nano-banana-blog": {
+    "title": "Image editing in Gemini just got a major upgrade",
+    "url": "https://blog.google/products-and-platforms/products/gemini/updated-image-editing-model/",
+    "publisher": "Google blog (26 August 2025)",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "ser-trends-explore-maps": {
+    "title": "Google Trends Gains Explore Maps & Regional Breakdown",
+    "url": "https://www.seroundtable.com/google-trends-explore-maps-and-regional-breakdown-41899.html",
+    "publisher": "Search Engine Roundtable (19 August 2026)",
+    "kind": "press",
+    "checked": "2026-10-02"
+  },
+  "ser-trends-category-filter": {
+    "title": "Google Trends Explore Page Adds Category Filtering",
+    "url": "https://www.seroundtable.com/google-trends-filter-category-42007.html",
+    "publisher": "Search Engine Roundtable (2 September 2026)",
+    "kind": "press",
+    "checked": "2026-10-02"
+  },
+  "verify-google-requests": {
+    "title": "Verify requests from Google crawlers and fetchers",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/verify-google-requests",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "robots-txt-report": {
+    "title": "robots.txt report",
+    "url": "https://support.google.com/webmasters/answer/6062598",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "valid-page-metadata": {
+    "title": "Use valid HTML to specify page metadata",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/valid-page-metadata",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "website-testing": {
+    "title": "Minimize A/B testing impact in Google Search",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/website-testing",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-02"
+  },
+  "hsw-ranking-results": {
+    "title": "Automatically generating and ranking results",
+    "url": "https://www.google.com/search/howsearchworks/how-search-works/ranking-results/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-impressions-help": {
+    "title": "What are impressions, position, and clicks?",
+    "url": "https://support.google.com/webmasters/answer/7042828?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "gemini-grounding-search": {
+    "title": "Grounding with Google Search",
+    "url": "https://ai.google.dev/gemini-api/docs/google-search",
+    "publisher": "Google AI for Developers (Gemini API docs)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-refine-help": {
+    "title": "Refine Google searches",
+    "url": "https://support.google.com/websearch/answer/2466433?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "hsw-rigorous-testing": {
+    "title": "Improving Search with rigorous testing",
+    "url": "https://www.google.com/search/howsearchworks/how-search-works/rigorous-testing/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "hsw-detecting-spam": {
+    "title": "Detecting spam to bring you relevant and reliable results",
+    "url": "https://www.google.com/search/howsearchworks/how-search-works/detecting-spam/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "hsw-our-approach": {
+    "title": "Our approach to Search",
+    "url": "https://www.google.com/search/howsearchworks/our-approach/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-status-ranking": {
+    "title": "Google Search Status Dashboard",
+    "url": "https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history",
+    "publisher": "Google Search Status Dashboard (Ranking incident history)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "september-2026-spam-update": {
+    "title": "Google Search Status Dashboard",
+    "url": "https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu",
+    "publisher": "Google Search Status Dashboard (September 2026 spam update)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "back-button-hijacking-blog": {
+    "title": "Introducing a new spam policy for \"back button hijacking\"",
+    "url": "https://developers.google.com/search/blog/2026/04/back-button-hijacking",
+    "publisher": "Search Central blog (13 April 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "report-spam": {
+    "title": "Report spam, phishing, or malware",
+    "url": "https://developers.google.com/search/help/report-quality-issues",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-content-blog-2023": {
+    "title": "Google Search's guidance about AI-generated content",
+    "url": "https://developers.google.com/search/blog/2023/02/google-search-and-ai-content",
+    "publisher": "Search Central blog (8 February 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "core-updates": {
+    "title": "Google Search's core updates and your website",
+    "url": "https://developers.google.com/search/updates/core-updates",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "core-updates-2019-blog": {
+    "title": "What site owners should know about Google's August 2019 core update",
+    "url": "https://developers.google.com/search/blog/2019/08/core-updates",
+    "publisher": "Search Central blog (1 August 2019)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "webspam-report-2020": {
+    "title": "How we fought Search spam on Google in 2020",
+    "url": "https://developers.google.com/search/blog/2021/04/how-we-fought-search-spam-2020",
+    "publisher": "Search Central blog (29 April 2021)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "google-our-story": {
+    "title": "From the garage to the Googleplex",
+    "url": "https://about.google/our-story/",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "web-was-big-blog": {
+    "title": "We knew the web was big...",
+    "url": "https://googleblog.blogspot.com/2008/07/we-knew-web-was-big.html",
+    "publisher": "Official Google Blog (25 July 2008)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "product-sd-intro": {
+    "title": "Introduction to Product structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/product",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "article-sd": {
+    "title": "Article (Article, NewsArticle, BlogPosting) structured data",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "paywalled-content-sd": {
+    "title": "Structured data for subscription and paywalled content (CreativeWork)",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/paywalled-content",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "site-names": {
+    "title": "Provide a site name to Google Search",
+    "url": "https://developers.google.com/search/docs/appearance/site-names",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "visual-elements-gallery": {
+    "title": "Visual Elements gallery of Google Search",
+    "url": "https://developers.google.com/search/docs/appearance/visual-elements-gallery",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "title-links": {
+    "title": "Influencing your title links in search results",
+    "url": "https://developers.google.com/search/docs/appearance/title-link",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "preferred-sources-guide": {
+    "title": "Help your readers find your site through preferred sources in Google Search",
+    "url": "https://developers.google.com/search/docs/appearance/preferred-sources",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "universal-search-blog-2007": {
+    "title": "Universal search: The best answer is still the best answer",
+    "url": "https://googleblog.blogspot.com/2007/05/universal-search-best-answer-is-still.html",
+    "publisher": "Official Google Blog (16 May 2007)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-product-data-spec": {
+    "title": "Product data specification",
+    "url": "https://support.google.com/merchants/answer/7052112?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-question-and-answer": {
+    "title": "Question and answer [question_and_answer]",
+    "url": "https://support.google.com/merchants/answer/17085211?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-document-link": {
+    "title": "Document link [document_link]",
+    "url": "https://support.google.com/merchants/answer/17084656?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-related-product": {
+    "title": "Related product [related_product]",
+    "url": "https://support.google.com/merchants/answer/17085213?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-popularity-rank": {
+    "title": "Popularity rank [popularity_rank]",
+    "url": "https://support.google.com/merchants/answer/17085297?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-item-group-title": {
+    "title": "Item group title [item_group_title]",
+    "url": "https://support.google.com/merchants/answer/17085146?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-variant-option": {
+    "title": "Variant option [variant_option]",
+    "url": "https://support.google.com/merchants/answer/17085214?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-product-highlight": {
+    "title": "Product highlight [product_highlight]",
+    "url": "https://support.google.com/merchants/answer/12471629?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-product-detail": {
+    "title": "Product detail [product_detail]",
+    "url": "https://support.google.com/merchants/answer/9218260?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-storebot": {
+    "title": "About the Google StoreBot crawler",
+    "url": "https://support.google.com/merchants/answer/13294660?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-automatic-updates": {
+    "title": "Allow Merchant Center to update product information automatically",
+    "url": "https://support.google.com/merchants/answer/3246284?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "mc-free-listings": {
+    "title": "Free listings for products",
+    "url": "https://support.google.com/merchants/answer/9199328?hl=en",
+    "publisher": "Google Merchant Center Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ucp-launch-blog": {
+    "title": "New tech and tools for retailers to succeed in an agentic shopping era",
+    "url": "https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/",
+    "publisher": "Google blog (11 January 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "gml-2026-shopping-blog": {
+    "title": "How we’re helping retailers thrive with new Universal Commerce Protocol features and AI tools on Google",
+    "url": "https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/",
+    "publisher": "Google blog (20 May 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "holiday-agentic-commerce-blog": {
+    "title": "Boost your holiday sales with these agentic commerce updates",
+    "url": "https://blog.google/products-and-platforms/products/shopping/google-shopping-updates-holiday-shopping/",
+    "publisher": "Google blog (16 September 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "query-groups-blog": {
+    "title": "Introducing Query groups in Search Console Insights",
+    "url": "https://developers.google.com/search/blog/2025/10/search-console-query-groups",
+    "publisher": "Search Central blog (27 October 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-config-blog": {
+    "title": "Streamline your Search Console analysis with the new AI-powered configuration",
+    "url": "https://developers.google.com/search/blog/2025/12/ai-powered-configuration",
+    "publisher": "Search Central blog (4 December 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "social-channels-blog": {
+    "title": "Introducing social channels in Search Console",
+    "url": "https://developers.google.com/search/blog/2025/12/social-channels-search-console",
+    "publisher": "Search Central blog (8 December 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "platform-props-blog": {
+    "title": "See how content from social and video platforms performs on Google Search",
+    "url": "https://developers.google.com/search/blog/2026/07/search-console-social-video-platforms",
+    "publisher": "Search Central blog (7 July 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "platform-props-guide-blog": {
+    "title": "Platform properties roll out globally, plus a new social and video performance guide",
+    "url": "https://developers.google.com/search/blog/2026/07/platform-properties-social-video-guide",
+    "publisher": "Search Central blog (29 July 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "social-video-guide": {
+    "title": "Analyze your social and video platform content performance in Search Console",
+    "url": "https://developers.google.com/search/docs/monitor-debug/analyze-social-video-content",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "platform-props-help": {
+    "title": "About platform properties in Search Console",
+    "url": "https://support.google.com/webmasters/answer/17148418?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "multimodal-sc-blog": {
+    "title": "Announcing web multimodal Search performance reporting in Search Console",
+    "url": "https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc",
+    "publisher": "Search Central blog (24 September 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "perf-report-help": {
+    "title": "Performance report (Search results): Overview and basic setup",
+    "url": "https://support.google.com/webmasters/answer/7576553?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "perf-filtering-help": {
+    "title": "Performance report (Search results): Advanced filtering and comparison",
+    "url": "https://support.google.com/webmasters/answer/17011165?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "genai-perf-help": {
+    "title": "Generative AI performance report (Search)",
+    "url": "https://support.google.com/webmasters/answer/16984139?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "britney-archive": {
+    "title": "Britney Spears spelling correction",
+    "url": "https://archive.google/jobs/britney.html",
+    "publisher": "Google (archived jobs page, 2011)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "chrome-lens-help": {
+    "title": "Search with Google Lens in Chrome",
+    "url": "https://support.google.com/chrome/answer/15086890?hl=en",
+    "publisher": "Google Chrome Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "image-search-help": {
+    "title": "Search with an image on Google",
+    "url": "https://support.google.com/websearch/answer/1325808?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-performance-data-limits": {
+    "title": "A deep dive into Search Console performance data filtering and limits",
+    "url": "https://developers.google.com/search/blog/2022/10/performance-data-deep-dive",
+    "publisher": "Search Central blog (19 October 2022)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-branded-filter-blog": {
+    "title": "Introducing the branded queries filter in Search Console",
+    "url": "https://developers.google.com/search/blog/2025/11/search-console-branded-filter",
+    "publisher": "Search Central blog (20 November 2025, updated 11 March 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-bulk-export-about": {
+    "title": "About bulk data export of Search Console data to BigQuery",
+    "url": "https://support.google.com/webmasters/answer/12918484?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-bulk-export-blog": {
+    "title": "Bulk data export: a new and powerful way to access your Search Console data",
+    "url": "https://developers.google.com/search/blog/2023/02/bulk-data-export",
+    "publisher": "Search Central blog (21 February 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-bulk-export-tables": {
+    "title": "Table guidelines and reference",
+    "url": "https://support.google.com/webmasters/answer/12917991?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-bulk-export-queries": {
+    "title": "Query guidelines and sample queries",
+    "url": "https://support.google.com/webmasters/answer/12917174?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-search-quality-clicks-blog": {
+    "title": "AI in Search is driving more queries and higher quality clicks",
+    "url": "https://blog.google/products-and-platforms/products/search/ai-search-driving-more-queries-higher-quality-clicks/",
+    "publisher": "Google blog (6 August 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "succeeding-in-ai-search-blog": {
+    "title": "Top ways to ensure your content performs well in Google's AI experiences on Search",
+    "url": "https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search",
+    "publisher": "Search Central blog (21 May 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sej-similarweb-ai-visits": {
+    "title": "AI-Recommended Brands Saw 2.5x More Site Visits: Similarweb",
+    "url": "https://www.searchenginejournal.com/ai-recommended-brands-saw-2-5x-more-site-visits-similarweb/580241/",
+    "publisher": "Search Engine Journal (23 June 2026)",
+    "kind": "press",
+    "checked": "2026-10-03"
+  },
+  "econsultancy-familiar-brand": {
+    "title": "82% of searchers choose a familiar brand for the first click [study]",
+    "url": "https://econsultancy.com/82-percent-searchers-choose-familiar-brand-search/",
+    "publisher": "Econsultancy (29 October 2018)",
+    "kind": "press",
+    "checked": "2026-10-03"
+  },
+  "messy-middle-report": {
+    "title": "Marketing in the messy middle",
+    "url": "https://www.thinkwithgoogle.com/_qs/documents/18366/Decoding_Decisions_Marketing_in_the_Messy_Middle.pdf",
+    "publisher": "Think with Google (Google and The Behavioural Architects; Decoding Decisions, part 2)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "dmexco-beyond-messy-middle": {
+    "title": "Beyond the Messy Middle: Mastering the consumer journey with AI",
+    "url": "https://community.dmexco.com/widget/event/dmexco-2026/planning/UGxhbm5pbmdfNDUwOTY5Mw==",
+    "publisher": "DMEXCO 2026 event programme",
+    "kind": "press",
+    "checked": "2026-10-03"
+  },
+  "submit-updated-robots-txt": {
+    "title": "Update your robots.txt file",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/robots/submit-updated-robots-txt",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "reduce-crawl-rate": {
+    "title": "Reduce the Google crawl rate",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/reduce-crawl-rate",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ask-google-to-recrawl": {
+    "title": "Ask Google to recrawl your URLs",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "removals-tool-help": {
+    "title": "Removals and SafeSearch reports tool",
+    "url": "https://support.google.com/webmasters/answer/9689846?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "manual-actions-report": {
+    "title": "Manual actions report",
+    "url": "https://support.google.com/webmasters/answer/9044175?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "web-guide-blog": {
+    "title": "Web Guide: An experimental AI-organized search results page",
+    "url": "https://blog.google/products-and-platforms/products/search/web-guide-labs/",
+    "publisher": "Google blog (24 July 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "discover-policies": {
+    "title": "Discover content policies",
+    "url": "https://support.google.com/websearch/answer/9982767?hl=en",
+    "publisher": "Google Search Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "hsw-honest-results": {
+    "title": "Our Honest Results Policy",
+    "url": "https://www.google.com/search/howsearchworks/our-approach/honest-results/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "hsw-ads-on-search": {
+    "title": "How ads work on Google Search",
+    "url": "https://www.google.com/search/howsearchworks/our-approach/ads-on-search/",
+    "publisher": "Google Search (How Search Works)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-io-2026-blog": {
+    "title": "A new era for AI Search",
+    "url": "https://blog.google/products-and-platforms/products/search/search-io-2026/",
+    "publisher": "Google blog (19 May 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "io-2026-keynote-blog": {
+    "title": "Google I/O 2026: Sundar Pichai’s opening keynote",
+    "url": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
+    "publisher": "Google blog (19 May 2026)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "ai-mode-us-insights-blog": {
+    "title": "How AI Mode is changing the way people search in the U.S.",
+    "url": "https://blog.google/products-and-platforms/products/search/ai-mode-us-insights/",
+    "publisher": "Google blog (19 May 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "alphabet-q2-2026-earnings": {
+    "title": "Q2 2026 earnings call: Remarks from our CEO",
+    "url": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/",
+    "publisher": "Google blog (22 July 2026)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "transformer-research-blog": {
+    "title": "Transformer: A Novel Neural Network Architecture for Language Understanding",
+    "url": "https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/",
+    "publisher": "Google Research blog (31 August 2017)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-search-intelligence-blog": {
+    "title": "AI in Search: Going beyond information to intelligence",
+    "url": "https://blog.google/products-and-platforms/products/search/google-search-ai-mode-update/",
+    "publisher": "Google blog (20 May 2025)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-25-moments-blog": {
+    "title": "25 biggest moments in Search, from helpful images to AI",
+    "url": "https://blog.google/products-and-platforms/products/search/25-biggest-google-search-updates/",
+    "publisher": "Google blog (6 September 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "ai-mode-info-monitoring-press": {
+    "title": "Google rolls out AI Mode info monitoring to everyone globally",
+    "url": "https://www.relevantaudience.com/seo/google-ai-mode-info-monitoring-global-rollout/",
+    "publisher": "Relevant Audience (29 September 2026)",
+    "kind": "press",
+    "checked": "2026-10-03"
+  },
+  "rich-result-report-help": {
+    "title": "Rich result report overview",
+    "url": "https://support.google.com/webmasters/answer/7552505?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-api-prereqs": {
+    "title": "Prerequisites",
+    "url": "https://developers.google.com/webmaster-tools/v1/prereqs",
+    "publisher": "Google Search Console API documentation",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-api-pricing": {
+    "title": "Pricing",
+    "url": "https://developers.google.com/webmaster-tools/pricing",
+    "publisher": "Google Search Console API documentation",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "core-web-vitals": {
+    "title": "Understanding Core Web Vitals and Google search results",
+    "url": "https://developers.google.com/search/docs/appearance/core-web-vitals",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "web-dev-aria-html": {
+    "title": "ARIA and HTML",
+    "url": "https://web.dev/learn/accessibility/aria-html",
+    "publisher": "web.dev (Google)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "web-dev-content-structure": {
+    "title": "Content structure",
+    "url": "https://web.dev/learn/accessibility/structure",
+    "publisher": "web.dev (Google)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "webmcp": {
+    "title": "WebMCP",
+    "url": "https://developer.chrome.com/docs/ai/webmcp",
+    "publisher": "Chrome for Developers",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "special-case-crawlers": {
+    "title": "List of Google's special-case crawlers",
+    "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-special-case-crawlers",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawl-stats-help": {
+    "title": "Crawl Stats report",
+    "url": "https://support.google.com/webmasters/answer/9679690?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "sitemaps-overview": {
+    "title": "Learn about sitemaps",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawl-budget-blog": {
+    "title": "What Crawl Budget Means for Googlebot",
+    "url": "https://developers.google.com/search/blog/2017/01/what-crawl-budget-means-for-googlebot",
+    "publisher": "Search Central blog (16 January 2017)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "url-structure-guide": {
+    "title": "URL structure best practices for Google Search",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/url-structure",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "crawling-myths": {
+    "title": "Myths and facts about crawling",
+    "url": "https://developers.google.com/crawling/docs/myths-about-crawling",
+    "publisher": "Google",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "sc-api-reference": {
+    "title": "API Reference",
+    "url": "https://developers.google.com/webmaster-tools/v1/api_reference_index",
+    "publisher": "Google Search Console API documentation",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "search-central-rename-blog": {
+    "title": "Goodbye Google Webmasters, hello Google Search Central",
+    "url": "https://developers.google.com/search/blog/2020/11/goodbye-google-webmasters",
+    "publisher": "Search Central blog (11 November 2020)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "lighthouse-llms-txt": {
+    "title": "llms.txt",
+    "url": "https://developer.chrome.com/docs/lighthouse/agentic-browsing/llms-txt",
+    "publisher": "Chrome for Developers",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "create-robots-txt": {
+    "title": "How to write and submit a robots.txt file",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "video-indexing-report": {
+    "title": "Video indexing report",
+    "url": "https://support.google.com/webmasters/answer/9495631?hl=en",
+    "publisher": "Google Search Console Help",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "image-metadata": {
+    "title": "Image metadata in Google Images",
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata",
+    "publisher": "Google Search Central",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "october-2023-spam-update-blog": {
+    "title": "October 2023 Spam Update",
+    "url": "https://developers.google.com/search/blog/2023/10/october-2023-spam-update",
+    "publisher": "Search Central blog (4 October 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "site-names-global-rollout-blog": {
+    "title": "Site names on Google Search now available for all languages",
+    "url": "https://developers.google.com/search/blog/2023/09/site-names-global-rollout",
+    "publisher": "Search Central blog (7 September 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "multilingual-searches-blog": {
+    "title": "How Google Search handles multilingual searches",
+    "url": "https://developers.google.com/search/blog/2023/09/multilingual-searches",
+    "publisher": "Search Central blog (8 September 2023)",
+    "kind": "google",
+    "checked": "2026-10-03"
+  },
+  "gemini-3-blog": {
+    "title": "A new era of intelligence with Gemini 3",
+    "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3/",
+    "publisher": "Google blog (18 November 2025)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "youtube-ceo-letter-2026": {
+    "title": "From the CEO: What's coming to YouTube in 2026",
+    "url": "https://blog.youtube/inside-youtube/the-future-of-youtube-2026/",
+    "publisher": "YouTube Official Blog (21 January 2026)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "peec-ai-chatgpt-english-fanouts": {
+    "title": "ChatGPT searches in English, even when you don't",
+    "url": "https://peec.ai/blog/chatgpt-searches-in-english-even-when-you-don-t",
+    "publisher": "Peec AI",
+    "kind": "press",
+    "checked": "2026-10-04"
+  },
+  "sej-peec-ai-english-fanouts": {
+    "title": "ChatGPT Search Often Switches To English In Fan-Out Queries: Report",
+    "url": "https://www.searchenginejournal.com/chatgpt-search-often-switches-to-english-in-fan-out-queries-report/567811/",
+    "publisher": "Search Engine Journal (18 February 2026)",
+    "kind": "press",
+    "checked": "2026-10-04"
+  },
+  "ahrefs-llmstxt-study": {
+    "title": "We Analyzed 137K Sites: 97% of llms.txt Files Never Get Read",
+    "url": "https://ahrefs.com/blog/llmstxt-study/",
+    "publisher": "Ahrefs (15 June 2026)",
+    "kind": "press",
+    "checked": "2026-10-04"
+  },
+  "robotstxt-parser": {
+    "title": "google/robotstxt",
+    "url": "https://github.com/google/robotstxt",
+    "publisher": "Google (open-source robots.txt parser and matcher library, GitHub)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "google-extended-announcement": {
+    "title": "An update on web publisher controls",
+    "url": "https://blog.google/technology/ai/an-update-on-web-publisher-controls/",
+    "publisher": "The Keyword, Google blog (28 September 2023, Danielle Romain)",
+    "kind": "google",
+    "checked": "2026-10-04"
+  },
+  "register-gptbot-2023": {
+    "title": "How to spot OpenAI's crawler bot and stop it slurping sites for training data",
+    "url": "https://www.theregister.com/2023/08/08/openai_scraping_software/",
+    "publisher": "The Register (8 August 2023)",
+    "kind": "press",
+    "checked": "2026-10-04"
+  }
+}
