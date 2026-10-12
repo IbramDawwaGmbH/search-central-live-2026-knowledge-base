@@ -20,7 +20,6 @@
   <a href="20-claims/sources.yaml"><img src="60-outputs/badges/sources.svg" alt="Number of sources"></a>
   <br>
   <a href="60-outputs/dev/README.md"><img src="60-outputs/badges/dev-kit.svg" alt="Developer kit: number of requirements"></a>
-  <a href="60-outputs/content/README.md"><img src="60-outputs/badges/media-kit.svg" alt="Media kit: full edition on request"></a>
   <a href="PRIVACY.md"><img src="60-outputs/badges/privacy.svg" alt="Privacy: private material excluded"></a>
 </p>
 
@@ -40,12 +39,15 @@ https://github.com/user-attachments/assets/32385670-c6fe-43aa-901a-9cd46c06edac
 
 ## <img src="_system/brand/icons/coral.svg" width="24" height="24" alt=""> Work with us
 
-Ibram & Dawwa GmbH helps companies to:
+The knowledge base stays free. Ibram & Dawwa GmbH builds it into your own systems and checks your sites against it:
 
-1. **create content from this knowledge base** at premium scale and quality, and
-2. **build an agentic system that checks every website they manage** against these rules.
+1. **Check and fix your websites**: every site against the 138 requirements of the developer kit, each finding citing its requirement and source, then the fixes in your codebase or CMS.
+2. **An auditor agent** that checks your sites and every release on a schedule and opens tickets citing the requirement they break.
+3. **A knowledge-base MCP server or private AI**: this knowledge base plus your own guidelines and docs in Claude, Cursor or your internal agents, running in your infrastructure and answering with claim IDs.
 
-We are also open for collaboration on this community version: corrections, ideas and contributions are welcome. [Get in touch](https://ibramdawwa.de/contact) · [LinkedIn](https://de.linkedin.com/in/ibrahem-angro)
+[See the services and request a quote](https://ibramdawwa.de/seo) · [LinkedIn](https://de.linkedin.com/in/ibrahem-angro)
+
+We are also open for collaboration on this community version: corrections, ideas and contributions are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <p align="center">
   <img src="_system/brand/icons/compass.svg" width="18" height="18" alt=""> <a href="https://ibramdawwagmbh.github.io/search-central-live-2026-knowledge-base/"><b>Live web edition</b></a> &nbsp;·&nbsp;
